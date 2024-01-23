@@ -17,7 +17,7 @@ function App() {
   }, [accessToken, setToken]);
 
   if (!accessToken) {
-    window.location.href = import.meta.env.VITE_ENTRY_POINT;
+    window.location.href = `${import.meta.env.VITE_ENTRY_POINT}?unauth=true`;
     return null;
   }
 
