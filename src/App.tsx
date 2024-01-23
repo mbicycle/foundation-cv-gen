@@ -6,7 +6,7 @@ function App() {
   const unauth = () => removeCookie("token");
 
   if (!token) {
-    window.location.href = "http://localhost:3000";
+    window.location.href = import.meta.env.VITE_ENTRY_POINT;
     return null;
   }
   console.log(token);
