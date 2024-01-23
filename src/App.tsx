@@ -1,15 +1,25 @@
+import { useEffect } from "react";
 import { useCookies } from "react-cookie";
 
 function App() {
-  const [{ token }, , removeCookie] = useCookies(["token"]);
+  const [{ token }, setToken, removeCookie] = useCookies(["token"]);
+  const searchParams = new URLSearchParams(window.location.search);
 
   const unauth = () => removeCookie("token");
 
-  if (!token) {
+  const accessToken = searchParams.get("token") ?? token;
+
+  useEffect(() => {
+    if (accessToken) {
+      setToken("token", accessToken);
+      window.history.replaceState({}, "", "/");
+    }
+  }, [accessToken, setToken]);
+
+  if (!accessToken) {
     window.location.href = import.meta.env.VITE_ENTRY_POINT;
     return null;
   }
-  console.log(token);
 
   return (
     <div>
