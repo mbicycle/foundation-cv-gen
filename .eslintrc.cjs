@@ -2,17 +2,200 @@ module.exports = {
   root: true,
   env: { browser: true, es2020: true },
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb"
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
-  rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
+  ignorePatterns: ["dist", ".eslintrc.cjs", "*.config.*"],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: {
+      "jsx": true
+    },
+    ecmaVersion: 12,
+    sourceType: "module",
+    project: "./tsconfig.json"
   },
+  plugins: [
+    "react",
+    "@typescript-eslint",
+    "react-hooks",
+    "simple-import-sort",
+    "import",
+    "no-relative-import-paths"
+  ],
+  "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true,
+        "optionalDependencies": false,
+        "peerDependencies": false,
+        "bundledDependencies": false
+      }
+    ],
+    "no-nonoctal-decimal-escape": "off",
+    "no-unsafe-optional-chaining": "off",
+    "no-relative-import-paths/no-relative-import-paths": [
+      "error",
+      {
+        "allowSameFolder": true,
+        "rootDir": "src"
+      }
+    ],
+    "react/no-unstable-nested-components": [
+      "off"
+    ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "react/jsx-props-no-spreading": [
+      "off"
+    ],
+    "func-names": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": [
+      "error"
+    ],
+    "@typescript-eslint/no-explicit-any": "error",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": [
+      "error"
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "max-len": [
+      "warn",
+      {
+        "code": 120
+      }
+    ],
+    "import/no-anonymous-default-export": [
+      "off"
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "import/prefer-default-export": "off",
+    "react/prop-types": "off",
+    "react/require-default-props": "off",
+    "linebreak-style": "off",
+    "no-undef": "off",
+    "no-unused-vars": "off",
+    "no-debugger": "warn",
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "no-restricted-exports": [
+      "off"
+    ],
+    "camelcase": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      },
+      "typescript": {}
+    }
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.js",
+        "**/*.ts",
+        "**/*.tsx"
+      ],
+      "rules": {
+        "simple-import-sort/imports": [
+          "error",
+          {
+            "groups": [
+              // `react` first, `next` second, then packages starting with a character
+              [
+                "^react",
+                "^@?\\w"
+              ],
+              // Packages starting with `@`
+              [
+                "^@"
+              ],
+              [
+                "^@mui"
+              ],
+              // src imports
+              [
+                "^src",
+                "^containers",
+                "^common"
+              ],
+              [
+                "^hooks",
+                "^utils"
+              ],
+              // Imports starting with `../`
+              [
+                "^\\.\\.(?!/?$)",
+                "^\\.\\./?$"
+              ],
+              // Imports starting with `./`
+              [
+                "^\\./(?=.*/)(?!/?$)",
+                "^\\.(?!/?$)",
+                "^\\./?$"
+              ],
+              // Style imports
+              [
+                // "^\\.\\.(.*styled)",
+                "\b(?!containers\b)(.*styled)"
+              ],
+              // Side effect imports
+              [
+                "^\\u0000"
+              ]
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "globals": {
+    "React": true,
+    "google": true,
+    "mount": true,
+    "mountWithRouter": true,
+    "shallow": true,
+    "shallowWithRouter": true,
+    "context": true,
+    "expect": true,
+    "jsdom": true,
+    "JSX": true
+  }
 }
