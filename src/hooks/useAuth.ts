@@ -7,11 +7,9 @@ import { AuthState } from 'utils/const';
 export const useAuth = () => {
   const [authState, setAuthState] = useState(AuthState.Loading);
   const [userName, setUserName] = useState('');
+  const [guestToken, setGuestToken] = useState('');
 
   const [{ token }, , removeCookie] = useCookies(['token']);
-  const searchParams = new URLSearchParams(window.location.search);
-
-  const guestToken = searchParams.get('token');
 
   const ssoSilentAuth = async () => {
     try {
@@ -26,16 +24,31 @@ export const useAuth = () => {
   };
 
   useEffect(() => {
-    console.log({ token, guestToken, authState });
-    if (!token) {
+    const searchParams = new URLSearchParams(window.location.search);
+    const queryGuestToken = searchParams.get('token') || '';
+
+    if (queryGuestToken) setGuestToken(queryGuestToken);
+  }, []);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const queryGuestToken = searchParams.get('token') || '';
+
+    const anyGuestToken = guestToken || queryGuestToken;
+
+    console.log({
+      token, guestToken, queryGuestToken, authState,
+    });
+
+    if (!token && !anyGuestToken) {
       setAuthState(AuthState.LoggedOut);
       return;
     }
 
-    if (!guestToken && authState !== AuthState.LoggedIn) {
+    if (!anyGuestToken && authState !== AuthState.LoggedIn) {
       ssoSilentAuth();
-    } else if (guestToken) {
-      msGraph.getGuestTokenValidity(guestToken)
+    } else if (anyGuestToken) {
+      msGraph.getGuestTokenValidity(anyGuestToken)
         .then((isValid: boolean) => {
           if (isValid) {
             setAuthState(AuthState.LoggedIn);
