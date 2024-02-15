@@ -3,7 +3,7 @@ import { AuthState } from './utils/const';
 
 function App() {
   const {
-    authState, userName, logout, account,
+    authState, userName, logout,
   } = useAuth();
 
   if (authState === AuthState.Loading) {
@@ -23,7 +23,6 @@ function App() {
       </span>
       <div>
         <button onClick={logout} type="button">logout</button>
-        <button onClick={account} type="button">account</button>
       </div>
     </div>
   );

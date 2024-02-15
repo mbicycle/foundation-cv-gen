@@ -14,7 +14,6 @@ export const useAuth = () => {
   const ssoSilentAuth = async () => {
     try {
       const res = await msGraph.ssoSilent();
-      console.log('res', res);
       setAuthState(AuthState.LoggedIn);
       setUserName(res.account.username);
     } catch (e) {
@@ -35,10 +34,6 @@ export const useAuth = () => {
     const queryGuestToken = searchParams.get('token') || '';
 
     const anyGuestToken = guestToken || queryGuestToken;
-
-    console.log({
-      token, guestToken, queryGuestToken, authState,
-    });
 
     if (!token && !anyGuestToken) {
       setAuthState(AuthState.LoggedOut);
@@ -67,15 +62,10 @@ export const useAuth = () => {
     await msGraph.logoutFn();
   }, [removeCookie]);
 
-  const account = () => {
-    console.log('account', msGraph.msalInstance.getActiveAccount());
-  };
-
   return {
     userName,
     token,
     authState,
     logout,
-    account,
   };
 };
