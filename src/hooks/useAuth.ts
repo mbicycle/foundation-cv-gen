@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import * as msGraph from 'msal-bundle';
+import * as msGraph from '@mbicycle/msal-bundle';
 
 import { AuthState } from 'utils/const';
 
