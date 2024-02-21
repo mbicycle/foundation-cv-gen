@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import * as msGraph from '@mbicycle/msal-bundle';
+import { getGuestTokenValidity, logoutFn } from '@mbicycle/msal-bundle';
 
 import { AuthState } from 'utils/const';
+import msGraphInstance from 'utils/msal';
 
 export const useAuth = () => {
   const [authState, setAuthState] = useState(AuthState.Loading);
@@ -13,7 +14,7 @@ export const useAuth = () => {
 
   const ssoSilentAuth = async () => {
     try {
-      const res = await msGraph.ssoSilent();
+      const res = await msGraphInstance.ssoSilent();
       setAuthState(AuthState.LoggedIn);
       setUserName(res.account.username);
     } catch (e) {
@@ -43,7 +44,7 @@ export const useAuth = () => {
     if (!anyGuestToken && authState !== AuthState.LoggedIn) {
       ssoSilentAuth();
     } else if (anyGuestToken) {
-      msGraph.getGuestTokenValidity(anyGuestToken)
+      getGuestTokenValidity(anyGuestToken)
         .then((isValid: boolean) => {
           if (isValid) {
             setAuthState(AuthState.LoggedIn);
@@ -59,7 +60,7 @@ export const useAuth = () => {
   const logout = useCallback(async () => {
     removeCookie('token');
     setAuthState(AuthState.LoggedOut);
-    await msGraph.logoutFn();
+    await logoutFn(msGraphInstance.msalInstance);
   }, [removeCookie]);
 
   return {

@@ -1,9 +1,10 @@
-import * as msGraph from '@mbicycle/msal-bundle';
 import type { MsUser } from '@mbicycle/msal-bundle/dist/models';
+
+import msGraphInstance from 'utils/msal/index';
 
 export const getUser = async (): Promise<MsUser> => new Promise<MsUser>(
   (resolve, reject) => {
-    msGraph.graphClient.api('/me')
+    msGraphInstance.graphClient.api('/me')
       .select('givenName,mail,surname')
       .get()
       .then((response: MsUser) => resolve(response))
