@@ -1,22 +1,25 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { getGuestTokenValidity, logoutFn } from '@mbicycle/msal-bundle';
+import useAuthStore from 'stores/auth';
+import useGuestTokenStore from 'stores/guestToken';
+import useUserStore from 'stores/user';
 
 import { AuthState } from 'utils/const';
 import msGraphInstance from 'utils/msal';
 
 export const useAuth = () => {
-  const [authState, setAuthState] = useState(AuthState.Loading);
-  const [userName, setUserName] = useState('');
-  const [guestToken, setGuestToken] = useState('');
+  const { state: authState, setState: setAuthState } = useAuthStore();
+  const { user, setUser, removeUser } = useUserStore();
+  const { guestToken, setGuestToken } = useGuestTokenStore();
 
-  const [{ token }, , removeCookie] = useCookies(['token']);
+  const [{ token = 'token' }, , removeCookie] = useCookies(['token']);
 
   const ssoSilentAuth = async () => {
     try {
       const res = await msGraphInstance.ssoSilent();
       setAuthState(AuthState.LoggedIn);
-      setUserName(res.account.username);
+      setUser({ name: res.account.username, role: res.idTokenClaims.roles[0] || '' });
     } catch (e) {
       console.error(e);
       setAuthState(AuthState.LoggedOut);
@@ -25,14 +28,14 @@ export const useAuth = () => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const queryGuestToken = searchParams.get('token') || '';
+    const queryGuestToken = searchParams.get('guestToken') || '';
 
     if (queryGuestToken) setGuestToken(queryGuestToken);
-  }, []);
+  }, [setGuestToken]);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const queryGuestToken = searchParams.get('token') || '';
+    const queryGuestToken = searchParams.get('guestToken') || '';
 
     const anyGuestToken = guestToken || queryGuestToken;
 
@@ -48,23 +51,24 @@ export const useAuth = () => {
         .then((isValid: boolean) => {
           if (isValid) {
             setAuthState(AuthState.LoggedIn);
-            setUserName('Guest');
+            setUser({ name: 'Guest', role: 'guest' });
           } else {
             alert('Token invalid');
             setAuthState(AuthState.LoggedOut);
           }
         });
     }
-  }, [guestToken, authState, token]);
+  }, [guestToken, authState, token, setAuthState, ssoSilentAuth, setUser]);
 
   const logout = useCallback(async () => {
     removeCookie('token');
+    removeUser();
     setAuthState(AuthState.LoggedOut);
-    await logoutFn(msGraphInstance.msalInstance);
-  }, [removeCookie]);
+    await logoutFn(msGraphInstance.msalInstance, `${msGraphInstance.config.auth.redirectUri}?logout=true`);
+  }, [removeCookie, removeUser, setAuthState]);
 
   return {
-    userName,
+    user,
     token,
     authState,
     logout,

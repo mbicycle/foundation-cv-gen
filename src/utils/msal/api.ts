@@ -1,6 +1,6 @@
 import type { MsUser } from '@mbicycle/msal-bundle/dist/models';
 
-import msGraphInstance from 'utils/msal/index';
+import msGraphInstance from 'utils/msal';
 
 export const getUser = async (): Promise<MsUser> => new Promise<MsUser>(
   (resolve, reject) => {

@@ -3,7 +3,9 @@ import { AuthState } from './utils/const';
 
 function App() {
   const {
-    authState, userName, logout,
+    authState,
+    user,
+    logout,
   } = useAuth();
 
   if (authState === AuthState.Loading) {
@@ -19,7 +21,7 @@ function App() {
       <h1>CV Gen App</h1>
       <span>
         Logged in as:
-        {userName}
+        {user?.name}
       </span>
       <div>
         <button onClick={logout} type="button">logout</button>
