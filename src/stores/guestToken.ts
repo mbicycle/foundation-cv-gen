@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { devtools } from 'zustand/middleware';
+import { devtools, persist } from 'zustand/middleware';
 
 type Store = {
     guestToken: string | null
@@ -9,12 +9,14 @@ type Store = {
 
 const useGuestTokenStore = create<Store>()(
   devtools(
-    (set) => ({
-      guestToken: null,
-      setGuestToken: (token) => set({ guestToken: token }),
-      clearGuestToken: () => set({ guestToken: null }),
-    }),
-    { name: 'GuestTokenStore' },
+    persist(
+      (set) => ({
+        guestToken: null,
+        setGuestToken: (token) => set({ guestToken: token }),
+        clearGuestToken: () => set({ guestToken: null }),
+      }),
+      { name: 'GuestTokenStore' },
+    ),
   ),
 );
 

@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mbicycle/msal-bundle": "file:mbicycle-msal-bundle-1.0.0.tgz",
     "react": "^18.2.0",
     "react-cookie": "^7.0.1",
     "react-dom": "^18.2.0",

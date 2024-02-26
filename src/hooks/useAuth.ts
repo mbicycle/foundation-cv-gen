@@ -11,7 +11,7 @@ import msGraphInstance from 'utils/msal';
 export const useAuth = () => {
   const { state: authState, setState: setAuthState } = useAuthStore();
   const { user, setUser, removeUser } = useUserStore();
-  const { guestToken, setGuestToken } = useGuestTokenStore();
+  const { guestToken, setGuestToken, clearGuestToken } = useGuestTokenStore();
 
   const [{ msalUserEmail }, , removeCookie] = useCookies([COOKIE_NAME]);
 
@@ -62,10 +62,12 @@ export const useAuth = () => {
 
   const logout = useCallback(async () => {
     removeCookie(COOKIE_NAME);
+    clearGuestToken();
     removeUser();
     setAuthState(AuthState.LoggedOut);
+    if (guestToken) return;
     await logoutFn(msGraphInstance.msalInstance, `${msGraphInstance.config.auth.redirectUri}?logout=true`);
-  }, [removeCookie, removeUser, setAuthState]);
+  }, [clearGuestToken, guestToken, removeCookie, removeUser, setAuthState]);
 
   return {
     user,
