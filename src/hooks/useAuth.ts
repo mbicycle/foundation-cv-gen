@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { getGuestTokenValidity, logoutFn } from '@mbicycle/msal-bundle';
+
 import useAuthStore from 'stores/auth';
 import useGuestTokenStore from 'stores/guestToken';
 import useUserStore from 'stores/user';

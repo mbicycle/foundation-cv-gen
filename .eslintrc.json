@@ -160,7 +160,10 @@
                 "^common"
               ],
               [
-                "^hooks",
+                "^stores",
+                "^hooks"
+              ],
+              [
                 "^utils"
               ],
               // Imports starting with `../`

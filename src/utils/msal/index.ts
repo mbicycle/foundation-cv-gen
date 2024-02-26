@@ -1,10 +1,10 @@
 import { msGraph } from '@mbicycle/msal-bundle';
 
-const redirectUri: string = import.meta.env.VITE_REDIRECT_URL || 'https://localhost:3000/';
+import { CONFIG } from 'utils/envConfig';
 
 const msGraphInstance = msGraph({
   configOverride: {
-    redirectUri,
+    redirectUri: CONFIG.redirectUri,
   },
 });
 
