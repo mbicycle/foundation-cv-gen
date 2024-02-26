@@ -5,7 +5,7 @@ import useAuthStore from 'stores/auth';
 import useGuestTokenStore from 'stores/guestToken';
 import useUserStore from 'stores/user';
 
-import { AuthState } from 'utils/const';
+import { AuthState, COOKIE_NAME } from 'utils/const';
 import msGraphInstance from 'utils/msal';
 
 export const useAuth = () => {
@@ -13,18 +13,18 @@ export const useAuth = () => {
   const { user, setUser, removeUser } = useUserStore();
   const { guestToken, setGuestToken } = useGuestTokenStore();
 
-  const [{ token = 'token' }, , removeCookie] = useCookies(['token']);
+  const [{ msalUserEmail }, , removeCookie] = useCookies([COOKIE_NAME]);
 
-  const ssoSilentAuth = async () => {
+  const ssoSilentAuth = useCallback(async () => {
     try {
-      const res = await msGraphInstance.ssoSilent();
+      const res = await msGraphInstance.ssoSilent(msalUserEmail);
       setAuthState(AuthState.LoggedIn);
       setUser({ name: res.account.username, role: res.idTokenClaims.roles[0] || '' });
     } catch (e) {
       console.error(e);
       setAuthState(AuthState.LoggedOut);
     }
-  };
+  }, [setAuthState, setUser]);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -39,7 +39,7 @@ export const useAuth = () => {
 
     const anyGuestToken = guestToken || queryGuestToken;
 
-    if (!token && !anyGuestToken) {
+    if (!msalUserEmail && !anyGuestToken) {
       setAuthState(AuthState.LoggedOut);
       return;
     }
@@ -58,10 +58,10 @@ export const useAuth = () => {
           }
         });
     }
-  }, [guestToken, authState, token, setAuthState, ssoSilentAuth, setUser]);
+  }, [guestToken, authState, msalUserEmail, setAuthState, setUser, ssoSilentAuth]);
 
   const logout = useCallback(async () => {
-    removeCookie('token');
+    removeCookie(COOKIE_NAME);
     removeUser();
     setAuthState(AuthState.LoggedOut);
     await logoutFn(msGraphInstance.msalInstance, `${msGraphInstance.config.auth.redirectUri}?logout=true`);
@@ -69,7 +69,6 @@ export const useAuth = () => {
 
   return {
     user,
-    token,
     authState,
     logout,
   };
