@@ -7,6 +7,7 @@ import useGuestTokenStore from 'stores/guestToken';
 import useUserStore from 'stores/user';
 
 import { AuthState, COOKIE_NAME } from 'utils/const';
+import { CONFIG } from 'utils/envConfig';
 import msGraphInstance from 'utils/msal';
 
 export const useAuth = () => {
@@ -67,7 +68,7 @@ export const useAuth = () => {
     removeUser();
     setAuthState(AuthState.LoggedOut);
     if (guestToken) return;
-    await logoutFn(msGraphInstance.msalInstance, `${msGraphInstance.config.auth.redirectUri}?logout=true`);
+    await logoutFn(msGraphInstance.msalInstance, `${CONFIG.redirectUri}?logout=true`);
   }, [clearGuestToken, guestToken, removeCookie, removeUser, setAuthState]);
 
   return {
