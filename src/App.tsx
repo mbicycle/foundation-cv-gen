@@ -1,30 +1,31 @@
-import { useEffect } from "react";
-import { useCookies } from "react-cookie";
+import { useAuth } from './hooks/useAuth';
+import { AuthState } from './utils/const';
 
 function App() {
-  const [{ token }, setToken, removeCookie] = useCookies(["token"]);
-  const searchParams = new URLSearchParams(window.location.search);
+  const {
+    authState,
+    user,
+    logout,
+  } = useAuth();
 
-  const unauth = () => removeCookie("token");
+  if (authState === AuthState.Loading) {
+    return <div>Loading</div>;
+  }
 
-  const accessToken = searchParams.get("token") ?? token;
-
-  useEffect(() => {
-    if (accessToken) {
-      setToken("token", accessToken);
-      window.history.replaceState({}, "", "/");
-    }
-  }, [accessToken, setToken]);
-
-  if (!accessToken) {
-    window.location.href = `${import.meta.env.VITE_ENTRY_POINT}?unauth=true`;
-    return null;
+  if (authState === AuthState.LoggedOut) {
+    return <div>Logged out</div>;
   }
 
   return (
     <div>
-      CV Gen App
-      <button onClick={unauth}>Unauthorized</button>
+      <h1>CV Gen App</h1>
+      <span>
+        Logged in as:
+        {user?.name}
+      </span>
+      <div>
+        <button onClick={logout} type="button">logout</button>
+      </div>
     </div>
   );
 }
