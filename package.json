@@ -11,6 +11,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.18",
+    "@heroicons/react": "^2.1.3",
+    "@mbicycle/foundation-ui-kit": "^1.0.1",
+    "@mbicycle/msal-bundle": "file:mbicycle-msal-bundle-1.0.2.tgz",
     "@azure/msal-browser": "^2.32.0",
     "@azure/msal-common": "^9.0.0",
     "@azure/msal-react": "^1.5.0",
