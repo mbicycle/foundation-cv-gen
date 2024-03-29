@@ -1,10 +1,8 @@
 import { memo, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Button, Toggle } from '@mbicycle/foundation-ui-kit';
 
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
-import {
-  FormControlLabel, FormGroup, Switch, Typography,
-} from '@mui/material';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
 import RenderOnRole from 'common/components/render-on-role/RenderOnRole';
@@ -16,7 +14,6 @@ import { useValidateCV } from 'common/utils/hooks/useValidateCV';
 import { useSavePDFFile } from './pdf/useSavePdfFile';
 import { useSaveWordFile } from './word/hooks/useSaveWordFile';
 import { ButtonText } from './constants';
-import { LoadingButtonStyled } from './styled';
 
 const PdfButtonSet = function (): JSX.Element | null {
   const { isValid } = useValidateCV();
@@ -47,51 +44,46 @@ const PdfButtonSet = function (): JSX.Element | null {
   return (
     <>
       <RenderOnRole roles={['admin', 'god']}>
-        <FormGroup>
-          <FormControlLabel
-            control={(
-              <Switch
-                checked={checked}
-                onChange={handleChange}
-                color="secondary"
-                disabled={tokenState.isGuest}
-              />
-            )}
-            label={<Typography color="white">Hide sensitive data</Typography>}
-          />
-        </FormGroup>
+        <Toggle
+          text="Hide sensitive data"
+          checked={checked}
+          onChange={handleChange}
+          disabled={tokenState.isGuest}
+        />
       </RenderOnRole>
       <RenderOnRole roles={['god']}>
-        <LoadingButtonStyled
-          variant="outlined"
+        <Button
+          className="mx-3 px-6 py-2"
+          variant="outline"
           color="secondary"
           onClick={toTableNavigateHandle}
         >
           {pathname.includes(ROUTE.ADMIN.DEFAULT) ? ButtonText.ToDashboard : ButtonText.ToTable}
-        </LoadingButtonStyled>
+        </Button>
       </RenderOnRole>
-      <LoadingButtonStyled
-        startIcon={<FileUploadOutlinedIcon fontSize="medium" />}
-        variant="outlined"
+      <Button
+        className="mx-3 px-6 py-2"
+        variant="outline"
         color="secondary"
         onClick={handleSave}
         loadingPosition="start"
-        sx={{ color: (theme) => theme.palette.primary.main }}
         disabled={isLoading || !isValid}
       >
+        <FileUploadOutlinedIcon fontSize="medium" />
         {ButtonText.ExportDocx}
-      </LoadingButtonStyled>
-      <LoadingButtonStyled
-        startIcon={<FileUploadOutlinedIcon fontSize="medium" />}
-        variant="outlined"
+      </Button>
+      <Button
+        className="mx-3 px-6 py-2"
+        variant="outline"
         color="secondary"
         onClick={handlePdfSave}
         loadingPosition="start"
         loading={savePdfLoaging}
         disabled={isLoading || !isValid}
       >
+        <FileUploadOutlinedIcon fontSize="medium" />
         {ButtonText.ExportPDF}
-      </LoadingButtonStyled>
+      </Button>
     </>
   );
 };

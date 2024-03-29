@@ -1,12 +1,15 @@
-import { memo, useState } from 'react';
+import { Fragment, memo } from 'react';
 import { Link } from 'react-router-dom';
+import { Menu, Transition } from '@headlessui/react';
+import { Button } from '@mbicycle/foundation-ui-kit';
 import msalUtils from 'shared/msalUtils';
 import { msalConfig } from 'shared/utils/authConfig';
-import { Text } from 'shared/utils/constants';
 import { msalInstance } from 'shared/utils/interceptors';
 
 import { ROUTE } from 'common/components/routes/utils/constants';
 import { useGuestToken } from 'common/context/guest-token';
+import LogoIcon from 'common/icons/LogoIcon';
+import PersonIcon from 'common/icons/PersonIcon';
 import { useUserPhoto } from 'common/services/user-service/hooks/useUserPhoto';
 
 import PdfButtonSet from './ButtonSet';
@@ -15,15 +18,6 @@ const ApplicationBar = function (): JSX.Element {
   const { user } = msalUtils.useAuth();
   const { photo } = useUserPhoto();
   const { state: tokenState } = useGuestToken();
-
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = (): void => {
-    setAnchorEl(null);
-  };
 
   const logoutHandle = async (): Promise<void> => {
     const msalAccount = msalInstance.getAllAccounts()[0];
@@ -34,61 +28,71 @@ const ApplicationBar = function (): JSX.Element {
     };
 
     await msalInstance.logoutPopup(logoutRequest);
-    handleClose();
-  };
-
-  const renderAvatar = (): JSX.Element => {
-    if (!photo) return <PersonIconStyled $width={40} />;
-
-    return <Avatar alt={user?.mail} src={photo} />;
   };
 
   const renderUserMenu = (): JSX.Element | null => {
     if (tokenState.isGuest) return null;
     return (
       <>
-        <Divider
-          flexItem
-          orientation="vertical"
-          variant="middle"
+        <div
+          className="min-h-[1em] w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent
+         opacity-25 dark:via-neutral-400"
         />
-        <IconButton onClick={handleClick}>
-          {renderAvatar()}
-        </IconButton>
-        <Menu
-          id="basic-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            'aria-labelledby': 'basic-button',
-          }}
-        >
-          <MenuItem onClick={logoutHandle}>{Text.ButtonLogout}</MenuItem>
+        <Menu as="div" className="relative ml-3">
+          <div>
+            <Menu.Button
+              className="relative flex rounded-full bg-gray-800 text-sm
+            focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+            >
+              <span className="absolute -inset-1.5" />
+              <span className="sr-only">Open user menu</span>
+              {photo ? (
+                <img className="size-16 rounded-full" src={photo} alt={user?.mail || 'Avatar'} />
+              ) : (
+                <PersonIcon className="size-16" />
+              )}
+            </Menu.Button>
+          </div>
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <Menu.Items
+              className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg
+              ring-1 ring-black ring-opacity-5
+              focus:outline-none"
+            >
+              <Menu.Item>
+                <Button onClick={logoutHandle} size="medium" variant="transparent">
+                  Logout
+                </Button>
+              </Menu.Item>
+            </Menu.Items>
+          </Transition>
         </Menu>
       </>
     );
   };
 
   return (
-    <Box bgcolor="primary.main">
-      <ToolbarStyled>
+    <header className="w-full bg-blue-600 px-10 py-4 text-white">
+      <div className="flex justify-between">
         <Link to={`dashboard/${ROUTE.DASHBOARD.PERSONAL_INFORMATION}`}>
-          <LogoIconStyled fontSize="large" />
+          <LogoIcon className="h-full w-[150px]" />
         </Link>
         {user && (
-          <ButtonsWrapperStyled
-            container
-            direction="row"
-            wrap="nowrap"
-            justifyContent="space-between"
-          >
+          <div className="flex w-auto items-center">
             <PdfButtonSet />
             {renderUserMenu()}
-          </ButtonsWrapperStyled>
+          </div>
         )}
-      </ToolbarStyled>
-    </Box>
+      </div>
+    </header>
   );
 };
 
