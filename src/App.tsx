@@ -1,33 +1,26 @@
-import { useAuth } from './hooks/useAuth';
-import { AuthState } from './utils/const';
+import { MESSAGE_TEXT } from 'common/components/info-pages/constants';
+import ErrorScreen from 'common/components/info-pages/error';
+import AppProvider from 'common/providers/AppProvider';
+import AppProviderBasic from 'common/providers/AppProviderBasic';
 
-function App() {
-  const {
-    authState,
-    user,
-    logout,
-  } = useAuth();
+import AppRender from './AppRender';
 
-  if (authState === AuthState.Loading) {
-    return <div>Loading</div>;
+const App = function (): JSX.Element {
+  if (import.meta.env.VITE_FREEZED === 'true') {
+    return (
+      <AppProviderBasic>
+        <ErrorScreen
+          title={MESSAGE_TEXT.notAvailableTitle}
+          message={MESSAGE_TEXT.notAvailableMessage}
+        />
+      </AppProviderBasic>
+    );
   }
-
-  if (authState === AuthState.LoggedOut) {
-    return <div>Logged out</div>;
-  }
-
   return (
-    <div>
-      <h1>CV Gen App</h1>
-      <span>
-        Logged in as:
-        {user?.name}
-      </span>
-      <div>
-        <button onClick={logout} type="button">logout</button>
-      </div>
-    </div>
+    <AppProvider>
+      <AppRender />
+    </AppProvider>
   );
-}
+};
 
 export default App;
