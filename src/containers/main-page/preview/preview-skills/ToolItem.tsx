@@ -1,8 +1,7 @@
-import React from 'react';
+import { memo } from 'react';
 
-import { Typography } from '@mui/material';
+import CircleIcon from '@mui/icons-material/Circle';
 
-import { CircleIconStyled, ListItemContainerStyled } from 'containers/main-page/styled';
 import type { Tool } from 'common/models/User';
 
 interface ToolItemProps {
@@ -16,20 +15,20 @@ const ToolItem: React.FC<ToolItemProps> = function (props) {
 
   return (
     <>
-      <ListItemContainerStyled>
-        <CircleIconStyled />
-        <Typography>
+      <div className="flex items-center">
+        <CircleIcon className="text-blue-500 size-3 mx-1.5" />
+        <p>
           {name}
-        </Typography>
-      </ListItemContainerStyled>
-      <Typography align="center">
+        </p>
+      </div>
+      <p className="text-center">
         {experience}
-      </Typography>
-      <Typography align="left" sx={{ paddingLeft: (theme) => theme.spacing(5) }}>
+      </p>
+      <p className="text-left pl-5">
         {level || ''}
-      </Typography>
+      </p>
     </>
   );
 };
 
-export default React.memo(ToolItem);
+export default memo(ToolItem);

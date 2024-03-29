@@ -1,57 +1,37 @@
-import React from 'react';
-
-import { Grid, Typography } from '@mui/material';
-
-import { SkillsGridStyled } from 'containers/main-page/styled';
 import type { Tool } from 'common/models/User';
 
 import ToolItem from './ToolItem';
 
 interface SkillItemProps {
   title: string;
-  gridArea: string;
   tools: Tool[];
 }
 
 const SkillItem: React.FC<SkillItemProps> = function (props): JSX.Element | null {
-  const { title, gridArea, tools } = props;
+  const { title, tools } = props;
 
   if (!tools) return null;
 
   return (
-    <SkillsGridStyled container>
-      <Grid
-        container
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
-          gridTemplateRows: 'auto',
-        }}
-      >
-        <Typography />
-        <Typography />
-        <Typography />
-        <Typography
-          variant="body1"
-          sx={{
-            gridArea,
-            pt: 2,
-            pb: 0,
-            textTransform: 'uppercase',
-            borderBottom: '1px solid lightgray',
-          }}
-          color="primary"
+    <div className="py-2 mb-2 w-full">
+      <div className="grid grid-cols-3 grid-rows-auto">
+        <p />
+        <p />
+        <p />
+        <p
+          style={{ gridArea: '2 / 1 / 2 / 4' }}
+          className="grid-area pt-2 pb-0 text-uppercase border-b border-gray-300"
         >
           {title}
-        </Typography>
+        </p>
         {tools.map((tool) => (
           <ToolItem
             key={tool.id}
             tool={tool}
           />
         ))}
-      </Grid>
-    </SkillsGridStyled>
+      </div>
+    </div>
   );
 };
 

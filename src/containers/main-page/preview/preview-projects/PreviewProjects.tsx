@@ -1,16 +1,11 @@
 import React from 'react';
+import { DividerStyled } from 'fields/skills/utils/styled';
 import { v4 as uuidv4 } from 'uuid';
 
-import FolderCopyRoundedIcon from '@mui/icons-material/FolderCopyRounded';
-import { Grid } from '@mui/material';
+import { FolderCopyRounded } from '@mui/icons-material';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
 import { CV_FORM_STEPS } from 'containers/main-page/cv-form/utils/constants';
-import {
-  BoxWrapperStyled, PaperWrapperStyled, SectionTitle,
-} from 'containers/main-page/styled';
-
-import { DividerStyled } from 'fields/skills/utils/styled';
 
 import PreviewProjectItem from './PreviewProjectItem';
 
@@ -19,27 +14,25 @@ const PreviewProjects: React.FC = function () {
   const { projects } = data ?? {};
 
   return (
-    <PaperWrapperStyled elevation={1}>
-      <Grid container>
-        <Grid item container>
-          <BoxWrapperStyled>
-            <FolderCopyRoundedIcon color="primary" />
-          </BoxWrapperStyled>
-          <SectionTitle variant="h5">
-            {CV_FORM_STEPS[3].text}
-          </SectionTitle>
-        </Grid>
-        {projects?.map(({ ...project }, index) => (
-          <React.Fragment key={uuidv4()}>
-            <PreviewProjectItem
-              project={project}
-            />
-            {(projects.length > 0 && projects.length - 1 !== index)
+    <div className="max-w-full p-6 mt-4 mx-6 bg-white break-words rounded-lg border drop-shadow">
+      <div className="flex flex-row items-center">
+        <div className="bg-gray-200 size-10 rounded-full flex justify-center items-center">
+          <FolderCopyRounded className="text-blue-500 size-8" />
+        </div>
+        <h5 className="ml-4 font-bold">
+          {CV_FORM_STEPS[3].text}
+        </h5>
+      </div>
+      {projects?.map(({ ...project }, index) => (
+        <div key={uuidv4()}>
+          <PreviewProjectItem
+            project={project}
+          />
+          {(projects.length > 0 && projects.length - 1 !== index)
               && <DividerStyled sx={{ width: '100%' }} />}
-          </React.Fragment>
-        ))}
-      </Grid>
-    </PaperWrapperStyled>
+        </div>
+      ))}
+    </div>
   );
 };
 

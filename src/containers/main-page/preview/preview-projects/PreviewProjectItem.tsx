@@ -1,16 +1,14 @@
 import React, { useMemo } from 'react';
 import dayjs from 'dayjs';
+import { projectDatePresent } from 'fields/projects/components/utils/constants';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Grid, Typography } from '@mui/material';
+import CircleIcon from '@mui/icons-material/Circle';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
-import { CircleIconStyled } from 'containers/main-page/styled';
 import { useToggleSensitiveData } from 'common/context';
 import type { Project } from 'common/models/User';
 import { projects } from 'common/utils/constants';
-
-import { projectDatePresent } from 'fields/projects/components/utils/constants';
 
 interface PreviewProjectItemProps {
   project: Omit<Project, 'id'>;
@@ -38,42 +36,32 @@ const PreviewProjectItem: React.FC<PreviewProjectItemProps> = function (props) {
   function renderHiddenLink(): JSX.Element {
     if (!hiddenSensitiveData) {
       return (
-        <Typography
-          color="blue"
-          component="a"
-          href={link}
-          sx={{
-            textOverflow: 'ellipsis',
-            overflow: 'hidden',
-            whiteSpace: 'nowrap',
-            maxWidth: '100%',
-          }}
-        >
+        <a href={link} className="text-blue-500 truncate overflow-hidden whitespace-nowrap max-w-full">
           {link}
-        </Typography>
+        </a>
       );
     }
     return (
-      <Typography sx={{ textTransform: 'uppercase' }}>
+      <p className="uppercase">
         {NDA}
-      </Typography>
+      </p>
     );
   }
 
   function renderProjectLink(): JSX.Element | null {
     if (!link) return null;
     return (
-      <Grid item container sx={{ pt: 3 }}>
-        <Typography variant="h6">
+      <div className="pt-3">
+        <h6>
           {`${productLink}`}
         &nbsp;
-        </Typography>
+        </h6>
         {renderHiddenLink()}
-      </Grid>
+      </div>
     );
   }
 
-  function renderCategory(fullCategory: string): JSX.Element {
+  function renderCategory(fullCategory: string) {
     const mappedFullCategory = fullCategory.split(', ');
     const skill = data?.skills?.find((skillItem) => skillItem.id === mappedFullCategory[0]);
     if (skill) {
@@ -81,100 +69,83 @@ const PreviewProjectItem: React.FC<PreviewProjectItemProps> = function (props) {
         (toolItem) => mappedFullCategory[1].split(',').includes(toolItem.id),
       ) || [];
       return (
-        <Typography sx={{ width: '100%' }} color="text.secondary" key={uuidv4()}>
+        <p className="text-gray-600 w-full" key={uuidv4()}>
           {
             `${skill?.name}: ${categoryNames?.map((categoryName, index) => {
               if (index === categoryNames.length - 1) return ` ${categoryName.name}.`;
               return ` ${categoryName.name}`;
             })}`
           }
-        </Typography>
+        </p>
       );
     }
-    return (<Typography sx={{ width: '100%' }} color="text.secondary" key={uuidv4()} />);
+    return null;
   }
 
   return (
-    <Grid item container sx={{ pt: 6 }}>
-      <Typography variant="h5" sx={{ textTransform: 'uppercase' }}>
-        <CircleIconStyled />
+    <div className="pt-6">
+      <h5 className="uppercase">
+        <CircleIcon className="text-blue-500 size-3 mr-1.5 mb-0.5" />
         {title}
-      </Typography>
+      </h5>
       {renderProjectLink()}
-      <Grid item container>
-        <Typography variant="h6" sx={{ pt: 3 }}>
+      <div>
+        <h6 className="pt-3">
           {descrTitle}
-        </Typography>
-      </Grid>
-      <Grid item container>
-        <Typography
-          color="text.secondary"
-          sx={{
-            whiteSpace: 'pre-wrap',
-            wordBreak: 'break-word',
-          }}
-        >
-          {description}
-        </Typography>
-      </Grid>
-      <Grid item container sx={{ pt: 3 }}>
-        <Typography variant="h6">
+        </h6>
+      </div>
+      <p className="text-gray-600 whitespace-pre-wrap break-words">
+        {description}
+      </p>
+      <div className="pt-3">
+        <h6>
           {duration}
           &nbsp;
-        </Typography>
-        <Typography color="text.secondary">
+        </h6>
+        <p color="text.secondary">
           {fromTo}
-        </Typography>
-      </Grid>
-      <Grid item container sx={{ pt: 3 }}>
-        <Typography variant="h6">
+        </p>
+      </div>
+      <div className="pt-3">
+        <h6>
           {respTitle}
-        </Typography>
-      </Grid>
-      <Grid component="ul" item container sx={{ display: 'block', pt: 3, pl: 4 }}>
+        </h6>
+      </div>
+      <ul className="block pl-8 pt-3">
         {
           responsibilities.map((responsibility) => (
-            <Typography
-              key={responsibility}
-              component="li"
-              color="text.secondary"
-              sx={{
-                '::marker': {
-                  color: 'black',
-                },
-              }}
-            >
+            <li className="text-gray-600 list-disc" key={responsibility}>
               {responsibility}
-            </Typography>
+            </li>
           ))
         }
-      </Grid>
-      <Grid item container sx={{ pt: 3 }}>
-        <Typography variant="h6">
+      </ul>
+      <div className="pt-3">
+        <h6>
           {`${sizeTitle}`}
           &nbsp;
-        </Typography>
-        <Typography color="text.secondary">
+        </h6>
+        <p className="text-gray-600">
           {teamSize}
-        </Typography>
-      </Grid>
-      <Grid item container sx={{ pt: 3 }}>
-        <Typography variant="h6">
+        </p>
+      </div>
+      <div className="pt-3">
+        <h6>
           {`${projectRole}`}
           &nbsp;
-        </Typography>
-        <Typography color="text.secondary">
+        </h6>
+        <p className="text-gray-600">
           {role}
-        </Typography>
-      </Grid>
-      <Grid item container sx={{ pt: 3 }}>
-        <Typography variant="h6" component="p">
+        </p>
+      </div>
+      <div className="pt-3">
+        <p>
           {toolsAndTechs}
           &nbsp;
-        </Typography>
+        </p>
         {categories?.map((category) => renderCategory(category))}
-      </Grid>
-    </Grid>
+      </div>
+    </div>
   );
 };
 

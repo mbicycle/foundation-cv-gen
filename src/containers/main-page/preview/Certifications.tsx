@@ -2,15 +2,10 @@ import { useEffect } from 'react';
 import { useIsFetching } from 'react-query';
 
 import ArticleIcon from '@mui/icons-material/Article';
-import {
-  Grid, Link, Typography,
-} from '@mui/material';
+import CircleIcon from '@mui/icons-material/Circle';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
 import { CV_FORM_STEPS, QueryKey } from 'containers/main-page/cv-form/utils/constants';
-import {
-  BoxWrapperStyled, CircleIconStyled, PaperWrapperStyled, SectionTitle,
-} from 'containers/main-page/styled';
 
 import { formatDateAsianStandart } from './lib/helpers';
 
@@ -27,52 +22,46 @@ const Certifications: React.FC = function () {
   if (!certificates?.length) return null;
 
   return (
-    <PaperWrapperStyled
-      elevation={1}
-    >
-      <Grid container>
-        <Grid container item xs={11}>
-          <BoxWrapperStyled>
-            <ArticleIcon color="primary" />
-          </BoxWrapperStyled>
-          <SectionTitle variant="h5">
+    <div className="max-w-full p-6 mt-4 mx-6 bg-white break-words rounded-lg border drop-shadow">
+      <div className="grid grid-cols-12">
+        <div className="flex flex-row items-center col-span-12">
+          <div className="bg-gray-200 size-10 rounded-full flex justify-center items-center">
+            <ArticleIcon className="text-blue-500 size-8" />
+          </div>
+          <h5 className="ml-4 font-bold">
             {CV_FORM_STEPS[4].text}
-          </SectionTitle>
-        </Grid>
-        <Grid item xs={9} />
-        <Grid
-          item
-          xs={3}
-        >
-          <Typography variant="h5" color="text.secondary" align="center">
+          </h5>
+        </div>
+        <div className="col-span-9" />
+        <div className="col-span-3">
+          <h5 className="text-center text-gray-500">
             {CV_FORM_STEPS[4].columns[0]}
-          </Typography>
-        </Grid>
-        {certificates.map((certificate) => (
-          <Grid
-            container
-            sx={{ padding: (theme) => theme.spacing(0, 2) }}
-            key={certificate.name + certificate.id}
-          >
-            <Grid item xs={9}>
-              <Typography
-                sx={{ paddingLeft: (theme) => theme.spacing(1.5) }}
+          </h5>
+        </div>
+      </div>
+      {certificates.map((certificate) => (
+        <div key={certificate.name + certificate.id} className="grid grid-cols-12 py-2">
+          <div className="col-span-9">
+            <p className="pl-1.5">
+              <CircleIcon className="text-blue-500 size-3 mr-1.5 mb-0.5" />
+              <a
+                href={certificate.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
               >
-                <CircleIconStyled />
-                <Link href={certificate.link} target="_blank" rel="noopener noreferrer">
-                  {certificate.name}
-                </Link>
-              </Typography>
-            </Grid>
-            <Grid item xs={3}>
-              <Typography>
-                {formatDateAsianStandart(certificate.date)}
-              </Typography>
-            </Grid>
-          </Grid>
-        ))}
-      </Grid>
-    </PaperWrapperStyled>
+                {certificate.name}
+              </a>
+            </p>
+          </div>
+          <div className="col-span-3">
+            <p>
+              {formatDateAsianStandart(certificate.date)}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 };
 
