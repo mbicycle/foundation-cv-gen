@@ -1,13 +1,13 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Button } from '@mbicycle/foundation-ui-kit';
+import { useAddUserCertificate } from 'fields/certifications/lib/query-hooks';
+import { CERTIFICATE_LINK } from 'fields/certifications/utils/constants';
 import { v4 as uuidv4 } from 'uuid';
 import * as yup from 'yup';
-
-import { LoadingButton } from '@mui/lab';
-import { Grid } from '@mui/material';
 
 import { ButtonStep } from 'containers/main-page/cv-form/utils/constants';
 import ReactHookFormTextFieldOutlined
@@ -18,12 +18,6 @@ import type { Certificate } from 'common/models/User';
 import useBeforeUnload from 'common/utils/hooks/useBeforeUnload';
 import useUnsaved from 'common/utils/hooks/useUnSaved';
 
-import { useAddUserCertificate } from 'fields/certifications/lib/query-hooks';
-import { CERTIFICATE_LINK } from 'fields/certifications/utils/constants';
-
-import {
-  FormControlStyledP4, GridWrapperStyled, SaveButtonWrapperStyled,
-} from './addedCertificates/styled';
 import CertificateSelectionForm from './CertificateSelectionForm';
 
 const schema = yup.object({
@@ -53,35 +47,31 @@ const CertificateSelection = function (): JSX.Element {
   useBeforeUnload(isDirty);
   useUnsaved(isDirty);
 
+  // TODO: loading btn
   return (
     <form onSubmit={handleSubmit(onSaveHandle)}>
-      <GridWrapperStyled container>
-        <Grid
-          container
-          wrap="nowrap"
-          gap={6}
-          justifyContent="space-between"
-        >
+      <div className="p-3">
+        <div className="flex flex-nowrap gap-6 justify-between">
           <CertificateSelectionForm control={control} />
-        </Grid>
-        <FormControlStyledP4>
+        </div>
+        <div className="pt-4">
           <ReactHookFormTextFieldOutlined
             {...{
               name: 'link', control, label: CERTIFICATE_LINK, type: 'text', variant: 'outlined',
             }}
           />
-        </FormControlStyledP4>
-        <SaveButtonWrapperStyled item>
-          <LoadingButton
+        </div>
+        <div className="inline-flex pt-6 w-full justify-end">
+          <Button
             disabled={!isValid}
             type="submit"
-            variant="contained"
-            loading={isLoading}
+            variant="transparent"
+            // loading={isLoading}
           >
             {ButtonStep.Save}
-          </LoadingButton>
-        </SaveButtonWrapperStyled>
-      </GridWrapperStyled>
+          </Button>
+        </div>
+      </div>
     </form>
   );
 };

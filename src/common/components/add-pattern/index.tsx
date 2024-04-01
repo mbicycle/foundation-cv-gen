@@ -4,8 +4,7 @@ import {
 import {
   Outlet, useLocation, useNavigate,
 } from 'react-router-dom';
-
-import { Button, Typography } from '@mui/material';
+import { Button } from '@mbicycle/foundation-ui-kit';
 
 import { useSkillIdContext } from 'containers/main-page/cv-form/local-state/hooks';
 import { ROUTE } from 'common/components/routes/utils/constants';
@@ -15,11 +14,6 @@ import type {
 
 import type { Step } from './constants';
 import { ButtonText, SkillsDoesntExist } from './constants';
-import {
-  AddButtonStyled, AddCircleIconStyled,
-  AddProfiencyStyled, ContainerStyled, ParagraphContainerStyled,
-  ParagraphStyled,
-} from './styled';
 import Title from './Title';
 
 interface AddProfiencyProps{
@@ -75,44 +69,46 @@ const AddProfiency = function (props: AddProfiencyProps): JSX.Element {
     ? true
     : !!collection?.length;
 
+  // TODO: btn
+
   return (
-    <AddProfiencyStyled>
-      <ContainerStyled>
+    <div className="flex w-full h-max-content items-start overflow-y-auto overflow-x-hidden">
+      <div className="flex w-full justify-center flex-col items-center border rounded mb-2 mt-2">
         {pressedAdd && <Title name={title} onReturn={onReturnHandle} />}
         {!pressedAdd
         && (
           <>
             {isCollectionLength ? children : null}
             {!location.pathname.includes('edit') && (
-              <ParagraphContainerStyled>
+              <div className="w-full flex flex-col justify-between mt-10">
                 {
                   (location.pathname.includes(ROUTE.DASHBOARD.PROJECTS) && disable) ? (
-                    <ParagraphStyled>
-                      <Typography variant="h3">
+                    <div className="text-center w-full mb-4 break-words">
+                      <h3>
                         {SkillsDoesntExist.Paragraph}
-                      </Typography>
+                      </h3>
                       <Button onClick={redirectCallback}>
                         {SkillsDoesntExist.Link}
                       </Button>
-                    </ParagraphStyled>
+                    </div>
                   ) : <div />
                 }
-                <AddButtonStyled
-                  variant="contained"
+                <Button
+                  variant="primary"
                   onClick={handleAdd}
-                  $isProfiencySelected={isCollectionLength}
+                  // $isProfiencySelected={isCollectionLength}
                   disabled={disable}
+                  isAdd
                 >
-                  <AddCircleIconStyled />
                   {renderButtonText()}
-                </AddButtonStyled>
-              </ParagraphContainerStyled>
+                </Button>
+              </div>
             )}
           </>
         )}
         <Outlet />
-      </ContainerStyled>
-    </AddProfiencyStyled>
+      </div>
+    </div>
   );
 };
 

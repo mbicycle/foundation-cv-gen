@@ -1,6 +1,5 @@
 import type { Control } from 'react-hook-form';
-
-import { Grid } from '@mui/material';
+import { CERTIFICATE_DATE, CERTIFICATE_TITLE } from 'fields/certifications/utils/constants';
 
 import type {
   CategoryNameStateCertificates,
@@ -11,16 +10,12 @@ import ReactHookFormTextFieldOutlined
   from 'common/components/react-hook-forms/ReactHookFormTextFieldOutlined';
 import type { Certificate } from 'common/models/User';
 
-import { CERTIFICATE_DATE, CERTIFICATE_TITLE } from 'fields/certifications/utils/constants';
-
-import { FormControlStyled } from './addedCertificates/styled';
-
 const CertificateSelectionForm = function ({ control, defaultValue }:
   { control: Control<Certificate>, defaultValue?: CategoryNameStateCertificates }): JSX.Element {
   return (
     <>
-      <Grid item xs={8}>
-        <FormControlStyled>
+      <div className="col-span-8">
+        <div className="pt-1 w-full">
           <ReactHookFormTextFieldOutlined
             {...{
               name: 'name',
@@ -31,10 +26,10 @@ const CertificateSelectionForm = function ({ control, defaultValue }:
               variant: 'outlined',
             }}
           />
-        </FormControlStyled>
-      </Grid>
-      <Grid item xs={8}>
-        <FormControlStyled>
+        </div>
+      </div>
+      <div className="col-span-8">
+        <div className="pt-1 w-full">
           <ReactHookFormDatePicker
             control={control}
             name="date"
@@ -43,8 +38,8 @@ const CertificateSelectionForm = function ({ control, defaultValue }:
             minDate={new Date(1991, 4, 17)}
             label={CERTIFICATE_DATE}
           />
-        </FormControlStyled>
-      </Grid>
+        </div>
+      </div>
     </>
   );
 };

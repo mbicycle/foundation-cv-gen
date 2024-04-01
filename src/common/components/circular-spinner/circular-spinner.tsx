@@ -1,32 +1,16 @@
 import { memo } from 'react';
+import { Spinner } from '@mbicycle/foundation-ui-kit';
 
-import { CircularProgressStyled, CircularProgressWrapperStyled } from './styled';
-
-type Size = 'tiny' | 'small' | 'medium' | 'large';
+type Size = 'small' | 'medium' | 'large';
 const CircularSpinner = function (
   {
     size,
-    color = 'secondary',
-  }:{size: Size, color?: 'primary' | 'secondary' | 'inherit';},
+  }:{size: Size},
 ): JSX.Element {
-  const setSize = (): number => {
-    switch (size) {
-      case 'tiny':
-        return 14;
-      case 'small':
-        return 24;
-      case 'medium':
-        return 32;
-      case 'large':
-        return 64;
-      default: return 0;
-    }
-  };
-
   return (
-    <CircularProgressWrapperStyled>
-      <CircularProgressStyled size={setSize()} color={color} />
-    </CircularProgressWrapperStyled>
+    <div className="flex justify-center items-center">
+      <Spinner size={size} />
+    </div>
   );
 };
 

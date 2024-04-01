@@ -1,11 +1,9 @@
 import { memo } from 'react';
+import { useDeleteUserCertificate } from 'fields/certifications/lib/query-hooks';
 
-import { ListWrapperStyled } from 'containers/main-page/cv-form/components/fields/styled';
 import { useGuestToken } from 'common/context/guest-token';
 import { useGuestUser } from 'common/context/guest-user';
 import type { Certificate } from 'common/models/User';
-
-import { useDeleteUserCertificate } from 'fields/certifications/lib/query-hooks';
 
 import AddedCertificatesItem from './AddedCertificatesItem';
 
@@ -30,7 +28,7 @@ const AddedCertificatesList = function ({
   if (!certificates.length) return null;
 
   return (
-    <ListWrapperStyled>
+    <div className="max-h-[calc(100vh-35rem)] min-h-32 overflow-auto w-full border p-8 rounded">
       {certificates.map(({
         name, id, link, date,
       }) => (
@@ -44,7 +42,7 @@ const AddedCertificatesList = function ({
           isDeleting={isLoading}
         />
       ))}
-    </ListWrapperStyled>
+    </div>
   );
 };
 

@@ -1,11 +1,12 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Button } from '@mbicycle/foundation-ui-kit';
+import { useUpdateUserCertificate } from 'fields/certifications/lib/query-hooks';
+import { CERTIFICATE_LINK } from 'fields/certifications/utils/constants';
 import * as yup from 'yup';
-
-import { Button, Grid } from '@mui/material';
 
 import { useCategoryCertificatesContext } from 'containers/main-page/cv-form/local-state/hooks';
 import { ButtonStep } from 'containers/main-page/cv-form/utils/constants';
@@ -17,12 +18,6 @@ import type { Certificate } from 'common/models/User';
 import useBeforeUnload from 'common/utils/hooks/useBeforeUnload';
 import useUnsaved from 'common/utils/hooks/useUnSaved';
 
-import { useUpdateUserCertificate } from 'fields/certifications/lib/query-hooks';
-import { CERTIFICATE_LINK } from 'fields/certifications/utils/constants';
-
-import {
-  FormControlStyledP4, SaveButtonWrapperStyled,
-} from './addedCertificates/styled';
 import CertificateSelectionForm from './CertificateSelectionForm';
 
 const schema = yup.object({
@@ -65,32 +60,27 @@ const CertificateEditTool = function (): JSX.Element {
 
   return (
     <form onSubmit={handleSubmit(onSaveHandle)}>
-      <Grid container>
-        <Grid
-          container
-          wrap="nowrap"
-          gap={6}
-          justifyContent="space-between"
-        >
+      <div>
+        <div className="flex justify-between flex-nowrap gap-6">
           <CertificateSelectionForm control={control} defaultValue={state} />
-        </Grid>
-        <FormControlStyledP4>
+        </div>
+        <div className="pt-4 w-full">
           <ReactHookFormTextFieldOutlined
             {...{
               name: 'link', control, label: CERTIFICATE_LINK, type: 'text', variant: 'outlined', state,
             }}
           />
-        </FormControlStyledP4>
-        <SaveButtonWrapperStyled item>
+        </div>
+        <div className="inline-flex w-full pt-4 justify-end">
           <Button
             disabled={false}
             type="submit"
-            variant="contained"
+            variant="outline"
           >
             {ButtonStep.Save}
           </Button>
-        </SaveButtonWrapperStyled>
-      </Grid>
+        </div>
+      </div>
     </form>
   );
 };

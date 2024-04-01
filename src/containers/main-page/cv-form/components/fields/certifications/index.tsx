@@ -18,7 +18,7 @@ const Certifications = function (): JSX.Element {
   }
 
   if (isLoading) {
-    return <CircularSpinner size="large" color="primary" />;
+    return <CircularSpinner size="large" />;
   }
   return (
     <AddProfiency

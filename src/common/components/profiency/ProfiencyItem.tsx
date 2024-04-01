@@ -1,17 +1,10 @@
 import type { CSSProperties } from 'react';
 import { memo } from 'react';
 
-import {
-  IconButton, Link, Typography,
-} from '@mui/material';
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
 import CircularSpinner from 'common/components/circular-spinner/circular-spinner';
 import GarbageIcon from 'common/icons/GarbageIcon';
-
-import {
-  DragIndicatorIconStyled, LeftSideWrapperStyled,
-  LeveledLanguageItemStyled, TextContainerStyled,
-} from './styled';
 
 type T = React.MouseEventHandler<HTMLAnchorElement> & React.MouseEventHandler<HTMLSpanElement>
 
@@ -21,10 +14,11 @@ interface ProfiencyItemProps {
   bodyText?: string;
   isLoading?: boolean;
   isDraggable?: boolean,
-  link?: string | undefined;
   disabled?: boolean;
   onClick?: () => void;
   border?: CSSProperties;
+  link?: string;
+  linkText?: string;
 }
 
 const ProfiencyItem = function ({
@@ -33,10 +27,11 @@ const ProfiencyItem = function ({
   onDelete,
   onClick,
   isLoading,
-  link,
   border,
   disabled,
   isDraggable,
+  link,
+  linkText = 'Go to certificate...',
 }: ProfiencyItemProps): JSX.Element {
   const setIdHandle = (): void => {
     if (onClick) {
@@ -50,7 +45,7 @@ const ProfiencyItem = function ({
 
   function renderIcons(): JSX.Element {
     if (isLoading) {
-      return <CircularSpinner size="tiny" color="primary" />;
+      return <CircularSpinner size="small" />;
     }
     return (<GarbageIcon color="primary" />);
   }
@@ -60,35 +55,33 @@ const ProfiencyItem = function ({
   }
 
   return (
-    <LeveledLanguageItemStyled $disabled={disabled === true ? 'true' : undefined} style={border}>
-      {isDraggable && <DragIndicatorIconStyled fontSize="large" />}
-      <LeftSideWrapperStyled onClick={setIdHandle}>
-        <TextContainerStyled>
-          <Typography variant="body1">
+    <div
+      className={`inline-flex w-full items-center p-2 mb-2 border rounded
+       ${disabled && 'opacity-50 pointer-events-none'}`}
+      style={border}
+    >
+      {isDraggable && <DragIndicatorIcon />}
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+      <div className="w-full cursor-pointer" onClick={setIdHandle}>
+        <div className="pl-4">
+          <p>
             {headText}
-          </Typography>
-          <Typography
-            component="div"
-            variant="body2"
-            color="text.secondary"
-          >
+          </p>
+          <p className="text-gray-500">
             {bodyText}
-          </Typography>
-          <Typography
-            component="div"
-            variant="body2"
-            color="text.secondary"
-          >
-            <Link href={link} underline="always" target="_blank" onClick={linkCer as T}>
-              {link ? 'Go to certificate...' : null}
-            </Link>
-          </Typography>
-        </TextContainerStyled>
-      </LeftSideWrapperStyled>
-      <IconButton onClick={onDeleteEntryHandle}>
+          </p>
+          {link
+            && (
+              <a href={link} className="link" target="_blank" rel="noreferrer" onClick={linkCer as T}>
+                {linkText}
+              </a>
+            )}
+        </div>
+      </div>
+      <button type="button" className="p-2" onClick={onDeleteEntryHandle}>
         {renderIcons()}
-      </IconButton>
-    </LeveledLanguageItemStyled>
+      </button>
+    </div>
   );
 };
 
