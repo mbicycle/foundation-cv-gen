@@ -14,7 +14,7 @@ const Languages = function (): JSX.Element {
   const englishLanguage = data?.languages?.find((language) => language.name === 'English');
 
   if (isLoading) {
-    return <CircularSpinner size="large" color="primary" />;
+    return <CircularSpinner size="large" />;
   }
 
   return (

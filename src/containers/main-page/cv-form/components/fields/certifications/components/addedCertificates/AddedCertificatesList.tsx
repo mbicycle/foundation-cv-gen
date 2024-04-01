@@ -28,7 +28,7 @@ const AddedCertificatesList = function ({
   if (!certificates.length) return null;
 
   return (
-    <div className="max-h-[calc(100vh-35rem)] min-h-32 overflow-auto w-full border p-8 rounded">
+    <div className="listWrapper">
       {certificates.map(({
         name, id, link, date,
       }) => (

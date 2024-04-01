@@ -71,7 +71,7 @@ const CertificateEditTool = function (): JSX.Element {
             }}
           />
         </div>
-        <div className="inline-flex w-full pt-4 justify-end">
+        <div className="saveBtnWrapper">
           <Button
             disabled={false}
             type="submit"

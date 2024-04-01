@@ -1,11 +1,12 @@
 import type { SyntheticEvent } from 'react';
 import React, { memo, useEffect, useState } from 'react';
+import { LANGUAGE, LanguageInputName, LEVEL } from 'fields/languages/utils/constants';
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import type { SelectChangeEvent } from '@mui/material';
 import {
   Autocomplete, createFilterOptions,
-  Grid, InputLabel, MenuItem, Select, TextField,
+  MenuItem, Select, TextField,
 } from '@mui/material';
 
 import {
@@ -13,9 +14,6 @@ import {
 } from 'containers/main-page/cv-form/components/fields/languages/lib/constants';
 import type { CategoryNameStateLanguage } from 'containers/main-page/cv-form/local-state/CategoryIdContext';
 import type { UserLanguage } from 'common/models/User';
-
-import { LANGUAGE, LanguageInputName, LEVEL } from 'fields/languages/utils/constants';
-import { FormControlStyled, MenuItemText } from 'fields/languages/utils/styled';
 
 import { LEVELS as levels } from './utils/constants';
 import type { Labels } from './utils/level.enum';
@@ -68,9 +66,9 @@ const LanguageSelectionForm = function (props: LanguageSelectionFormProps): JSX.
   };
 
   return (
-    <>
-      <Grid item xs={6}>
-        <FormControlStyled fullWidth>
+    <div className="flex flex-row items-center justify-between w-full gap-6">
+      <div className="w-1/2">
+        <div className="w-full pt-1">
           <Autocomplete
             options={languages}
             fullWidth
@@ -89,12 +87,10 @@ const LanguageSelectionForm = function (props: LanguageSelectionFormProps): JSX.
               },
             }}
           />
-        </FormControlStyled>
-
-      </Grid>
-      <Grid item xs={6}>
-        <FormControlStyled fullWidth>
-          <InputLabel>{LEVEL}</InputLabel>
+        </div>
+      </div>
+      <div className="w-1/2">
+        <div className="w-full pt-1">
           <Select
             value={level}
             label={LEVEL}
@@ -110,15 +106,15 @@ const LanguageSelectionForm = function (props: LanguageSelectionFormProps): JSX.
                 key={item.name}
                 value={item.name}
               >
-                <MenuItemText color="text.secondary">
+                <p className="ml-2 text-gray-500">
                   {item.name}
-                </MenuItemText>
+                </p>
               </MenuItem>
             ))}
           </Select>
-        </FormControlStyled>
-      </Grid>
-    </>
+        </div>
+      </div>
+    </div>
   );
 };
 export default memo(LanguageSelectionForm);

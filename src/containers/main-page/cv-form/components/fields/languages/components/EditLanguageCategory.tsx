@@ -1,8 +1,8 @@
 import { memo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import { LoadingButton } from '@mui/lab';
-import { Grid } from '@mui/material';
+import { Button } from '@mbicycle/foundation-ui-kit';
+import { useAddUserLanguage } from 'fields/languages/lib/query-hooks';
+import { addUserLanguage } from 'fields/languages/utils/functions';
 
 import { useCategoryLanguageContext } from 'containers/main-page/cv-form/local-state/hooks';
 import { ButtonStep } from 'containers/main-page/cv-form/utils/constants';
@@ -11,10 +11,6 @@ import { useGuestUser } from 'common/context/guest-user';
 import type { UserLanguage } from 'common/models/User';
 import useBeforeUnload from 'common/utils/hooks/useBeforeUnload';
 import useUnsaved from 'common/utils/hooks/useUnSaved';
-
-import { useAddUserLanguage } from 'fields/languages/lib/query-hooks';
-import { addUserLanguage } from 'fields/languages/utils/functions';
-import { GridWrapperStyled, SaveButtonWrapperStyled } from 'fields/languages/utils/styled';
 
 import LanguageSelectionForm from './LanguageSelectionForm';
 
@@ -48,32 +44,28 @@ const EditLanguageCategory = function (): JSX.Element {
   useBeforeUnload(isDirtyLanguageForm);
   useUnsaved(isDirtyLanguageForm);
 
+  // TODO: btn
   return (
-    <GridWrapperStyled container>
-      <Grid
-        container
-        wrap="nowrap"
-        gap={6}
-        justifyContent="space-between"
-      >
+    <div>
+      <div className="flex justify-between flex-nowrap gap-6">
         <LanguageSelectionForm
           onGetSelectedLanguage={onGetSelectedLanguageHandle}
           isLoading={isLoading}
           defaultValue={languageValue}
           setDirtyFlag={setDirtyFlag}
         />
-      </Grid>
-      <SaveButtonWrapperStyled item>
-        <LoadingButton
+      </div>
+      <div className="inline-flex w-full pt-4 justify-end">
+        <Button
           disabled={isSaveDisabled}
           onClick={onSaveHandle}
-          variant="contained"
-          loading={isLoading}
+          variant="outline"
+          // loading={isLoading}
         >
           {ButtonStep.Save}
-        </LoadingButton>
-      </SaveButtonWrapperStyled>
-    </GridWrapperStyled>
+        </Button>
+      </div>
+    </div>
   );
 };
 

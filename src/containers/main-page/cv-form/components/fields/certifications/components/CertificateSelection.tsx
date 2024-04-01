@@ -61,7 +61,7 @@ const CertificateSelection = function (): JSX.Element {
             }}
           />
         </div>
-        <div className="inline-flex pt-6 w-full justify-end">
+        <div className="saveBtnWrapper">
           <Button
             disabled={!isValid}
             type="submit"

@@ -2,17 +2,10 @@ import {
   memo,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import { Button, Typography } from '@mui/material';
+import { Button } from '@mbicycle/foundation-ui-kit';
+import { EnglishLanguageButton } from 'fields/languages/components/utils/constants';
 
 import { useCategoryLanguageContext } from 'containers/main-page/cv-form/local-state/hooks';
-import {
-  EnglishLanguageItemStyled,
-  LeftSideWrapperStyled,
-  TextContainerStyled,
-} from 'common/components/profiency/styled';
-
-import { EnglishLanguageButton } from 'fields/languages/components/utils/constants';
 
 interface EnglishLanguageItemProps {
     level?: string;
@@ -28,32 +21,25 @@ const EnglishLanguageItem: React.FC<EnglishLanguageItemProps> = function ({ leve
   };
 
   return (
-    <EnglishLanguageItemStyled>
-      <LeftSideWrapperStyled onClick={openHandle}>
-        <TextContainerStyled>
-          <Typography variant="body1">English</Typography>
-          <Typography
-            component="div"
-            variant="body2"
-            color="text.secondary"
-          >
+    <div className="inline-flex w-full items-center p-2 mb-2 border rounded">
+      <div className="w-full cursor-pointer" onClick={openHandle}>
+        <div className="pl-4">
+          <p>English</p>
+          <p className="text-gray-500">
             {level}
-          </Typography>
-        </TextContainerStyled>
-      </LeftSideWrapperStyled>
+          </p>
+        </div>
+      </div>
       {!level && (
         <Button
-          variant="contained"
+          variant="outline"
           onClick={openHandle}
-          sx={{
-            width: 290,
-            wordBreak: 'break-word',
-          }}
+          className="w-[290px] break-words"
         >
           {EnglishLanguageButton}
         </Button>
       )}
-    </EnglishLanguageItemStyled>
+    </div>
   );
 };
 

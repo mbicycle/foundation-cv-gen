@@ -78,4 +78,13 @@ body {
     .link {
         @apply font-medium text-blue-600 dark:text-blue-500 hover:underline;
     }
+
+/*    FORM */
+    .listWrapper {
+        @apply max-h-[calc(100vh-35rem)] min-h-32  p-8 overflow-auto w-full border rounded;
+    }
+
+    .saveBtnWrapper {
+        @apply inline-flex justify-end w-full pt-4;
+    }
 }

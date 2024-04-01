@@ -1,13 +1,11 @@
 import { memo, useMemo } from 'react';
-
-import { ListWrapperStyled } from 'containers/main-page/cv-form/components/fields/styled';
-import { useGuestToken } from 'common/context/guest-token';
-import { useGuestUser } from 'common/context/guest-user';
-import type { UserLanguage } from 'common/models/User';
-
 import EnglishLanguageItem from 'fields/languages/components/EnglishLanguageItem';
 import { useDeleteUserLanguage } from 'fields/languages/lib/query-hooks';
 import { deleteUserLanguage } from 'fields/languages/utils/functions';
+
+import { useGuestToken } from 'common/context/guest-token';
+import { useGuestUser } from 'common/context/guest-user';
+import type { UserLanguage } from 'common/models/User';
 
 import LeveledLanguageItem from './LeveledLanguageItem';
 
@@ -33,7 +31,7 @@ const LeveledLanguageList = function ({
   const englishLanguage = languages.find((language) => language.name === 'English');
 
   return (
-    <ListWrapperStyled>
+    <div className="listWrapper">
       <EnglishLanguageItem level={englishLanguage?.level} />
       {filteredLanguages.map(({ name, level }) => (
         <LeveledLanguageItem
@@ -44,7 +42,7 @@ const LeveledLanguageList = function ({
           isDeleting={isLoading}
         />
       ))}
-    </ListWrapperStyled>
+    </div>
   );
 };
 
