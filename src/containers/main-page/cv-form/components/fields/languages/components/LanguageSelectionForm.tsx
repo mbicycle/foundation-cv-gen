@@ -1,5 +1,5 @@
 import type { SyntheticEvent } from 'react';
-import React, { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { LANGUAGE, LanguageInputName, LEVEL } from 'fields/languages/utils/constants';
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';

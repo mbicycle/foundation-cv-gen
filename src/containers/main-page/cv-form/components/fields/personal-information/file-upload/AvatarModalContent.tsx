@@ -3,11 +3,7 @@ import React, {
 } from 'react';
 import type { PercentCrop, PixelCrop } from 'react-image-crop';
 import ReactCrop, { centerCrop, makeAspectCrop } from 'react-image-crop';
-
-import {
-  Box,
-  Button, Typography,
-} from '@mui/material';
+import { Button } from '@mbicycle/foundation-ui-kit';
 
 import { useUserPhoto } from 'common/services/user-service/hooks/useUserPhoto';
 import { debounce } from 'common/utils/helpers';
@@ -16,9 +12,6 @@ import {
   blobToCanvas, compressImageToLimit, toBlob,
 } from './utils/helpers';
 import { useFileUpload } from './utils/hooks';
-import {
-  AvatarModalContentStyled, MyPhotoUploadStyled, UploadOneStyled,
-} from './utils/styled';
 import { Text } from './utils/types';
 
 import 'react-image-crop/dist/ReactCrop.css';
@@ -138,61 +131,47 @@ const AvatarModalContent: React.FC<AvatarModalContentProps> = function (props) {
     if (!completedCrop) return null;
 
     return (
-      <Box
-        ml={6}
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Box
-          component="canvas"
+      <div className="ml-6 flex flex-col items-center">
+        <canvas
+          className="object-contain rounded-full border size-[240px]"
           onChange={changeQualityHandle.handleChange}
           ref={previewCropCanvasRef}
-          sx={{
-            objectFit: 'contain',
-            borderRadius: '50%',
-            border: (theme) => `1 px solid ${theme.palette.border}`,
-            width: 240,
-            height: 240,
-          }}
         />
-      </Box>
+      </div>
     );
   }
 
   return (
-    <AvatarModalContentStyled>
-      <Box {...getRootProps({ className: 'dropzone' })} sx={{ mb: 4 }}>
-        <MyPhotoUploadStyled container>
-          <Typography color="text.disabled" variant="h5">
+    <div className="bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-[600px] max-w-[1200px] p-8">
+      <div {...getRootProps({ className: 'dropzone' })} className="mb-4">
+        <div className="flex justify-center items-center border border-dashed rounded-lg px-5 py-16">
+          <h5 className="text-gray-500">
             {photo ? Text.UpdatePhoto : Text.FileUpload}
-          </Typography>
+          </h5>
           &nbsp;
-          <UploadOneStyled color="primary" variant="h5">
+          <h5 className="text-blue-500 cursor-pointer hover:underline">
             {Text.UploadOne}
-          </UploadOneStyled>
-        </MyPhotoUploadStyled>
-      </Box>
+          </h5>
+        </div>
+      </div>
       <div className="App">
 
         <div className="Crop-Controls">
           <input {...getInputProps()} onChange={onSelectFile} />
         </div>
-        <Box display="flex" alignItems="center">
+        <div className="flex items-center">
           {renderReactCrop()}
           {renderPreviewCrop()}
-        </Box>
+        </div>
         <Button
-          variant="outlined"
+          variant="outline"
           onClick={onPreparePhotoToChange}
-          sx={{ mt: 6 }}
+          className="mt-6"
         >
           {Text.AddPhoto}
         </Button>
       </div>
-    </AvatarModalContentStyled>
+    </div>
   );
 };
 

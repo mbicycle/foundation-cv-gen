@@ -1,13 +1,9 @@
 import { memo } from 'react';
+import { Button } from '@mbicycle/foundation-ui-kit';
 
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
-import {
-  CloudIconButtonStyled,
-  IconButtonStyled, ImageStyled,
-  ShumbInnerStyled, ThumbStyled,
-} from './utils/styled';
 import type { ExtendedFileType } from './utils/types';
 
 interface ThumbsProps {
@@ -35,22 +31,23 @@ const Thumbs: React.FC<ThumbsProps> = function (props): JSX.Element {
   return (
     <>
       {files.map((file) => (
-        <ThumbStyled key={file.name}>
-          <ShumbInnerStyled>
-            <IconButtonStyled size="small" onClick={onDeleteImageHandle}>
+        <div className="inline-flex rounded-full border mr-3 ml-6 size-[60px] p-1 box-border" key={file.name}>
+          <div className="flex relative text-center min-w-0">
+            <Button className="absolute mt-[-4] ml-9" size="small" onClick={onDeleteImageHandle}>
               <CancelRoundedIcon fontSize="small" color="error" />
-            </IconButtonStyled>
-            <CloudIconButtonStyled size="small" onClick={onUploadNewAvatarHandle}>
+            </Button>
+            <Button className="mt-9 ml-8" size="small" onClick={onUploadNewAvatarHandle}>
               <CloudUploadIcon color="primary" />
-            </CloudIconButtonStyled>
-            <ImageStyled
+            </Button>
+            <img
+              className="avatarImage cursor-pointer w-full"
               alt={file.name}
               src={file.preview}
               referrerPolicy="no-referrer"
               onClick={onOpenModal}
             />
-          </ShumbInnerStyled>
-        </ThumbStyled>
+          </div>
+        </div>
       ))}
     </>
   );

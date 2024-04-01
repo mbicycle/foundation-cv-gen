@@ -1,7 +1,5 @@
 import { memo } from 'react';
-
-import { LoadingButton } from '@mui/lab';
-import { Grid } from '@mui/material';
+import { Button } from '@mbicycle/foundation-ui-kit';
 
 import CircularSpinner from 'common/components/circular-spinner/circular-spinner';
 import ReactHookFormTextFieldOutlined from
@@ -11,7 +9,6 @@ import useBeforeUnload from 'common/utils/hooks/useBeforeUnload';
 
 import { InputLabel, InputName } from './constants';
 import { useUpdatePersonalData } from './hooks';
-import { ContainerStyled, FormControlStyled } from './styled';
 
 const PersonalDataForm = function (): JSX.Element {
   const {
@@ -29,63 +26,33 @@ const PersonalDataForm = function (): JSX.Element {
   const { isGuest } = state;
 
   if (!dbUser) {
-    return <CircularSpinner size="large" color="primary" />;
+    return <CircularSpinner size="large" />;
   }
 
+  // todo: btn
   return (
-    <FormControlStyled onSubmit={submitHandle}>
-      <Grid container direction="row" wrap="nowrap" spacing={4}>
-        <Grid item container gap={4}>
-          <Grid item xs={12}>
-            <ReactHookFormTextFieldOutlined
-              label={InputLabel.FirstName}
-              name={InputName.FirstName}
-              control={control}
-              disabled={!isGuest}
-              type="text"
-              variant="outlined"
-              fullWidth
-              helperText={errors[InputName.FirstName]?.message}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <ReactHookFormTextFieldOutlined
-              label={InputLabel.LastName}
-              name={InputName.LastName}
-              control={control}
-              disabled={!isGuest}
-              type="text"
-              variant="outlined"
-              helperText={errors[InputName.LastName]?.message}
-            />
-          </Grid>
-        </Grid>
-        <Grid item container gap={4}>
-          <Grid item xs={12}>
-            <ReactHookFormTextFieldOutlined
-              label={InputLabel.Email}
-              name={InputName.Email}
-              control={control}
-              type="text"
-              variant="outlined"
-              disabled
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <ReactHookFormTextFieldOutlined
-              inputMode="text"
-              label={InputLabel.Skype}
-              name={InputName.Skype}
-              control={control}
-              type="text"
-              variant="outlined"
-              disabled={isGuest}
-            />
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid container direction="row" wrap="nowrap" spacing={4} marginTop={1} height={70}>
-        <Grid item xs={12}>
+    <form className="my-6" onSubmit={submitHandle}>
+      <div className="flex flex-row flex-nowrap space-x-4 w-full">
+        <div className="flex flex-col gap-6 w-1/2">
+          <ReactHookFormTextFieldOutlined
+            label={InputLabel.FirstName}
+            name={InputName.FirstName}
+            control={control}
+            disabled={!isGuest}
+            type="text"
+            variant="outlined"
+            fullWidth
+            helperText={errors[InputName.FirstName]?.message}
+          />
+          <ReactHookFormTextFieldOutlined
+            label={InputLabel.LastName}
+            name={InputName.LastName}
+            control={control}
+            disabled={!isGuest}
+            type="text"
+            variant="outlined"
+            helperText={errors[InputName.LastName]?.message}
+          />
           <ReactHookFormTextFieldOutlined
             label={InputLabel.Telegram}
             name={InputName.Telegram}
@@ -94,8 +61,25 @@ const PersonalDataForm = function (): JSX.Element {
             variant="outlined"
             disabled={isGuest}
           />
-        </Grid>
-        <Grid item xs={12} marginBottom={0}>
+        </div>
+        <div className="flex flex-col gap-6 w-1/2">
+          <ReactHookFormTextFieldOutlined
+            label={InputLabel.Email}
+            name={InputName.Email}
+            control={control}
+            type="text"
+            variant="outlined"
+            disabled
+          />
+          <ReactHookFormTextFieldOutlined
+            inputMode="text"
+            label={InputLabel.Skype}
+            name={InputName.Skype}
+            control={control}
+            type="text"
+            variant="outlined"
+            disabled={isGuest}
+          />
           <ReactHookFormTextFieldOutlined
             label={InputLabel.Title}
             name={InputName.Title}
@@ -104,9 +88,9 @@ const PersonalDataForm = function (): JSX.Element {
             variant="outlined"
             helperText={errors[InputName.Title]?.message}
           />
-        </Grid>
-      </Grid>
-      <ContainerStyled>
+        </div>
+      </div>
+      <div className="my-6">
         <ReactHookFormTextFieldOutlined
           control={control}
           label={InputLabel.Summary}
@@ -119,18 +103,17 @@ const PersonalDataForm = function (): JSX.Element {
           required
           helperText={errors[InputName.Summary]?.message}
         />
-      </ContainerStyled>
-      <Grid container justifyContent="end">
-        <LoadingButton
-          variant="contained"
+      </div>
+      <div className="flex justify-end">
+        <Button
           disabled={!isValid || !isDirty}
-          loading={isLoading}
+          // loading={isLoading}
           type="submit"
         >
           Save
-        </LoadingButton>
-      </Grid>
-    </FormControlStyled>
+        </Button>
+      </div>
+    </form>
   );
 };
 

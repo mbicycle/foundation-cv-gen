@@ -79,6 +79,10 @@ body {
         @apply font-medium text-blue-600 dark:text-blue-500 hover:underline;
     }
 
+    .avatarImage {
+        @apply block rounded-full aspect-square object-cover
+    }
+
 /*    FORM */
     .listWrapper {
         @apply max-h-[calc(100vh-35rem)] min-h-32  p-8 overflow-auto w-full border rounded;

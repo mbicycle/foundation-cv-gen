@@ -1,24 +1,16 @@
 import { memo, useState } from 'react';
+import { Button } from '@mbicycle/foundation-ui-kit';
 
+import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
-import { Grid, Typography } from '@mui/material';
 import Modal from '@mui/material/Modal';
 
 import { useToggleSensitiveData } from 'common/context';
 import { useGuestToken } from 'common/context/guest-token';
+import PersonIcon from 'common/icons/PersonIcon';
 import { useUserPhoto } from 'common/services/user-service/hooks/useUserPhoto';
 
-import { ImageStyled } from 'fields/personal-information/styled';
-
 import { useFileUpload } from './utils/hooks';
-import {
-  ChangeCircleIconStyled,
-  ChangeCircleIconWrapper,
-  FileUploadStyled,
-  PersonIconStyled,
-  ThumbContainerStyled,
-  UploadImageButtonStyled,
-} from './utils/styled';
 import { Text } from './utils/types';
 import AvatarModalContent from './AvatarModalContent';
 import Thumbs from './Thumbs';
@@ -59,14 +51,14 @@ const FileUpload = function (): JSX.Element {
   }
 
   function renderUserImage(): JSX.Element {
-    if (!photo || hiddenSensitiveData) return <PersonIconStyled $width={60} />;
+    if (!photo || hiddenSensitiveData) return <PersonIcon className="avatarImage size-[60px]" />;
 
     return (
-      <ImageStyled
+      <img
+        className="avatarImage size-[60px]"
         referrerPolicy="no-referrer"
-        alt="user-image"
+        alt="user-avatar"
         src={photo}
-        $width={60}
       />
     );
   }
@@ -74,47 +66,41 @@ const FileUpload = function (): JSX.Element {
   function renderChangeCircleIcon(): JSX.Element {
     if (!files[0]) {
       return (
-        <UploadImageButtonStyled onClick={openHandle} size="small" disabled={isGuest}>
-          <ChangeCircleOutlinedIcon color={isGuest ? 'disabled' : 'info'} fontSize="large" />
+        <Button onClick={openHandle} size="small" variant="outline" disabled={isGuest}>
+          <ChangeCircleOutlinedIcon className={isGuest ? 'text-gray-500' : 'text-blue-500'} fontSize="large" />
           &nbsp;
-          <Typography color="info">{Text.Change}</Typography>
-        </UploadImageButtonStyled>
+          <p className="text-blue-500">{Text.Change}</p>
+        </Button>
       );
     }
 
     return (
-      <ChangeCircleIconWrapper>
-        <ChangeCircleIconStyled
-          color="disabled"
-          fontSize="large"
-          $isUploading={isUploading}
+      <div className="ml-6">
+        <ChangeCircleIcon
+          className={`text-gray-500 ${isUploading && 'animate-spin'}`}
         />
-      </ChangeCircleIconWrapper>
+      </div>
     );
   }
 
   return (
-    <Grid container direction="row" wrap="nowrap" columnSpacing={{ xxs: 0, lg: -4 }}>
-      <Grid item container gap={4}>
-        <FileUploadStyled
-          item
-          xxs={12}
-          lg={6}
-        >
+    <div className="flex flex-row flex-nowrap gap-0 lg:gap-[-4px]">
+      <div className="flex flex-row gap-4 w-full">
+        <div className="flex justify-between items-center break-words w-full lg:w-1/2 border rounded-lg p-2">
           {renderUserImage()}
           {renderChangeCircleIcon()}
-          <ThumbContainerStyled>
+          <aside className="flex flex-row flex-wrap">
             <Thumbs
               files={files}
               onDropFiles={onResetFilesHandle}
               onUploadNewAvatar={onUploadNewAvatar}
               onOpenModal={openHandle}
             />
-          </ThumbContainerStyled>
+          </aside>
           {renderModal()}
-        </FileUploadStyled>
-      </Grid>
-    </Grid>
+        </div>
+      </div>
+    </div>
   );
 };
 

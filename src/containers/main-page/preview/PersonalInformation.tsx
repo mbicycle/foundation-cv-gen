@@ -41,7 +41,7 @@ const PersonalInformation = function (): JSX.Element {
 
     return (
       <img
-        className="block rounded-full aspect-w-1 aspect-h-1 object-cover w-[6.8rem] h-[7.2rem]"
+        className="avatarImage w-[6.8rem] h-[7.2rem]"
         referrerPolicy="no-referrer"
         alt="User"
         src={photo}
