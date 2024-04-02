@@ -1,22 +1,14 @@
 import { memo, useEffect } from 'react';
 import type { UseFormReturn } from 'react-hook-form';
 import { useFieldArray, useForm } from 'react-hook-form';
+import { Button, Input } from '@mbicycle/foundation-ui-kit';
+import type { ProjectFieldValues } from 'fields/projects/utils/types';
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import {
-  Button,
-  Grid,
-  IconButton,
-  TextField,
-  Typography,
-} from '@mui/material';
 
 import GarbageIcon from 'common/icons/GarbageIcon';
 import useBeforeUnload from 'common/utils/hooks/useBeforeUnload';
 import useUnsaved from 'common/utils/hooks/useUnSaved';
-
-import type { ProjectFieldValues } from 'fields/projects/utils/types';
-import { AddToolContainerStyled, BoxButtonWrapper, DividerBottom } from 'fields/skills/utils/styled';
 
 import { ButtonText, Text } from './utils/constants';
 
@@ -69,39 +61,28 @@ const Responsibilities = function ({
 
   return (
     <>
-      <Typography>
+      <p>
         {Text.ResponsibilitiesTitle}
-      </Typography>
+      </p>
       {controlledFields.map(
         (field, index) => (
-          <AddToolContainerStyled>
-            <Grid
-              key={field.id}
-              container
-              marginTop={5}
-              marginBottom={5}
-            >
-              <Grid item xs key={field.id}>
-                <TextField
-                  required
-                  fullWidth
-                  label={`Responsibility ${index + 1}`}
-                  variant="outlined"
-                  {...register(`responsibilities.${index}.responsibility` as const)}
-                />
-              </Grid>
-            </Grid>
-            <DividerBottom>
-              <IconButton onClick={() => remove(index)}>
-                <BoxButtonWrapper>
-                  <GarbageIcon fontSize="medium" />
-                </BoxButtonWrapper>
-              </IconButton>
-            </DividerBottom>
-          </AddToolContainerStyled>
+          <div key={field.id} className="flex flex-row items-center w-full">
+            <div className="my-5">
+              <Input
+                required
+                label={`Responsibility ${index + 1}`}
+                {...register(`responsibilities.${index}.responsibility` as const)}
+              />
+            </div>
+            <div className="flex h-[3.3rem] w-[40%]">
+              <button className="flex items-center p-4" onClick={() => remove(index)}>
+                <GarbageIcon className="text-blue-500" fontSize="medium" />
+              </button>
+            </div>
+          </div>
         ),
       )}
-      <Button variant="outlined" onClick={onAddHandle}>
+      <Button variant="transparent" onClick={onAddHandle}>
         <AddCircleOutlineIcon />
         &nbsp;
         {ButtonText.Add}

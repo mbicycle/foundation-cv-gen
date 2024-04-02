@@ -11,14 +11,17 @@ import {
   useFieldArray,
   useForm,
 } from 'react-hook-form';
-
 import {
-  Box,
   Button,
-  Grid,
   Tooltip,
-  Typography,
-} from '@mui/material';
+} from '@mbicycle/foundation-ui-kit';
+import SkillsToolsDialog from 'fields/projects/components/SkillsToolsDialog';
+import {
+  ButtonText, CategoryAddText, tooltipText,
+} from 'fields/projects/components/utils/constants';
+import type { ProjectFieldValues } from 'fields/projects/utils/types';
+
+import InfoIcon from '@mui/icons-material/Info';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
 import CircularSpinner from 'common/components/circular-spinner/circular-spinner';
@@ -26,18 +29,6 @@ import WarningIcon from 'common/icons/Warning';
 import type { Skill } from 'common/models/User';
 import useBeforeUnload from 'common/utils/hooks/useBeforeUnload';
 import useUnsaved from 'common/utils/hooks/useUnSaved';
-
-import {
-  SelectSkillsContainerStyled,
-  WarningContainerStyled,
-} from 'fields/projects/components/category-selection/styled';
-import SkillsToolsDialog from 'fields/projects/components/SkillsToolsDialog';
-import {
-  ButtonText, CategoryAddText, tooltipText,
-} from 'fields/projects/components/utils/constants';
-import { ProjectTitleStyled } from 'fields/projects/components/utils/styledEdit';
-import type { ProjectFieldValues } from 'fields/projects/utils/types';
-import { InfoIconStyled } from 'fields/styled';
 
 import CategorySelectionItem from './CategorySelectionItem';
 
@@ -153,19 +144,20 @@ const SkillSelection = function (
   }, [data?.skills.length, fields, formValues, skills]);
 
   if (isLoading) {
-    return <CircularSpinner size="medium" color="primary" />;
+    return <CircularSpinner size="medium" />;
   }
 
+  // TODO: tooltip
   return (
-    <Grid item xs={12}>
-      <Box display="inline-flex">
-        <ProjectTitleStyled variant="h5">{CategoryAddText.Title}</ProjectTitleStyled>
-        <Tooltip title={<Typography>{tooltipText}</Typography>}>
-          <InfoIconStyled fontSize="medium" />
+    <div className="w-full">
+      <div className="inline-flex">
+        <h5 className="pb-2 pr-1 mb-2">{CategoryAddText.Title}</h5>
+        <Tooltip title={tooltipText}>
+          <InfoIcon className="pt-1 font-medium" />
         </Tooltip>
-      </Box>
-      <Grid container>
-        <Grid item container xs={12}>
+      </div>
+      <div>
+        <div className="w-full">
           {fields.map((field, index) => (
             <CategorySelectionItem
               key={field.id}
@@ -176,23 +168,23 @@ const SkillSelection = function (
               onSetOpen={setOpen}
             />
           ))}
-        </Grid>
-        <SelectSkillsContainerStyled>
+        </div>
+        <div className="flex items-center gap-8">
           <Button
             color="primary"
-            variant="outlined"
+            variant="transparent"
             onClick={onAddModalOpenHandle}
             disabled={disabled}
           >
             {ButtonText.Select}
           </Button>
           {disabled && (
-            <WarningContainerStyled>
-              <WarningIcon sx={{ mr: 2 }} />
-              <Typography>You have selected all existing skill groups!</Typography>
-            </WarningContainerStyled>
+            <div className="flex items-center justify-between">
+              <WarningIcon className="mr-2" />
+              <p>You have selected all existing skill groups!</p>
+            </div>
           )}
-        </SelectSkillsContainerStyled>
+        </div>
 
         <SkillsToolsDialog
           user={data}
@@ -204,8 +196,8 @@ const SkillSelection = function (
           defaultValues={selected}
           usedCategories={usedCategories}
         />
-      </Grid>
-    </Grid>
+      </div>
+    </div>
   );
 };
 

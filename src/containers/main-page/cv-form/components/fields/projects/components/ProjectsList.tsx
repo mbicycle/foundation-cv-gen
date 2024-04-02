@@ -1,11 +1,9 @@
 import { memo } from 'react';
+import { useDeleteProject } from 'fields/projects/lib/query-hooks';
 
-import { ListWrapperStyled } from 'containers/main-page/cv-form/components/fields/styled';
 import { useGuestToken } from 'common/context/guest-token';
 import { useGuestUser } from 'common/context/guest-user';
 import type { Project } from 'common/models/User';
-
-import { useDeleteProject } from 'fields/projects/lib/query-hooks';
 
 import ProjectItem from './ProjectItem';
 
@@ -28,7 +26,7 @@ const ProjectsList = function (
   };
 
   return (
-    <ListWrapperStyled>
+    <div className="listWrapper">
       {projects.map(({
         id, title, from, to,
       }) => (
@@ -42,7 +40,7 @@ const ProjectsList = function (
           isDeleting={isLoading}
         />
       ))}
-    </ListWrapperStyled>
+    </div>
   );
 };
 

@@ -5,10 +5,16 @@ import {
 } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Button } from '@mbicycle/foundation-ui-kit';
+import { projectSchema, renderErrorMessage } from 'fields/projects/components';
+import { CategorySelection } from 'fields/projects/components/category-selection';
+import DatePickers from 'fields/projects/components/DatePickers';
+import Responsibilities from 'fields/projects/components/Responsibilities';
+import { ProjectInputsText } from 'fields/projects/components/utils/constants';
+import type { ProjectFieldValues } from 'fields/projects/utils/types';
 
 import {
   Divider,
-  Grid,
 } from '@mui/material';
 
 import { ButtonStep } from 'containers/main-page/cv-form/utils/constants';
@@ -17,18 +23,6 @@ import ReactHookFormTextFieldOutlined
 import { useGuestToken } from 'common/context/guest-token';
 import useBeforeUnload from 'common/utils/hooks/useBeforeUnload';
 import useUnsaved from 'common/utils/hooks/useUnSaved';
-
-import { projectSchema, renderErrorMessage } from 'fields/projects/components';
-import { CategorySelection } from 'fields/projects/components/category-selection';
-import DatePickers from 'fields/projects/components/DatePickers';
-import Responsibilities from 'fields/projects/components/Responsibilities';
-import { ProjectInputsText } from 'fields/projects/components/utils/constants';
-import type { ProjectFieldValues } from 'fields/projects/utils/types';
-import {
-  CancelButtonStyled,
-  SaveButtonStyled,
-  SaveButtonWrapperStyled,
-} from 'fields/skills/utils/styled';
 
 import { useEditProject } from './hooks';
 
@@ -84,76 +78,54 @@ const EditProject = function (): JSX.Element | null {
   const roleErrorMessage = formValues.formState.errors.role?.message;
 
   return (
-    <Grid
-      container
-      sx={{ p: 4 }}
-      gap={4}
-      direction="column"
-      component="form"
-      onSubmit={formValues.handleSubmit(onSaveProjectHandle)}
-    >
-      <Grid
-        item
-        container
-        direction="row"
-        wrap="nowrap"
-        xs={12}
-        gap={4}
-      >
-        <Grid container gap={4}>
-          <Grid item xs={12}>
-            <ReactHookFormTextFieldOutlined
-              key={project?.title}
-              control={formValues.control}
-              label={ProjectInputsText.Title}
-              name="title"
-              type="text"
-              variant="outlined"
-              required
-              helperText={titleErrorMessage}
-            />
-          </Grid>
+    <form className="p-4 gap-8 flex flex-col w-full" onSubmit={formValues.handleSubmit(onSaveProjectHandle)}>
+      <div className="flex flex-row w-full gap-8">
+        <div className="flex flex-col flex-nowrap gap-8 w-1/2">
+          <ReactHookFormTextFieldOutlined
+            key={project?.title}
+            control={formValues.control}
+            label={ProjectInputsText.Title}
+            name="title"
+            type="text"
+            variant="outlined"
+            required
+            helperText={titleErrorMessage}
+          />
           <DatePickers formValues={formValues} defaultValue={{ from: project?.from, to: project?.to }} />
-        </Grid>
-        <Grid item container gap={4} alignContent="flex-start">
-          <Grid item xs={12}>
-            <ReactHookFormTextFieldOutlined
-              key={project?.title}
-              control={formValues.control}
-              label={ProjectInputsText.Role}
-              name="role"
-              type="text"
-              variant="outlined"
-              required
-              helperText={roleErrorMessage}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <ReactHookFormTextFieldOutlined
-              key={project?.title}
-              control={formValues.control}
-              label={ProjectInputsText.Team}
-              name="teamSize"
-              type="number"
-              inputProps={{ min: 0 }}
-              variant="outlined"
-              required
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <ReactHookFormTextFieldOutlined
-              key={project?.title}
-              control={formValues.control}
-              label={ProjectInputsText.Link}
-              name="link"
-              type="url"
-              variant="outlined"
-              disabled={tokenState.isGuest}
-            />
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid item xs={12}>
+        </div>
+        <div className="flex flex-col flex-nowrap gap-8 w-1/2">
+          <ReactHookFormTextFieldOutlined
+            key={project?.title}
+            control={formValues.control}
+            label={ProjectInputsText.Role}
+            name="role"
+            type="text"
+            variant="outlined"
+            required
+            helperText={roleErrorMessage}
+          />
+          <ReactHookFormTextFieldOutlined
+            key={project?.title}
+            control={formValues.control}
+            label={ProjectInputsText.Team}
+            name="teamSize"
+            type="number"
+            inputProps={{ min: 0 }}
+            variant="outlined"
+            required
+          />
+          <ReactHookFormTextFieldOutlined
+            key={project?.title}
+            control={formValues.control}
+            label={ProjectInputsText.Link}
+            name="link"
+            type="url"
+            variant="outlined"
+            disabled={tokenState.isGuest}
+          />
+        </div>
+      </div>
+      <div className="w-full">
         <ReactHookFormTextFieldOutlined
           key={project?.title}
           control={formValues.control}
@@ -166,40 +138,36 @@ const EditProject = function (): JSX.Element | null {
           required
           helperText={descriptionErrorMessage}
         />
-      </Grid>
-      <Grid item>
-        <Responsibilities
-          formValues={formValues}
-          defaultValues={responsibilities}
-        />
-      </Grid>
+      </div>
+      <Responsibilities
+        formValues={formValues}
+        defaultValues={responsibilities}
+      />
       {renderErrorMessage(formValues.formState.errors.responsibilities)}
       <Divider />
-      <Grid>
-        <CategorySelection
-          formValues={formValues}
-          defaultValues={categories}
-        />
-      </Grid>
+      <CategorySelection
+        formValues={formValues}
+        defaultValues={categories}
+      />
       {renderErrorMessage(formValues.formState.errors.categories)}
       <Divider />
-      <SaveButtonWrapperStyled item gap={2}>
-        <CancelButtonStyled
+      <div className="saveBtnWrapper gap-2">
+        <Button
           onClick={cancelClickHandle}
-          variant="outlined"
+          variant="transparent"
           disabled={isLoading}
         >
           {ButtonStep.Cancel}
-        </CancelButtonStyled>
-        <SaveButtonStyled
+        </Button>
+        <Button
           type="submit"
           variant="contained"
           loading={isLoading}
         >
           {ButtonStep.Save}
-        </SaveButtonStyled>
-      </SaveButtonWrapperStyled>
-    </Grid>
+        </Button>
+      </div>
+    </form>
   );
 };
 

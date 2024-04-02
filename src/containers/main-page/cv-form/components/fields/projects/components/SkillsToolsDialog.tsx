@@ -18,8 +18,6 @@ import type {
   DbUser, Skill,
 } from 'common/models/User';
 
-import { ListItemTextStyled } from 'fields/projects/utils/styled';
-
 import type { CategoryItemProps } from './category-selection/CategorySelection';
 import { CategoryAddText } from './utils/constants';
 import { getFilteredSkillGroups } from './utils/functions';
@@ -139,9 +137,7 @@ const SkillsToolsDialog = function (props: SkillsToolsDialogProps): JSX.Element 
                       key={skillGroup.id}
                       value={skillGroup.id}
                     >
-                      <ListItemTextStyled
-                        primary={skillGroup.name}
-                      />
+                      <span className="max-w-52 truncate">{skillGroup.name}</span>
                     </MenuItem>
                   ))}
               </ReactHookFormSelect>
@@ -162,9 +158,7 @@ const SkillsToolsDialog = function (props: SkillsToolsDialogProps): JSX.Element 
               >
                 {skill?.tools?.map(({ id, name }) => (
                   <MenuItem key={id} value={id}>
-                    <ListItemTextStyled
-                      primary={name}
-                    />
+                    <span className="max-w-52 truncate">{name}</span>
                   </MenuItem>
                 ))}
               </ReactHookFormSelect>
