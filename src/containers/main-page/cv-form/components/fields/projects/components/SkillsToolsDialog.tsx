@@ -3,12 +3,11 @@ import {
   useState,
 } from 'react';
 import type { Control, FieldArrayWithId } from 'react-hook-form';
+import { Button } from '@mbicycle/foundation-ui-kit';
 
 import type { SelectChangeEvent } from '@mui/material';
 import {
-  Button, Dialog, DialogActions,
-  DialogContent,
-  DialogTitle, FormControl, Grid, InputLabel,
+  Dialog, DialogActions,
   MenuItem, OutlinedInput,
 } from '@mui/material';
 
@@ -107,21 +106,13 @@ const SkillsToolsDialog = function (props: SkillsToolsDialogProps): JSX.Element 
     <Dialog
       disableEscapeKeyDown
       open={open}
-      sx={{
-        '& .MuiDialog-container': {
-          '& .MuiPaper-root': {
-            width: '100%',
-            maxWidth: '50rem',
-          },
-        },
-      }}
     >
       <form onSubmit={doSubmit} id="skill-form">
-        <DialogTitle>{CategoryAddText.DialogTitle}</DialogTitle>
-        <DialogContent>
-          <Grid container rowGap={4} sx={{ minWidth: 420, maxWidth: '50rem' }}>
-            <FormControl fullWidth sx={{ mt: 4 }}>
-              <InputLabel htmlFor="category-dialog">{CategoryAddText.Skill}</InputLabel>
+        <span>{CategoryAddText.DialogTitle}</span>
+        <div>
+          <div className="flex gap-4 max-w-52 min-w-[420px]">
+            <div className="mt-4 w-full">
+              <label htmlFor="category-dialog">{CategoryAddText.Skill}</label>
               <ReactHookFormSelect
                 id="category-dialog"
                 value={skill?.id || ''}
@@ -141,9 +132,9 @@ const SkillsToolsDialog = function (props: SkillsToolsDialogProps): JSX.Element 
                     </MenuItem>
                   ))}
               </ReactHookFormSelect>
-            </FormControl>
-            <FormControl fullWidth>
-              <InputLabel htmlFor="tool-dialog">{CategoryAddText.Tool}</InputLabel>
+            </div>
+            <div className="w-full">
+              <label htmlFor="tool-dialog">{CategoryAddText.Tool}</label>
               <ReactHookFormSelect
                 id="tool-dialog"
                 value={tools || ''}
@@ -162,12 +153,12 @@ const SkillsToolsDialog = function (props: SkillsToolsDialogProps): JSX.Element 
                   </MenuItem>
                 ))}
               </ReactHookFormSelect>
-            </FormControl>
-          </Grid>
-        </DialogContent>
+            </div>
+          </div>
+        </div>
         <DialogActions>
-          <Button variant="outlined" onClick={cancelHandler}>{ButtonText.Cancel}</Button>
-          <Button variant="contained" form="skill-form" type="submit">{ButtonText.Ok}</Button>
+          <Button variant="transparent" onClick={cancelHandler}>{ButtonText.Cancel}</Button>
+          <Button form="skill-form" type="submit">{ButtonText.Ok}</Button>
         </DialogActions>
       </form>
     </Dialog>
