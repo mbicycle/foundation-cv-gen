@@ -7,8 +7,8 @@ type IsProfiencySelectedPropType = {
   $isProfiencySelected?: boolean;
 };
 
-export const AddProfiencyStyled = styled(Box, {
-  name: 'AddProfiencyStyled',
+export const AddProficiencyStyled = styled(Box, {
+  name: 'AddProficiencyStyled',
 })({
   display: 'flex',
   width: '100%',

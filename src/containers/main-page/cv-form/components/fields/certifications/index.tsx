@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
-import AddProfiency from 'common/components/add-pattern';
+import AddProficiency from 'common/components/add-pattern';
 import CircularSpinner from 'common/components/circular-spinner/circular-spinner';
 import { ROUTE } from 'common/components/routes/utils/constants';
 
@@ -21,12 +21,12 @@ const Certifications = function (): JSX.Element {
     return <CircularSpinner size="large" />;
   }
   return (
-    <AddProfiency
+    <AddProficiency
       collection={data?.certificates || []}
       title="Certificate"
     >
       {renderEditCertificates()}
-    </AddProfiency>
+    </AddProficiency>
   );
 };
 

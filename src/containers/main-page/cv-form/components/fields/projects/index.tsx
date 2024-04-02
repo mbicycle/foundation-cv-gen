@@ -1,12 +1,11 @@
 import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
+import { projectDatePresent } from 'fields/projects/components/utils/constants';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
-import AddProfiency from 'common/components/add-pattern';
+import AddProficiency from 'common/components/add-pattern';
 import CircularSpinner from 'common/components/circular-spinner/circular-spinner';
 import { ROUTE } from 'common/components/routes/utils/constants';
-
-import { projectDatePresent } from 'fields/projects/components/utils/constants';
 
 import ProjectsList from './components/ProjectsList';
 import { ProjectProvider } from './components/tool/ProjectContext';
@@ -53,11 +52,11 @@ const Projects = function (): JSX.Element {
     ?.some((skill) => skill.tools.length), [data]);
 
   if (isLoading) {
-    return <CircularSpinner size="large" color="primary" />;
+    return <CircularSpinner size="large" />;
   }
   return (
     <ProjectProvider>
-      <AddProfiency
+      <AddProficiency
         collection={data?.projects || []}
         title="Projects"
         disable={location.pathname.includes(ROUTE.DASHBOARD.PROJECTS) && !isToolsExist}
@@ -69,7 +68,7 @@ const Projects = function (): JSX.Element {
             <ProjectsList projects={sortedProjects || []} />
           )
         }
-      </AddProfiency>
+      </AddProficiency>
     </ProjectProvider>
   );
 };

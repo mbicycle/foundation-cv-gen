@@ -16,7 +16,7 @@ import type { Step } from './constants';
 import { ButtonText, SkillsDoesntExist } from './constants';
 import Title from './Title';
 
-interface AddProfiencyProps{
+interface AddProficiencyProps{
   title: `${Step}`;
   children: React.ReactNode;
   collection?:
@@ -26,7 +26,7 @@ interface AddProfiencyProps{
   targetPath?: string,
 }
 
-const AddProfiency = function (props: AddProfiencyProps): JSX.Element {
+const AddProficiency = function (props: AddProficiencyProps): JSX.Element {
   const {
     title,
     children,
@@ -112,4 +112,4 @@ const AddProfiency = function (props: AddProfiencyProps): JSX.Element {
   );
 };
 
-export default memo(AddProfiency);
+export default memo(AddProficiency);
