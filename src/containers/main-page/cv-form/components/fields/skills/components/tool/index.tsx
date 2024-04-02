@@ -4,27 +4,20 @@ import React, {
   useMemo,
 } from 'react';
 import type { Control } from 'react-hook-form';
-
-import {
-  AccordionDetails,
-  Box,
-  Grid, IconButton,
-  Typography,
-} from '@mui/material';
-
-import { DragIndicatorIconStyled } from 'common/components/profiency/styled';
-import ReactHookFormTextFieldOutlined
-  from 'common/components/react-hook-forms/ReactHookFormTextFieldOutlined';
-import GarbageIcon from 'common/icons/GarbageIcon';
-import type { Skill, Tool as ToolType } from 'common/models/User';
-import { Color } from 'common/theme/maps/config';
-
 import {
   HelperText, Text, ToolInputText, TOOLS_NAME,
 } from 'fields/skills/utils/constants';
 import {
-  AccordionStyled, AccordionSummaryStyled, DividerTool, DragTool,
+  AccordionStyled, AccordionSummaryStyled,
 } from 'fields/skills/utils/styled';
+
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
+import { AccordionDetails } from '@mui/material';
+
+import ReactHookFormTextFieldOutlined
+  from 'common/components/react-hook-forms/ReactHookFormTextFieldOutlined';
+import GarbageIcon from 'common/icons/GarbageIcon';
+import type { Skill, Tool as ToolType } from 'common/models/User';
 
 import LevelSelection from './LevelSelection';
 import TimeUsedInput from './TimeUsedInput';
@@ -78,25 +71,22 @@ const Tool = function (toolProps: ToolProps): JSX.Element {
       style={style}
     >
       <AccordionSummaryStyled>
-        <DividerTool>
-          <DragTool>
-            <DragIndicatorIconStyled fontSize="large" />
-            <Typography style={{ paddingLeft: '10px' }}>
+        <div className="flex items-center w-full justify-between pr-2">
+          <div className="flex items-center w-full pr-2">
+            <DragIndicatorIcon className="text-lg text-gray-600" />
+            <p className="pl-1">
               {toolText}
-            </Typography>
-          </DragTool>
-          <IconButton onClick={onDeleteToolHandle}>
-            <Box color={Color.Blue}>
-              <GarbageIcon fontSize="medium" />
-            </Box>
-          </IconButton>
-        </DividerTool>
+            </p>
+          </div>
+          <button onClick={onDeleteToolHandle}>
+            <GarbageIcon className="text-blue-500" />
+          </button>
+        </div>
       </AccordionSummaryStyled>
       <AccordionDetails>
-        <Grid container>
-          <Grid item xs={12}>
+        <div>
+          <div className="w-full">
             <ReactHookFormTextFieldOutlined
-              variant="outlined"
               type="text"
               control={control}
               label={ToolInputText.Label}
@@ -105,31 +95,23 @@ const Tool = function (toolProps: ToolProps): JSX.Element {
               error={isEmptyName}
               helperText={emptyNameHelpText}
             />
-          </Grid>
-          <Grid
-            container
-            gap={4}
-            wrap="nowrap"
-          >
-            <Grid
-              item
-              xs={6}
-              sx={{ mt: 5 }}
-            >
+          </div>
+          <div className="flex flex-nowrap gap-8">
+            <div className="flex mt-5 w-1/2">
               <LevelSelection
                 control={control}
                 index={index}
               />
-            </Grid>
-            <Grid item xs={6} sx={{ mt: 5 }}>
+            </div>
+            <div className="flex mt-5 w-1/2">
               <TimeUsedInput
                 value={tool.experience}
                 control={control}
                 index={index}
               />
-            </Grid>
-          </Grid>
-        </Grid>
+            </div>
+          </div>
+        </div>
       </AccordionDetails>
     </AccordionStyled>
   );

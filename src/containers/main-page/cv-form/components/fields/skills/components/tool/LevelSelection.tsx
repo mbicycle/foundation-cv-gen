@@ -1,6 +1,8 @@
 import { memo } from 'react';
 import type { Control } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
+import { TOOL_LEVELS as levels } from 'fields/languages/components/utils/constants';
+import { HelperText, LevelInputText, TOOLS_NAME } from 'fields/skills/utils/constants';
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import {
@@ -9,10 +11,6 @@ import {
 } from '@mui/material';
 
 import type { Skill } from 'common/models/User';
-
-import { TOOL_LEVELS as levels } from 'fields/languages/components/utils/constants';
-import { HelperText, LevelInputText, TOOLS_NAME } from 'fields/skills/utils/constants';
-import { MenuItemText } from 'fields/skills/utils/styled';
 
 interface LevelSelectionProps{
     control: Control<Skill>;
@@ -40,9 +38,9 @@ const LevelSelection = function (
                 key={item.name}
                 value={item.name}
               >
-                <MenuItemText color="text.secondary">
+                <span className="text-gray-500 ml-2" color="text.secondary">
                   {item.name}
-                </MenuItemText>
+                </span>
               </MenuItem>
             ))}
           </Select>

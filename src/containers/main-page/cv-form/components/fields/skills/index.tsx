@@ -14,7 +14,7 @@ const Categories = function (): JSX.Element {
   const { data } = useUserFromDb();
 
   if (!data) {
-    return <CircularSpinner size="large" color="primary" />;
+    return <CircularSpinner size="large" />;
   }
 
   return (

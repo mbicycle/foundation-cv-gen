@@ -2,16 +2,11 @@ import {
   useCallback, useEffect, useRef, useState,
 } from 'react';
 import type { Control, FieldArrayWithId, FormState } from 'react-hook-form';
+import { defaultDragState } from 'fields/skills/components/skills/Constants';
 
-import {
-  ToolsContainerStyled,
-} from 'containers/main-page/cv-form/components/fields/skills/utils/styled';
-import { DragItemTool, DragList } from 'common/components/profiency/styled';
 import type {
   Skill, Tool as ToolType,
 } from 'common/models/User';
-
-import { defaultDragState } from 'fields/skills/components/skills/Constants';
 
 import Tool from '.';
 
@@ -102,15 +97,15 @@ function ToolList(props: IToolListProps): JSX.Element {
   };
 
   return (
-    <ToolsContainerStyled>
-      <DragList>
+    <div className="flex flex-col gap-y-4 min-h-32 w-full max-h-[calc(100vh-40rem)] overflow-y-auto border p-2 rounded-lg">
+      <ul className="list-none w-full">
         { tools.map((tool, index) => {
           const border = {
             border: dragState.newIndex === index && dragState.originalIndex !== dragState.newIndex
               ? '1px solid #2a57e0' : '1px solid #DADCE1',
           };
           return (
-            <DragItemTool
+            <li
               key={tool.id}
               data-index={index}
               draggable
@@ -118,7 +113,7 @@ function ToolList(props: IToolListProps): JSX.Element {
               onDragEnd={onDragEnd}
               onDragOver={onDragOver}
               onDragLeave={onDragLeave}
-              $isDropping={dragState.originalIndex === index}
+              className={dragState.originalIndex === index ? 'opacity-20 transform translate-y-0' : ''}
             >
               <Tool
                 key={tool.id}
@@ -132,11 +127,11 @@ function ToolList(props: IToolListProps): JSX.Element {
                 style={border}
                 elementRef={elementRef}
               />
-            </DragItemTool>
+            </li>
           );
         })}
-      </DragList>
-    </ToolsContainerStyled>
+      </ul>
+    </div>
   );
 }
 

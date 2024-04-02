@@ -1,11 +1,10 @@
 import { memo, useMemo } from 'react';
 import type { Control } from 'react-hook-form';
+import { SkillYearsRange, TimeUsedInputText, TOOLS_NAME } from 'fields/skills/utils/constants';
 
 import ReactHookFormTextFieldOutlined
   from 'common/components/react-hook-forms/ReactHookFormTextFieldOutlined';
 import type { Skill } from 'common/models/User';
-
-import { SkillYearsRange, TimeUsedInputText, TOOLS_NAME } from 'fields/skills/utils/constants';
 
 interface TimeUsedInputProps{
     value: number,
@@ -36,19 +35,14 @@ const TimeUsedInput = function (props: TimeUsedInputProps): JSX.Element {
 
   return (
     <ReactHookFormTextFieldOutlined
-      variant="outlined"
       type="number"
       autoComplete="false"
       label={TimeUsedInputText.Label}
       name={`${TOOLS_NAME}.${index}.${TimeUsedInputText.Name}`}
       control={control}
-      InputProps={{
-        inputProps: {
-          min: SkillYearsRange.Min,
-          max: SkillYearsRange.Max - 0.5,
-          step: 0.5,
-        },
-      }}
+      min={SkillYearsRange.Min}
+      max={SkillYearsRange.Max - 0.5}
+      step={0.5}
       helperText={experienceHelper}
       onWheel={onWheelHandler}
     />

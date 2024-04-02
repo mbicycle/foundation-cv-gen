@@ -1,6 +1,8 @@
 import {
   memo, useCallback, useState,
 } from 'react';
+import { defaultDragState } from 'fields/skills/components/skills/Constants';
+import { useAddOrEditSkill } from 'fields/skills/lib/query-hooks';
 
 import {
   useDeleteSkill,
@@ -8,15 +10,10 @@ import {
 import {
   SKILL_GROUP_ERROR_MESSAGE,
 } from 'containers/main-page/cv-form/components/fields/skills/utils/constants';
-import { ListWrapperStyled } from 'containers/main-page/cv-form/components/fields/styled';
-import { DragItemCategory, DragList } from 'common/components/profiency/styled';
 import SnackBarUtils from 'common/components/SnackBar/SnackBarUtils';
 import { useGuestToken } from 'common/context/guest-token';
 import { useGuestUser } from 'common/context/guest-user';
 import type { DbUser, Skill } from 'common/models/User';
-
-import { defaultDragState } from 'fields/skills/components/skills/Constants';
-import { useAddOrEditSkill } from 'fields/skills/lib/query-hooks';
 
 import SkillListItem from './CategoryItem';
 
@@ -114,15 +111,16 @@ const SkillList = function (props: SkillListProps): JSX.Element | null {
   };
 
   return (
-    <ListWrapperStyled>
-      <DragList>
+    <div className="listWrapper">
+      <ul className="list-none w-full">
         {skills.map(({ id, tools, name }, index) => {
           const border = {
             border: dragState.newIndex === index && dragState.originalIndex !== dragState.newIndex
               ? '1px solid #2a57e0' : '1px solid #DADCE1',
           };
           return (
-            <DragItemCategory
+            <li
+              className={dragState.originalIndex === index ? 'opacity-20 transform translate-y-0' : ''}
               key={id}
               data-index={index}
               draggable
@@ -130,7 +128,6 @@ const SkillList = function (props: SkillListProps): JSX.Element | null {
               onDragEnd={onDragEnd}
               onDragOver={onDragOver}
               onDragLeave={onDragLeave}
-              $isDropping={dragState.originalIndex === index}
             >
               <SkillListItem
                 id={id}
@@ -140,11 +137,11 @@ const SkillList = function (props: SkillListProps): JSX.Element | null {
                 isDeleting={isLoading}
                 border={border}
               />
-            </DragItemCategory>
+            </li>
           );
         })}
-      </DragList>
-    </ListWrapperStyled>
+      </ul>
+    </div>
   );
 };
 

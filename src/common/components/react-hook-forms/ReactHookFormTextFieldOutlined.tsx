@@ -39,7 +39,7 @@ const ReactHookFormTextFieldOutlined = function<T extends FieldValues> ({
           label={label}
           type={type}
           name={name}
-          fullWidth
+          wrapperClasses="w-full"
           error={!!error?.message}
         />
       )}

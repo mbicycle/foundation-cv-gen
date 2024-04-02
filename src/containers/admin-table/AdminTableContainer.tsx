@@ -1,9 +1,17 @@
 import React, {
   useDeferredValue, useEffect, useMemo, useState,
 } from 'react';
+import {
+  CopyLinkWrapper,
+  LinkModalContentStyled,
+} from 'fields/personal-information/file-upload/utils/styled';
+import { Text } from 'fields/personal-information/file-upload/utils/types';
+import { ShareButton, tooltipShareText } from 'fields/projects/components/utils/constants';
+import { ShareButtonContent, ShareButtonStyled, ShareButtonWrapper } from 'fields/skills/utils/styled';
 import sortBy from 'lodash.sortby';
 import { getGuestToken } from 'shared/msalUtils/features/api';
 
+import InfoIcon from '@mui/icons-material/Info';
 import LinkIcon from '@mui/icons-material/Link';
 import {
   Box, Button, Container, FormControlLabel,
@@ -19,15 +27,6 @@ import useTableDataContext from 'containers/admin-table/local-state/useTableData
 import CircularSpinner from 'common/components/circular-spinner/circular-spinner';
 import SnackBarUtils from 'common/components/SnackBar/SnackBarUtils';
 import { useDeleteUserFromDb } from 'common/services/user-service/query-hooks';
-
-import {
-  CopyLinkWrapper,
-  LinkModalContentStyled,
-} from 'fields/personal-information/file-upload/utils/styled';
-import { Text } from 'fields/personal-information/file-upload/utils/types';
-import { ShareButton, tooltipShareText } from 'fields/projects/components/utils/constants';
-import { ShareButtonContent, ShareButtonStyled, ShareButtonWrapper } from 'fields/skills/utils/styled';
-import { InfoIconStyled } from 'fields/styled';
 
 import { useDbUsersList } from './lib/query-hooks';
 import { MINIMUM_TABLE_HEIGHT } from './utils/constants';
@@ -188,7 +187,7 @@ function AdminTableContainer(): JSX.Element | null {
     );
   }
 
-  function renderTable(): JSX.Element | null{
+  function renderTable(): JSX.Element | null {
     if (!deferredUsersValue?.length) {
       return (
         <NoResultsBoxStyled>
@@ -239,7 +238,7 @@ function AdminTableContainer(): JSX.Element | null {
             </ShareButtonContent>
           </ShareButtonStyled>
           <Tooltip title={<Typography>{tooltipShareText}</Typography>}>
-            <InfoIconStyled fontSize="large" />
+            <InfoIcon className="pt-1 text-lg" />
           </Tooltip>
         </ShareButtonWrapper>
       </Grid>

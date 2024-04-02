@@ -4,17 +4,20 @@ import {
 import { useFieldArray, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Button } from '@mbicycle/foundation-ui-kit';
+import {
+  HelperText,
+  SKILL_ERROR_MESSAGE,
+  SkillInputText, Text,
+} from 'fields/skills/utils/constants';
 import memoizeOne from 'memoize-one';
 import { v4 as uuidv4 } from 'uuid';
 
-import {
-  Grid,
-} from '@mui/material';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
 import { useSkillIdContext } from 'containers/main-page/cv-form/local-state/hooks';
 import { ButtonStep } from 'containers/main-page/cv-form/utils/constants';
-import { AddCircleIconStyled } from 'common/components/add-pattern/styled';
 import
 ReactHookFormTextFieldOutlined
   from 'common/components/react-hook-forms/ReactHookFormTextFieldOutlined';
@@ -25,18 +28,6 @@ import type {
 } from 'common/models/User';
 import useBeforeUnload from 'common/utils/hooks/useBeforeUnload';
 import useUnsaved from 'common/utils/hooks/useUnSaved';
-
-import {
-  HelperText,
-  SKILL_ERROR_MESSAGE,
-  SkillInputText, Text,
-} from 'fields/skills/utils/constants';
-import {
-  AddToolButtonStyled,
-  CancelButtonStyled,
-  CategoryContainerStyled,
-  SaveButtonStyled, SaveButtonWrapperStyled,
-} from 'fields/skills/utils/styled';
 
 import { getSkillGroupNames, getSkillSchema } from './helpers/constants';
 import { useDeleteSkill, useSaveSkill } from './helpers/hooks';
@@ -162,58 +153,52 @@ const Skill = function (): JSX.Element {
   };
 
   return (
-    <CategoryContainerStyled component="form" onSubmit={handleSubmit(onFormSubmitHandle)}>
-      <Grid>
-        <Grid item container xs={12} wrap="nowrap" gap={4} sx={{ paddingTop: 3 }}>
-          <ReactHookFormTextFieldOutlined
-            control={control}
-            label={SkillInputText.Label}
-            name={SkillInputText.Name}
-            type="text"
-            variant="outlined"
-            helperText={skillName.length
-              ? formState.errors[SkillInputText.Name]?.message
-              : HelperText.SkillGroup}
-            autoFocus
-          />
-          <Grid
-            item
-            xs={4}
-            marginBottom={3}
-            display="inline-flex"
-            justifyContent="flex-start"
-          >
-            <AddToolButtonStyled
+    <form className="h-max flex flex-col grow flex-1 w-full rounded-lg relative" onSubmit={handleSubmit(onFormSubmitHandle)}>
+      <div className="w-full p-8">
+        <div className="flex pt-3 flex-nowrap gap-4">
+          <div className="w-2/3">
+            <ReactHookFormTextFieldOutlined
+              control={control}
+              label={SkillInputText.Label}
+              name={SkillInputText.Name}
+              type="text"
+              helperText={skillName.length
+                ? formState.errors[SkillInputText.Name]?.message
+                : HelperText.SkillGroup}
+              autoFocus
+            />
+          </div>
+          <div className="inline-flex justify-start mb-3 w-1/3">
+            <Button
               onClick={onAddToolHandle}
-              variant="contained"
+              className="w-[220px]"
               disabled={!!formState.errors.name || !getValues().name.length}
             >
-              <AddCircleIconStyled />
+              <AddCircleIcon className="mr-1" />
               {Text.AddTool}
-            </AddToolButtonStyled>
-          </Grid>
-        </Grid>
-        <Grid>
+            </Button>
+          </div>
+        </div>
+        <div>
           { renderTools(newTool) }
-        </Grid>
-        <SaveButtonWrapperStyled item container xs={12} gap={2}>
-          <CancelButtonStyled
+        </div>
+        <div className="saveBtnWrapper gap-4">
+          <Button
             onClick={cancelClickHandle}
-            variant="outlined"
+            variant="transparent"
           >
             {ButtonStep.Cancel}
-          </CancelButtonStyled>
-          <SaveButtonStyled
+          </Button>
+          <Button
             disabled={!formState.isValid}
-            variant="contained"
             type="submit"
             loading={isLoading}
           >
             {ButtonStep.Save}
-          </SaveButtonStyled>
-        </SaveButtonWrapperStyled>
-      </Grid>
-    </CategoryContainerStyled>
+          </Button>
+        </div>
+      </div>
+    </form>
   );
 };
 
