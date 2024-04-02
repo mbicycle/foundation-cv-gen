@@ -2,22 +2,15 @@ import React, {
   useDeferredValue, useEffect, useMemo, useState,
 } from 'react';
 import {
-  CopyLinkWrapper,
-  LinkModalContentStyled,
-} from 'fields/personal-information/file-upload/utils/styled';
+  Button, Input, Toggle, Tooltip,
+} from '@mbicycle/foundation-ui-kit';
 import { Text } from 'fields/personal-information/file-upload/utils/types';
 import { ShareButton, tooltipShareText } from 'fields/projects/components/utils/constants';
-import { ShareButtonContent, ShareButtonStyled, ShareButtonWrapper } from 'fields/skills/utils/styled';
 import sortBy from 'lodash.sortby';
 import { getGuestToken } from 'shared/msalUtils/features/api';
 
 import InfoIcon from '@mui/icons-material/Info';
 import LinkIcon from '@mui/icons-material/Link';
-import {
-  Box, Button, Container, FormControlLabel,
-  FormGroup, Grid, Switch, TextField, Tooltip,
-  Typography,
-} from '@mui/material';
 import Modal from '@mui/material/Modal';
 
 import Search from 'containers/admin-table/components/Search';
@@ -30,7 +23,6 @@ import { useDeleteUserFromDb } from 'common/services/user-service/query-hooks';
 
 import { useDbUsersList } from './lib/query-hooks';
 import { MINIMUM_TABLE_HEIGHT } from './utils/constants';
-import { NoResultsBoxStyled } from './utils/styled';
 
 const { useGraphUsers } = hooks;
 
@@ -55,31 +47,30 @@ function AdminTableContainer(): JSX.Element | null {
         open={isOpen}
         onClose={closeHandle}
       >
-        <LinkModalContentStyled>
-          <Typography variant="h2">
+        <div>
+          <h2>
             {Text.Success}
-          </Typography>
+          </h2>
           &nbsp;
-          <Typography color="gray">
+          <p className="text-gray-500">
             {Text.GuestAccess}
-          </Typography>
-          <Typography color="gray">
+          </p>
+          <p className="text-gray-500">
             {Text.LinkValid}
-          </Typography>
-          <CopyLinkWrapper>
-            <TextField
+          </p>
+          <div>
+            <Input
               id="outlined-required"
               defaultValue={isTokenLink}
             />
-          </CopyLinkWrapper>
+          </div>
           <Button
-            variant="outlined"
             onClick={closeHandle}
-            sx={{ mt: 6 }}
+            className="mt-6"
           >
             {Text.Copy}
           </Button>
-        </LinkModalContentStyled>
+        </div>
       </Modal>
     );
   }
@@ -95,7 +86,7 @@ function AdminTableContainer(): JSX.Element | null {
 
   function renderIcons(): JSX.Element | null {
     if (isLoading) {
-      return <CircularSpinner size="large" color="primary" />;
+      return <CircularSpinner size="large" />;
     }
     return null;
   }
@@ -172,27 +163,18 @@ function AdminTableContainer(): JSX.Element | null {
 
   function renderHideNoCvPersonnelControl(): JSX.Element {
     return (
-      <FormGroup sx={{ alignItems: 'flex-end', pt: 2, pb: 2 }}>
-        <FormControlLabel
-          control={(
-            <Switch
-              checked={checked}
-              onChange={handleFilterChange}
-              color="primary"
-            />
-          )}
-          label={<Typography>Hide without CV</Typography>}
-        />
-      </FormGroup>
+      <div className="flex flex-row justify-end py-8">
+        <Toggle checked={checked} onChange={handleFilterChange} text="Hide without CV" />
+      </div>
     );
   }
 
   function renderTable(): JSX.Element | null {
     if (!deferredUsersValue?.length) {
       return (
-        <NoResultsBoxStyled>
-          <Typography variant="h2">{Text.NoResults}</Typography>
-        </NoResultsBoxStyled>
+        <div className="flex justify-center items-center h-[60dvh]">
+          <h2>{Text.NoResults}</h2>
+        </div>
       );
     }
 
@@ -206,48 +188,41 @@ function AdminTableContainer(): JSX.Element | null {
     ) as AdminTableType.User[];
 
     return (
-      <Box
-        height={tableHeight}
-        minHeight={MINIMUM_TABLE_HEIGHT}
-        overflow="auto"
-      >
+      <div className={`h-[${tableHeight}px] min-h-[${MINIMUM_TABLE_HEIGHT}px] overflow-auto`}>
         {isGraphUsersLoading || isDbUsersListLoading
-          ? <CircularSpinner size="large" color="primary" />
+          ? <CircularSpinner size="large" />
           : <AdminTable data={deferredSortedUsersValue} />}
-      </Box>
+      </div>
     );
   }
 
   return (
-    <Container maxWidth="lg" sx={{ height: 'max-content' }}>
-      <Grid sx={{
-        display: 'inline-flex', justifyContent: 'space-between', width: '100%', pt: 6, pb: 2,
-      }}
-      >
-        <Typography variant="h1" sx={{ ml: 6, mt: 2, mb: 2 }}>Sales panel</Typography>
-        <ShareButtonWrapper>
-          <ShareButtonStyled
+    <div className="container mx-auto max-w-screen-xl h-max">
+      <div className="inline-flex justify-between w-full pt-8 pb-6">
+        <h1 className="ml-6 mt-4 mb-4 text-6xl">Sales panel</h1>
+        <div className="flex items-center">
+          <Button
             onClick={clickHandler}
-            variant="contained"
             type="submit"
             disabled={isLoading}
+            className="p-6"
           >
-            <ShareButtonContent>
+            <div className="flex items-center justify-between">
               <LinkIcon fontSize="large" />
               {ShareButton.Label}
-            </ShareButtonContent>
-          </ShareButtonStyled>
-          <Tooltip title={<Typography>{tooltipShareText}</Typography>}>
+            </div>
+          </Button>
+          <Tooltip title={tooltipShareText}>
             <InfoIcon className="pt-1 text-lg" />
           </Tooltip>
-        </ShareButtonWrapper>
-      </Grid>
+        </div>
+      </div>
       <Search onFilterDataChange={filterDataChangeHandler} filterData={filterData} />
       {renderHideNoCvPersonnelControl()}
       {renderIcons()}
       {renderTable()}
       {renderModal()}
-    </Container>
+    </div>
   );
 }
 

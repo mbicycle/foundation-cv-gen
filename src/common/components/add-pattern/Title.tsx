@@ -1,10 +1,8 @@
 import { memo } from 'react';
 
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { IconButton, Typography } from '@mui/material';
 
 import type { Step } from './constants';
-import { TitleWrapperStyled } from './styled';
 
 interface TitleProps {
  name: `${Step}`;
@@ -17,14 +15,14 @@ const Title = function ({ name, onReturn }: TitleProps): JSX.Element {
   };
 
   return (
-    <TitleWrapperStyled>
-      <IconButton onClick={onBackHandle} size="small" sx={{ marginRight: 1 }}>
-        <ChevronLeftIcon color="primary" />
-      </IconButton>
-      <Typography variant="body1">
+    <div className="inline-flex items-center justify-start">
+      <button onClick={onBackHandle} className="mr-1">
+        <ChevronLeftIcon className="text-blue-500" />
+      </button>
+      <p>
         {name}
-      </Typography>
-    </TitleWrapperStyled>
+      </p>
+    </div>
   );
 };
 

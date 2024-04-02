@@ -6,7 +6,7 @@ import Preview from './preview';
 
 const MainPage = function (): JSX.Element {
   return (
-    <div className="box-border flex flex-row w-full overflow-x-auto h-full">
+    <div className="bg-white box-border flex flex-row w-full overflow-x-auto h-full">
       <CvFormProvider>
         <CVForm />
       </CvFormProvider>
