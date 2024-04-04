@@ -54,7 +54,7 @@ function TableColumns({
 
   return (
     <div
-      className="font-semibold border-b border-gray-300 text-left text-2xl p-8"
+      className="font-semibold border-b border-gray-300 text-left p-8"
       ref={ref}
       style={style}
       key={colIndex}

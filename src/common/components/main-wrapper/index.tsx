@@ -4,7 +4,7 @@ type Props = {
 
 function MainWrapper({ children }: Props): JSX.Element {
   return (
-    <div className="flex flex-row grow bg-white">
+    <div className="flex flex-row grow bg-white h-dvh w-dvw text-base">
       {children}
     </div>
   );

@@ -76,7 +76,7 @@ function TableCell(props: TableRowProps): JSX.Element {
     <div
       key={item.id as string}
       style={style}
-      className="inline-flex items-center font-normal text-2xl border-b border-gray-300 px-8 py-4"
+      className="inline-flex items-center font-normal border-b border-gray-300 px-8 py-4"
     >
       {renderContent()}
     </div>

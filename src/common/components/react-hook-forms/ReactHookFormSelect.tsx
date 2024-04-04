@@ -18,22 +18,21 @@ interface ReactHookFormSelectProps<T extends FieldValues> extends Omit<InputHTML
   value: T extends { multiple: true } ? string[] : Option | null;
   options: Option[];
   multiple?: boolean;
+  label?: string;
 }
 
 // eslint-disable-next-line prefer-arrow-callback
 const ReactHookFormSelect = forwardRef<unknown, ReactHookFormSelectProps<any>>(function<T extends FieldValues> ({
-  name, control, onChange, value, options, multiple, ...props
+  name, control, onChange, value, options, multiple, label, ...props
 }: ReactHookFormSelectProps<T | any>, ref: any): JSX.Element {
-  const [isOpen, setIsOpen] = useState(false);
-
   console.log({
-    name, value, multiple, isOpen,
+    name, value, multiple,
   });
 
   return (
     <Controller<T | FieldValues>
       render={({ field }) => (
-        <div className="flex items-center justify-center p-12">
+        <div className="flex items-center justify-center">
           <div className="w-full max-w-xs mx-auto">
             <Listbox
               {...ref}
@@ -42,23 +41,22 @@ const ReactHookFormSelect = forwardRef<unknown, ReactHookFormSelectProps<any>>(f
               as="div"
               className="space-y-1"
               value={value || null}
-              onChange={(eventValue: any) => {
-                onChange(eventValue);
-                if (!multiple) setIsOpen(false);
-              }}
-              open={isOpen}
+              onChange={onChange}
               multiple={multiple}
             >
-              {() => (
+              {({ open }) => (
                 <>
-                  <Listbox.Label className="block text-sm leading-5 font-medium text-gray-700">
-                    Assigned to
-                  </Listbox.Label>
+                  {label && (
+                    <Listbox.Label className="block leading-5 mb-4 font-medium text-gray-700">
+                      {label}
+                    </Listbox.Label>
+                  )}
                   <div className="relative">
                     <span className="inline-block w-full rounded-md shadow-sm">
                       <Listbox.Button
-                        className="cursor-default relative w-full rounded-md border border-gray-300 bg-white pl-3 pr-10 py-2 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                        onClick={() => setIsOpen(!isOpen)}
+                        className="cursor-default relative w-full rounded-md border border-gray-300 bg-white pl-3 pr-10 py-2 text-left
+                         focus:outline-none focus:shadow-outline-blue focus:border-blue-300
+                          transition ease-in-out duration-150"
                       >
                         <span className="block truncate">
                           {(Array.isArray(value) ? `Selected: ${value.length || 0}` : value?.name) || 'Select'}
@@ -83,15 +81,15 @@ const ReactHookFormSelect = forwardRef<unknown, ReactHookFormSelectProps<any>>(f
 
                     <Transition
                       unmount={false}
-                      show={isOpen}
+                      show={open}
                       leave="transition ease-in duration-100"
                       leaveFrom="opacity-100"
                       leaveTo="opacity-0"
-                      className="absolute mt-1 w-full rounded-md bg-white shadow-lg"
+                      className="absolute z-40 mt-1 w-full rounded-md bg-white shadow-lg"
                     >
                       <Listbox.Options
                         static
-                        className="max-h-60 rounded-md py-1 text-base leading-6 shadow-xs overflow-auto focus:outline-none sm:text-sm sm:leading-5"
+                        className="max-h-60 rounded-md py-1 text-base leading-6 shadow-xs overflow-auto focus:outline-none"
                       >
                         {options.map((item) => (
                           <Listbox.Option key={item.id} value={item.id}>

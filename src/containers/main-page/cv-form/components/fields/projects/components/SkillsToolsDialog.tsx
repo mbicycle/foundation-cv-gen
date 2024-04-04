@@ -1,13 +1,11 @@
 import {
-  memo, useEffect,
+  Fragment,
+  memo, useEffect, useMemo,
   useState,
 } from 'react';
 import type { Control, FieldArrayWithId } from 'react-hook-form';
+import { Dialog, Transition } from '@headlessui/react';
 import { Button } from '@mbicycle/foundation-ui-kit';
-
-import {
-  Dialog, DialogActions,
-} from '@mui/material';
 
 import { ButtonText } from 'common/components/add-pattern/constants';
 import ReactHookFormSelect from 'common/components/react-hook-forms/ReactHookFormSelect';
@@ -95,56 +93,91 @@ const SkillsToolsDialog = function (props: SkillsToolsDialogProps): JSX.Element 
     onCancel();
   };
 
-  const skillOptions = getFilteredSkillGroups(user?.skills || [], selectedCategories, skill);
-  const toolOptions = skill?.tools || [];
-
-  console.group();
-  console.log('skill', skill);
-  console.table(tools);
-  console.groupEnd();
+  const skillOptions = useMemo(
+    () => getFilteredSkillGroups(user?.skills || [], selectedCategories, skill),
+    [selectedCategories, skill, user?.skills],
+  );
+  const toolOptions = useMemo(
+    () => skill?.tools || [],
+    [skill?.tools],
+  );
 
   return (
-    <Dialog
-      disableEscapeKeyDown
-      open={open}
-    >
-      <form onSubmit={doSubmit} id="skill-form">
-        <span>{CategoryAddText.DialogTitle}</span>
-        <div>
-          <div className="flex gap-4 max-w-52 min-w-[420px]">
-            <div className="mt-4 w-full">
-              <label htmlFor="category-dialog">{CategoryAddText.Skill}</label>
-              <ReactHookFormSelect
-                id="category-dialog"
-                value={skill || null}
-                options={skillOptions}
-                onChange={handleSkillChange}
-                name="category"
-                control={control}
-                required
-              />
-            </div>
-            <div className="w-full">
-              <label htmlFor="tool-dialog">{CategoryAddText.Tool}</label>
-              <ReactHookFormSelect
-                id="tool-dialog"
-                value={tools}
-                options={toolOptions}
-                onChange={handleToolsChange}
-                control={control}
-                name="tools"
-                disabled={!skill?.name}
-                multiple
-              />
-            </div>
+    <Transition appear show={open} as={Fragment}>
+      <Dialog as="div" className="relative z-30" onClose={onClose}>
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="fixed inset-0 bg-black/25" />
+        </Transition.Child>
+
+        <div className="fixed inset-0 overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center p-4 text-center">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <Dialog.Panel
+                className="w-[420px] transform rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+              >
+                <Dialog.Title
+                  as="h3"
+                  className="text-lg font-medium leading-6 text-gray-900"
+                >
+                  {CategoryAddText.DialogTitle}
+                </Dialog.Title>
+                <form onSubmit={doSubmit} id="skill-form">
+                  <div>
+                    <div className="flex my-6 gap-4 max-w-52 min-w-[400px]">
+                      <div className="w-full">
+                        <ReactHookFormSelect
+                          id="category-dialog"
+                          label={CategoryAddText.Skill}
+                          value={skill || null}
+                          options={skillOptions}
+                          onChange={handleSkillChange}
+                          name="category"
+                          control={control}
+                          required
+                        />
+                      </div>
+                      <div className="w-full">
+                        <ReactHookFormSelect
+                          id="tool-dialog"
+                          label={CategoryAddText.Tool}
+                          value={tools}
+                          options={toolOptions}
+                          onChange={handleToolsChange}
+                          control={control}
+                          name="tools"
+                          disabled={!skill?.name}
+                          multiple
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 flex items-center justify-end gap-4">
+                    <Button variant="transparent" onClick={cancelHandler}>{ButtonText.Cancel}</Button>
+                    <Button form="skill-form" type="submit">{ButtonText.Ok}</Button>
+                  </div>
+                </form>
+              </Dialog.Panel>
+            </Transition.Child>
           </div>
         </div>
-        <DialogActions>
-          <Button variant="transparent" onClick={cancelHandler}>{ButtonText.Cancel}</Button>
-          <Button form="skill-form" type="submit">{ButtonText.Ok}</Button>
-        </DialogActions>
-      </form>
-    </Dialog>
+      </Dialog>
+    </Transition>
   );
 };
 
