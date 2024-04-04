@@ -5,10 +5,8 @@ import {
 import type { Control, FieldArrayWithId } from 'react-hook-form';
 import { Button } from '@mbicycle/foundation-ui-kit';
 
-import type { SelectChangeEvent } from '@mui/material';
 import {
   Dialog, DialogActions,
-  MenuItem, OutlinedInput,
 } from '@mui/material';
 
 import { ButtonText } from 'common/components/add-pattern/constants';
@@ -37,10 +35,6 @@ interface SkillsToolsDialogProps {
   defaultValues?: FieldArrayWithId<CategoryItemProps, 'categories', 'id'>;
   usedCategories: string[];
 }
-
-const getToolNames = (toolIds: string[], skill?: Skill): string[] => skill?.tools?.filter(
-  (t) => toolIds.includes(t.id),
-).map((element) => element.name) || [];
 
 const SkillsToolsDialog = function (props: SkillsToolsDialogProps): JSX.Element {
   const {
@@ -77,23 +71,22 @@ const SkillsToolsDialog = function (props: SkillsToolsDialogProps): JSX.Element 
     clearForm();
   };
 
-  const handleSkillChange = (event: SelectChangeEvent<HTMLSelectElement | unknown>): void => {
+  const handleSkillChange = (value: string): void => {
     if (skill) {
       setSelectedCategories(
-        (prev) => [...prev.filter((category) => category !== skill.id), `${event.target.value}`],
+        (prev) => [...prev.filter((category) => category !== skill.id), `${value}`],
       );
     } else {
       setSelectedCategories(
-        (prev) => [...prev, `${event.target.value}`],
+        (prev) => [...prev, `${value}`],
       );
     }
-    setSkill(user?.skills.find((c) => c.id === event.target.value));
+    setSkill(user?.skills.find((c) => c.id === value));
     setSelectedTools([]);
   };
 
-  const handleToolsChange = (event: SelectChangeEvent<HTMLSelectElement | unknown>): void => {
-    const toolsToAdd = event.target.value as string[];
-    setSelectedTools(toolsToAdd);
+  const handleToolsChange = (values: string[]): void => {
+    setSelectedTools(values);
   };
 
   const cancelHandler = (): void => {
@@ -101,6 +94,14 @@ const SkillsToolsDialog = function (props: SkillsToolsDialogProps): JSX.Element 
     clearForm();
     onCancel();
   };
+
+  const skillOptions = getFilteredSkillGroups(user?.skills || [], selectedCategories, skill);
+  const toolOptions = skill?.tools || [];
+
+  console.group();
+  console.log('skill', skill);
+  console.table(tools);
+  console.groupEnd();
 
   return (
     <Dialog
@@ -115,44 +116,26 @@ const SkillsToolsDialog = function (props: SkillsToolsDialogProps): JSX.Element 
               <label htmlFor="category-dialog">{CategoryAddText.Skill}</label>
               <ReactHookFormSelect
                 id="category-dialog"
-                value={skill?.id || ''}
+                value={skill || null}
+                options={skillOptions}
                 onChange={handleSkillChange}
                 name="category"
                 control={control}
-                input={<OutlinedInput label={CategoryAddText.Skill} />}
                 required
-              >
-                {getFilteredSkillGroups(user?.skills || [], selectedCategories, skill)
-                  .map((skillGroup) => (
-                    <MenuItem
-                      key={skillGroup.id}
-                      value={skillGroup.id}
-                    >
-                      <span className="max-w-52 truncate">{skillGroup.name}</span>
-                    </MenuItem>
-                  ))}
-              </ReactHookFormSelect>
+              />
             </div>
             <div className="w-full">
               <label htmlFor="tool-dialog">{CategoryAddText.Tool}</label>
               <ReactHookFormSelect
                 id="tool-dialog"
-                value={tools || ''}
+                value={tools}
+                options={toolOptions}
                 onChange={handleToolsChange}
                 control={control}
                 name="tools"
                 disabled={!skill?.name}
-                input={<OutlinedInput label={CategoryAddText.Tool} />}
                 multiple
-                required
-                renderValue={(): string => (getToolNames(tools, skill).join(', '))}
-              >
-                {skill?.tools?.map(({ id, name }) => (
-                  <MenuItem key={id} value={id}>
-                    <span className="max-w-52 truncate">{name}</span>
-                  </MenuItem>
-                ))}
-              </ReactHookFormSelect>
+              />
             </div>
           </div>
         </div>
