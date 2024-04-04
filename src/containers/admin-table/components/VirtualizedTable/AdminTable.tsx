@@ -19,9 +19,6 @@ import {
 import {
   COLUMN_MAX_WIDTH, COLUMN_MIN_WIDTH, ROW_HEIGHT,
 } from './utils/constants';
-import {
-  AdminTableWrapperStyled, ColumnSizerWrapperStyled, MultiGridWrapperStyled,
-} from './utils/styled';
 
 import 'react-virtualized/styles.css';
 
@@ -43,10 +40,12 @@ function AdminTable(props:AdminTableProps): JSX.Element | null {
   );
 
   return (
-    <AdminTableWrapperStyled>
-      <AutoSizer>
+    <div className="w-full h-full flex px-10">
+      <AutoSizer className="w-full h-full">
         {({ width }) => (
-          <ColumnSizerWrapperStyled>
+          <div
+            className={`w-[calc(100%+24px)] max-w-[${COLUMN_MAX_WIDTH * COLUMNS.length + 24}px] m-auto mt-4`}
+          >
             <ColumnSizer
               columnMaxWidth={COLUMN_MAX_WIDTH}
               columnMinWidth={COLUMN_MIN_WIDTH}
@@ -54,13 +53,15 @@ function AdminTable(props:AdminTableProps): JSX.Element | null {
               width={width}
               height={getDynamicHeight()}
             >
-              {({ adjustedWidth, columnWidth, registerChild }) => (
-                <MultiGridWrapperStyled sx={{ width: adjustedWidth }}>
+              {({
+                adjustedWidth, registerChild,
+              }) => (
+                <div className={`w-${adjustedWidth} m-auto mt-4 mb-3 border border-gray-300 rounded-lg`}>
                   <MultiGrid
-                  // Note! Passing props needs for updating the table.
+                    // Note! Passing props needs for updating the table.
                     {...props}
                     ref={registerChild}
-                    columnWidth={columnWidth}
+                    columnWidth={({ index }) => (index > 2 ? COLUMN_MIN_WIDTH : COLUMN_MAX_WIDTH)}
                     columnCount={COLUMNS.length}
                     height={getDynamicHeight() - ADMIN_TABLE_HEADER_HEIGHT}
                     fixedRowCount={1}
@@ -80,13 +81,13 @@ function AdminTable(props:AdminTableProps): JSX.Element | null {
                     rowCount={users.length + 1}
                     width={adjustedWidth + 8}
                   />
-                </MultiGridWrapperStyled>
+                </div>
               )}
             </ColumnSizer>
-          </ColumnSizerWrapperStyled>
+          </div>
         )}
       </AutoSizer>
-    </AdminTableWrapperStyled>
+    </div>
   );
 }
 

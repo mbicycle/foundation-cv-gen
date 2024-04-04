@@ -8,8 +8,6 @@ import Login from 'shared/msalUtils/widgets/Login';
 import { setCookie } from 'shared/utils/cookie';
 import { msalInstance } from 'shared/utils/interceptors';
 
-import { Typography } from '@mui/material';
-
 import ApplicationBar from 'containers/application-bar';
 import { MESSAGE_TEXT } from 'common/components/info-pages/constants';
 import ErrorScreen from 'common/components/info-pages/error';
@@ -67,7 +65,7 @@ const AppRender = function (): JSX.Element {
       </MsalProvider>
     );
   }
-  if (tokenState === 'loading') return <Typography>Loading</Typography>;
+  if (tokenState === 'loading') return <p>Loading</p>;
   if (tokenState === 'invalid') {
     return (
       <ErrorScreen

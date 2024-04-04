@@ -2,8 +2,6 @@ import { memo, useMemo } from 'react';
 import Highlighter from 'react-highlight-words';
 import dayjs from 'dayjs';
 
-import { TableCell as MUITableCell, Typography } from '@mui/material';
-
 import ActionsSet from 'containers/admin-table/components/ActionsSet';
 import { useWildcardContext } from 'containers/admin-table/local-state';
 import theme from 'common/theme';
@@ -44,9 +42,9 @@ function TableCell(props: TableRowProps): JSX.Element {
   function renderContent(): JSX.Element | string | null {
     if (dataKey === 'lastModified') {
       return dataItem ? (
-        <Typography>
+        <p>
           { dayjs(dataItem).format('DD MMM YYYY')}
-        </Typography>
+        </p>
       ) : null;
     }
     if (!Component) {
@@ -75,22 +73,13 @@ function TableCell(props: TableRowProps): JSX.Element {
   }
 
   return (
-    <MUITableCell
+    <div
       key={item.id as string}
-      component="div"
-      variant="body"
-      align="left"
       style={style}
-      sx={{
-        display: 'inline-flex',
-        borderBottom: (defaultTheme) => `1px solid ${defaultTheme.palette.border}`,
-        paddingTop: 2,
-        paddingBottom: 2,
-        alignItems: 'center',
-      }}
+      className="inline-flex items-center font-normal text-2xl border-b border-gray-300 px-8 py-4"
     >
       {renderContent()}
-    </MUITableCell>
+    </div>
   );
 }
 

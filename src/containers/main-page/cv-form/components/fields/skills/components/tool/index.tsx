@@ -78,7 +78,7 @@ const Tool = function (toolProps: ToolProps): JSX.Element {
               {toolText}
             </p>
           </div>
-          <button onClick={onDeleteToolHandle}>
+          <button type="button" onClick={onDeleteToolHandle}>
             <GarbageIcon className="text-blue-500" />
           </button>
         </div>

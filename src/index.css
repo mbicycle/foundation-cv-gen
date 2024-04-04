@@ -75,6 +75,7 @@ body {
 }
 
 @layer base {
+    /* COMMON */
     .link {
         @apply font-medium text-blue-600 dark:text-blue-500 hover:underline;
     }
@@ -83,12 +84,20 @@ body {
         @apply block rounded-full aspect-square object-cover
     }
 
-/*    FORM */
+    /* FORM */
     .listWrapper {
         @apply max-h-[calc(100vh-35rem)] min-h-32  p-8 overflow-auto w-full border rounded;
     }
 
     .saveBtnWrapper {
         @apply inline-flex justify-end w-full pt-4;
+    }
+}
+
+@layer utilities {
+    /* OVERRIDE */
+    .text-sm {
+        font-size: 1.2rem;
+        line-height: 1.25rem;
     }
 }

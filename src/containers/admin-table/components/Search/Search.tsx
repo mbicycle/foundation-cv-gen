@@ -1,14 +1,10 @@
 import { memo } from 'react';
-
-import {
-  Button, ButtonGroup,
-  InputBase, Paper, Typography,
-} from '@mui/material';
+import { Input } from '@mbicycle/foundation-ui-kit';
 
 import { useWildcardContext } from 'containers/admin-table/local-state';
 
 interface SearchProps {
-  onFilterDataChange: (v: AdminTableType.FilterData)=> void,
+  onFilterDataChange: (v: AdminTableType.FilterData) => void,
   filterData: AdminTableType.FilterData,
 }
 
@@ -33,55 +29,59 @@ function Search({ onFilterDataChange, filterData }: SearchProps): JSX.Element {
     });
   };
 
+  const commonBtnClass = 'px-4 py-2 text-md font-medium border-blue-500 '
+    + 'hover:bg-blue-600 hover:text-white focus:z-10 '
+    + 'focus:ring-2 focus:ring-blue-500 focus:bg-blue-500 focus:text-white';
+  const activeBtnClass = 'text-white bg-blue-500';
+  const inactiveBtnClass = 'text-blue-500 bg-transparent';
+
   return (
-    <Paper
-      component="form"
-      sx={{
-        p: '2px 4px', display: 'flex', alignItems: 'center', minWidth: 720,
-      }}
-    >
-      <InputBase
-        sx={{ ml: 4, flex: 1 }}
+    <form className="py-1 px-2 flex justify-between items-center gap-4 w-full min-w-[720px]">
+      <Input
+        wrapperClasses="ml-8 w-full"
         placeholder="Search..."
-        inputProps={{ 'aria-label': 'search' }}
+        aria-label="search"
         onInput={inputChangeHandle}
       />
-      <Typography variant="body1">by:</Typography>
-      <ButtonGroup
-        variant="text"
-        sx={{
-          m: 1,
-          '& > *': {
-            m: 1,
-            px: '4rem !important',
-            py: '0.5rem !important',
-            textTransform: 'uppercase',
-          },
-        }}
-      >
-        <Button
-          variant={filterData.prop === 'displayName' ? 'contained' : 'text'}
-          value="displayName"
-          onClick={propChangeHandle}
-        >
-          name
-        </Button>
-        <Button
-          variant={filterData.prop === 'mail' ? 'contained' : 'text'}
-          value="mail"
-          onClick={propChangeHandle}
-        >
-          e-mail
-        </Button>
-        <Button
-          variant={filterData.prop === 'jobTitle' ? 'contained' : 'text'}
-          value="jobTitle"
-          onClick={propChangeHandle}
-        >
-          title
-        </Button>
-      </ButtonGroup>
-    </Paper>
+      <div className="flex items-center justify-end gap-4 min-w-[250px]">
+        <p>by:</p>
+        <div className="inline-flex uppercase">
+          <button
+            type="button"
+            value="displayName"
+            onClick={propChangeHandle}
+            className={`border rounded-s-lg 
+            ${commonBtnClass} 
+            ${filterData.prop === 'displayName' ? activeBtnClass : inactiveBtnClass}
+            `}
+          >
+            name
+          </button>
+          <button
+            type="button"
+            value="mail"
+            onClick={propChangeHandle}
+            className={`border-t border-b
+                  ${commonBtnClass} 
+                   ${filterData.prop === 'mail' ? activeBtnClass : inactiveBtnClass}
+                   `}
+          >
+            e-mail
+          </button>
+          <button
+            type="button"
+            value="jobTitle"
+            onClick={propChangeHandle}
+            className={`border rounded-e-lg
+                      ${commonBtnClass} 
+                      ${filterData.prop === 'jobTitle' ? activeBtnClass : inactiveBtnClass}
+                      `}
+          >
+            title
+          </button>
+        </div>
+      </div>
+    </form>
   );
 }
 

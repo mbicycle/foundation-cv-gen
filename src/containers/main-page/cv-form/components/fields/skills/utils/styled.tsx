@@ -1,10 +1,9 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { LoadingButton } from '@mui/lab';
 import type { AccordionSummaryProps } from '@mui/material';
 import {
   Accordion,
   AccordionSummary,
-  Box, Divider,
+  Divider,
   styled,
 } from '@mui/material';
 
@@ -34,20 +33,3 @@ export const DividerStyled = styled(Divider)(({ theme }) => ({
   borderColor: theme.palette.border,
   margin: theme.spacing(3, 0, 6, 0),
 }));
-
-export const ShareButtonStyled = styled(LoadingButton)(({ theme }) => ({
-  height: 48,
-  marginRight: theme.spacing(2),
-}));
-
-export const ShareButtonWrapper = styled(Box)({
-  display: 'flex',
-  alignItems: 'center',
-});
-
-export const ShareButtonContent = styled('div')({
-  display: 'flex',
-  alignItems: 'center',
-  width: '25.7rem',
-  justifyContent: 'space-between',
-});

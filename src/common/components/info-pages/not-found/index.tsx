@@ -1,8 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mbicycle/foundation-ui-kit';
 
-import { Typography } from '@mui/material';
-
 const NOT_FOUND_PAGE_TEXT = 'The requested url does not exist';
 const NOT_FOUND_BTN_TEXT = 'GO TO MAIN PAGE';
 
@@ -17,7 +15,7 @@ const NotFound = function (): JSX.Element {
       <Button className="mt-4 mb-6 text-3lg font-bold" variant="empty" onClick={redirectCallback}>
         {NOT_FOUND_BTN_TEXT}
       </Button>
-      <Typography variant="h1">404</Typography>
+      <h1 className="text-5xl font-bold">404</h1>
     </div>
   );
 };

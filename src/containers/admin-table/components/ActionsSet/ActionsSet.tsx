@@ -1,7 +1,5 @@
 import { memo } from 'react';
 
-import { IconButton } from '@mui/material';
-
 import { useSaveAdminPdfFile } from 'containers/application-bar/pdf/useSavePdfFile';
 import { useSaveAdminWordFile } from 'containers/application-bar/word/hooks/useSaveAdminWordFile';
 import { useGetDbUser } from 'containers/main-page/cv-form/api/query-hooks';
@@ -35,30 +33,31 @@ function ActionsSet(props: ActionsSetProps): JSX.Element {
 
   return (
     <>
-      <IconButton
+      <button
+        type="button"
         onClick={saveEmployeeWordCvHandle}
         disabled={isRetreivingWordUserData || loading || disabledIcons}
-        color="primary"
-        sx={{ mr: 2 }}
+        className="text-blue-500 mr-8"
       >
         {isRetreivingWordUserData
-          ? <CircularSpinner size="small" color="primary" />
+          ? <CircularSpinner size="small" />
           : <DocxIcon fontSize="large" />}
-      </IconButton>
-      <IconButton
+      </button>
+      <button
+        type="button"
         onClick={saveEmployeePdfCvHandle}
         disabled={isRetreivingPdfUserData || loading || disabledIcons}
-        sx={{ mr: 3 }}
+        className="text-red-600"
       >
         {isRetreivingPdfUserData || loading
-          ? <CircularSpinner size="small" color="primary" />
+          ? <CircularSpinner size="small" />
           : (
             <PdfIcon
               sx={{ fill: !disabledIcons ? theme.palette.error.main : 'Background.main' }}
               fontSize="large"
             />
           )}
-      </IconButton>
+      </button>
     </>
   );
 }

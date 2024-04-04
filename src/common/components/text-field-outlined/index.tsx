@@ -1,33 +1,18 @@
-import React, { memo } from 'react';
-
-import type { OutlinedTextFieldProps } from '@mui/material';
-
-import { TextFieldStyled } from './styled';
-
-interface TextFieldOulinedProps extends Omit<OutlinedTextFieldProps, 'variant'> {
-  name: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  label?: string;
-}
+import { memo } from 'react';
+import { Input } from '@mbicycle/foundation-ui-kit';
+import type { InputProps } from '@mbicycle/foundation-ui-kit/dist/components/Input';
 
 const TextFieldOulined = function ({
-  label, name, onChange, ...rest
-}: TextFieldOulinedProps): JSX.Element {
+  label, name, onChange, multiline, ...rest
+}: InputProps): JSX.Element {
   return (
-    <TextFieldStyled
+    <Input
       {...rest}
-      $isMultiline={Boolean(rest.multiline)}
-      InputLabelProps={{
-        style: {
-          margin: '-4px 0px',
-        },
-      }}
+      multiline={multiline}
       label={label}
-      variant="outlined"
       name={name}
       onChange={onChange}
       autoComplete="false"
-      fullWidth
     />
   );
 };

@@ -197,7 +197,7 @@ function AdminTableContainer(): JSX.Element | null {
   }
 
   return (
-    <div className="container mx-auto max-w-screen-xl h-max">
+    <div className="w-full mx-auto max-w-screen-xl h-max">
       <div className="inline-flex justify-between w-full pt-8 pb-6">
         <h1 className="ml-6 mt-4 mb-4 text-6xl">Sales panel</h1>
         <div className="flex items-center">

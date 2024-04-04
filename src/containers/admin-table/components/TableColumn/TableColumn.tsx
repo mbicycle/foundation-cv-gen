@@ -7,10 +7,6 @@ import orderBy from 'lodash.orderby';
 
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import { IconButton } from '@mui/material';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import TableCell from '@mui/material/TableCell';
 
 import useTableDataContext from 'containers/admin-table/local-state/useTableDataContext';
 
@@ -50,34 +46,24 @@ function TableColumns({
   function renderSortingButtons(): JSX.Element | null {
     if (colIndex === columns.length - 1) return null;
     return (
-      <IconButton size="medium" onClick={changeDirectionHandle} data-sort-key={item.dataKey}>
+      <button className="ml-2" type="button" onClick={changeDirectionHandle} data-sort-key={item.dataKey}>
         {sortDirection === 'asc' ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />}
-      </IconButton>
+      </button>
     );
   }
 
   return (
-    <Box>
-      <TableCell
-        ref={ref}
-        style={style}
-        key={colIndex}
-        component="div"
-        variant="head"
-        scope="col"
-        align="left"
-      >
-        <Grid
-          item
-          container
-          alignItems="center"
-          wrap="nowrap"
-        >
-          {item.label}
-          {renderSortingButtons()}
-        </Grid>
-      </TableCell>
-    </Box>
+    <div
+      className="font-semibold border-b border-gray-300 text-left text-2xl p-8"
+      ref={ref}
+      style={style}
+      key={colIndex}
+    >
+      <div className="flex items-center flex-nowrap">
+        {item.label}
+        {renderSortingButtons()}
+      </div>
+    </div>
   );
 }
 
