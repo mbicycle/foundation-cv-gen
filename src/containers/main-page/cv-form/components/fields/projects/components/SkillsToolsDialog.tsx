@@ -64,22 +64,23 @@ const SkillsToolsDialog = function (props: SkillsToolsDialogProps): JSX.Element 
     clearForm();
   };
 
-  const handleSkillChange = (value: string): void => {
+  const handleSkillChange = (value: string | string[]): void => {
+    const selected = value as string;
     if (skill) {
       setSelectedCategories(
-        (prev) => [...prev.filter((category) => category !== skill.id), `${value}`],
+        (prev) => [...prev.filter((category) => category !== skill.id), `${selected}`],
       );
     } else {
       setSelectedCategories(
-        (prev) => [...prev, `${value}`],
+        (prev) => [...prev, `${selected}`],
       );
     }
-    setSkill(user?.skills.find((c) => c.id === value));
+    setSkill(user?.skills.find((c) => c.id === selected));
     setSelectedTools([]);
   };
 
-  const handleToolsChange = (values: string[]): void => {
-    setSelectedTools(values);
+  const handleToolsChange = (values: string | string[]): void => {
+    setSelectedTools(values as string[]);
   };
 
   const cancelHandler = (): void => {
@@ -105,7 +106,7 @@ const SkillsToolsDialog = function (props: SkillsToolsDialogProps): JSX.Element 
             <ReactHookFormSelect
               id="category-dialog"
               label={CategoryAddText.Skill}
-              value={skill || null}
+              value={skill?.id || null}
               options={skillOptions}
               onChange={handleSkillChange}
               name="category"
