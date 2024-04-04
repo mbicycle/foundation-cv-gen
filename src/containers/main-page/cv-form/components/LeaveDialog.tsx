@@ -1,11 +1,7 @@
 import {
   Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from '@mui/material';
+  Modal,
+} from '@mbicycle/foundation-ui-kit';
 
 interface LeaveDialogProps {
   isOpen: boolean,
@@ -15,25 +11,36 @@ interface LeaveDialogProps {
 
 function LeaveDialog({ isOpen, handleClose, handleLeave }: LeaveDialogProps): JSX.Element {
   return (
-    <Dialog
+    <Modal
       open={isOpen}
       onClose={handleClose}
+      title="Leave page?"
+      classNameTitle="text-2xl"
+      classNameContent="px-14 py-14"
     >
-      <DialogTitle fontSize="3rem">
-        Leave page?
-      </DialogTitle>
-      <DialogContent>
-        <DialogContentText fontSize="2rem">
+      <div className="my-10">
+        <p className="text-lg text-gray-600">
           Changes that you made may not be saved.
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleLeave} autoFocus>
+        </p>
+      </div>
+      <div className="flex flex-row gap-8 justify-end">
+        <Button
+          variant="empty"
+          className="text-lg"
+          onClick={handleClose}
+        >
+          Cancel
+        </Button>
+        <Button
+          variant="transparent"
+          className="text-red-600 border-red-600 hover:bg-red-100 hover:border-red-700 text-lg"
+          onClick={handleLeave}
+          autoFocus
+        >
           Leave
         </Button>
-      </DialogActions>
-    </Dialog>
+      </div>
+    </Modal>
   );
 }
 

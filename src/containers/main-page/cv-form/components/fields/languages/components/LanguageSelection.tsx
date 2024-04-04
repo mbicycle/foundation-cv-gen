@@ -43,7 +43,6 @@ const LanguageSelection = function (): JSX.Element {
   useBeforeUnload(isDirtyLanguageForm);
   useUnsaved(isDirtyLanguageForm);
 
-  // TODO:btn
   return (
     <div className="w-full p-3">
       <div className="flex justify-between flex-nowrap gap-6">
@@ -58,7 +57,7 @@ const LanguageSelection = function (): JSX.Element {
           disabled={isSaveDisabled}
           onClick={onSaveHandle}
           variant="outline"
-          // loading={isLoading}
+          isLoading={isLoading}
         >
           {ButtonStep.Save}
         </Button>

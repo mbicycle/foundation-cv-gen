@@ -47,7 +47,6 @@ const CertificateSelection = function (): JSX.Element {
   useBeforeUnload(isDirty);
   useUnsaved(isDirty);
 
-  // TODO: loading btn
   return (
     <form onSubmit={handleSubmit(onSaveHandle)}>
       <div className="p-3">
@@ -66,7 +65,7 @@ const CertificateSelection = function (): JSX.Element {
             disabled={!isValid}
             type="submit"
             variant="transparent"
-            // loading={isLoading}
+            isLoading={isLoading}
           >
             {ButtonStep.Save}
           </Button>

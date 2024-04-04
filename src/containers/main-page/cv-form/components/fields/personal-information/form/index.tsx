@@ -29,7 +29,6 @@ const PersonalDataForm = function (): JSX.Element {
     return <CircularSpinner size="large" />;
   }
 
-  // todo: btn
   return (
     <form className="my-6" onSubmit={submitHandle}>
       <div className="flex flex-row flex-nowrap space-x-4 w-full">
@@ -40,8 +39,6 @@ const PersonalDataForm = function (): JSX.Element {
             control={control}
             disabled={!isGuest}
             type="text"
-            variant="outlined"
-            fullWidth
             helperText={errors[InputName.FirstName]?.message}
           />
           <ReactHookFormTextFieldOutlined
@@ -50,7 +47,6 @@ const PersonalDataForm = function (): JSX.Element {
             control={control}
             disabled={!isGuest}
             type="text"
-            variant="outlined"
             helperText={errors[InputName.LastName]?.message}
           />
           <ReactHookFormTextFieldOutlined
@@ -58,7 +54,6 @@ const PersonalDataForm = function (): JSX.Element {
             name={InputName.Telegram}
             control={control}
             type="text"
-            variant="outlined"
             disabled={isGuest}
           />
         </div>
@@ -68,7 +63,6 @@ const PersonalDataForm = function (): JSX.Element {
             name={InputName.Email}
             control={control}
             type="text"
-            variant="outlined"
             disabled
           />
           <ReactHookFormTextFieldOutlined
@@ -77,7 +71,6 @@ const PersonalDataForm = function (): JSX.Element {
             name={InputName.Skype}
             control={control}
             type="text"
-            variant="outlined"
             disabled={isGuest}
           />
           <ReactHookFormTextFieldOutlined
@@ -85,7 +78,6 @@ const PersonalDataForm = function (): JSX.Element {
             name={InputName.Title}
             control={control}
             type="text"
-            variant="outlined"
             helperText={errors[InputName.Title]?.message}
           />
         </div>
@@ -95,11 +87,8 @@ const PersonalDataForm = function (): JSX.Element {
           control={control}
           label={InputLabel.Summary}
           name={InputName.Summary}
-          fullWidth
           multiline
-          rows={6}
           type="text"
-          variant="outlined"
           required
           helperText={errors[InputName.Summary]?.message}
         />
@@ -107,7 +96,7 @@ const PersonalDataForm = function (): JSX.Element {
       <div className="flex justify-end">
         <Button
           disabled={!isValid || !isDirty}
-          // loading={isLoading}
+          isLoading={isLoading}
           type="submit"
         >
           Save

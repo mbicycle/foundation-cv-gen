@@ -35,7 +35,7 @@ const ReactHookFormTextFieldOutlined = function<T extends FieldValues> ({
         <Input
           {...field}
           {...props}
-          value={field.value || certificate || ''}
+          value={(field.value || certificate || '') as string | number | readonly string[] | undefined}
           label={label}
           type={type}
           name={name}
