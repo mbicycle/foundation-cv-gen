@@ -147,12 +147,11 @@ const SkillSelection = function (
     return <CircularSpinner size="medium" />;
   }
 
-  // TODO: tooltip
   return (
     <div className="w-full">
       <div className="inline-flex">
         <h5 className="pb-2 pr-1 mb-2">{CategoryAddText.Title}</h5>
-        <Tooltip title={tooltipText}>
+        <Tooltip content={tooltipText} classNameContent="w-[300px]">
           <InfoIcon className="pt-1 font-medium" />
         </Tooltip>
       </div>

@@ -212,7 +212,7 @@ function AdminTableContainer(): JSX.Element | null {
               {ShareButton.Label}
             </div>
           </Button>
-          <Tooltip title={tooltipShareText}>
+          <Tooltip content={tooltipShareText} classNameContent="w-[300px] left-[-150px] top-[20px]">
             <InfoIcon className="pt-1 text-lg" />
           </Tooltip>
         </div>
