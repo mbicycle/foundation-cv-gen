@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { InputHTMLAttributes } from 'react';
-import { forwardRef, useState } from 'react';
+import { forwardRef } from 'react';
 import type { Control, FieldValues } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
 import { Listbox, Transition } from '@headlessui/react';
