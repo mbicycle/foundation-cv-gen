@@ -71,6 +71,7 @@ const Responsibilities = function ({
               <Input
                 required
                 label={`Responsibility ${index + 1}`}
+                defaultValue={field.responsibility}
                 {...register(`responsibilities.${index}.responsibility` as const)}
               />
             </div>

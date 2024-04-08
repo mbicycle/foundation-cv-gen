@@ -142,9 +142,7 @@ const Project = function (): JSX.Element {
             label={ProjectInputsText.Title}
             name={getKeyOf<ProjectFieldValues>('title')}
             type="text"
-            variant="outline"
             required
-            sx={{ gridArea: 'title' }}
             helperText={titleErrorMessage}
           />
           <DatePickers
@@ -161,9 +159,7 @@ const Project = function (): JSX.Element {
             label={ProjectInputsText.Role}
             name={getKeyOf<ProjectFieldValues>('role')}
             type="text"
-            variant="outlined"
             required
-            sx={{ gridArea: 'role' }}
             helperText={roleErrorMessage}
           />
           <ReactHookFormTextFieldOutlined
@@ -171,18 +167,14 @@ const Project = function (): JSX.Element {
             label={ProjectInputsText.Team}
             name={getKeyOf<ProjectFieldValues>('teamSize')}
             type="number"
-            variant="outlined"
-            inputProps={{ min: 0 }}
+            min={0}
             required
-            sx={{ gridArea: 'size' }}
           />
           <ReactHookFormTextFieldOutlined
             control={formValues.control}
             label={ProjectInputsText.Link}
             name={getKeyOf<ProjectFieldValues>('link')}
             type="url"
-            variant="outlined"
-            sx={{ gridArea: 'link' }}
             disabled={tokenState.isGuest}
           />
         </div>
@@ -194,8 +186,6 @@ const Project = function (): JSX.Element {
           name={getKeyOf<ProjectFieldValues>('description')}
           type="text"
           multiline
-          minRows={5}
-          variant="outlined"
           required
           helperText={descriptionErrorMessage}
         />
@@ -219,7 +209,7 @@ const Project = function (): JSX.Element {
         </Button>
         <Button
           type="submit"
-          loading={isLoading}
+          isLoading={isLoading}
         >
           {ButtonStep.Save}
         </Button>
