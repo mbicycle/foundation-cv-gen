@@ -7,7 +7,7 @@ import CVFormTitle from './components/title';
 const CVForm = function (): JSX.Element {
   return (
     <Suspense>
-      <div className="flex flex-col grow h-full break-words py-5 px-10">
+      <div className="flex flex-col grow h-full w-full break-words py-5 px-10">
         <CVFormStepper />
         <CVFormTitle />
         <Outlet />
