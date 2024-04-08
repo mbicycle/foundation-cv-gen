@@ -6,6 +6,8 @@ import {
 } from 'react-router-dom';
 import { Button } from '@mbicycle/foundation-ui-kit';
 
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+
 import { useSkillIdContext } from 'containers/main-page/cv-form/local-state/hooks';
 import { ROUTE } from 'common/components/routes/utils/constants';
 import type {
@@ -69,8 +71,6 @@ const AddProficiency = function (props: AddProficiencyProps): JSX.Element {
     ? true
     : !!collection?.length;
 
-  // TODO: btn
-
   return (
     <div className="flex w-full h-max-content items-start overflow-y-auto overflow-x-hidden">
       <div className="flex w-full justify-center flex-col items-center border rounded mb-2 mt-2">
@@ -80,7 +80,7 @@ const AddProficiency = function (props: AddProficiencyProps): JSX.Element {
           <>
             {isCollectionLength ? children : null}
             {!location.pathname.includes('edit') && (
-              <div className="w-full flex flex-col justify-between mt-10">
+              <div className="w-full flex flex-col items-end justify-between mt-10">
                 {
                   (location.pathname.includes(ROUTE.DASHBOARD.PROJECTS) && disable) ? (
                     <div className="text-center w-full mb-4 break-words">
@@ -96,9 +96,10 @@ const AddProficiency = function (props: AddProficiencyProps): JSX.Element {
                 <Button
                   variant="primary"
                   onClick={handleAdd}
-                  // $isProfiencySelected={isCollectionLength}
                   disabled={disable}
-                  isAdd
+                  icon={AddCircleIcon}
+                  className={`inline-flex mb-4 mr-4 py-4 px-6 ${isCollectionLength ? 'self-end' : 'self-center'}`}
+                  classNameIcon="mb-[0]"
                 >
                   {renderButtonText()}
                 </Button>
