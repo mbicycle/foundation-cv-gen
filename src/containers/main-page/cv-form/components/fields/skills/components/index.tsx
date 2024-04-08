@@ -155,7 +155,7 @@ const Skill = function (): JSX.Element {
   return (
     <form className="h-max flex flex-col grow flex-1 w-full rounded-lg relative" onSubmit={handleSubmit(onFormSubmitHandle)}>
       <div className="w-full p-8">
-        <div className="flex pt-3 items-center flex-nowrap gap-4">
+        <div className="flex pt-3 items-end flex-nowrap gap-4 mb-8">
           <div className="w-3/4">
             <ReactHookFormTextFieldOutlined
               control={control}
@@ -168,12 +168,12 @@ const Skill = function (): JSX.Element {
               autoFocus
             />
           </div>
-          <div className="inline-flex items-center justify-end w-1/4">
+          <div className="w-1/4">
             <Button
               onClick={onAddToolHandle}
               disabled={!!formState.errors.name || !getValues().name.length}
               icon={AddCircleIcon}
-              className="inline-flex"
+              className="w-full"
               classNameIcon="mb-[0]"
             >
               {Text.AddTool}

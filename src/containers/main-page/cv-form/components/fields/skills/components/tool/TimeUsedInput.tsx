@@ -29,7 +29,7 @@ const TimeUsedInput = function (props: TimeUsedInputProps): JSX.Element {
     [value],
   );
 
-  const onWheelHandler = (e: React.WheelEvent<HTMLDivElement>): void => {
+  const onWheelHandler = (e: React.WheelEvent<HTMLInputElement>): void => {
     if (e.target instanceof HTMLElement) e.target.blur();
   };
 

@@ -4,15 +4,12 @@ import React, {
   useMemo,
 } from 'react';
 import type { Control } from 'react-hook-form';
+import { Accordion } from '@mbicycle/foundation-ui-kit';
 import {
   HelperText, Text, ToolInputText, TOOLS_NAME,
 } from 'fields/skills/utils/constants';
-import {
-  AccordionStyled, AccordionSummaryStyled,
-} from 'fields/skills/utils/styled';
 
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
-import { AccordionDetails } from '@mui/material';
 
 import ReactHookFormTextFieldOutlined
   from 'common/components/react-hook-forms/ReactHookFormTextFieldOutlined';
@@ -38,7 +35,6 @@ const Tool = function (toolProps: ToolProps): JSX.Element {
   const {
     tool,
     expanded,
-    handleExpanded,
     onDeleteTool,
     control,
     index,
@@ -51,10 +47,6 @@ const Tool = function (toolProps: ToolProps): JSX.Element {
     onDeleteTool(tool.id);
   };
 
-  const handleExpandedEvent = (): void => {
-    handleExpanded(tool.id);
-  };
-
   const toolText = useMemo(
     () => `${Text.Tool}: ${tool.name} ${tool.level ? `(${tool.level})` : ''}
     ${tool.experience ? `[${tool.experience} year]` : ''}`,
@@ -63,28 +55,24 @@ const Tool = function (toolProps: ToolProps): JSX.Element {
 
   const isEmptyName = tool.name.trim().length === 0;
   const emptyNameHelpText = isEmptyName ? HelperText.Skill : errorText;
+
   return (
-    <AccordionStyled
-      expanded={expanded}
-      onChange={handleExpandedEvent}
-      ref={expanded ? elementRef : null}
-      style={style}
-    >
-      <AccordionSummaryStyled>
-        <div className="flex items-center w-full justify-between pr-2">
-          <div className="flex items-center w-full pr-2">
-            <DragIndicatorIcon className="text-lg text-gray-600" />
-            <p className="pl-1">
-              {toolText}
-            </p>
+    <div className="mx-auto w-full rounded-2xl bg-white p-2" ref={elementRef} style={style}>
+      <Accordion defaultOpen={expanded}>
+        <Accordion.Title>
+          <div className="flex items-center w-full justify-between pr-2">
+            <div className="flex items-center w-full pr-2">
+              <DragIndicatorIcon className="text-lg text-gray-600" />
+              <p className="pl-1">
+                {toolText}
+              </p>
+            </div>
+            <button type="button" onClick={onDeleteToolHandle}>
+              <GarbageIcon className="text-blue-500" />
+            </button>
           </div>
-          <button type="button" onClick={onDeleteToolHandle}>
-            <GarbageIcon className="text-blue-500" />
-          </button>
-        </div>
-      </AccordionSummaryStyled>
-      <AccordionDetails>
-        <div>
+        </Accordion.Title>
+        <Accordion.Body>
           <div className="w-full">
             <ReactHookFormTextFieldOutlined
               type="text"
@@ -111,9 +99,9 @@ const Tool = function (toolProps: ToolProps): JSX.Element {
               />
             </div>
           </div>
-        </div>
-      </AccordionDetails>
-    </AccordionStyled>
+        </Accordion.Body>
+      </Accordion>
+    </div>
   );
 };
 

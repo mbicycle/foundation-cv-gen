@@ -102,7 +102,7 @@ function ToolList(props: IToolListProps): JSX.Element {
         { tools.map((tool, index) => {
           const border = {
             border: dragState.newIndex === index && dragState.originalIndex !== dragState.newIndex
-              ? '1px solid #2a57e0' : '1px solid #DADCE1',
+              ? '1px solid #2a57e0' : '',
           };
           return (
             <li

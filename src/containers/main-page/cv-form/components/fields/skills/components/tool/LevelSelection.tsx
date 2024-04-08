@@ -1,14 +1,9 @@
 import { memo } from 'react';
 import type { Control } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
+import { Select } from '@mbicycle/foundation-ui-kit';
 import { TOOL_LEVELS as levels } from 'fields/languages/components/utils/constants';
 import { HelperText, LevelInputText, TOOLS_NAME } from 'fields/skills/utils/constants';
-
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import {
-  FormControl, FormHelperText, InputLabel,
-  MenuItem, Select,
-} from '@mui/material';
 
 import type { Skill } from 'common/models/User';
 
@@ -20,32 +15,21 @@ interface LevelSelectionProps{
 const LevelSelection = function (
   { control, index }: LevelSelectionProps,
 ):JSX.Element {
+  const options = levels.map(({ name }) => ({ id: name, name }));
   return (
     <Controller<Skill>
       name={`${TOOLS_NAME}.${index}.${LevelInputText.Name}`}
       control={control}
       render={({ field, fieldState: { error } }) => (
-        <FormControl fullWidth>
-          <InputLabel>{LevelInputText.Label}</InputLabel>
+        <div className="w-full">
           <Select
             {...field}
-            label="Level"
-            fullWidth
-            IconComponent={KeyboardArrowDownIcon}
-          >
-            {levels.map((item) => (
-              <MenuItem
-                key={item.name}
-                value={item.name}
-              >
-                <span className="text-gray-500 ml-2" color="text.secondary">
-                  {item.name}
-                </span>
-              </MenuItem>
-            ))}
-          </Select>
-          {!field.value && <FormHelperText error={!!error}>{HelperText.SkillLevel}</FormHelperText>}
-        </FormControl>
+            options={options}
+            value={field.value as string}
+            label={LevelInputText.Label}
+          />
+          {!field.value && <p className={`${error ? 'text-red-600' : 'text-gray-600'}`}>{HelperText.SkillLevel}</p>}
+        </div>
       )}
     />
   );
