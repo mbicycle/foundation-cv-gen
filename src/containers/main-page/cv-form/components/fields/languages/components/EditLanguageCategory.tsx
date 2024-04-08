@@ -45,7 +45,7 @@ const EditLanguageCategory = function (): JSX.Element {
   useUnsaved(isDirtyLanguageForm);
 
   return (
-    <div>
+    <div className="w-full h-full">
       <div className="flex justify-between flex-nowrap gap-6">
         <LanguageSelectionForm
           onGetSelectedLanguage={onGetSelectedLanguageHandle}

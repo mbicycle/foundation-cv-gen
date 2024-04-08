@@ -56,7 +56,7 @@ const ProfiencyItem = function ({
 
   return (
     <div
-      className={`inline-flex w-full items-center p-2 mb-2 border rounded
+      className={`inline-flex w-full items-center p-2 mb-2 border rounded-lg
        ${disabled && 'opacity-50 pointer-events-none'}`}
       style={border}
     >

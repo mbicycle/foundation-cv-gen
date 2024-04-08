@@ -86,7 +86,7 @@ body {
 
     /* FORM */
     .listWrapper {
-        @apply max-h-[calc(100vh-35rem)] min-h-32  p-8 overflow-auto w-full border rounded;
+        @apply max-h-[calc(100vh-35rem)] min-h-32 p-8 overflow-auto w-full;
     }
 
     .saveBtnWrapper {

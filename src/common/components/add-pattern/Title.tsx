@@ -15,11 +15,11 @@ const Title = function ({ name, onReturn }: TitleProps): JSX.Element {
   };
 
   return (
-    <div className="inline-flex items-center justify-start">
+    <div className="flex w-full items-center justify-start mb-4">
       <button onClick={onBackHandle} className="mr-1">
         <ChevronLeftIcon className="text-blue-500" />
       </button>
-      <p>
+      <p className="text-base">
         {name}
       </p>
     </div>

@@ -87,7 +87,6 @@ const EditProject = function (): JSX.Element | null {
             label={ProjectInputsText.Title}
             name="title"
             type="text"
-            variant="outlined"
             required
             helperText={titleErrorMessage}
           />
@@ -100,7 +99,6 @@ const EditProject = function (): JSX.Element | null {
             label={ProjectInputsText.Role}
             name="role"
             type="text"
-            variant="outlined"
             required
             helperText={roleErrorMessage}
           />
@@ -110,8 +108,7 @@ const EditProject = function (): JSX.Element | null {
             label={ProjectInputsText.Team}
             name="teamSize"
             type="number"
-            inputProps={{ min: 0 }}
-            variant="outlined"
+            min={0}
             required
           />
           <ReactHookFormTextFieldOutlined
@@ -120,7 +117,6 @@ const EditProject = function (): JSX.Element | null {
             label={ProjectInputsText.Link}
             name="link"
             type="url"
-            variant="outlined"
             disabled={tokenState.isGuest}
           />
         </div>
@@ -133,8 +129,6 @@ const EditProject = function (): JSX.Element | null {
           name="description"
           type="text"
           multiline
-          minRows={5}
-          variant="outlined"
           required
           helperText={descriptionErrorMessage}
         />
@@ -161,8 +155,7 @@ const EditProject = function (): JSX.Element | null {
         </Button>
         <Button
           type="submit"
-          variant="contained"
-          loading={isLoading}
+          isLoading={isLoading}
         >
           {ButtonStep.Save}
         </Button>

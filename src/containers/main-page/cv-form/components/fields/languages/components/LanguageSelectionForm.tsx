@@ -1,17 +1,8 @@
-import type { SyntheticEvent } from 'react';
 import { memo, useEffect, useState } from 'react';
+import { Autocomplete, Select } from '@mbicycle/foundation-ui-kit';
 import { LANGUAGE, LanguageInputName, LEVEL } from 'fields/languages/utils/constants';
 
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import type { SelectChangeEvent } from '@mui/material';
-import {
-  Autocomplete, createFilterOptions,
-  MenuItem, Select, TextField,
-} from '@mui/material';
-
-import {
-  LANGUAGES as languages,
-} from 'containers/main-page/cv-form/components/fields/languages/lib/constants';
+import { LANGUAGES as languages } from 'containers/main-page/cv-form/components/fields/languages/lib/constants';
 import type { CategoryNameStateLanguage } from 'containers/main-page/cv-form/local-state/CategoryIdContext';
 import type { UserLanguage } from 'common/models/User';
 
@@ -26,6 +17,9 @@ interface LanguageSelectionFormProps {
 }
 
 type Levels = keyof typeof Labels
+
+const languagesOptions = languages.map((name) => ({ id: name, name }));
+const levelOptions = levels.map(({ name }) => ({ id: name, name }));
 
 const LanguageSelectionForm = function (props: LanguageSelectionFormProps): JSX.Element {
   const {
@@ -51,17 +45,11 @@ const LanguageSelectionForm = function (props: LanguageSelectionFormProps): JSX.
     [language, level],
   );
 
-  const filterOptions = createFilterOptions<string>({
-    matchFrom: 'start',
-    trim: true,
-    stringify: (option) => option,
-  });
-
-  const handelLevelChange = (event: SelectChangeEvent<Levels>): void => {
-    setLevel(event.target?.value as Levels || '');
+  const handelLevelChange = (value: string | string[]): void => {
+    setLevel(value as Levels);
   };
 
-  const handelLanguageChange = (event: SyntheticEvent<Element, Event>, newValue: string | null): void => {
+  const handelLanguageChange = (newValue: string | null): void => {
     setLanguage(newValue || '');
   };
 
@@ -70,48 +58,23 @@ const LanguageSelectionForm = function (props: LanguageSelectionFormProps): JSX.
       <div className="w-1/2">
         <div className="w-full pt-1">
           <Autocomplete
-            options={languages}
-            fullWidth
+            label={LANGUAGE}
             value={language}
             onChange={handelLanguageChange}
-            renderInput={(params) => (
-              <TextField {...params} name={LanguageInputName.Language} label={LANGUAGE} />
-            )}
-            disabled={isLoading || language === 'English'}
-            multiple={false}
-            filterOptions={filterOptions}
-            blurOnSelect
-            sx={{
-              '& .MuiAutocomplete-inputRoot': {
-                padding: 0,
-              },
-            }}
+            options={languagesOptions}
           />
         </div>
       </div>
       <div className="w-1/2">
         <div className="w-full pt-1">
           <Select
+            options={levelOptions}
             value={level}
             label={LEVEL}
             name={LanguageInputName.Level}
             onChange={handelLevelChange}
-            fullWidth
-            IconComponent={KeyboardArrowDownIcon}
             disabled={isLoading}
-            sx={{ pt: 0 }}
-          >
-            {levels.map((item) => (
-              <MenuItem
-                key={item.name}
-                value={item.name}
-              >
-                <p className="ml-2 text-gray-500">
-                  {item.name}
-                </p>
-              </MenuItem>
-            ))}
-          </Select>
+          />
         </div>
       </div>
     </div>

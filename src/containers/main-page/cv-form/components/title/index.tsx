@@ -8,7 +8,7 @@ const CVFormTitle = function (): JSX.Element {
 
   return (
     <div className="mt-4">
-      <h2 className="font-bold pt-2 pb-6">
+      <h2 className="font-bold text-2xl mt-6 mb-8">
         {CVTitles[activeStep]?.title}
       </h2>
     </div>

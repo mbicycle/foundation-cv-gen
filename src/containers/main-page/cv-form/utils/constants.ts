@@ -62,8 +62,6 @@ export enum ButtonStep {
   Cancel = 'Cancel'
 }
 
-export const CV_SKILL_EXISTS = 'The entered Group of Skills Name already exists';
-
 interface CVTitlesInterface {
   [key: number]: { title: string; };
 }

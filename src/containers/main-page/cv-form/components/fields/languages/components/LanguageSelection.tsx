@@ -56,7 +56,6 @@ const LanguageSelection = function (): JSX.Element {
         <Button
           disabled={isSaveDisabled}
           onClick={onSaveHandle}
-          variant="outline"
           isLoading={isLoading}
         >
           {ButtonStep.Save}

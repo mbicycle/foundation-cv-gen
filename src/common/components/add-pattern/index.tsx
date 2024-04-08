@@ -72,8 +72,8 @@ const AddProficiency = function (props: AddProficiencyProps): JSX.Element {
     : !!collection?.length;
 
   return (
-    <div className="flex w-full h-max-content items-start overflow-y-auto overflow-x-hidden">
-      <div className="flex w-full justify-center flex-col items-center border rounded mb-2 mt-2">
+    <div className="flex w-full h-full items-start overflow-y-auto overflow-x-hidden">
+      <div className="flex w-full justify-center flex-col items-center mb-2 mt-2">
         {pressedAdd && <Title name={title} onReturn={onReturnHandle} />}
         {!pressedAdd
         && (
@@ -94,7 +94,6 @@ const AddProficiency = function (props: AddProficiencyProps): JSX.Element {
                   ) : <div />
                 }
                 <Button
-                  variant="primary"
                   onClick={handleAdd}
                   disabled={disable}
                   icon={AddCircleIcon}

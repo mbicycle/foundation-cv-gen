@@ -12,10 +12,11 @@ interface LevelSelectionProps{
     index: number,
 }
 
+const options = levels.map(({ name }) => ({ id: name, name }));
+
 const LevelSelection = function (
   { control, index }: LevelSelectionProps,
 ):JSX.Element {
-  const options = levels.map(({ name }) => ({ id: name, name }));
   return (
     <Controller<Skill>
       name={`${TOOLS_NAME}.${index}.${LevelInputText.Name}`}
