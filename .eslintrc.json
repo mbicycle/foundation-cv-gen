@@ -1,3 +1,4 @@
+//TODO: tune eslint, fix prettier/prettier  Insert `··` error
 {
   // https://andrebnassis.medium.com/setting-eslint-on-a-react-typescript-project-2021-1190a43ffba
   "env": {
@@ -161,11 +162,23 @@
                 "^@"
               ],
               // src imports
-              ["^app"],
-              ["^entities"],
-              ["^pages"],
-              ["^widgets"],
-              ["^shared"],
+//              ["^app"],
+//              ["^entities"],
+//              ["^pages"],
+//              ["^widgets"],
+//              ["^shared"],
+              [
+                "^src",
+                "^containers",
+                "^common"
+              ],
+              [
+                "^stores",
+                "^hooks"
+              ],
+              [
+                "^utils"
+              ],
               // Imports starting with `../`
               [
                 "^\\.\\.(?!/?$)",

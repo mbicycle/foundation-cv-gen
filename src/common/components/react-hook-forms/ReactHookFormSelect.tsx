@@ -1,20 +1,22 @@
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { forwardRef } from 'react';
-import type { Control, FieldValues } from 'react-hook-form';
-import { Controller } from 'react-hook-form';
-import { Select } from '@mbicycle/foundation-ui-kit';
-import type { SelectProps } from '@mbicycle/foundation-ui-kit/dist/components/Select';
+import { forwardRef } from "react"
+import type { Control, FieldValues } from "react-hook-form"
+import { Controller } from "react-hook-form"
+
+import { Select } from "@mbicycle/foundation-ui-kit"
+import type { SelectProps } from "@mbicycle/foundation-ui-kit/dist/components/Select"
 
 interface ReactHookFormSelectProps<T extends FieldValues> extends SelectProps {
-  name: string;
-  control: Control<T>;
+  name: string
+  control: Control<T>
 }
 
 // eslint-disable-next-line prefer-arrow-callback
-const ReactHookFormSelect = forwardRef<unknown, ReactHookFormSelectProps<any>>(function<T extends FieldValues> ({
-  name, control, onChange, value, options, multiple, label, ...props
-}: ReactHookFormSelectProps<T | any>, ref: any): JSX.Element {
+const ReactHookFormSelect = forwardRef<unknown, ReactHookFormSelectProps<any>>(function <T extends FieldValues>(
+  { name, control, onChange, value, options, multiple, label, ...props }: ReactHookFormSelectProps<T | any>,
+  ref: any,
+): JSX.Element {
   return (
     <Controller<T | FieldValues>
       render={({ field }) => (
@@ -35,9 +37,9 @@ const ReactHookFormSelect = forwardRef<unknown, ReactHookFormSelectProps<any>>(f
       control={control}
       defaultValue=""
     />
-  );
-});
+  )
+})
 
-ReactHookFormSelect.displayName = 'ReactHookFormSelect';
+ReactHookFormSelect.displayName = "ReactHookFormSelect"
 
-export default ReactHookFormSelect;
+export default ReactHookFormSelect

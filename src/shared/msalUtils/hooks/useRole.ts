@@ -1,31 +1,31 @@
-import { useEffect, useState } from 'react';
-import { msalInstance } from 'shared/utils/interceptors';
+import { useEffect, useState } from "react"
+import { msalInstance } from "shared/utils/interceptors"
 
-import { useGuestToken } from 'common/context/guest-token';
+import { useGuestToken } from "common/context/guest-token"
 
-export type UseRoleReturnType = 'admin' | 'god' | 'user' | 'guest';
+export type UseRoleReturnType = "admin" | "god" | "user" | "guest"
 
-const useRole = (): { role: UseRoleReturnType | undefined; } => {
-  const { state } = useGuestToken();
-  const [role, setRole] = useState<UseRoleReturnType | undefined>();
+const useRole = (): { role: UseRoleReturnType | undefined } => {
+  const { state } = useGuestToken()
+  const [role, setRole] = useState<UseRoleReturnType | undefined>()
 
   const { idTokenClaims } = state.isGuest
-    ? { idTokenClaims: { roles: 'guest' } }
-    : (msalInstance.getAllAccounts()[0] ?? {});
+    ? { idTokenClaims: { roles: "guest" } }
+    : msalInstance.getAllAccounts()[0] ?? {}
 
-  const { roles } = idTokenClaims ?? {};
+  const { roles } = idTokenClaims ?? {}
 
   useEffect(() => {
     if (state.isGuest) {
-      setRole('guest');
+      setRole("guest")
     } else if (roles?.length) {
-      setRole(roles[0] as UseRoleReturnType);
+      setRole(roles[0] as UseRoleReturnType)
     } else {
-      setRole('user');
+      setRole("user")
     }
-  }, [roles, state.isGuest]);
+  }, [roles, state.isGuest])
 
-  return { role };
-};
+  return { role }
+}
 
-export default useRole;
+export default useRole

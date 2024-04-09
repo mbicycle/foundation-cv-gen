@@ -1,21 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect } from "react"
 
 const useBeforeUnload = (when: boolean): void => {
   useEffect(() => {
-    const message = 'Changes that you made may not be saved.';
+    const message = "Changes that you made may not be saved."
     const handleBeforeUnload = (event: BeforeUnloadEvent): string => {
-      event.preventDefault();
+      event.preventDefault()
       // eslint-disable-next-line no-param-reassign
-      event.returnValue = message;
-      return message;
-    };
-
-    if (when) {
-      window.addEventListener('beforeunload', handleBeforeUnload);
+      event.returnValue = message
+      return message
     }
 
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [when]);
-};
+    if (when) {
+      window.addEventListener("beforeunload", handleBeforeUnload)
+    }
 
-export default useBeforeUnload;
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload)
+  }, [when])
+}
+
+export default useBeforeUnload

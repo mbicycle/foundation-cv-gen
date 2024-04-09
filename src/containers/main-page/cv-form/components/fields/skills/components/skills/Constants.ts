@@ -1,6 +1,6 @@
 export const defaultDragState = {
   isDragging: false,
-  id: '',
+  id: "",
   originalIndex: -1,
   newIndex: -1,
-};
+}

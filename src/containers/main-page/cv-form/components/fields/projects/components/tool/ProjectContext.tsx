@@ -1,45 +1,45 @@
-import React, {
-  useContext, useMemo, useReducer,
-} from 'react';
+import React, { useContext, useMemo, useReducer } from "react"
 
-export type ProjectIdAction = { type: 'getIdProject', id: string | null; };
-export type ProjectIdState = { id: string | null; };
-export type ProjectIdDispatch = (action: ProjectIdAction) => void;
-export type ProjectIdContextType = { state: ProjectIdState; dispatch: ProjectIdDispatch; };
+export type ProjectIdAction = { type: "getIdProject"; id: string | null }
+export type ProjectIdState = { id: string | null }
+export type ProjectIdDispatch = (action: ProjectIdAction) => void
+export type ProjectIdContextType = { state: ProjectIdState; dispatch: ProjectIdDispatch }
 
-export const ProjectIdContext = React.createContext<{
-  state: ProjectIdState,
-  dispatch: ProjectIdDispatch;
-} | undefined>(undefined);
+export const ProjectIdContext = React.createContext<
+  | {
+      state: ProjectIdState
+      dispatch: ProjectIdDispatch
+    }
+  | undefined
+>(undefined)
 
 export const projectEditReducer = (state: ProjectIdState, action: ProjectIdAction): ProjectIdState => {
-  const projectId = { ...state };
-  if (action.type === 'getIdProject') {
-    projectId.id = action.id;
+  const projectId = { ...state }
+  if (action.type === "getIdProject") {
+    projectId.id = action.id
   } else {
-    projectId.id = null;
+    projectId.id = null
   }
-  return projectId;
-};
+  return projectId
+}
 
 export const ProjectProvider: React.FC<React.PropsWithChildren> = function ({ children }): JSX.Element {
-  const [projectIdState, projectIdDispatch] = useReducer(projectEditReducer, { id: null });
-  const projectContextValue = useMemo(() => ({
-    state: projectIdState,
-    dispatch: projectIdDispatch,
-  }), [projectIdState]);
+  const [projectIdState, projectIdDispatch] = useReducer(projectEditReducer, { id: null })
+  const projectContextValue = useMemo(
+    () => ({
+      state: projectIdState,
+      dispatch: projectIdDispatch,
+    }),
+    [projectIdState],
+  )
 
-  return (
-    <ProjectIdContext.Provider value={projectContextValue}>
-      {children}
-    </ProjectIdContext.Provider>
-  );
-};
+  return <ProjectIdContext.Provider value={projectContextValue}>{children}</ProjectIdContext.Provider>
+}
 
 export function useProjectIdContext(): ProjectIdContextType {
-  const context = useContext(ProjectIdContext);
+  const context = useContext(ProjectIdContext)
   if (context === undefined) {
-    throw new Error('ProjectNameContext must be used within a ProjectProvider');
+    throw new Error("ProjectNameContext must be used within a ProjectProvider")
   }
-  return context;
+  return context
 }

@@ -1,37 +1,38 @@
-import { Fragment, memo } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, Transition } from '@headlessui/react';
-import { Button, Divider } from '@mbicycle/foundation-ui-kit';
-import msalUtils from 'shared/msalUtils';
-import { msalConfig } from 'shared/utils/authConfig';
-import { msalInstance } from 'shared/utils/interceptors';
+import { Fragment, memo } from "react"
+import { Link } from "react-router-dom"
+import { Menu, Transition } from "@headlessui/react"
+import msalUtils from "shared/msalUtils"
+import { msalConfig } from "shared/utils/authConfig"
+import { msalInstance } from "shared/utils/interceptors"
 
-import { ROUTE } from 'common/components/routes/utils/constants';
-import { useGuestToken } from 'common/context/guest-token';
-import LogoIcon from 'common/icons/LogoIcon';
-import PersonIcon from 'common/icons/PersonIcon';
-import { useUserPhoto } from 'common/services/user-service/hooks/useUserPhoto';
+import { Button, Divider } from "@mbicycle/foundation-ui-kit"
 
-import PdfButtonSet from './ButtonSet';
+import { ROUTE } from "common/components/routes/utils/constants"
+import { useGuestToken } from "common/context/guest-token"
+import LogoIcon from "common/icons/LogoIcon"
+import PersonIcon from "common/icons/PersonIcon"
+import { useUserPhoto } from "common/services/user-service/hooks/useUserPhoto"
+
+import PdfButtonSet from "./ButtonSet"
 
 const ApplicationBar = function (): JSX.Element {
-  const { user } = msalUtils.useAuth();
-  const { photo } = useUserPhoto();
-  const { state: tokenState } = useGuestToken();
+  const { user } = msalUtils.useAuth()
+  const { photo } = useUserPhoto()
+  const { state: tokenState } = useGuestToken()
 
   const logoutHandle = async (): Promise<void> => {
-    const msalAccount = msalInstance.getAllAccounts()[0];
+    const msalAccount = msalInstance.getAllAccounts()[0]
     const logoutRequest = {
       account: msalAccount,
       postLogoutRedirectUri: msalConfig.auth.redirectUri,
       mainWindowRedirectUri: msalConfig.auth.redirectUri,
-    };
+    }
 
-    await msalInstance.logoutPopup(logoutRequest);
-  };
+    await msalInstance.logoutPopup(logoutRequest)
+  }
 
   const renderUserMenu = (): JSX.Element | null => {
-    if (tokenState.isGuest) return null;
+    if (tokenState.isGuest) return null
     return (
       <>
         <Divider orientation="vertical" className="bg-gradient-to-b via-white" />
@@ -44,7 +45,7 @@ const ApplicationBar = function (): JSX.Element {
               <span className="absolute -inset-1.5" />
               <span className="sr-only">Open user menu</span>
               {photo ? (
-                <img className="size-10 rounded-full" src={photo} alt={user?.mail || 'Avatar'} />
+                <img className="size-10 rounded-full" src={photo} alt={user?.mail || "Avatar"} />
               ) : (
                 <PersonIcon className="size-10" />
               )}
@@ -73,8 +74,8 @@ const ApplicationBar = function (): JSX.Element {
           </Transition>
         </Menu>
       </>
-    );
-  };
+    )
+  }
 
   return (
     <header className="w-full bg-blue-500 px-10 py-4 text-white">
@@ -90,7 +91,7 @@ const ApplicationBar = function (): JSX.Element {
         )}
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default memo(ApplicationBar);
+export default memo(ApplicationBar)

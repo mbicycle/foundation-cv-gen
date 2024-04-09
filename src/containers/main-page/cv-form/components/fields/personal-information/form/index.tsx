@@ -1,38 +1,30 @@
-import { memo } from 'react';
-import { Button } from '@mbicycle/foundation-ui-kit';
+import { memo } from "react"
 
-import CircularSpinner from 'common/components/circular-spinner/circular-spinner';
-import ReactHookFormTextFieldOutlined from
-  'common/components/react-hook-forms/ReactHookFormTextFieldOutlined';
-import { useGuestToken } from 'common/context/guest-token';
-import useBeforeUnload from 'common/utils/hooks/useBeforeUnload';
+import { Button } from "@mbicycle/foundation-ui-kit"
 
-import { InputLabel, InputName } from './constants';
-import { useUpdatePersonalData } from './hooks';
+import CircularSpinner from "common/components/circular-spinner/circular-spinner"
+import ReactHookFormTextFieldOutlined from "common/components/react-hook-forms/ReactHookFormTextFieldOutlined"
+import { useGuestToken } from "common/context/guest-token"
+import useBeforeUnload from "common/utils/hooks/useBeforeUnload"
+
+import { InputLabel, InputName } from "./constants"
+import { useUpdatePersonalData } from "./hooks"
 
 const PersonalDataForm = function (): JSX.Element {
-  const {
-    dbUser,
-    isLoading,
-    isDirty,
-    isValid,
-    control,
-    errors,
-    submitHandle,
-  } = useUpdatePersonalData();
+  const { dbUser, isLoading, isDirty, isValid, control, errors, submitHandle } = useUpdatePersonalData()
 
-  useBeforeUnload(isDirty);
-  const { state } = useGuestToken();
-  const { isGuest } = state;
+  useBeforeUnload(isDirty)
+  const { state } = useGuestToken()
+  const { isGuest } = state
 
   if (!dbUser) {
-    return <CircularSpinner size="large" />;
+    return <CircularSpinner size="large" />
   }
 
   return (
     <form className="my-6" onSubmit={submitHandle}>
-      <div className="flex flex-row flex-nowrap space-x-4 w-full">
-        <div className="flex flex-col gap-6 w-1/2">
+      <div className="flex w-full flex-row flex-nowrap space-x-4">
+        <div className="flex w-1/2 flex-col gap-6">
           <ReactHookFormTextFieldOutlined
             label={InputLabel.FirstName}
             name={InputName.FirstName}
@@ -57,7 +49,7 @@ const PersonalDataForm = function (): JSX.Element {
             disabled={isGuest}
           />
         </div>
-        <div className="flex flex-col gap-6 w-1/2">
+        <div className="flex w-1/2 flex-col gap-6">
           <ReactHookFormTextFieldOutlined
             label={InputLabel.Email}
             name={InputName.Email}
@@ -94,16 +86,12 @@ const PersonalDataForm = function (): JSX.Element {
         />
       </div>
       <div className="flex justify-end">
-        <Button
-          disabled={!isValid || !isDirty}
-          isLoading={isLoading}
-          type="submit"
-        >
+        <Button disabled={!isValid || !isDirty} isLoading={isLoading} type="submit">
           Save
         </Button>
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default memo(PersonalDataForm);
+export default memo(PersonalDataForm)

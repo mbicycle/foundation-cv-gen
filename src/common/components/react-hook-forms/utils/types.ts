@@ -1,1 +1,1 @@
-export type FieldValues = Record<string, unknown>;
+export type FieldValues = Record<string, unknown>

@@ -1,3 +1,3 @@
 export interface ObjectKeys {
-  [key: string]: unknown;
+  [key: string]: unknown
 }

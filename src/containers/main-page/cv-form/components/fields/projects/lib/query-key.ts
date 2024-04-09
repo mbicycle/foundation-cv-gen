@@ -1,3 +1,3 @@
 export const enum QueryKey {
-  Projects = 'projects',
+  Projects = "projects",
 }

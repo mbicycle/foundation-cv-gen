@@ -1,35 +1,36 @@
-import type { Control } from 'react-hook-form';
-import { CERTIFICATE_DATE, CERTIFICATE_TITLE } from 'fields/certifications/utils/constants';
+import type { Control } from "react-hook-form"
+import { CERTIFICATE_DATE, CERTIFICATE_TITLE } from "fields/certifications/utils/constants"
 
-import type {
-  CategoryNameStateCertificates,
-} from 'containers/main-page/cv-form/local-state/CategoryIdContext';
-import ReactHookFormDatePicker
-  from 'common/components/react-hook-forms/ReactHookFormDatePicker';
-import ReactHookFormTextFieldOutlined
-  from 'common/components/react-hook-forms/ReactHookFormTextFieldOutlined';
-import type { Certificate } from 'common/models/User';
+import type { CategoryNameStateCertificates } from "containers/main-page/cv-form/local-state/CategoryIdContext"
+import ReactHookFormDatePicker from "common/components/react-hook-forms/ReactHookFormDatePicker"
+import ReactHookFormTextFieldOutlined from "common/components/react-hook-forms/ReactHookFormTextFieldOutlined"
+import type { Certificate } from "common/models/User"
 
-const CertificateSelectionForm = function ({ control, defaultValue }:
-  { control: Control<Certificate>, defaultValue?: CategoryNameStateCertificates }): JSX.Element {
+const CertificateSelectionForm = function ({
+  control,
+  defaultValue,
+}: {
+  control: Control<Certificate>
+  defaultValue?: CategoryNameStateCertificates
+}): JSX.Element {
   return (
     <>
       <div className="col-span-8">
-        <div className="pt-1 w-full">
+        <div className="w-full pt-1">
           <ReactHookFormTextFieldOutlined
             {...{
-              name: 'name',
+              name: "name",
               control,
               state: defaultValue,
               label: CERTIFICATE_TITLE,
-              type: 'text',
-              variant: 'outlined',
+              type: "text",
+              variant: "outlined",
             }}
           />
         </div>
       </div>
       <div className="col-span-8">
-        <div className="pt-1 w-full">
+        <div className="w-full pt-1">
           <ReactHookFormDatePicker
             control={control}
             name="date"
@@ -41,7 +42,7 @@ const CertificateSelectionForm = function ({ control, defaultValue }:
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default CertificateSelectionForm;
+export default CertificateSelectionForm

@@ -1,4 +1,4 @@
-import { INITIAL_SERTIFICATE } from 'containers/main-page/cv-form/utils/constants';
+import { INITIAL_SERTIFICATE } from "containers/main-page/cv-form/utils/constants"
 
 import type {
   CategoryNameActionCertificates,
@@ -7,48 +7,48 @@ import type {
   CategoryNameStateLanguage,
   SkillIdAction,
   SkillIdState,
-} from './CategoryIdContext';
+} from "./CategoryIdContext"
 
 export function skillIdReducer(state: SkillIdState, action: SkillIdAction): SkillIdState {
-  const copy = { ...state };
+  const copy = { ...state }
 
-  if (action.type === 'set') {
-    copy.id = action.id;
+  if (action.type === "set") {
+    copy.id = action.id
   } else {
-    copy.id = null;
+    copy.id = null
   }
 
-  return copy;
+  return copy
 }
 
 export function languageReducer(
   state: CategoryNameStateLanguage,
   action: CategoryNameActionLanguage,
 ): CategoryNameStateLanguage {
-  const copy = { ...state };
+  const copy = { ...state }
 
-  if (action.type === 'set') {
-    copy.language = action.language;
-    copy.level = action.level;
+  if (action.type === "set") {
+    copy.language = action.language
+    copy.level = action.level
   } else {
-    copy.language = null;
-    copy.level = null;
+    copy.language = null
+    copy.level = null
   }
 
-  return copy;
+  return copy
 }
 
 export function certificatesReducer(
   state: CategoryNameStateCertificates,
   action: CategoryNameActionCertificates,
 ): CategoryNameStateCertificates {
-  let copy: CategoryNameStateCertificates = { ...state };
+  let copy: CategoryNameStateCertificates = { ...state }
 
-  if (action.type === 'set') {
-    copy = { ...action };
+  if (action.type === "set") {
+    copy = { ...action }
   } else {
-    copy = { ...INITIAL_SERTIFICATE };
+    copy = { ...INITIAL_SERTIFICATE }
   }
 
-  return copy;
+  return copy
 }

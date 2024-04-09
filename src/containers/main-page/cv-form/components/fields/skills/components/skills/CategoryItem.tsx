@@ -1,42 +1,38 @@
-import type { CSSProperties } from 'react';
-import {
-  memo, useCallback, useState,
-} from 'react';
-import { useNavigate } from 'react-router-dom';
+import type { CSSProperties } from "react"
+import { memo, useCallback, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
-import { useSkillIdContext } from 'containers/main-page/cv-form/local-state/hooks';
-import ProfiencyItem from 'common/components/profiency/ProfiencyItem';
-import type { Tool } from 'common/models/User';
+import { useSkillIdContext } from "containers/main-page/cv-form/local-state/hooks"
+import ProfiencyItem from "common/components/profiency/ProfiencyItem"
+import type { Tool } from "common/models/User"
 
 interface SkillItemProps {
-  id: string;
-  name: string;
-  tools: Tool[];
-  isDeleting: boolean;
-  onDelete: CallableFunction;
-  border?: CSSProperties;
+  id: string
+  name: string
+  tools: Tool[]
+  isDeleting: boolean
+  onDelete: CallableFunction
+  border?: CSSProperties
 }
 
 const SkillListItem: React.FC<SkillItemProps> = function (props): JSX.Element {
-  const {
-    id, name, tools, onDelete, border,
-  } = props;
+  const { id, name, tools, onDelete, border } = props
 
-  const navigate = useNavigate();
-  const { dispatch: dispatchSkillId } = useSkillIdContext();
+  const navigate = useNavigate()
+  const { dispatch: dispatchSkillId } = useSkillIdContext()
 
-  const [isItemDeleting, setIsItemDeleting] = useState(false);
+  const [isItemDeleting, setIsItemDeleting] = useState(false)
 
   const deleteHandle = useCallback(async (): Promise<void> => {
-    setIsItemDeleting(true);
-    await onDelete(id);
-    setIsItemDeleting(false);
-  }, [id, onDelete]);
+    setIsItemDeleting(true)
+    await onDelete(id)
+    setIsItemDeleting(false)
+  }, [id, onDelete])
 
   const openHandle = useCallback((): void => {
-    dispatchSkillId({ type: 'set', id });
-    navigate('edit');
-  }, [dispatchSkillId, id, navigate]);
+    dispatchSkillId({ type: "set", id })
+    navigate("edit")
+  }, [dispatchSkillId, id, navigate])
 
   return (
     <ProfiencyItem
@@ -49,7 +45,7 @@ const SkillListItem: React.FC<SkillItemProps> = function (props): JSX.Element {
       isDraggable
       border={border}
     />
-  );
-};
+  )
+}
 
-export default memo(SkillListItem);
+export default memo(SkillListItem)

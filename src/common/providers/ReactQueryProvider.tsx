@@ -1,6 +1,6 @@
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
-import { AuthProvider } from 'shared/msalUtils/features/auth';
+import { QueryClient, QueryClientProvider } from "react-query"
+import { ReactQueryDevtools } from "react-query/devtools"
+import { AuthProvider } from "shared/msalUtils/features/auth"
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -8,9 +8,9 @@ export const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
     },
   },
-});
+})
 
-const ReactQueryProvider = function ({ children }: { children: React.ReactNode; }): JSX.Element {
+const ReactQueryProvider = function ({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
@@ -18,7 +18,7 @@ const ReactQueryProvider = function ({ children }: { children: React.ReactNode; 
         {children}
       </AuthProvider>
     </QueryClientProvider>
-  );
-};
+  )
+}
 
-export default ReactQueryProvider;
+export default ReactQueryProvider

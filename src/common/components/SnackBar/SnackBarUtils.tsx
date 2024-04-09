@@ -1,43 +1,39 @@
-import React from 'react';
-import type { VariantType, WithSnackbarProps } from 'notistack';
-import { useSnackbar } from 'notistack';
+import React from "react"
+import type { VariantType, WithSnackbarProps } from "notistack"
+import { useSnackbar } from "notistack"
 
 interface IProps {
-  setUseSnackbarRef: (showSnackbar: WithSnackbarProps) => void;
+  setUseSnackbarRef: (showSnackbar: WithSnackbarProps) => void
 }
 
 const InnerSnackbarUtilsConfigurator: React.FC<IProps> = function ({ setUseSnackbarRef }: IProps) {
-  setUseSnackbarRef(useSnackbar());
-  return null;
-};
+  setUseSnackbarRef(useSnackbar())
+  return null
+}
 
-let useSnackbarRef: WithSnackbarProps;
+let useSnackbarRef: WithSnackbarProps
 const setUseSnackbarRef = (useSnackbarRefProp: WithSnackbarProps): void => {
-  useSnackbarRef = useSnackbarRefProp;
-};
+  useSnackbarRef = useSnackbarRefProp
+}
 
-export const SnackbarUtilsConfigurator = function ():JSX.Element {
-  return (
-    <InnerSnackbarUtilsConfigurator
-      setUseSnackbarRef={setUseSnackbarRef}
-    />
-  );
-};
+export const SnackbarUtilsConfigurator = function (): JSX.Element {
+  return <InnerSnackbarUtilsConfigurator setUseSnackbarRef={setUseSnackbarRef} />
+}
 
 export default {
   success(msg: string): void {
-    this.toast(msg, 'success');
+    this.toast(msg, "success")
   },
   warning(msg: string): void {
-    this.toast(msg, 'warning');
+    this.toast(msg, "warning")
   },
   info(msg: string): void {
-    this.toast(msg, 'info');
+    this.toast(msg, "info")
   },
   error(msg: string): void {
-    this.toast(msg, 'error');
+    this.toast(msg, "error")
   },
-  toast(msg: string, variant: VariantType = 'default'): void {
-    useSnackbarRef.enqueueSnackbar(msg, { variant });
+  toast(msg: string, variant: VariantType = "default"): void {
+    useSnackbarRef.enqueueSnackbar(msg, { variant })
   },
-};
+}

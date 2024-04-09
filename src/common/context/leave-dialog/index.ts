@@ -1,2 +1,2 @@
-export { default } from './LeaveDialogProvider';
-export { useLeaveDialogContext } from './useLeaveDialogContext';
+export { default } from "./LeaveDialogProvider"
+export { useLeaveDialogContext } from "./useLeaveDialogContext"

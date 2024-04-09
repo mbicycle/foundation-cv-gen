@@ -1,11 +1,6 @@
-import { axiosInstance, axiosInstanceToken } from './axios';
-import graph from './ms-graph-interceptor';
+import { axiosInstance, axiosInstanceToken } from "./axios"
+import graph from "./ms-graph-interceptor"
 
-const { msalInstance } = graph;
+const { msalInstance } = graph
 
-export {
-  axiosInstance,
-  axiosInstanceToken,
-  graph,
-  msalInstance,
-};
+export { axiosInstance, axiosInstanceToken, graph, msalInstance }

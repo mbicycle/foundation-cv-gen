@@ -1,34 +1,34 @@
-import { memo } from 'react';
+import { memo } from "react"
 
-import { useSaveAdminPdfFile } from 'containers/application-bar/pdf/useSavePdfFile';
-import { useSaveAdminWordFile } from 'containers/application-bar/word/hooks/useSaveAdminWordFile';
-import { useGetDbUser } from 'containers/main-page/cv-form/api/query-hooks';
-import CircularSpinner from 'common/components/circular-spinner/circular-spinner';
-import DocxIcon from 'common/icons/DocxIcon';
-import PdfIcon from 'common/icons/PdfIcon';
+import { useSaveAdminPdfFile } from "containers/application-bar/pdf/useSavePdfFile"
+import { useSaveAdminWordFile } from "containers/application-bar/word/hooks/useSaveAdminWordFile"
+import { useGetDbUser } from "containers/main-page/cv-form/api/query-hooks"
+import CircularSpinner from "common/components/circular-spinner/circular-spinner"
+import DocxIcon from "common/icons/DocxIcon"
+import PdfIcon from "common/icons/PdfIcon"
 
 interface ActionsSetProps {
-  id: string;
-  mail: string;
-  disabledIcons: boolean;
+  id: string
+  mail: string
+  disabledIcons: boolean
 }
 
 function ActionsSet(props: ActionsSetProps): JSX.Element {
-  const { id, mail, disabledIcons } = props;
+  const { id, mail, disabledIcons } = props
 
-  const { mutateAsync: getUserBy } = useGetDbUser();
-  const { isRetreivingWordUserData, passUser: passUserToWord } = useSaveAdminWordFile();
-  const { isRetreivingPdfUserData, loading, passUser: passUserToPdf } = useSaveAdminPdfFile();
+  const { mutateAsync: getUserBy } = useGetDbUser()
+  const { isRetreivingWordUserData, passUser: passUserToWord } = useSaveAdminWordFile()
+  const { isRetreivingPdfUserData, loading, passUser: passUserToPdf } = useSaveAdminPdfFile()
 
   const saveEmployeeWordCvHandle = async (): Promise<void> => {
-    const data = await getUserBy(mail);
-    passUserToWord(id, data);
-  };
+    const data = await getUserBy(mail)
+    passUserToWord(id, data)
+  }
 
   const saveEmployeePdfCvHandle = async (): Promise<void> => {
-    const data = await getUserBy(mail);
-    passUserToPdf(id, data);
-  };
+    const data = await getUserBy(mail)
+    passUserToPdf(id, data)
+  }
 
   return (
     <>
@@ -36,11 +36,9 @@ function ActionsSet(props: ActionsSetProps): JSX.Element {
         type="button"
         onClick={saveEmployeeWordCvHandle}
         disabled={isRetreivingWordUserData || loading || disabledIcons}
-        className="text-blue-500 mr-8"
+        className="mr-8 text-blue-500"
       >
-        {isRetreivingWordUserData
-          ? <CircularSpinner size="small" />
-          : <DocxIcon className="size-6" />}
+        {isRetreivingWordUserData ? <CircularSpinner size="small" /> : <DocxIcon className="size-6" />}
       </button>
       <button
         type="button"
@@ -48,14 +46,14 @@ function ActionsSet(props: ActionsSetProps): JSX.Element {
         disabled={isRetreivingPdfUserData || loading || disabledIcons}
         className="text-red-600"
       >
-        {isRetreivingPdfUserData || loading
-          ? <CircularSpinner size="small" />
-          : (
-            <PdfIcon className={`size-6 ${!disabledIcons ? 'text-red-600' : 'text-gray-500'}`} />
-          )}
+        {isRetreivingPdfUserData || loading ? (
+          <CircularSpinner size="small" />
+        ) : (
+          <PdfIcon className={`size-6 ${!disabledIcons ? "text-red-600" : "text-gray-500"}`} />
+        )}
       </button>
     </>
-  );
+  )
 }
 
-export default memo(ActionsSet);
+export default memo(ActionsSet)

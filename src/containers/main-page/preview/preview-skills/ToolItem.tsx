@@ -1,33 +1,27 @@
-import { memo } from 'react';
+import { memo } from "react"
 
-import CircleIcon from 'common/icons/CircleIcon';
-import type { Tool } from 'common/models/User';
+import CircleIcon from "common/icons/CircleIcon"
+import type { Tool } from "common/models/User"
 
 interface ToolItemProps {
-  tool: Tool;
+  tool: Tool
 }
 const ToolItem: React.FC<ToolItemProps> = function (props) {
-  const { tool } = props;
-  const { experience, level, name } = tool;
+  const { tool } = props
+  const { experience, level, name } = tool
 
-  if (!name) return null;
+  if (!name) return null
 
   return (
     <>
       <div className="flex items-center">
-        <CircleIcon className="text-blue-500 size-2 mx-1.5" />
-        <p>
-          {name}
-        </p>
+        <CircleIcon className="mx-1.5 size-2 text-blue-500" />
+        <p>{name}</p>
       </div>
-      <p className="text-center">
-        {experience}
-      </p>
-      <p className="text-left pl-5">
-        {level || ''}
-      </p>
+      <p className="text-center">{experience}</p>
+      <p className="pl-5 text-left">{level || ""}</p>
     </>
-  );
-};
+  )
+}
 
-export default memo(ToolItem);
+export default memo(ToolItem)

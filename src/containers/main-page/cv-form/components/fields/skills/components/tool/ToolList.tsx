@@ -1,65 +1,55 @@
-import {
-  useCallback, useEffect, useRef, useState,
-} from 'react';
-import type { Control, FieldArrayWithId, FormState } from 'react-hook-form';
-import { defaultDragState } from 'fields/skills/components/skills/Constants';
+import { useCallback, useEffect, useRef, useState } from "react"
+import type { Control, FieldArrayWithId, FormState } from "react-hook-form"
+import { defaultDragState } from "fields/skills/components/skills/Constants"
 
-import type {
-  Skill, Tool as ToolType,
-} from 'common/models/User';
+import type { Skill, Tool as ToolType } from "common/models/User"
 
-import Tool from '.';
+import Tool from "."
 
 interface IToolListProps {
-    tools: FieldArrayWithId<Skill, 'tools'>[],
-    control: Control<Skill, unknown>,
-    formState: FormState<Skill>,
-  move: (from: number, to: number) => void,
-    newTool: ToolType | undefined,
-    onDeleteToolHandle: (deleteSkillPosition: number, deleteSkillId: string) => void,
+  tools: FieldArrayWithId<Skill, "tools">[]
+  control: Control<Skill, unknown>
+  formState: FormState<Skill>
+  move: (from: number, to: number) => void
+  newTool: ToolType | undefined
+  onDeleteToolHandle: (deleteSkillPosition: number, deleteSkillId: string) => void
 }
 
 interface DragState {
-    isDragging: boolean;
-    id: string;
-    originalIndex: number;
-    newIndex: number;
+  isDragging: boolean
+  id: string
+  originalIndex: number
+  newIndex: number
 }
 
 function ToolList(props: IToolListProps): JSX.Element {
-  const {
-    tools,
-    move,
-    formState,
-    newTool,
-    control,
-    onDeleteToolHandle,
-  } = props;
+  const { tools, move, formState, newTool, control, onDeleteToolHandle } = props
 
-  const [expandedId, setExpandedId] = useState(newTool?.id ?? '');
-  const elementRef = useRef<null | HTMLDivElement>(null);
-  const scrollToElement = (): void => elementRef.current?.scrollIntoView({
-    behavior: 'smooth',
-    block: 'center',
-    inline: 'nearest',
-  });
+  const [expandedId, setExpandedId] = useState(newTool?.id ?? "")
+  const elementRef = useRef<null | HTMLDivElement>(null)
+  const scrollToElement = (): void =>
+    elementRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "nearest",
+    })
 
-  const [dragState, setDragState] = useState<DragState>(defaultDragState);
+  const [dragState, setDragState] = useState<DragState>(defaultDragState)
 
   useEffect(() => {
-    setExpandedId(newTool?.id ?? '');
-  }, [newTool]);
+    setExpandedId(newTool?.id ?? "")
+  }, [newTool])
 
   useEffect(() => {
     setTimeout(() => {
-      scrollToElement();
-    }, 250);
-  }, [expandedId]);
+      scrollToElement()
+    }, 250)
+  }, [expandedId])
 
   const handleExpanded = (toolId: string): void => {
-    const extendedId = toolId === expandedId ? '' : toolId;
-    setExpandedId(extendedId);
-  };
+    const extendedId = toolId === expandedId ? "" : toolId
+    setExpandedId(extendedId)
+  }
 
   const onDragStart = (id: string, index: number): void => {
     setDragState({
@@ -67,43 +57,43 @@ function ToolList(props: IToolListProps): JSX.Element {
       id,
       originalIndex: index,
       newIndex: index,
-    });
-  };
+    })
+  }
 
   const onDragEnd = useCallback(async (): Promise<void> => {
     if (dragState.originalIndex !== dragState.newIndex) {
-      move(dragState.originalIndex, dragState.newIndex);
+      move(dragState.originalIndex, dragState.newIndex)
     }
 
-    setDragState(defaultDragState);
-  }, [dragState.newIndex, dragState.originalIndex, move]);
+    setDragState(defaultDragState)
+  }, [dragState.newIndex, dragState.originalIndex, move])
 
   const onDragOver = (e: React.DragEvent<HTMLLIElement>): void => {
-    e.preventDefault();
-    const targetIndex = parseInt(e.currentTarget.getAttribute('data-index') || '-1', 10);
+    e.preventDefault()
+    const targetIndex = parseInt(e.currentTarget.getAttribute("data-index") || "-1", 10)
     if (dragState.originalIndex !== targetIndex && dragState.newIndex !== targetIndex) {
       setDragState({
         ...dragState,
         newIndex: targetIndex,
-      });
+      })
     }
-  };
+  }
 
   const onDragLeave = (): void => {
     setDragState({
       ...dragState,
       newIndex: dragState.originalIndex,
-    });
-  };
+    })
+  }
 
   return (
-    <div className="flex flex-col gap-y-4 min-h-32 w-full max-h-[calc(100vh-40rem)] overflow-y-auto border p-2 rounded-lg">
-      <ul className="list-none w-full">
-        { tools.map((tool, index) => {
+    <div className="flex max-h-[calc(100vh-40rem)] min-h-32 w-full flex-col gap-y-4 overflow-y-auto rounded-lg border p-2">
+      <ul className="w-full list-none">
+        {tools.map((tool, index) => {
           const border = {
-            border: dragState.newIndex === index && dragState.originalIndex !== dragState.newIndex
-              ? '1px solid #2a57e0' : '',
-          };
+            border:
+              dragState.newIndex === index && dragState.originalIndex !== dragState.newIndex ? "1px solid #2a57e0" : "",
+          }
           return (
             <li
               key={tool.id}
@@ -113,7 +103,7 @@ function ToolList(props: IToolListProps): JSX.Element {
               onDragEnd={onDragEnd}
               onDragOver={onDragOver}
               onDragLeave={onDragLeave}
-              className={dragState.originalIndex === index ? 'opacity-20 transform translate-y-0' : ''}
+              className={dragState.originalIndex === index ? "translate-y-0 transform opacity-20" : ""}
             >
               <Tool
                 key={tool.id}
@@ -128,11 +118,11 @@ function ToolList(props: IToolListProps): JSX.Element {
                 elementRef={elementRef}
               />
             </li>
-          );
+          )
         })}
       </ul>
     </div>
-  );
+  )
 }
 
-export default ToolList;
+export default ToolList

@@ -1,42 +1,37 @@
-import {
-  memo,
-  useCallback,
-} from 'react';
-import type { FieldArrayWithId, UseFieldArrayRemove } from 'react-hook-form';
-import CategoryItem from 'fields/projects/components/CategoryItem';
+import { memo, useCallback } from "react"
+import type { FieldArrayWithId, UseFieldArrayRemove } from "react-hook-form"
+import CategoryItem from "fields/projects/components/CategoryItem"
 
 export type CategoryItemProps = {
   categories: {
-    skill: string;
-    tools: string[];
-  }[];
-};
+    skill: string
+    tools: string[]
+  }[]
+}
 
 type CategorySelectionItemProps = {
-  fieldIndex: number;
-  field: FieldArrayWithId<CategoryItemProps, 'categories', 'id'>;
-  remove: UseFieldArrayRemove;
-  onSetSelected: VoidFunction;
-  onSetOpen: CallableFunction;
-};
+  fieldIndex: number
+  field: FieldArrayWithId<CategoryItemProps, "categories", "id">
+  remove: UseFieldArrayRemove
+  onSetSelected: VoidFunction
+  onSetOpen: CallableFunction
+}
 
 const CategorySelectionItem: React.FC<CategorySelectionItemProps> = function (props): JSX.Element | null {
-  const {
-    fieldIndex, field, remove, onSetSelected, onSetOpen,
-  } = props;
+  const { fieldIndex, field, remove, onSetSelected, onSetOpen } = props
 
   const handleClickOpen = useCallback((): void => {
-    onSetOpen(true);
+    onSetOpen(true)
     if (field) {
-      onSetSelected();
+      onSetSelected()
     }
-  }, [field, onSetOpen, onSetSelected]);
+  }, [field, onSetOpen, onSetSelected])
 
   const deleteCategory = useCallback((): void => {
-    remove(fieldIndex);
-  }, [fieldIndex, remove]);
+    remove(fieldIndex)
+  }, [fieldIndex, remove])
 
-  if (!field.skill) return null;
+  if (!field.skill) return null
 
   return (
     <CategoryItem
@@ -46,7 +41,7 @@ const CategorySelectionItem: React.FC<CategorySelectionItemProps> = function (pr
       onDelete={deleteCategory}
       onClick={handleClickOpen}
     />
-  );
-};
+  )
+}
 
-export default memo(CategorySelectionItem);
+export default memo(CategorySelectionItem)

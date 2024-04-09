@@ -1,45 +1,44 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from "react"
 
-import LeaveDialog from 'containers/main-page/cv-form/components/LeaveDialog';
+import LeaveDialog from "containers/main-page/cv-form/components/LeaveDialog"
 
-import { LeaveDialogContext } from './LeaveDialogContext';
+import { LeaveDialogContext } from "./LeaveDialogContext"
 
 export interface LeaveDialogOptions {
-  handleLeave: ()=> void;
+  handleLeave: () => void
 }
 
 const LeaveDialogProvider: React.FC<React.PropsWithChildren> = function ({ children }): JSX.Element {
-  const [isOpen, setOpen] = useState(false);
-  const [option, setOption] = useState<LeaveDialogOptions>();
+  const [isOpen, setOpen] = useState(false)
+  const [option, setOption] = useState<LeaveDialogOptions>()
 
   const openDialog = useCallback((dialogOptions: LeaveDialogOptions): void => {
-    setOpen(true);
-    setOption(dialogOptions);
-  }, []);
+    setOpen(true)
+    setOption(dialogOptions)
+  }, [])
 
   const handleClose = (): void => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   const handleLeave = (): void => {
-    setOpen(false);
-    option?.handleLeave();
-  };
+    setOpen(false)
+    option?.handleLeave()
+  }
 
-  const leaveDialogContextValue = useMemo(() => ({
-    openDialog,
-  }), [openDialog]);
+  const leaveDialogContextValue = useMemo(
+    () => ({
+      openDialog,
+    }),
+    [openDialog],
+  )
 
   return (
     <LeaveDialogContext.Provider value={leaveDialogContextValue}>
-      <LeaveDialog
-        isOpen={isOpen}
-        handleClose={handleClose}
-        handleLeave={handleLeave}
-      />
+      <LeaveDialog isOpen={isOpen} handleClose={handleClose} handleLeave={handleLeave} />
       {children}
     </LeaveDialogContext.Provider>
-  );
-};
+  )
+}
 
-export default LeaveDialogProvider;
+export default LeaveDialogProvider

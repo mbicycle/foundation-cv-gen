@@ -1,35 +1,31 @@
-import { memo, useEffect, useState } from 'react';
-import { Autocomplete, Select } from '@mbicycle/foundation-ui-kit';
-import { LANGUAGE, LanguageInputName, LEVEL } from 'fields/languages/utils/constants';
+import { memo, useEffect, useState } from "react"
+import { LANGUAGE, LanguageInputName, LEVEL } from "fields/languages/utils/constants"
 
-import { LANGUAGES as languages } from 'containers/main-page/cv-form/components/fields/languages/lib/constants';
-import type { CategoryNameStateLanguage } from 'containers/main-page/cv-form/local-state/CategoryIdContext';
-import type { UserLanguage } from 'common/models/User';
+import { Autocomplete, Select } from "@mbicycle/foundation-ui-kit"
 
-import { LEVELS as levels } from './utils/constants';
-import type { Labels } from './utils/level.enum';
+import { LANGUAGES as languages } from "containers/main-page/cv-form/components/fields/languages/lib/constants"
+import type { CategoryNameStateLanguage } from "containers/main-page/cv-form/local-state/CategoryIdContext"
+import type { UserLanguage } from "common/models/User"
+
+import { LEVELS as levels } from "./utils/constants"
+import type { Labels } from "./utils/level.enum"
 
 interface LanguageSelectionFormProps {
-  isLoading: boolean;
-  onGetSelectedLanguage: (language: UserLanguage) => void;
-  defaultValue?: CategoryNameStateLanguage;
-  setDirtyFlag: (language: string, level: string) => void;
+  isLoading: boolean
+  onGetSelectedLanguage: (language: UserLanguage) => void
+  defaultValue?: CategoryNameStateLanguage
+  setDirtyFlag: (language: string, level: string) => void
 }
 
 type Levels = keyof typeof Labels
 
-const languagesOptions = languages.map((name) => ({ id: name, name }));
-const levelOptions = levels.map(({ name }) => ({ id: name, name }));
+const languagesOptions = languages.map((name) => ({ id: name, name }))
+const levelOptions = levels.map(({ name }) => ({ id: name, name }))
 
 const LanguageSelectionForm = function (props: LanguageSelectionFormProps): JSX.Element {
-  const {
-    onGetSelectedLanguage,
-    isLoading,
-    defaultValue,
-    setDirtyFlag,
-  } = props;
-  const [language, setLanguage] = useState(defaultValue?.language || '');
-  const [level, setLevel] = useState<Levels | ''>(defaultValue?.level as Levels || '');
+  const { onGetSelectedLanguage, isLoading, defaultValue, setDirtyFlag } = props
+  const [language, setLanguage] = useState(defaultValue?.language || "")
+  const [level, setLevel] = useState<Levels | "">((defaultValue?.level as Levels) || "")
 
   useEffect(
     () => {
@@ -37,32 +33,27 @@ const LanguageSelectionForm = function (props: LanguageSelectionFormProps): JSX.
         onGetSelectedLanguage({
           name: language,
           level,
-        });
+        })
       }
-      setDirtyFlag(language, level);
+      setDirtyFlag(language, level)
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [language, level],
-  );
+  )
 
   const handelLevelChange = (value: string | string[]): void => {
-    setLevel(value as Levels);
-  };
+    setLevel(value as Levels)
+  }
 
   const handelLanguageChange = (newValue: string | null): void => {
-    setLanguage(newValue || '');
-  };
+    setLanguage(newValue || "")
+  }
 
   return (
-    <div className="flex flex-row items-center justify-between w-full gap-6">
+    <div className="flex w-full flex-row items-center justify-between gap-6">
       <div className="w-1/2">
         <div className="w-full pt-1">
-          <Autocomplete
-            label={LANGUAGE}
-            value={language}
-            onChange={handelLanguageChange}
-            options={languagesOptions}
-          />
+          <Autocomplete label={LANGUAGE} value={language} onChange={handelLanguageChange} options={languagesOptions} />
         </div>
       </div>
       <div className="w-1/2">
@@ -78,6 +69,6 @@ const LanguageSelectionForm = function (props: LanguageSelectionFormProps): JSX.
         </div>
       </div>
     </div>
-  );
-};
-export default memo(LanguageSelectionForm);
+  )
+}
+export default memo(LanguageSelectionForm)

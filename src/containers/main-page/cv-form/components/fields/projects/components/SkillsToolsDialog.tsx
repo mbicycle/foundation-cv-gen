@@ -1,107 +1,97 @@
-import {
-  memo, useEffect, useMemo, useState,
-} from 'react';
-import type { Control, FieldArrayWithId } from 'react-hook-form';
-import { Button, Modal } from '@mbicycle/foundation-ui-kit';
+import { memo, useEffect, useMemo, useState } from "react"
+import type { Control, FieldArrayWithId } from "react-hook-form"
 
-import { ButtonText } from 'common/components/add-pattern/constants';
-import ReactHookFormSelect from 'common/components/react-hook-forms/ReactHookFormSelect';
-import type { DbUser, Skill } from 'common/models/User';
+import { Button, Modal } from "@mbicycle/foundation-ui-kit"
 
-import type { CategoryItemProps } from './category-selection/CategorySelection';
-import { CategoryAddText } from './utils/constants';
-import { getFilteredSkillGroups } from './utils/functions';
+import { ButtonText } from "common/components/add-pattern/constants"
+import ReactHookFormSelect from "common/components/react-hook-forms/ReactHookFormSelect"
+import type { DbUser, Skill } from "common/models/User"
+
+import type { CategoryItemProps } from "./category-selection/CategorySelection"
+import { CategoryAddText } from "./utils/constants"
+import { getFilteredSkillGroups } from "./utils/functions"
 
 type DialogFormReturnType = {
-  tools: string[];
-  skill?: Skill;
-};
+  tools: string[]
+  skill?: Skill
+}
 
 interface SkillsToolsDialogProps {
-  open: boolean;
+  open: boolean
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control: Control<CategoryItemProps, any>;
-  onClose: VoidFunction;
-  onSubmit: (data: DialogFormReturnType) => void;
-  onCancel: VoidFunction,
-  user?: DbUser;
-  defaultValues?: FieldArrayWithId<CategoryItemProps, 'categories', 'id'>;
-  usedCategories: string[];
+  control: Control<CategoryItemProps, any>
+  onClose: VoidFunction
+  onSubmit: (data: DialogFormReturnType) => void
+  onCancel: VoidFunction
+  user?: DbUser
+  defaultValues?: FieldArrayWithId<CategoryItemProps, "categories", "id">
+  usedCategories: string[]
 }
 
 const SkillsToolsDialog = function (props: SkillsToolsDialogProps): JSX.Element {
-  const {
-    user, open, onClose, control, onSubmit, defaultValues, onCancel, usedCategories,
-  } = props;
-  const [skill, setSkill] = useState<Skill | undefined>();
-  const [tools, setSelectedTools] = useState<string[]>([]);
-  const [selectedCategories, setSelectedCategories] = useState([...usedCategories]);
+  const { user, open, onClose, control, onSubmit, defaultValues, onCancel, usedCategories } = props
+  const [skill, setSkill] = useState<Skill | undefined>()
+  const [tools, setSelectedTools] = useState<string[]>([])
+  const [selectedCategories, setSelectedCategories] = useState([...usedCategories])
 
   useEffect(() => {
     if (defaultValues) {
-      const defaultSkill = user?.skills?.find((c) => c.id === defaultValues.skill);
-      setSkill(defaultSkill);
-      setSelectedTools(defaultValues.tools);
+      const defaultSkill = user?.skills?.find((c) => c.id === defaultValues.skill)
+      setSkill(defaultSkill)
+      setSelectedTools(defaultValues.tools)
     }
-    setSelectedCategories([...usedCategories]);
-  }, [defaultValues, user?.skills, open, usedCategories]);
+    setSelectedCategories([...usedCategories])
+  }, [defaultValues, user?.skills, open, usedCategories])
 
   const clearForm = (): void => {
-    setSkill(undefined);
-    setSelectedTools([]);
-  };
+    setSkill(undefined)
+    setSelectedTools([])
+  }
 
   const doSubmit = (event: React.FormEvent): void => {
-    event.preventDefault();
-    event.stopPropagation();
+    event.preventDefault()
+    event.stopPropagation()
 
     const returnData = {
       skill,
       tools,
-    };
+    }
 
-    onSubmit(returnData);
-    clearForm();
-  };
+    onSubmit(returnData)
+    clearForm()
+  }
 
   const handleSkillChange = (value: string | string[]): void => {
-    const selected = value as string;
+    const selected = value as string
     if (skill) {
-      setSelectedCategories(
-        (prev) => [...prev.filter((category) => category !== skill.id), `${selected}`],
-      );
+      setSelectedCategories((prev) => [...prev.filter((category) => category !== skill.id), `${selected}`])
     } else {
-      setSelectedCategories(
-        (prev) => [...prev, `${selected}`],
-      );
+      setSelectedCategories((prev) => [...prev, `${selected}`])
     }
-    setSkill(user?.skills.find((c) => c.id === selected));
-    setSelectedTools([]);
-  };
+    setSkill(user?.skills.find((c) => c.id === selected))
+    setSelectedTools([])
+  }
 
   const handleToolsChange = (values: string | string[]): void => {
-    setSelectedTools(values as string[]);
-  };
+    setSelectedTools(values as string[])
+  }
 
   const cancelHandler = (): void => {
-    onClose();
-    clearForm();
-    onCancel();
-  };
+    onClose()
+    clearForm()
+    onCancel()
+  }
 
   const skillOptions = useMemo(
     () => getFilteredSkillGroups(user?.skills || [], selectedCategories, skill),
     [selectedCategories, skill, user?.skills],
-  );
-  const toolOptions = useMemo(
-    () => skill?.tools || [],
-    [skill?.tools],
-  );
+  )
+  const toolOptions = useMemo(() => skill?.tools || [], [skill?.tools])
 
   return (
     <Modal open={open} onClose={onClose} title={CategoryAddText.DialogTitle} classNameContent="py-12 px-14">
       <form onSubmit={doSubmit} id="skill-form" className="mt-10">
-        <div className="flex mb-14 gap-4 max-w-52 min-w-[400px]">
+        <div className="mb-14 flex min-w-[400px] max-w-52 gap-4">
           <div className="w-full">
             <ReactHookFormSelect
               id="category-dialog"
@@ -129,12 +119,16 @@ const SkillsToolsDialog = function (props: SkillsToolsDialogProps): JSX.Element 
           </div>
         </div>
         <div className="mt-4 flex items-center justify-end gap-4">
-          <Button variant="transparent" onClick={cancelHandler}>{ButtonText.Cancel}</Button>
-          <Button form="skill-form" type="submit">{ButtonText.Ok}</Button>
+          <Button variant="transparent" onClick={cancelHandler}>
+            {ButtonText.Cancel}
+          </Button>
+          <Button form="skill-form" type="submit">
+            {ButtonText.Ok}
+          </Button>
         </div>
       </form>
     </Modal>
-  );
-};
+  )
+}
 
-export default memo(SkillsToolsDialog);
+export default memo(SkillsToolsDialog)

@@ -1,24 +1,24 @@
-import { axiosInstance, graph } from 'shared/utils/interceptors';
+import { axiosInstance, graph } from "shared/utils/interceptors"
 
-type GraphData = AdminTableType.GraphData;
+type GraphData = AdminTableType.GraphData
 
-const axios = axiosInstance;
+const axios = axiosInstance
 
-export const getAllUsers = async (): Promise<GraphData> => new Promise<GraphData>(
-  (resolve, reject) => {
-    graph.graphClient.api('/users/delta')
-      .header('ConsistencyLevel', 'eventual')
-      .select('id,displayName,mail,jobTitle')
+export const getAllUsers = async (): Promise<GraphData> =>
+  new Promise<GraphData>((resolve, reject) => {
+    graph.graphClient
+      .api("/users/delta")
+      .header("ConsistencyLevel", "eventual")
+      .select("id,displayName,mail,jobTitle")
       .get()
       .then((response: GraphData) => resolve(response))
-      .catch((error) => reject(error));
-  },
-);
+      .catch((error) => reject(error))
+  })
 
-export const getAllDbUsers = async (): Promise<string[]> => new Promise<string[]>(
-  (resolve, reject) => {
-    axios.get('employee')
+export const getAllDbUsers = async (): Promise<string[]> =>
+  new Promise<string[]>((resolve, reject) => {
+    axios
+      .get("employee")
       .then((response) => resolve(response.data))
-      .catch((error) => reject(error));
-  },
-);
+      .catch((error) => reject(error))
+  })

@@ -1,4 +1,4 @@
 export const enum QueryKey {
-  User = 'auth-user',
-  UserPhoto = 'user-photo',
+  User = "auth-user",
+  UserPhoto = "user-photo",
 }

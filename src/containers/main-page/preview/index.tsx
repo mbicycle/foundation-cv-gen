@@ -1,9 +1,7 @@
-import PreviewWrapper from './PreviewWrapper';
+import PreviewWrapper from "./PreviewWrapper"
 
 const Preview = function (): JSX.Element {
-  return (
-    <PreviewWrapper />
-  );
-};
+  return <PreviewWrapper />
+}
 
-export default Preview;
+export default Preview

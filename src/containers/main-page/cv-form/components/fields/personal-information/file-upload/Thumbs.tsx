@@ -1,44 +1,43 @@
-import { memo } from 'react';
-import { CloudArrowUpIcon as CloudUploadIcon, XCircleIcon as CancelRoundedIcon } from '@heroicons/react/24/solid';
-import { Button } from '@mbicycle/foundation-ui-kit';
+import { memo } from "react"
+import { CloudArrowUpIcon as CloudUploadIcon, XCircleIcon as CancelRoundedIcon } from "@heroicons/react/24/solid"
 
-import type { ExtendedFileType } from './utils/types';
+import { Button } from "@mbicycle/foundation-ui-kit"
+
+import type { ExtendedFileType } from "./utils/types"
 
 interface ThumbsProps {
-  files: ExtendedFileType[],
-  onDropFiles: VoidFunction,
-  onUploadNewAvatar: VoidFunction;
-  onOpenModal: VoidFunction;
+  files: ExtendedFileType[]
+  onDropFiles: VoidFunction
+  onUploadNewAvatar: VoidFunction
+  onOpenModal: VoidFunction
 }
 
 const Thumbs: React.FC<ThumbsProps> = function (props): JSX.Element {
-  const {
-    files, onDropFiles, onOpenModal, onUploadNewAvatar,
-  } = props;
+  const { files, onDropFiles, onOpenModal, onUploadNewAvatar } = props
 
   const onDeleteImageHandle = (event: React.MouseEvent): void => {
-    event.stopPropagation();
-    onDropFiles();
-  };
+    event.stopPropagation()
+    onDropFiles()
+  }
 
   const onUploadNewAvatarHandle = (event: React.MouseEvent): void => {
-    event.stopPropagation();
-    onUploadNewAvatar();
-  };
+    event.stopPropagation()
+    onUploadNewAvatar()
+  }
 
   return (
     <>
       {files.map((file) => (
-        <div className="inline-flex rounded-full border mr-3 ml-6 size-[60px] p-1 box-border" key={file.name}>
-          <div className="flex relative text-center min-w-0">
-            <Button className="absolute mt-[-4] ml-9" size="small" onClick={onDeleteImageHandle}>
-              <CancelRoundedIcon className="text-red-600 size-8" />
+        <div className="ml-6 mr-3 box-border inline-flex size-[60px] rounded-full border p-1" key={file.name}>
+          <div className="relative flex min-w-0 text-center">
+            <Button className="absolute ml-9 mt-[-4]" size="small" onClick={onDeleteImageHandle}>
+              <CancelRoundedIcon className="size-8 text-red-600" />
             </Button>
-            <Button className="mt-9 ml-8" size="small" onClick={onUploadNewAvatarHandle}>
+            <Button className="ml-8 mt-9" size="small" onClick={onUploadNewAvatarHandle}>
               <CloudUploadIcon color="primary" />
             </Button>
             <img
-              className="avatarImage cursor-pointer w-full"
+              className="avatarImage w-full cursor-pointer"
               alt={file.name}
               src={file.preview}
               referrerPolicy="no-referrer"
@@ -48,7 +47,7 @@ const Thumbs: React.FC<ThumbsProps> = function (props): JSX.Element {
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default memo(Thumbs);
+export default memo(Thumbs)

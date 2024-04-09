@@ -1,39 +1,35 @@
-import {
-  memo, useCallback, useMemo, useState,
-} from 'react';
-import dayjs from 'dayjs';
-import { projectDatePresent } from 'fields/projects/components/utils/constants';
+import { memo, useCallback, useMemo, useState } from "react"
+import dayjs from "dayjs"
+import { projectDatePresent } from "fields/projects/components/utils/constants"
 
-import ProfiencyItem from 'common/components/profiency/ProfiencyItem';
-import type { Project } from 'common/models/User';
+import ProfiencyItem from "common/components/profiency/ProfiencyItem"
+import type { Project } from "common/models/User"
 
-import { useProjectItem } from './tool/hooks';
+import { useProjectItem } from "./tool/hooks"
 
-type ProjectItemProps = Pick<Project, 'title' | 'from' | 'to' | 'id'> & {
-onDelete: CallableFunction;
-isDeleting: boolean
-};
+type ProjectItemProps = Pick<Project, "title" | "from" | "to" | "id"> & {
+  onDelete: CallableFunction
+  isDeleting: boolean
+}
 
 const ProjectItem: React.FC<ProjectItemProps> = function (props): JSX.Element {
-  const {
-    title, from, to, id, isDeleting, onDelete,
-  } = props;
+  const { title, from, to, id, isDeleting, onDelete } = props
 
-  const { onOpenHandle } = useProjectItem({ id });
+  const { onOpenHandle } = useProjectItem({ id })
 
-  const [isItemDeleting, setIsItemDeleting] = useState(false);
+  const [isItemDeleting, setIsItemDeleting] = useState(false)
 
   const onDeleteProjectHandle = useCallback(async (): Promise<void> => {
-    setIsItemDeleting(true);
-    await onDelete(title);
-    setIsItemDeleting(false);
-  }, [onDelete, title]);
+    setIsItemDeleting(true)
+    await onDelete(title)
+    setIsItemDeleting(false)
+  }, [onDelete, title])
 
   const fromTo = useMemo(() => {
-    const fromFormatted = dayjs(from).format('MMMM YYYY');
-    const toFormatted = to === projectDatePresent ? projectDatePresent : dayjs(to).format('MMMM YYYY');
-    return fromFormatted === toFormatted ? fromFormatted : `${fromFormatted} - ${toFormatted}`;
-  }, [from, to]);
+    const fromFormatted = dayjs(from).format("MMMM YYYY")
+    const toFormatted = to === projectDatePresent ? projectDatePresent : dayjs(to).format("MMMM YYYY")
+    return fromFormatted === toFormatted ? fromFormatted : `${fromFormatted} - ${toFormatted}`
+  }, [from, to])
 
   return (
     <ProfiencyItem
@@ -44,7 +40,7 @@ const ProjectItem: React.FC<ProjectItemProps> = function (props): JSX.Element {
       isLoading={isItemDeleting}
       disabled={isDeleting}
     />
-  );
-};
+  )
+}
 
-export default memo(ProjectItem);
+export default memo(ProjectItem)

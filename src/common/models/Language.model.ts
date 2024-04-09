@@ -1,1 +1,1 @@
-export type Languages = string[];
+export type Languages = string[]

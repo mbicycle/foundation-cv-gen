@@ -1,23 +1,20 @@
-import React from 'react';
+import React from "react"
 
-import unsavedReducer from './reducer';
-import { UnsavedContext } from './UnsavedContext';
+import unsavedReducer from "./reducer"
+import { UnsavedContext } from "./UnsavedContext"
 
-const UnsavedContextProvider: React.FC<React.PropsWithChildren> = function (
-  { children },
-): JSX.Element {
-  const [unsavedState, unsavedDispatch] = React.useReducer(unsavedReducer, { isUnsaved: false });
+const UnsavedContextProvider: React.FC<React.PropsWithChildren> = function ({ children }): JSX.Element {
+  const [unsavedState, unsavedDispatch] = React.useReducer(unsavedReducer, { isUnsaved: false })
 
-  const unsavedContextValue = React.useMemo(() => ({
-    state: unsavedState,
-    dispatch: unsavedDispatch,
-  }), [unsavedState]);
+  const unsavedContextValue = React.useMemo(
+    () => ({
+      state: unsavedState,
+      dispatch: unsavedDispatch,
+    }),
+    [unsavedState],
+  )
 
-  return (
-    <UnsavedContext.Provider value={unsavedContextValue}>
-      {children}
-    </UnsavedContext.Provider>
-  );
-};
+  return <UnsavedContext.Provider value={unsavedContextValue}>{children}</UnsavedContext.Provider>
+}
 
-export default UnsavedContextProvider;
+export default UnsavedContextProvider

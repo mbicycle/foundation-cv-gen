@@ -1,1 +1,1 @@
-export { default } from './CellRenderer';
+export { default } from "./CellRenderer"

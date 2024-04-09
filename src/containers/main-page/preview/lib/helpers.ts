@@ -1,3 +1,3 @@
-import dayjs from 'dayjs';
+import dayjs from "dayjs"
 
-export const formatDateAsianStandart = (id: string | Date): string => dayjs(id).format('MMMM YYYY');
+export const formatDateAsianStandart = (id: string | Date): string => dayjs(id).format("MMMM YYYY")

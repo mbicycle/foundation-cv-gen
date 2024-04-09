@@ -1,8 +1,8 @@
-import { ToggleSensetiveDataContextProvider } from 'common/context';
-import GuestTokenContextProvider from 'common/context/guest-token/GuestTokenProvider';
-import GuestUserProvider from 'common/context/guest-user/GuestUserProvider';
-import LeaveDialogProvider from 'common/context/leave-dialog/LeaveDialogProvider';
-import UnsavedContextProvider from 'common/context/unsaved/UnsavedContextProvider';
+import { ToggleSensetiveDataContextProvider } from "common/context"
+import GuestTokenContextProvider from "common/context/guest-token/GuestTokenProvider"
+import GuestUserProvider from "common/context/guest-user/GuestUserProvider"
+import LeaveDialogProvider from "common/context/leave-dialog/LeaveDialogProvider"
+import UnsavedContextProvider from "common/context/unsaved/UnsavedContextProvider"
 
 const AppContextProvider: React.FC<React.PropsWithChildren> = function ({ children }): JSX.Element {
   return (
@@ -10,14 +10,12 @@ const AppContextProvider: React.FC<React.PropsWithChildren> = function ({ childr
       <GuestUserProvider>
         <ToggleSensetiveDataContextProvider>
           <UnsavedContextProvider>
-            <LeaveDialogProvider>
-              {children}
-            </LeaveDialogProvider>
+            <LeaveDialogProvider>{children}</LeaveDialogProvider>
           </UnsavedContextProvider>
         </ToggleSensetiveDataContextProvider>
       </GuestUserProvider>
     </GuestTokenContextProvider>
-  );
-};
+  )
+}
 
-export default AppContextProvider;
+export default AppContextProvider

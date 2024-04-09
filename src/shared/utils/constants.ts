@@ -1,30 +1,30 @@
-import type { MsUser } from 'common/models/User';
+import type { MsUser } from "common/models/User"
 
 export enum Text {
-  ButtonLogin = 'Continue with Microsoft',
-  ButtonLogout = 'Logout',
-  CookiePolicy = 'single_host_origin',
-  CardTitle = 'Online CV Generator',
-  CardDescription = 'Use your corporate email to login',
-  Certifications = 'CERTIFICATIONS'
+  ButtonLogin = "Continue with Microsoft",
+  ButtonLogout = "Logout",
+  CookiePolicy = "single_host_origin",
+  CardTitle = "Online CV Generator",
+  CardDescription = "Use your corporate email to login",
+  Certifications = "CERTIFICATIONS",
 }
 
 export enum Endpoint {
-  Refresh = '/auth/refresh',
-  AuthToken = '/auth',
-  Me = '/me',
+  Refresh = "/auth/refresh",
+  AuthToken = "/auth",
+  Me = "/me",
 }
 
 export const mockUser: MsUser = {
   businessPhones: [],
-  displayName: '',
-  givenName: '',
-  jobTitle: '',
-  mail: '',
-  mobilePhone: '',
-  officeLocation: '',
-  preferredLanguage: '',
-  surname: '',
-  userPrincipalName: '',
-  id: '',
-};
+  displayName: "",
+  givenName: "",
+  jobTitle: "",
+  mail: "",
+  mobilePhone: "",
+  officeLocation: "",
+  preferredLanguage: "",
+  surname: "",
+  userPrincipalName: "",
+  id: "",
+}

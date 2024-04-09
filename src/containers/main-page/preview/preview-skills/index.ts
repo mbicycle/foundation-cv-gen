@@ -1,1 +1,1 @@
-export { default as PreviewSkills } from './PreviewSkills';
+export { default as PreviewSkills } from "./PreviewSkills"

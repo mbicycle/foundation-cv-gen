@@ -1,45 +1,45 @@
-import { useEffect } from 'react';
+import { useEffect } from "react"
 
-import { useLeaveDialogContext } from 'common/context/leave-dialog';
-import type { LeaveDialogOptions } from 'common/context/leave-dialog/LeaveDialogProvider';
-import { useUnsavedContext } from 'common/context/unsaved';
+import { useLeaveDialogContext } from "common/context/leave-dialog"
+import type { LeaveDialogOptions } from "common/context/leave-dialog/LeaveDialogProvider"
+import { useUnsavedContext } from "common/context/unsaved"
 
 interface UseUnsavedReturnProps {
-  isUnsaved: boolean,
-  setUnsaved: (isUnsaved: boolean) => void,
-  openDialogHandler: (options: LeaveDialogOptions) => void,
+  isUnsaved: boolean
+  setUnsaved: (isUnsaved: boolean) => void
+  openDialogHandler: (options: LeaveDialogOptions) => void
 }
 
 const useUnsaved = (when?: boolean): UseUnsavedReturnProps => {
-  const { state, dispatch } = useUnsavedContext();
-  const { openDialog } = useLeaveDialogContext();
+  const { state, dispatch } = useUnsavedContext()
+  const { openDialog } = useLeaveDialogContext()
 
   const setUnsaved = (isUnsaved: boolean): void => {
-    dispatch({ type: 'set', isUnsaved });
-  };
+    dispatch({ type: "set", isUnsaved })
+  }
 
   const openDialogHandler = (options: LeaveDialogOptions): void => {
     if (state.isUnsaved) {
-      openDialog(options);
+      openDialog(options)
     } else {
-      options.handleLeave();
+      options.handleLeave()
     }
-  };
+  }
 
   useEffect(() => {
     if (when) {
-      setUnsaved(when);
+      setUnsaved(when)
     }
 
-    return () => setUnsaved(false);
+    return () => setUnsaved(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [when]);
+  }, [when])
 
   return {
     isUnsaved: state.isUnsaved,
     setUnsaved,
     openDialogHandler,
-  };
-};
+  }
+}
 
-export default useUnsaved;
+export default useUnsaved

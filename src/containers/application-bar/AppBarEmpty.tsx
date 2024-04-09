@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom"
 
-import { ROUTE } from 'common/components/routes/utils/constants';
-import LogoIcon from 'common/icons/LogoIcon';
+import { ROUTE } from "common/components/routes/utils/constants"
+import LogoIcon from "common/icons/LogoIcon"
 
 export const ApplicationBarEmpty = function (): JSX.Element {
   return (
@@ -13,5 +13,5 @@ export const ApplicationBarEmpty = function (): JSX.Element {
         <div />
       </div>
     </header>
-  );
-};
+  )
+}

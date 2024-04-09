@@ -1,32 +1,29 @@
-import dayjs from 'dayjs';
-import {
-  ExternalHyperlink, Paragraph,
-  TextRun,
-} from 'docx';
+import dayjs from "dayjs"
+import { ExternalHyperlink, Paragraph, TextRun } from "docx"
 
-import { INDENT, TextStyle } from 'containers/application-bar/word/helper-functions';
-import type { Certificate } from 'common/models/User';
-import { Color } from 'common/theme/maps/config';
+import { INDENT, TextStyle } from "containers/application-bar/word/helper-functions"
+import type { Certificate } from "common/models/User"
+import { Color } from "common/theme/maps/config"
 
-const useWordCertifications = (
-  { certificates }: { certificates: Certificate[] | undefined; },
-): {
-  certifications: Paragraph[];
+const useWordCertifications = ({
+  certificates,
+}: {
+  certificates: Certificate[] | undefined
+}): {
+  certifications: Paragraph[]
 } => {
   const createProjects = (): Paragraph[] => {
-    const paragraphArr = [] as Paragraph[];
+    const paragraphArr = [] as Paragraph[]
     if (certificates?.length) {
       certificates.forEach((certificate) => {
-        const {
-          link, name, date,
-        } = certificate;
+        const { link, name, date } = certificate
 
         paragraphArr.push(
           new Paragraph({
             indent: INDENT,
             children: [
               new TextRun({
-                text: `${name} (passed at ${dayjs(date).format('MMMM YYYY')}): `,
+                text: `${name} (passed at ${dayjs(date).format("MMMM YYYY")}): `,
                 size: 26,
                 color: Color.Black,
                 font: TextStyle.Semi,
@@ -36,8 +33,8 @@ const useWordCertifications = (
                 link,
                 children: [
                   new TextRun({
-                    text: 'See certificate',
-                    style: 'Hyperlink',
+                    text: "See certificate",
+                    style: "Hyperlink",
                     size: 26,
                     font: TextStyle.Semi,
                   }),
@@ -45,16 +42,16 @@ const useWordCertifications = (
               }),
             ],
           }),
-        );
-      });
+        )
+      })
     }
 
-    return paragraphArr;
-  };
+    return paragraphArr
+  }
 
   return {
     certifications: createProjects(),
-  };
-};
+  }
+}
 
-export default useWordCertifications;
+export default useWordCertifications

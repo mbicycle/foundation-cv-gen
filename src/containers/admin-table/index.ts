@@ -1,1 +1,1 @@
-export { default } from './AdminTableWrapper';
+export { default } from "./AdminTableWrapper"

@@ -1,1 +1,1 @@
-export * as hooks from './query-hooks';
+export * as hooks from "./query-hooks"
