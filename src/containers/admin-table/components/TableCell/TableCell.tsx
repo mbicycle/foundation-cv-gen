@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 
 import ActionsSet from 'containers/admin-table/components/ActionsSet';
 import { useWildcardContext } from 'containers/admin-table/local-state';
-import theme from 'common/theme';
+import { Color } from 'common/theme/maps/config';
 
 interface TableRowProps {
  rowIndex: number
@@ -51,8 +51,8 @@ function TableCell(props: TableRowProps): JSX.Element {
       return (
         <Highlighter
           highlightStyle={{
-            backgroundColor: theme.palette.primary.light,
-            color: theme.palette.secondary.light,
+            backgroundColor: Color.BlueLight,
+            color: Color.White,
           }}
           searchWords={column === dataKey ? wildcard : []}
           autoEscape
@@ -76,7 +76,7 @@ function TableCell(props: TableRowProps): JSX.Element {
     <div
       key={item.id as string}
       style={style}
-      className="inline-flex items-center font-normal border-b border-gray-300 px-8 py-4"
+      className="inline-flex items-center text-sm truncate border-b border-gray-300 px-8 py-4"
     >
       {renderContent()}
     </div>

@@ -38,12 +38,12 @@ function Search({ onFilterDataChange, filterData }: SearchProps): JSX.Element {
   return (
     <form className="py-1 px-2 flex justify-between items-center gap-4 w-full min-w-[720px]">
       <Input
-        wrapperClasses="ml-8 w-full"
+        wrapperClasses="ml-8 w-3/4"
         placeholder="Search..."
         aria-label="search"
         onInput={inputChangeHandle}
       />
-      <div className="flex items-center justify-end gap-4 min-w-[250px]">
+      <div className="flex items-center justify-end gap-4 w-1/4">
         <p>by:</p>
         <div className="inline-flex uppercase">
           <button

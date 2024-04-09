@@ -40,7 +40,7 @@ function ActionsSet(props: ActionsSetProps): JSX.Element {
       >
         {isRetreivingWordUserData
           ? <CircularSpinner size="small" />
-          : <DocxIcon className="size-10" />}
+          : <DocxIcon className="size-6" />}
       </button>
       <button
         type="button"
@@ -51,7 +51,7 @@ function ActionsSet(props: ActionsSetProps): JSX.Element {
         {isRetreivingPdfUserData || loading
           ? <CircularSpinner size="small" />
           : (
-            <PdfIcon className={`size-10 ${!disabledIcons ? 'text-red-600' : 'text-gray-500'}`} />
+            <PdfIcon className={`size-6 ${!disabledIcons ? 'text-red-600' : 'text-gray-500'}`} />
           )}
       </button>
     </>

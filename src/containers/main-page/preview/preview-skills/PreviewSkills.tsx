@@ -26,10 +26,10 @@ const PreviewSkills = function (): JSX.Element | null {
   return (
     <div className="max-w-full p-6 mt-4 mx-6 bg-white break-words rounded-lg border drop-shadow">
       <div>
-        <div className="grid grid-cols-3 grid-rows-auto mb-10">
+        <div className="grid grid-cols-3 grid-rows-auto mb-4">
           <div className="flex flex-row items-center">
-            <div className="bg-gray-200 size-10 rounded-full flex justify-center items-center">
-              <AcademicCapIcon className="text-blue-500 size-8" color="primary" />
+            <div className="bg-gray-200 size-6 rounded-full flex justify-center items-center">
+              <AcademicCapIcon className="text-blue-500 size-6" color="primary" />
             </div>
             <h5 className="ml-4 font-bold">
               {CV_FORM_STEPS[2].text}

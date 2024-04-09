@@ -15,7 +15,7 @@ const ToolItem: React.FC<ToolItemProps> = function (props) {
   return (
     <>
       <div className="flex items-center">
-        <CircleIcon className="text-blue-500 size-3 mx-1.5" />
+        <CircleIcon className="text-blue-500 size-2 mx-1.5" />
         <p>
           {name}
         </p>

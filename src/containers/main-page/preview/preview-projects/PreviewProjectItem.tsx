@@ -82,9 +82,9 @@ const PreviewProjectItem: React.FC<PreviewProjectItemProps> = function (props) {
   }
 
   return (
-    <div className="pt-6">
+    <div className="my-4">
       <h5 className="uppercase">
-        <CircleIcon className="inline text-blue-500 size-3 mr-1.5 mb-0.5" />
+        <CircleIcon className="inline text-blue-500 size-2 mr-1.5 mb-0.5" />
         {title}
       </h5>
       {renderProjectLink()}

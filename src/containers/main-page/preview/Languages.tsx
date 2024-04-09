@@ -20,8 +20,8 @@ const Languages = function (): JSX.Element {
     <div className="max-w-full p-6 mt-4 mx-6 bg-white break-words rounded-lg border drop-shadow">
       <div>
         <div className="grid grid-cols-[0.1fr,2fr,1.1fr] grid-rows-auto">
-          <div className="bg-gray-200 size-10 rounded-full flex justify-center items-center">
-            <BookOpenIcon className="text-blue-500 size-8" />
+          <div className="bg-gray-200 size-6 rounded-full flex justify-center items-center">
+            <BookOpenIcon className="text-blue-500 size-6" />
           </div>
           <h5 className="ml-4 font-bold">
             {CV_FORM_STEPS[1].text}
@@ -36,10 +36,10 @@ const Languages = function (): JSX.Element {
         {data?.languages?.map((language) => (
           <div key={language.name} className="grid grid-cols-[1fr,2fr,1.5fr] grid-rows-auto py-1.5">
             <p className="pl-1.5">
-              <CircleIcon className="inline text-blue-500 size-3 mr-1.5 mb-0.5" />
+              <CircleIcon className="inline text-blue-500 size-2 mr-1.5 mb-0.5" />
               {language.name}
             </p>
-            <div className="m-auto w-full h-full">
+            <div className="m-auto w-full h-full flex items-center">
               <RatingLanguage level={language.level} />
             </div>
             <p className="text-left pl-5">

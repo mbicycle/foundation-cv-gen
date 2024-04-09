@@ -44,9 +44,9 @@ const ApplicationBar = function (): JSX.Element {
               <span className="absolute -inset-1.5" />
               <span className="sr-only">Open user menu</span>
               {photo ? (
-                <img className="size-16 rounded-full" src={photo} alt={user?.mail || 'Avatar'} />
+                <img className="size-10 rounded-full" src={photo} alt={user?.mail || 'Avatar'} />
               ) : (
-                <PersonIcon className="size-16" />
+                <PersonIcon className="size-10" />
               )}
             </Menu.Button>
           </div>

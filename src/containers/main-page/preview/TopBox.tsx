@@ -25,7 +25,7 @@ const TopBox = function (): JSX.Element | null {
     return (
       <div className="flex items-center w-full">
         <div className="flex bg-blue-500">
-          {type === 'telegram' ? <TelegramIcon className="size-7" /> : <SkypeIcon className="size-7" />}
+          {type === 'telegram' ? <TelegramIcon className="size-4" /> : <SkypeIcon className="size-4" />}
         </div>
         <h5 className="ml-1.5 text-white">
           {contact}
@@ -41,7 +41,7 @@ const TopBox = function (): JSX.Element | null {
       <div className="inline h-[90%] w-min">
         <div className="flex items-center w-full">
           <div className="bg-blue-500 flex">
-            <EmailIcon className="size-7" />
+            <EmailIcon className="size-4" />
           </div>
           <h5 className="pb-1.5 ml-1.5 text-white">
             {email}
@@ -54,9 +54,9 @@ const TopBox = function (): JSX.Element | null {
   }
 
   return (
-    <div className="grid grid-cols-12 h-[16.8rem] bg-blue-500">
+    <div className="grid grid-cols-12 h-[14rem] bg-blue-500">
       <div className="col-span-3 pt-4 pl-8">
-        <LogoIcon sx={{ height: 42, width: 174 }} />
+        <LogoIcon className="w-[174px] h-[42px]" />
       </div>
       <div className="col-span-9 h-1/2 w-full flex flex-col items-end pt-4 pr-36 pl-20">
         {renderSensetiveData()}

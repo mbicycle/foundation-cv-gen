@@ -65,9 +65,9 @@ const FileUpload = function (): JSX.Element {
     if (!files[0]) {
       return (
         <Button onClick={openHandle} size="small" variant="outline" disabled={isGuest}>
-          <ChangeCircleOutlinedIcon className={`size-10 ${isGuest ? 'text-gray-500' : 'text-blue-500'}`} />
+          <ChangeCircleOutlinedIcon className={`size-6 ${isGuest ? 'text-gray-500' : 'text-blue-500'}`} />
           &nbsp;
-          <p className="text-blue-500">{Text.Change}</p>
+          <p className="link">{Text.Change}</p>
         </Button>
       );
     }
@@ -75,7 +75,7 @@ const FileUpload = function (): JSX.Element {
     return (
       <div className="ml-6">
         <ChangeCircleIcon
-          className={`size-10 text-gray-500 ${isUploading && 'animate-spin'}`}
+          className={`size-6 text-gray-500 ${isUploading && 'animate-spin'}`}
         />
       </div>
     );

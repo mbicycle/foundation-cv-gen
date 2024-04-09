@@ -45,7 +45,7 @@ function TableColumns({
     if (colIndex === columns.length - 1) return null;
     return (
       <button className="ml-2" type="button" onClick={changeDirectionHandle} data-sort-key={item.dataKey}>
-        {sortDirection === 'asc' ? <ArrowDownIcon className="size-6" /> : <ArrowUpIcon className="size-6" />}
+        {sortDirection === 'asc' ? <ArrowDownIcon className="size-5" /> : <ArrowUpIcon className="size-5" />}
       </button>
     );
   }

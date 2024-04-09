@@ -164,7 +164,7 @@ const AvatarModalContent: React.FC<AvatarModalContentProps> = function (props) {
           {renderPreviewCrop()}
         </div>
         <Button
-          variant="outline"
+          variant="transparent"
           onClick={onPreparePhotoToChange}
           className="mt-6"
         >

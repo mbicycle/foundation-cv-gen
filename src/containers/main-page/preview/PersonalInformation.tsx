@@ -37,11 +37,11 @@ const PersonalInformation = function (): JSX.Element {
   );
 
   function renderUserImage(): JSX.Element {
-    if (!photo || checked) return <PersonIcon className="size-24" />;
+    if (!photo || checked) return <PersonIcon className="size-20" />;
 
     return (
       <img
-        className="avatarImage w-[6.8rem] h-[7.2rem]"
+        className="avatarImage size-20"
         referrerPolicy="no-referrer"
         alt="User"
         src={photo}
@@ -60,7 +60,7 @@ const PersonalInformation = function (): JSX.Element {
 
     return (
       <>
-        <h3 className="text-center text-blue-500">
+        <h3 className="text-center text-blue-500 font-semibold">
           {yearsExperience}
         </h3>
         <p>

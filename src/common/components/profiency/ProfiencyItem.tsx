@@ -59,9 +59,8 @@ const ProfiencyItem = function ({
        ${disabled && 'opacity-50 pointer-events-none'}`}
       style={border}
     >
-      {isDraggable && <DragIndicatorIcon className="text-gray-500 size-10" />}
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-      <div className="w-full cursor-pointer" onClick={setIdHandle}>
+      {isDraggable && <DragIndicatorIcon className="text-gray-500 size-6" />}
+      <button type="button" className="w-full cursor-pointer text-left" onClick={setIdHandle}>
         <div className="pl-4">
           <p>
             {headText}
@@ -76,7 +75,7 @@ const ProfiencyItem = function ({
               </a>
             )}
         </div>
-      </div>
+      </button>
       <button type="button" className="p-2" onClick={onDeleteEntryHandle}>
         {renderIcons()}
       </button>

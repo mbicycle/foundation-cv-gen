@@ -12,13 +12,13 @@ const PreviewWrapper = function (): JSX.Element {
     <div className="w-[210mm] m-auto mt-14">
       {!isFetching && !isValid && (
         <div className="bg-white w-[200mm] m-auto mb-4 p-4 flex flex-row items-center justify-start">
-          <WarningIcon sx={{ mr: 6, width: '40px', height: '40px' }} />
+          <WarningIcon className="size-6" />
           <div>
             <p>{PreviewWarningText.Title}</p>
             <p>{PreviewWarningText.Content}</p>
             {invalidBlocks.map((invalidBlock) => (
               <p key={invalidBlock} className="pl-1.5">
-                <CircleIcon sx={{ color: 'black' }} />
+                <CircleIcon />
                 {invalidBlock}
               </p>
             ))}

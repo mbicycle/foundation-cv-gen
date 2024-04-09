@@ -197,18 +197,16 @@ function AdminTableContainer(): JSX.Element | null {
   return (
     <div className="w-full mx-auto max-w-screen-xl h-max">
       <div className="inline-flex justify-between w-full pt-8 pb-6">
-        <h1 className="ml-6 mt-4 mb-4 text-6xl">Sales panel</h1>
+        <h1 className="ml-6 mt-4 mb-4 text-5xl">Sales panel</h1>
         <div className="flex items-center">
           <Button
             onClick={clickHandler}
             type="submit"
             disabled={isLoading}
             className="p-6"
+            icon={LinkIcon}
           >
-            <div className="flex items-center justify-between">
-              <LinkIcon className="size-10" />
-              {ShareButton.Label}
-            </div>
+            {ShareButton.Label}
           </Button>
           <Tooltip content={tooltipShareText} classNameContent="w-[300px] left-[-150px] top-[20px]">
             <InfoIcon className="pt-1 text-lg" />

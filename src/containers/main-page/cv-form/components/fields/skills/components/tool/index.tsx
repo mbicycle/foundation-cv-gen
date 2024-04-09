@@ -61,7 +61,7 @@ const Tool = function (toolProps: ToolProps): JSX.Element {
         <Accordion.Title>
           <div className="flex items-center w-full justify-between pr-2">
             <div className="flex items-center w-full pr-2">
-              <DragIndicatorIcon className="text-gray-500 size-10" />
+              <DragIndicatorIcon className="text-gray-500 size-6" />
               <p className="pl-1">
                 {toolText}
               </p>
