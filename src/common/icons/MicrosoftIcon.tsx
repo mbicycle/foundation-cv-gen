@@ -7,8 +7,7 @@ const MicrosoftIcon = function (props: SVGProps<SVGSVGElement>):JSX.Element {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-
+      fill="currentColor"
       viewBox="0 0 23 23"
     >
       <path fill="#f3f3f3" d="M0 0h23v23H0z" />

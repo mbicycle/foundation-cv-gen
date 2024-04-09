@@ -1,4 +1,4 @@
-import SchoolIcon from '@mui/icons-material/School';
+import { AcademicCapIcon } from '@heroicons/react/24/solid';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
 import { CV_FORM_STEPS } from 'containers/main-page/cv-form/utils/constants';
@@ -29,7 +29,7 @@ const PreviewSkills = function (): JSX.Element | null {
         <div className="grid grid-cols-3 grid-rows-auto mb-10">
           <div className="flex flex-row items-center">
             <div className="bg-gray-200 size-10 rounded-full flex justify-center items-center">
-              <SchoolIcon className="text-blue-500 size-8" color="primary" />
+              <AcademicCapIcon className="text-blue-500 size-8" color="primary" />
             </div>
             <h5 className="ml-4 font-bold">
               {CV_FORM_STEPS[2].text}

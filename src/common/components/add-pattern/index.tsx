@@ -4,9 +4,8 @@ import {
 import {
   Outlet, useLocation, useNavigate,
 } from 'react-router-dom';
+import { PlusCircleIcon as AddCircleIcon } from '@heroicons/react/24/solid';
 import { Button } from '@mbicycle/foundation-ui-kit';
-
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import { useSkillIdContext } from 'containers/main-page/cv-form/local-state/hooks';
 import { ROUTE } from 'common/components/routes/utils/constants';

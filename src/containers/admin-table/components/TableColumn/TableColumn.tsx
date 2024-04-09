@@ -3,10 +3,8 @@ import {
   memo,
   useState,
 } from 'react';
+import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/24/solid';
 import orderBy from 'lodash.orderby';
-
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 import useTableDataContext from 'containers/admin-table/local-state/useTableDataContext';
 
@@ -47,7 +45,7 @@ function TableColumns({
     if (colIndex === columns.length - 1) return null;
     return (
       <button className="ml-2" type="button" onClick={changeDirectionHandle} data-sort-key={item.dataKey}>
-        {sortDirection === 'asc' ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />}
+        {sortDirection === 'asc' ? <ArrowDownIcon className="size-6" /> : <ArrowUpIcon className="size-6" />}
       </button>
     );
   }

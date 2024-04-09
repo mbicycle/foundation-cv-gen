@@ -7,8 +7,7 @@ const PdfIcon = function (props: SVGProps<SVGSVGElement>): JSX.Element {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-
+      fill="currentColor"
       viewBox="0 0 58 58"
     >
       <path d="M39.57 25.259C39.719 25.05 39.777 24.916 39.8 24.844C39.677 24.779 39.514 24.647 38.625 24.647C38.12 24.647 37.486 24.669 36.814 24.755C37.629 25.382 37.828 25.699 38.361 25.699C38.594 25.7 39.262 25.69 39.57 25.259Z" />

@@ -1,9 +1,8 @@
 import type { CSSProperties } from 'react';
 import { memo } from 'react';
 
-import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
-
 import CircularSpinner from 'common/components/circular-spinner/circular-spinner';
+import DragIndicatorIcon from 'common/icons/DragIndicatorIcon';
 import GarbageIcon from 'common/icons/GarbageIcon';
 
 type T = React.MouseEventHandler<HTMLAnchorElement> & React.MouseEventHandler<HTMLSpanElement>
@@ -60,7 +59,7 @@ const ProfiencyItem = function ({
        ${disabled && 'opacity-50 pointer-events-none'}`}
       style={border}
     >
-      {isDraggable && <DragIndicatorIcon />}
+      {isDraggable && <DragIndicatorIcon className="text-gray-500 size-10" />}
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <div className="w-full cursor-pointer" onClick={setIdHandle}>
         <div className="pl-4">

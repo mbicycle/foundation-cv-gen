@@ -1,12 +1,10 @@
 import { memo, useState } from 'react';
-import { Button } from '@mbicycle/foundation-ui-kit';
-
-import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
-import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
-import Modal from '@mui/material/Modal';
+import { Button, Modal } from '@mbicycle/foundation-ui-kit';
 
 import { useToggleSensitiveData } from 'common/context';
 import { useGuestToken } from 'common/context/guest-token';
+import ChangeCircleIcon from 'common/icons/ChangeCircleIcon';
+import ChangeCircleOutlinedIcon from 'common/icons/ChangeCircleOutlineIcon';
 import PersonIcon from 'common/icons/PersonIcon';
 import { useUserPhoto } from 'common/services/user-service/hooks/useUserPhoto';
 
@@ -67,7 +65,7 @@ const FileUpload = function (): JSX.Element {
     if (!files[0]) {
       return (
         <Button onClick={openHandle} size="small" variant="outline" disabled={isGuest}>
-          <ChangeCircleOutlinedIcon className={isGuest ? 'text-gray-500' : 'text-blue-500'} fontSize="large" />
+          <ChangeCircleOutlinedIcon className={`size-10 ${isGuest ? 'text-gray-500' : 'text-blue-500'}`} />
           &nbsp;
           <p className="text-blue-500">{Text.Change}</p>
         </Button>
@@ -77,7 +75,7 @@ const FileUpload = function (): JSX.Element {
     return (
       <div className="ml-6">
         <ChangeCircleIcon
-          className={`text-gray-500 ${isUploading && 'animate-spin'}`}
+          className={`size-10 text-gray-500 ${isUploading && 'animate-spin'}`}
         />
       </div>
     );

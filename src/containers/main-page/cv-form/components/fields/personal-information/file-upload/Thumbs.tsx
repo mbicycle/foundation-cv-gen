@@ -1,8 +1,6 @@
 import { memo } from 'react';
+import { CloudArrowUpIcon as CloudUploadIcon, XCircleIcon as CancelRoundedIcon } from '@heroicons/react/24/solid';
 import { Button } from '@mbicycle/foundation-ui-kit';
-
-import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 import type { ExtendedFileType } from './utils/types';
 

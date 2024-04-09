@@ -3,10 +3,9 @@ import dayjs from 'dayjs';
 import { projectDatePresent } from 'fields/projects/components/utils/constants';
 import { v4 as uuidv4 } from 'uuid';
 
-import CircleIcon from '@mui/icons-material/Circle';
-
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
 import { useToggleSensitiveData } from 'common/context';
+import CircleIcon from 'common/icons/CircleIcon';
 import type { Project } from 'common/models/User';
 import { projects } from 'common/utils/constants';
 
@@ -85,7 +84,7 @@ const PreviewProjectItem: React.FC<PreviewProjectItemProps> = function (props) {
   return (
     <div className="pt-6">
       <h5 className="uppercase">
-        <CircleIcon className="text-blue-500 size-3 mr-1.5 mb-0.5" />
+        <CircleIcon className="inline text-blue-500 size-3 mr-1.5 mb-0.5" />
         {title}
       </h5>
       {renderProjectLink()}

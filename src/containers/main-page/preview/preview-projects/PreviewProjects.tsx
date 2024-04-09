@@ -1,8 +1,6 @@
-import React from 'react';
+import { FolderIcon } from '@heroicons/react/24/solid';
 import { DividerStyled } from 'fields/skills/utils/styled';
 import { v4 as uuidv4 } from 'uuid';
-
-import { FolderCopyRounded } from '@mui/icons-material';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
 import { CV_FORM_STEPS } from 'containers/main-page/cv-form/utils/constants';
@@ -17,7 +15,7 @@ const PreviewProjects: React.FC = function () {
     <div className="max-w-full p-6 mt-4 mx-6 bg-white break-words rounded-lg border drop-shadow">
       <div className="flex flex-row items-center">
         <div className="bg-gray-200 size-10 rounded-full flex justify-center items-center">
-          <FolderCopyRounded className="text-blue-500 size-8" />
+          <FolderIcon className="text-blue-500 size-8" />
         </div>
         <h5 className="ml-4 font-bold">
           {CV_FORM_STEPS[3].text}

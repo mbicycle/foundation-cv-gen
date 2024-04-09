@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 import { useIsFetching } from 'react-query';
-
-import CircleIcon from '@mui/icons-material/Circle';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
+import { BookOpenIcon } from '@heroicons/react/24/solid';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
 import { CV_FORM_STEPS } from 'containers/main-page/cv-form/utils/constants';
+import CircleIcon from 'common/icons/CircleIcon';
 
 import RatingLanguage from './RatingLanguage';
 
@@ -22,7 +21,7 @@ const Languages = function (): JSX.Element {
       <div>
         <div className="grid grid-cols-[0.1fr,2fr,1.1fr] grid-rows-auto">
           <div className="bg-gray-200 size-10 rounded-full flex justify-center items-center">
-            <MenuBookIcon className="text-blue-500 size-8" />
+            <BookOpenIcon className="text-blue-500 size-8" />
           </div>
           <h5 className="ml-4 font-bold">
             {CV_FORM_STEPS[1].text}
@@ -37,7 +36,7 @@ const Languages = function (): JSX.Element {
         {data?.languages?.map((language) => (
           <div key={language.name} className="grid grid-cols-[1fr,2fr,1.5fr] grid-rows-auto py-1.5">
             <p className="pl-1.5">
-              <CircleIcon className="text-blue-500 size-3 mr-1.5 mb-0.5" />
+              <CircleIcon className="inline text-blue-500 size-3 mr-1.5 mb-0.5" />
               {language.name}
             </p>
             <div className="m-auto">

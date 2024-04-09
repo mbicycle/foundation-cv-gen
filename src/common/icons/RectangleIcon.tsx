@@ -7,8 +7,7 @@ const RectangleIcon = function (props: SVGProps<SVGSVGElement>):JSX.Element {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-
+      fill="currentColor"
       viewBox="0 0 37 16"
     >
       <rect x="0.0541992" width="36.6733" height="16" rx="2" fill="#E2E6EF" />

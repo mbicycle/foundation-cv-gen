@@ -7,7 +7,7 @@ const LogoIcon = function (props: SVGProps<SVGSVGElement>): JSX.Element {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      fill="currentColor"
       viewBox="0 0 138 32"
     >
       <path fillRule="evenodd" clipRule="evenodd" d="M70.7376 23.1625V12.9076C70.7376 12.9076 70.0615 13.9871 66.3733 18.8846H65.9635C62.2549 13.967 61.5787 12.9276 61.5583 12.9076V23.1625H59.6732V9.86912H61.4968L66.1889 16.2459L70.84 9.86912H72.6432V23.1625H70.7376Z" fill="white" />

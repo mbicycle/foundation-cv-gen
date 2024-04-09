@@ -11,6 +11,7 @@ import {
   useFieldArray,
   useForm,
 } from 'react-hook-form';
+import { InformationCircleIcon as InfoIcon } from '@heroicons/react/24/solid';
 import {
   Button,
   Tooltip,
@@ -20,8 +21,6 @@ import {
   ButtonText, CategoryAddText, tooltipText,
 } from 'fields/projects/components/utils/constants';
 import type { ProjectFieldValues } from 'fields/projects/utils/types';
-
-import InfoIcon from '@mui/icons-material/Info';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
 import CircularSpinner from 'common/components/circular-spinner/circular-spinner';

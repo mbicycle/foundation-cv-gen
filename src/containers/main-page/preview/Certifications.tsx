@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 import { useIsFetching } from 'react-query';
-
-import ArticleIcon from '@mui/icons-material/Article';
-import CircleIcon from '@mui/icons-material/Circle';
+import { DocumentTextIcon } from '@heroicons/react/24/solid';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
 import { CV_FORM_STEPS, QueryKey } from 'containers/main-page/cv-form/utils/constants';
+import CircleIcon from 'common/icons/CircleIcon';
 
 import { formatDateAsianStandart } from './lib/helpers';
 
@@ -26,7 +25,7 @@ const Certifications: React.FC = function () {
       <div className="grid grid-cols-12">
         <div className="flex flex-row items-center col-span-12">
           <div className="bg-gray-200 size-10 rounded-full flex justify-center items-center">
-            <ArticleIcon className="text-blue-500 size-8" />
+            <DocumentTextIcon className="text-blue-500 size-8" />
           </div>
           <h5 className="ml-4 font-bold">
             {CV_FORM_STEPS[4].text}
@@ -42,8 +41,8 @@ const Certifications: React.FC = function () {
       {certificates.map((certificate) => (
         <div key={certificate.name + certificate.id} className="grid grid-cols-12 py-2">
           <div className="col-span-9">
-            <p className="pl-1.5">
-              <CircleIcon className="text-blue-500 size-3 mr-1.5 mb-0.5" />
+            <div className="pl-1.5">
+              <CircleIcon className="inline text-blue-500 size-3 mr-1.5 mb-0.5" />
               <a
                 href={certificate.link}
                 target="_blank"
@@ -52,7 +51,7 @@ const Certifications: React.FC = function () {
               >
                 {certificate.name}
               </a>
-            </p>
+            </div>
           </div>
           <div className="col-span-3">
             <p>

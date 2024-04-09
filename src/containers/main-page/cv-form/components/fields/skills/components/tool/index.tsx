@@ -9,10 +9,9 @@ import {
   HelperText, Text, ToolInputText, TOOLS_NAME,
 } from 'fields/skills/utils/constants';
 
-import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
-
 import ReactHookFormTextFieldOutlined
   from 'common/components/react-hook-forms/ReactHookFormTextFieldOutlined';
+import DragIndicatorIcon from 'common/icons/DragIndicatorIcon';
 import GarbageIcon from 'common/icons/GarbageIcon';
 import type { Skill, Tool as ToolType } from 'common/models/User';
 
@@ -62,7 +61,7 @@ const Tool = function (toolProps: ToolProps): JSX.Element {
         <Accordion.Title>
           <div className="flex items-center w-full justify-between pr-2">
             <div className="flex items-center w-full pr-2">
-              <DragIndicatorIcon className="text-lg text-gray-600" />
+              <DragIndicatorIcon className="text-gray-500 size-10" />
               <p className="pl-1">
                 {toolText}
               </p>

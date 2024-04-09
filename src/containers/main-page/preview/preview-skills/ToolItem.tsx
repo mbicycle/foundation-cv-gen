@@ -1,7 +1,6 @@
 import { memo } from 'react';
 
-import CircleIcon from '@mui/icons-material/Circle';
-
+import CircleIcon from 'common/icons/CircleIcon';
 import type { Tool } from 'common/models/User';
 
 interface ToolItemProps {

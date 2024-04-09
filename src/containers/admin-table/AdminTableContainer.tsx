@@ -1,17 +1,15 @@
 import React, {
   useDeferredValue, useEffect, useMemo, useState,
 } from 'react';
+import { InformationCircleIcon as InfoIcon, LinkIcon } from '@heroicons/react/24/solid';
 import {
-  Button, Input, Toggle, Tooltip,
+  Button, Input, Modal,
+  Toggle, Tooltip,
 } from '@mbicycle/foundation-ui-kit';
 import { Text } from 'fields/personal-information/file-upload/utils/types';
 import { ShareButton, tooltipShareText } from 'fields/projects/components/utils/constants';
 import sortBy from 'lodash.sortby';
 import { getGuestToken } from 'shared/msalUtils/features/api';
-
-import InfoIcon from '@mui/icons-material/Info';
-import LinkIcon from '@mui/icons-material/Link';
-import Modal from '@mui/material/Modal';
 
 import Search from 'containers/admin-table/components/Search';
 import { AdminTable } from 'containers/admin-table/components/VirtualizedTable';

@@ -1,6 +1,5 @@
 import { memo } from 'react';
-
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 
 import type { Step } from './constants';
 
@@ -16,7 +15,7 @@ const Title = function ({ name, onReturn }: TitleProps): JSX.Element {
 
   return (
     <div className="flex w-full items-center justify-start mb-4">
-      <button onClick={onBackHandle} className="mr-1">
+      <button type="button" onClick={onBackHandle} className="mr-1">
         <ChevronLeftIcon className="text-blue-500" />
       </button>
       <p className="text-base">

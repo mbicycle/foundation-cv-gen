@@ -1,8 +1,7 @@
 import { createRef, memo, useCallback } from 'react';
+import { XMarkIcon as CloseIcon } from '@heroicons/react/24/solid';
 import type { SnackbarKey } from 'notistack';
 import { SnackbarProvider } from 'notistack';
-
-import CloseIcon from '@mui/icons-material/Close';
 
 import { SnackbarUtilsConfigurator } from 'common/components/SnackBar/SnackBarUtils';
 
@@ -25,8 +24,6 @@ const AppSnackbarProvider = function ({ children }: { children: React.ReactEleme
   }, [notistackRef]);
 
   return (
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
     <SnackbarProvider
       maxSnack={3}
       ref={notistackRef}

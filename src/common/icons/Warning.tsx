@@ -6,8 +6,7 @@ const WarningIcon = function (props: SVGProps<SVGSVGElement>): JSX.Element {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-
+      fill="currentColor"
       viewBox="0 0 40 40"
     >
       <g clipPath="url(#clip0_905_2356)">

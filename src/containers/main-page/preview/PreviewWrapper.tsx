@@ -1,6 +1,5 @@
-import CircleIcon from '@mui/icons-material/Circle';
-
 import { PreviewWarningText } from 'containers/main-page/preview/utils/constants';
+import CircleIcon from 'common/icons/CircleIcon';
 import WarningIcon from 'common/icons/Warning';
 import { useValidateCV } from 'common/utils/hooks/useValidateCV';
 

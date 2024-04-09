@@ -1,8 +1,7 @@
 import { memo, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { ArrowUpTrayIcon as FileUploadOutlinedIcon } from '@heroicons/react/24/outline';
 import { Button, Toggle } from '@mbicycle/foundation-ui-kit';
-
-import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
 import RenderOnRole from 'common/components/render-on-role/RenderOnRole';
@@ -66,10 +65,9 @@ const PdfButtonSet = function (): JSX.Element | null {
         variant="outline"
         color="secondary"
         onClick={handleSave}
-        loadingPosition="start"
         disabled={isLoading || !isValid}
+        icon={FileUploadOutlinedIcon}
       >
-        <FileUploadOutlinedIcon fontSize="medium" />
         {ButtonText.ExportDocx}
       </Button>
       <Button
@@ -77,11 +75,10 @@ const PdfButtonSet = function (): JSX.Element | null {
         variant="outline"
         color="secondary"
         onClick={handlePdfSave}
-        loadingPosition="start"
-        loading={savePdfLoaging}
+        isLoading={savePdfLoaging}
         disabled={isLoading || !isValid}
+        icon={FileUploadOutlinedIcon}
       >
-        <FileUploadOutlinedIcon fontSize="medium" />
         {ButtonText.ExportPDF}
       </Button>
     </>

@@ -1,10 +1,9 @@
 import { memo, useEffect } from 'react';
 import type { UseFormReturn } from 'react-hook-form';
 import { useFieldArray, useForm } from 'react-hook-form';
+import { PlusCircleIcon as AddCircleOutlineIcon } from '@heroicons/react/24/outline';
 import { Button, Input } from '@mbicycle/foundation-ui-kit';
 import type { ProjectFieldValues } from 'fields/projects/utils/types';
-
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 import GarbageIcon from 'common/icons/GarbageIcon';
 import useBeforeUnload from 'common/utils/hooks/useBeforeUnload';

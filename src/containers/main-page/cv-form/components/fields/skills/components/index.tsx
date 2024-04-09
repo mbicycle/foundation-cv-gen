@@ -3,6 +3,7 @@ import {
 } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { PlusCircleIcon as AddCircleIcon } from '@heroicons/react/24/solid';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from '@mbicycle/foundation-ui-kit';
 import {
@@ -12,8 +13,6 @@ import {
 } from 'fields/skills/utils/constants';
 import memoizeOne from 'memoize-one';
 import { v4 as uuidv4 } from 'uuid';
-
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
 import { useSkillIdContext } from 'containers/main-page/cv-form/local-state/hooks';
