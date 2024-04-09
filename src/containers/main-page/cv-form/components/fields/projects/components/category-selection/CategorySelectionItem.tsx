@@ -3,7 +3,6 @@ import {
   useCallback,
 } from 'react';
 import type { FieldArrayWithId, UseFieldArrayRemove } from 'react-hook-form';
-
 import CategoryItem from 'fields/projects/components/CategoryItem';
 
 export type CategoryItemProps = {

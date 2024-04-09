@@ -1,10 +1,9 @@
 import { memo } from 'react';
 import type { FieldValues, UseFormReturn } from 'react-hook-form';
+import type { ProjectFieldValues } from 'fields/projects/utils/types';
 
 import ReactHookFormDatePicker from 'common/components/react-hook-forms/ReactHookFormDatePicker';
 import { getKeyOf } from 'common/utils/helpers';
-
-import type { ProjectFieldValues } from 'fields/projects/utils/types';
 
 interface DatePickersProps {
   formValues: UseFormReturn<ProjectFieldValues>;

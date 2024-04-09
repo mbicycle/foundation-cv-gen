@@ -1,17 +1,16 @@
 import { useCallback, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
-import { useGuestToken } from 'common/context/guest-token';
-import { useGuestUser } from 'common/context/guest-user';
-import type { Project } from 'common/models/User';
-
 import { updateProjects } from 'fields/projects/components/utils/functions';
 import {
   useUpdateProjectById,
   useUpdateProjects,
 } from 'fields/projects/lib/query-hooks';
 import type { ProjectFieldValues } from 'fields/projects/utils/types';
+
+import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
+import { useGuestToken } from 'common/context/guest-token';
+import { useGuestUser } from 'common/context/guest-user';
+import type { Project } from 'common/models/User';
 
 import { ProjectIdContext, useProjectIdContext } from './ProjectContext';
 

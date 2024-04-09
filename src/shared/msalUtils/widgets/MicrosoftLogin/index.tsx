@@ -6,12 +6,8 @@ import { loginRequest } from 'shared/utils/authConfig';
 import { Text } from 'shared/utils/constants';
 import { msalInstance } from 'shared/utils/interceptors';
 
-import { Button, Typography } from '@mui/material';
-
 import SnackBarUtils from 'common/components/SnackBar/SnackBarUtils';
 import MicrosoftIcon from 'common/icons/MicrosoftIcon';
-
-import { MsLoginContainerStyled } from './styled';
 
 type StateLocation = {
 from?: {pathname?: string}
@@ -39,17 +35,12 @@ const MicrosoftLoginComponent = function (): JSX.Element {
   };
 
   return (
-    <MsLoginContainerStyled>
-      <Button variant="contained" onClick={handleLogin}>
+    <div className="flex w-full justify-center">
+      <button onClick={handleLogin}>
         <MicrosoftIcon />
-        <Typography
-          sx={{ textTransform: 'initial', pl: 2 }}
-          variant="body2"
-        >
-          {Text.ButtonLogin}
-        </Typography>
-      </Button>
-    </MsLoginContainerStyled>
+        <p>{Text.ButtonLogin}</p>
+      </button>
+    </div>
   );
 };
 

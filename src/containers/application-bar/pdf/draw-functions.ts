@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import { Labels } from 'fields/languages/components/utils/level.enum';
+import { projectDatePresent } from 'fields/projects/components/utils/constants';
 import type JsPDF from 'jspdf';
 
 import { refactorProjectSkills } from 'containers/application-bar/helper-functions';
@@ -26,9 +28,6 @@ import type {
 } from 'common/models/User';
 import { projects as projectsTitle } from 'common/utils/constants';
 import { getYearsExperience } from 'common/utils/hooks/useUserExperience';
-
-import { Labels } from 'fields/languages/components/utils/level.enum';
-import { projectDatePresent } from 'fields/projects/components/utils/constants';
 
 import {
   addUbuntuFontBold,

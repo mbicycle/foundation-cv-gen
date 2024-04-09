@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import type { ParagraphChild } from 'docx';
 import { Paragraph, TextRun } from 'docx';
+import { projectDatePresent } from 'fields/projects/components/utils/constants';
 
 import {
   createHeadingWithHyperlink, INDENT, TextStyle,
@@ -8,8 +9,6 @@ import {
 import { useToggleSensitiveData } from 'common/context';
 import type { Project } from 'common/models/User';
 import { Color } from 'common/theme/maps/config';
-
-import { projectDatePresent } from 'fields/projects/components/utils/constants';
 
 const createProjectTitle = (text: string): Paragraph => new Paragraph({
   indent: INDENT,

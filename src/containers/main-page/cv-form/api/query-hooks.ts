@@ -5,6 +5,7 @@ import {
   useQueryClient,
 } from 'react-query';
 import { useMsal } from '@azure/msal-react';
+import type { CreateUserModel } from 'fields/personal-information/lib/types';
 import { useAuth } from 'shared/msalUtils/features/auth';
 import { getGuestToken as getGuestTokenFromStorage } from 'shared/utils/getGuestToken';
 
@@ -13,8 +14,6 @@ import { useGetUserDataFromMsGraph } from 'containers/main-page/preview/lib/quer
 import SnackBarUtils from 'common/components/SnackBar/SnackBarUtils';
 import { useGuestUser } from 'common/context/guest-user';
 import type { DbUser, GuestUser } from 'common/models/User';
-
-import type { CreateUserModel } from 'fields/personal-information/lib/types';
 
 import * as api from './api';
 

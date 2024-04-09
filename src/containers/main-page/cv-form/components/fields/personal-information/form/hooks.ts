@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import type { Control, FieldErrors, SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
+import { ErrorMessage, InputName } from 'fields/personal-information/form/constants';
+import { useUpdateUserFromDb } from 'fields/personal-information/lib/query-hooks';
 import isEqual from 'lodash.isequal';
 import msalUtils from 'shared/msalUtils';
 import * as yup from 'yup';
@@ -14,9 +16,6 @@ import { useGuestToken } from 'common/context/guest-token';
 import { useGuestUser } from 'common/context/guest-user';
 import type { DbUser } from 'common/models/User';
 import useUnsaved from 'common/utils/hooks/useUnSaved';
-
-import { ErrorMessage, InputName } from 'fields/personal-information/form/constants';
-import { useUpdateUserFromDb } from 'fields/personal-information/lib/query-hooks';
 
 export const validationTest = function (string: string | undefined): boolean {
   if (!string?.length) return false;

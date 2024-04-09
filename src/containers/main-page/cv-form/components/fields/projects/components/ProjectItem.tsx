@@ -2,11 +2,10 @@ import {
   memo, useCallback, useMemo, useState,
 } from 'react';
 import dayjs from 'dayjs';
+import { projectDatePresent } from 'fields/projects/components/utils/constants';
 
 import ProfiencyItem from 'common/components/profiency/ProfiencyItem';
 import type { Project } from 'common/models/User';
-
-import { projectDatePresent } from 'fields/projects/components/utils/constants';
 
 import { useProjectItem } from './tool/hooks';
 

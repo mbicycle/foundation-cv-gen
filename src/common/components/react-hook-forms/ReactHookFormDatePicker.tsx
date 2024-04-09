@@ -12,6 +12,7 @@ import type {
 } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
 import { endOfMonth, startOfMonth } from 'date-fns';
+import { projectDatePresent } from 'fields/projects/components/utils/constants';
 import merge from 'lodash.merge';
 
 import type { DesktopDatePickerProps } from '@mui/lab';
@@ -22,8 +23,6 @@ import {
 } from '@mui/material';
 
 import type { Project } from 'common/models/User';
-
-import { projectDatePresent } from 'fields/projects/components/utils/constants';
 
 import { DatePickerPaperStyled, DatePickerStyled } from './styled';
 

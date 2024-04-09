@@ -1,9 +1,8 @@
 import dayjs from 'dayjs';
+import { projectDatePresent } from 'fields/projects/components/utils/constants';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
 import type { Project } from 'common/models/User';
-
-import { projectDatePresent } from 'fields/projects/components/utils/constants';
 
 function round(num: number, step = 0.5): number {
   const invert = 1.0 / step;

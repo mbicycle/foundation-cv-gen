@@ -1,14 +1,18 @@
 /* eslint-disable max-len */
+import type { SVGProps } from 'react';
 import { memo } from 'react';
 
-import type { SvgIconProps } from '@mui/material/SvgIcon';
-import SvgIcon from '@mui/material/SvgIcon';
-
-const RectangleIcon = function (props: SvgIconProps):JSX.Element {
+const RectangleIcon = function (props: SVGProps<SVGSVGElement>):JSX.Element {
   return (
-    <SvgIcon {...props} viewBox="0 0 37 16">
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+
+      viewBox="0 0 37 16"
+    >
       <rect x="0.0541992" width="36.6733" height="16" rx="2" fill="#E2E6EF" />
-    </SvgIcon>
+    </svg>
   );
 };
 

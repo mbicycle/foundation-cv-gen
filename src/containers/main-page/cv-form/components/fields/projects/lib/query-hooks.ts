@@ -3,13 +3,12 @@ import {
   useMutation,
   useQueryClient,
 } from 'react-query';
+import { updateProjects } from 'fields/projects/components/utils/functions';
 
 import { useUserFromDb } from 'containers/main-page/cv-form/api/query-hooks';
 import { QueryKey } from 'containers/main-page/cv-form/utils/constants';
 import SnackBarUtils from 'common/components/SnackBar/SnackBarUtils';
 import type { DbUser, Project } from 'common/models/User';
-
-import { updateProjects } from 'fields/projects/components/utils/functions';
 
 import * as api from './api';
 

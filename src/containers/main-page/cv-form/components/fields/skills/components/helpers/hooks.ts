@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAddOrEditSkill } from 'fields/skills/lib/query-hooks';
 
 import { ROUTE } from 'common/components/routes/utils/constants';
 import { useGuestToken } from 'common/context/guest-token';
@@ -7,8 +8,6 @@ import { useGuestUser } from 'common/context/guest-user';
 import type {
   DbUser, Project, Skill,
 } from 'common/models/User';
-
-import { useAddOrEditSkill } from 'fields/skills/lib/query-hooks';
 
 interface SaveSkill {
   isLoading: boolean,
