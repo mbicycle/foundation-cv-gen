@@ -1,0 +1,11 @@
+{
+  "printWidth": 120,
+  "proseWrap": "always",
+  "arrowParens": "always",
+  "endOfLine":"auto",
+  "semi": false,
+  "tabWidth": 2,
+  "plugins": [
+    "prettier-plugin-tailwindcss"
+  ]
+}

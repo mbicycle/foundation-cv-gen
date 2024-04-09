@@ -8,7 +8,8 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "airbnb"
+    "airbnb",
+    "plugin:prettier/recommended"
   ],
   "ignorePatterns": ["dist", ".eslintrc.cjs", "*.config.*"],
   "parser": "@typescript-eslint/parser",
@@ -29,6 +30,12 @@
     "no-relative-import-paths"
   ],
   "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -146,26 +153,19 @@
                 "^react",
                 "^@?\\w"
               ],
+              [
+                "^@mbicycle"
+              ],
               // Packages starting with `@`
               [
                 "^@"
               ],
-              [
-                "^@mui"
-              ],
               // src imports
-              [
-                "^src",
-                "^containers",
-                "^common"
-              ],
-              [
-                "^stores",
-                "^hooks"
-              ],
-              [
-                "^utils"
-              ],
+              ["^app"],
+              ["^entities"],
+              ["^pages"],
+              ["^widgets"],
+              ["^shared"],
               // Imports starting with `../`
               [
                 "^\\.\\.(?!/?$)",
