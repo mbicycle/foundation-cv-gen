@@ -6,7 +6,6 @@ import { useGetDbUser } from 'containers/main-page/cv-form/api/query-hooks';
 import CircularSpinner from 'common/components/circular-spinner/circular-spinner';
 import DocxIcon from 'common/icons/DocxIcon';
 import PdfIcon from 'common/icons/PdfIcon';
-import theme from 'common/theme';
 
 interface ActionsSetProps {
   id: string;
@@ -41,7 +40,7 @@ function ActionsSet(props: ActionsSetProps): JSX.Element {
       >
         {isRetreivingWordUserData
           ? <CircularSpinner size="small" />
-          : <DocxIcon fontSize="large" />}
+          : <DocxIcon className="size-10" />}
       </button>
       <button
         type="button"
@@ -52,10 +51,7 @@ function ActionsSet(props: ActionsSetProps): JSX.Element {
         {isRetreivingPdfUserData || loading
           ? <CircularSpinner size="small" />
           : (
-            <PdfIcon
-              sx={{ fill: !disabledIcons ? theme.palette.error.main : 'Background.main' }}
-              fontSize="large"
-            />
+            <PdfIcon className={`size-10 ${!disabledIcons ? 'text-red-600' : 'text-gray-500'}`} />
           )}
       </button>
     </>

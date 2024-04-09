@@ -39,6 +39,10 @@ input:-webkit-autofill:active {
     box-sizing: border-box;
 }
 
+html {
+    font-size: 62.5%;
+}
+
 a {
     color: transparent;
 }

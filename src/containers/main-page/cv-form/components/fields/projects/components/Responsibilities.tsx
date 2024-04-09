@@ -66,7 +66,7 @@ const Responsibilities = function ({
       {controlledFields.map(
         (field, index) => (
           <div key={field.id} className="flex flex-row items-center w-full">
-            <div className="my-5">
+            <div className="my-1">
               <Input
                 required
                 label={`Responsibility ${index + 1}`}
@@ -76,17 +76,17 @@ const Responsibilities = function ({
             </div>
             <div className="flex h-[3.3rem] w-[40%]">
               <button className="flex items-center p-4" onClick={() => remove(index)}>
-                <GarbageIcon className="text-blue-500" fontSize="medium" />
+                <GarbageIcon className="text-blue-500 size-10" />
               </button>
             </div>
           </div>
         ),
       )}
-      <Button variant="transparent" onClick={onAddHandle}>
-        <AddCircleOutlineIcon />
-        &nbsp;
-        {ButtonText.Add}
-      </Button>
+      <div>
+        <Button variant="transparent" onClick={onAddHandle} icon={AddCircleOutlineIcon} classNameIcon="size-8">
+          {ButtonText.Add}
+        </Button>
+      </div>
     </>
   );
 };

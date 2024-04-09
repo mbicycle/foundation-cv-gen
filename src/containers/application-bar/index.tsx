@@ -1,7 +1,7 @@
 import { Fragment, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Transition } from '@headlessui/react';
-import { Button } from '@mbicycle/foundation-ui-kit';
+import { Button, Divider } from '@mbicycle/foundation-ui-kit';
 import msalUtils from 'shared/msalUtils';
 import { msalConfig } from 'shared/utils/authConfig';
 import { msalInstance } from 'shared/utils/interceptors';
@@ -34,10 +34,7 @@ const ApplicationBar = function (): JSX.Element {
     if (tokenState.isGuest) return null;
     return (
       <>
-        <div
-          className="min-h-[1em] w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent
-         opacity-25 dark:via-neutral-400"
-        />
+        <Divider orientation="vertical" className="bg-gradient-to-b via-white" />
         <Menu as="div" className="relative ml-3">
           <div>
             <Menu.Button

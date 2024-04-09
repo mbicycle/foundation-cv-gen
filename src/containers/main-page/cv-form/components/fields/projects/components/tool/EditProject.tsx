@@ -5,17 +5,13 @@ import {
 } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button } from '@mbicycle/foundation-ui-kit';
+import { Button, Divider } from '@mbicycle/foundation-ui-kit';
 import { projectSchema, renderErrorMessage } from 'fields/projects/components';
 import { CategorySelection } from 'fields/projects/components/category-selection';
 import DatePickers from 'fields/projects/components/DatePickers';
 import Responsibilities from 'fields/projects/components/Responsibilities';
 import { ProjectInputsText } from 'fields/projects/components/utils/constants';
 import type { ProjectFieldValues } from 'fields/projects/utils/types';
-
-import {
-  Divider,
-} from '@mui/material';
 
 import { ButtonStep } from 'containers/main-page/cv-form/utils/constants';
 import ReactHookFormTextFieldOutlined

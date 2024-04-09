@@ -11,7 +11,7 @@ function IconButtonMemoized(key: SnackbarKey, onClickDismiss: CallableFunction):
       type="button"
       onClick={(e) => onClickDismiss(e, key)}
     >
-      <CloseIcon fontSize="large" />
+      <CloseIcon className="size-10" />
     </button>
   );
 }

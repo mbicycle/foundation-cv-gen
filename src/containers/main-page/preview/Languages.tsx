@@ -39,7 +39,7 @@ const Languages = function (): JSX.Element {
               <CircleIcon className="inline text-blue-500 size-3 mr-1.5 mb-0.5" />
               {language.name}
             </p>
-            <div className="m-auto">
+            <div className="m-auto w-full h-full">
               <RatingLanguage level={language.level} />
             </div>
             <p className="text-left pl-5">

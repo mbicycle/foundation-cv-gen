@@ -10,5 +10,3 @@ export enum Color {
   GreyBorder = '#DADCE1',
   GreyLightBlue = '#E2E6EF',
 }
-
-export const spacingUnit = 0.4 as const;

@@ -206,7 +206,7 @@ function AdminTableContainer(): JSX.Element | null {
             className="p-6"
           >
             <div className="flex items-center justify-between">
-              <LinkIcon fontSize="large" />
+              <LinkIcon className="size-10" />
               {ShareButton.Label}
             </div>
           </Button>

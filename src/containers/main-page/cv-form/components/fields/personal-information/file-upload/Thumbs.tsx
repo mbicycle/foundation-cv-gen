@@ -32,7 +32,7 @@ const Thumbs: React.FC<ThumbsProps> = function (props): JSX.Element {
         <div className="inline-flex rounded-full border mr-3 ml-6 size-[60px] p-1 box-border" key={file.name}>
           <div className="flex relative text-center min-w-0">
             <Button className="absolute mt-[-4] ml-9" size="small" onClick={onDeleteImageHandle}>
-              <CancelRoundedIcon fontSize="small" color="error" />
+              <CancelRoundedIcon className="text-red-600 size-8" />
             </Button>
             <Button className="mt-9 ml-8" size="small" onClick={onUploadNewAvatarHandle}>
               <CloudUploadIcon color="primary" />

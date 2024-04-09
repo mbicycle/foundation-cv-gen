@@ -2,15 +2,13 @@ import type { FieldError, Merge } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button } from '@mbicycle/foundation-ui-kit';
+import { Button, Divider } from '@mbicycle/foundation-ui-kit';
 import { validationTest } from 'fields/personal-information/form/hooks';
 import { useUpdateProjects } from 'fields/projects/lib/query-hooks';
 import type { ProjectFieldValues } from 'fields/projects/utils/types';
 import { v4 as uuid } from 'uuid';
 import type { AnySchema, InferType } from 'yup';
 import * as yup from 'yup';
-
-import { Divider } from '@mui/material';
 
 import { ButtonStep } from 'containers/main-page/cv-form/utils/constants';
 import
