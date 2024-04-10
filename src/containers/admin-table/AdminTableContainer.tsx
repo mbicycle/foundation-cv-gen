@@ -3,6 +3,7 @@ import { InformationCircleIcon as InfoIcon, LinkIcon } from "@heroicons/react/24
 import { Text } from "fields/personal-information/file-upload/utils/types"
 import { ShareButton, tooltipShareText } from "fields/projects/components/utils/constants"
 import sortBy from "lodash.sortby"
+import { CONFIG } from "shared/config/envConfig"
 import { getGuestToken } from "shared/msalUtils/features/api"
 
 import { Button, Input, Modal, Toggle, Tooltip } from "@mbicycle/foundation-ui-kit"
@@ -57,7 +58,7 @@ function AdminTableContainer(): JSX.Element | null {
     setLoading(true)
     getGuestToken()
       .then((token) => {
-        setTokenLink(`${import.meta.env.VITE_REDIRECT_URL}?token=${token}`)
+        setTokenLink(`${CONFIG.redirectUri}?token=${token}`)
         openHandle()
         setLoading(false)
       })

@@ -1,10 +1,8 @@
 import { useEffect } from "react"
-import { InteractionType } from "@azure/msal-browser"
-import { AuthenticatedTemplate, MsalProvider, UnauthenticatedTemplate, useMsalAuthentication } from "@azure/msal-react"
+import { AuthenticatedTemplate, MsalProvider, UnauthenticatedTemplate } from "@azure/msal-react"
+import msGraphInstance from "shared/lib/msal/instance"
 import { getGuestTokenValidity } from "shared/msalUtils/features/api"
-import Login from "shared/msalUtils/widgets/Login"
 import { setCookie } from "shared/utils/cookie"
-import { msalInstance } from "shared/utils/interceptors"
 
 import ApplicationBar from "containers/application-bar"
 import { MESSAGE_TEXT } from "common/components/info-pages/constants"
@@ -16,7 +14,8 @@ import ReactQueryProvider from "common/providers/ReactQueryProvider"
 import useBeforeUnload from "common/utils/hooks/useBeforeUnload"
 
 const AppRender = function (): JSX.Element {
-  useMsalAuthentication(InteractionType.Redirect)
+  msGraphInstance.ssoSilent()
+
   const {
     dispatch,
     state: { isGuest, tokenState },
@@ -50,9 +49,9 @@ const AppRender = function (): JSX.Element {
 
   if (!isGuest && !token) {
     return (
-      <MsalProvider instance={msalInstance}>
+      <MsalProvider instance={msGraphInstance.msalInstance}>
         <UnauthenticatedTemplate>
-          <Login />
+          <div>Unauthenticated</div>
         </UnauthenticatedTemplate>
         <AuthenticatedTemplate>
           <ReactQueryProvider>

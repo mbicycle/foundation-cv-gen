@@ -1,32 +1,14 @@
 import type { AuthContextValue, AuthProviderConfig } from "react-query-auth"
 import { initReactQueryAuth } from "react-query-auth"
-import { msalConfig } from "shared/utils/authConfig"
+import { CONFIG } from "shared/config/envConfig"
+import msGraphInstance from "shared/lib/msal/instance"
+import { getUser } from "shared/msalUtils/features/api"
 import { mockUser } from "shared/utils/constants"
-import { msalInstance } from "shared/utils/interceptors"
+
+import { loginFn, logoutFn } from "@mbicycle/msal-bundle"
 
 import { useGuestToken } from "common/context/guest-token"
 import type { MsUser } from "common/models/User"
-
-import { getUser } from "./api"
-
-async function loginFn(): Promise<MsUser> {
-  return new Promise<MsUser>((resolve, reject) => {
-    getUser()
-      .then((response: MsUser) => resolve(response))
-      .catch((error) => reject(error))
-  })
-}
-
-async function logoutFn(): Promise<void> {
-  const msalAccount = msalInstance.getAllAccounts()[0]
-  const logoutRequest = {
-    account: msalAccount,
-    postLogoutRedirectUri: msalConfig.auth.redirectUri,
-    mainWindowRedirectUri: msalConfig.auth.redirectUri,
-  }
-
-  msalInstance.logoutPopup(logoutRequest)
-}
 
 async function loadUser(): Promise<MsUser> {
   try {
@@ -38,9 +20,9 @@ async function loadUser(): Promise<MsUser> {
 
 const authConfig: AuthProviderConfig<MsUser, unknown> = {
   loadUser,
-  loginFn,
+  loginFn: () => loginFn(msGraphInstance.msalInstance) as unknown as Promise<MsUser>,
   registerFn: async (user: MsUser) => user,
-  logoutFn,
+  logoutFn: () => logoutFn(msGraphInstance.msalInstance, `${CONFIG.redirectUri}?logout=true`),
 }
 
 const { AuthProvider, useAuth: MsAuth } = initReactQueryAuth<MsUser>(authConfig)

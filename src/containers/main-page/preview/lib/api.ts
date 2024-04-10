@@ -1,9 +1,9 @@
-import { graph } from "shared/utils/interceptors"
+import msGraphInstance from "shared/lib/msal/instance"
 
 import type { MsUser } from "common/models/User"
 
 export const getMyDataFromMsGraph = async (fields: string[]): Promise<unknown> => {
-  const token = await graph.authProvider.getAccessToken()
+  const token = await msGraphInstance.acquireToken()
   const headers = new Headers()
 
   headers.append("Authorization", `Bearer ${token}`)
@@ -15,7 +15,7 @@ export const getMyDataFromMsGraph = async (fields: string[]): Promise<unknown> =
 }
 
 export const getUserDataFromMsGraph = async (userId: string, fields: string[]): Promise<MsUser> => {
-  const token = await graph.authProvider.getAccessToken()
+  const token = await msGraphInstance.acquireToken()
   const headers = new Headers()
 
   headers.append("Authorization", `Bearer ${token}`)
