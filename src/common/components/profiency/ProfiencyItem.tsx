@@ -46,7 +46,7 @@ const ProfiencyItem = function ({
     if (isLoading) {
       return <CircularSpinner size="small" />
     }
-    return <GarbageIcon color="primary" />
+    return <GarbageIcon className="size-6 text-blue-500" />
   }
 
   function linkCer(event: React.MouseEvent<HTMLLinkElement>): void {

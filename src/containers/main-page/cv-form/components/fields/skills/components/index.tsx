@@ -168,7 +168,6 @@ const Skill = function (): JSX.Element {
               disabled={!!formState.errors.name || !getValues().name.length}
               icon={AddCircleIcon}
               className="w-full"
-              classNameIcon="mb-[0]"
             >
               {Text.AddTool}
             </Button>

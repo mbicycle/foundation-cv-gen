@@ -86,7 +86,7 @@ const Responsibilities = function ({
         </div>
       ))}
       <div>
-        <Button variant="transparent" onClick={onAddHandle} icon={AddCircleOutlineIcon} classNameIcon="size-6">
+        <Button variant="transparent" onClick={onAddHandle} icon={AddCircleOutlineIcon}>
           {ButtonText.Add}
         </Button>
       </div>

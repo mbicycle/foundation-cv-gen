@@ -76,8 +76,7 @@ const AddProficiency = function (props: AddProficiencyProps): JSX.Element {
                   onClick={handleAdd}
                   disabled={disable}
                   icon={AddCircleIcon}
-                  className={`mb-4 mr-4 inline-flex px-6 py-4 ${isCollectionLength ? "self-end" : "self-center"}`}
-                  classNameIcon="mb-[0]"
+                  className={`mb-4 mr-4 inline-flex ${isCollectionLength ? "self-end" : "self-center"}`}
                 >
                   {renderButtonText()}
                 </Button>
