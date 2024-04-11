@@ -160,6 +160,7 @@ const Skill = function (): JSX.Element {
               type="text"
               helperText={skillName.length ? formState.errors[SkillInputText.Name]?.message : HelperText.SkillGroup}
               autoFocus
+              helperTextClassName="absolute"
             />
           </div>
           <div className="w-1/4">
@@ -173,7 +174,7 @@ const Skill = function (): JSX.Element {
             </Button>
           </div>
         </div>
-        <div>{renderTools(newTool)}</div>
+        {renderTools(newTool)}
         <div className="saveBtnWrapper gap-4">
           <Button onClick={cancelClickHandle} variant="transparent">
             {ButtonStep.Cancel}

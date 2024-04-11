@@ -87,7 +87,7 @@ function ToolList(props: IToolListProps): JSX.Element {
   }
 
   return (
-    <div className="flex max-h-[calc(100vh-40rem)] min-h-32 w-full flex-col gap-y-4 overflow-y-auto rounded-lg border p-2">
+    <div className="flex h-[calc(100vh-30rem)] w-full flex-col gap-y-4 overflow-y-auto rounded-lg border p-2">
       <ul className="w-full list-none">
         {tools.map((tool, index) => {
           const border = {
