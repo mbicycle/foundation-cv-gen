@@ -46,7 +46,7 @@ const ProfiencyItem = function ({
     if (isLoading) {
       return <CircularSpinner size="small" />
     }
-    return <GarbageIcon className="size-6 text-blue-500" />
+    return <GarbageIcon className="size-5 text-blue-500" />
   }
 
   function linkCer(event: React.MouseEvent<HTMLLinkElement>): void {
@@ -59,7 +59,7 @@ const ProfiencyItem = function ({
        ${disabled && "pointer-events-none opacity-50"}`}
       style={border}
     >
-      {isDraggable && <DragIndicatorIcon className="size-6 text-gray-500" />}
+      {isDraggable && <DragIndicatorIcon className="size-8 text-gray-500" />}
       <button type="button" className="w-full cursor-pointer text-left" onClick={setIdHandle}>
         <div className="pl-4">
           <p>{headText}</p>
@@ -71,7 +71,7 @@ const ProfiencyItem = function ({
           )}
         </div>
       </button>
-      <button type="button" className="p-2" onClick={onDeleteEntryHandle}>
+      <button type="button" className="deleteBtn" onClick={onDeleteEntryHandle}>
         {renderIcons()}
       </button>
     </div>

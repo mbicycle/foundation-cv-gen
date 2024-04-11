@@ -79,9 +79,9 @@ const Responsibilities = function ({
               {...register(`responsibilities.${index}.responsibility` as const)}
             />
           </div>
-          <div className="flex w-[40%]">
-            <button type="button" className="flex items-center p-4" onClick={() => remove(index)}>
-              <GarbageIcon className="size-6 text-blue-500" />
+          <div className="w-[40%]">
+            <button type="button" className="deleteBtn mb-2.5 ml-2" onClick={() => remove(index)}>
+              <GarbageIcon className="size-5 text-blue-500" />
             </button>
           </div>
         </div>

@@ -47,11 +47,11 @@ const Tool = function (toolProps: ToolProps): JSX.Element {
         <Accordion.Title>
           <div className="flex w-full items-center justify-between pr-2">
             <div className="flex w-full items-center pr-2">
-              <DragIndicatorIcon className="size-6 text-gray-500" />
+              <DragIndicatorIcon className="size-8 text-gray-500" />
               <p className="pl-1">{toolText}</p>
             </div>
-            <button type="button" onClick={onDeleteToolHandle}>
-              <GarbageIcon className="text-blue-500" />
+            <button type="button" onClick={onDeleteToolHandle} className="deleteBtn">
+              <GarbageIcon className="size-5 text-blue-500" />
             </button>
           </div>
         </Accordion.Title>
