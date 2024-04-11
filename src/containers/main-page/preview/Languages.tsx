@@ -17,11 +17,11 @@ const Languages = function (): JSX.Element {
   }, [refetch, isFetching])
 
   return (
-    <div className="mx-6 mt-4 max-w-full break-words rounded-lg border bg-white p-6 drop-shadow">
+    <div className="previewItemWrapper">
       <div>
         <div className="grid-rows-auto grid grid-cols-[0.1fr,2fr,1.1fr]">
-          <div className="flex size-6 items-center justify-center rounded-full bg-gray-200">
-            <BookOpenIcon className="size-6 text-blue-500" />
+          <div className="iconBackground">
+            <BookOpenIcon className="previewItemIcon" />
           </div>
           <h5 className="ml-4 font-bold">{CV_FORM_STEPS[1].text}</h5>
           {!!data?.languages?.length && <h5 className="text-center text-gray-500">{CV_FORM_STEPS[1].columns[0]}</h5>}

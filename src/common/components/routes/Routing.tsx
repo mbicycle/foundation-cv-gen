@@ -25,7 +25,7 @@ const Routing = function (): JSX.Element | null {
   }
 
   if (inProgress !== "none") {
-    return <CircularSpinner size="large" color="primary" />
+    return <CircularSpinner size="large" />
   }
 
   return element

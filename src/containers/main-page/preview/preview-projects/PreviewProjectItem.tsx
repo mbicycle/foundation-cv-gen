@@ -82,11 +82,11 @@ const PreviewProjectItem: React.FC<PreviewProjectItemProps> = function (props) {
       </div>
       <p className="whitespace-pre-wrap break-words text-gray-600">{description}</p>
       <div className="pt-3">
-        <h6>
+        <h6 className="inline">
           {duration}
           &nbsp;
         </h6>
-        <p color="text.secondary">{fromTo}</p>
+        <span className="text-gray-600">{fromTo}</span>
       </div>
       <div className="pt-3">
         <h6>{respTitle}</h6>
@@ -99,18 +99,18 @@ const PreviewProjectItem: React.FC<PreviewProjectItemProps> = function (props) {
         ))}
       </ul>
       <div className="pt-3">
-        <h6>
+        <h6 className="inline">
           {`${sizeTitle}`}
           &nbsp;
         </h6>
-        <p className="text-gray-600">{teamSize}</p>
+        <span className="text-gray-600">{teamSize}</span>
       </div>
       <div className="pt-3">
-        <h6>
+        <h6 className="inline">
           {`${projectRole}`}
           &nbsp;
         </h6>
-        <p className="text-gray-600">{role}</p>
+        <span className="text-gray-600">{role}</span>
       </div>
       <div className="pt-3">
         <p>

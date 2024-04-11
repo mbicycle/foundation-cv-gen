@@ -21,11 +21,11 @@ const Certifications: React.FC = function () {
   if (!certificates?.length) return null
 
   return (
-    <div className="mx-6 mt-4 max-w-full break-words rounded-lg border bg-white p-6 drop-shadow">
+    <div className="previewItemWrapper">
       <div className="grid grid-cols-12">
         <div className="col-span-12 flex flex-row items-center">
-          <div className="flex size-6 items-center justify-center rounded-full bg-gray-200">
-            <DocumentTextIcon className="size-6 text-blue-500" />
+          <div className="iconBackground">
+            <DocumentTextIcon className="previewItemIcon" />
           </div>
           <h5 className="ml-4 font-bold">{CV_FORM_STEPS[4].text}</h5>
         </div>

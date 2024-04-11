@@ -13,10 +13,10 @@ const PreviewProjects: React.FC = function () {
   const { projects } = data ?? {}
 
   return (
-    <div className="mx-6 mt-4 max-w-full break-words rounded-lg border bg-white p-6 drop-shadow">
+    <div className="previewItemWrapper">
       <div className="flex flex-row items-center">
-        <div className="flex size-6 items-center justify-center rounded-full bg-gray-200">
-          <FolderIcon className="size-6 text-blue-500" />
+        <div className="iconBackground">
+          <FolderIcon className="previewItemIcon" />
         </div>
         <h5 className="ml-4 font-bold">{CV_FORM_STEPS[3].text}</h5>
       </div>

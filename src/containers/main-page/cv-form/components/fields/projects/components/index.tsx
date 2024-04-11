@@ -58,7 +58,7 @@ export const projectSchema: InferType<AnySchema> = yup
     teamSize: yup.number().min(1),
     responsibilities: yup
       .array()
-      .compact((value: string) => !value.trim())
+      .compact((value: string) => !value?.trim())
       .min(1, "Please add at least one responsibility.")
       .required(),
     categories: yup.array().min(1, "Please select at least one skill/tool.").required(),

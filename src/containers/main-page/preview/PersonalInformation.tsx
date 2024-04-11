@@ -53,7 +53,7 @@ const PersonalInformation = function (): JSX.Element {
   }
 
   return (
-    <div className="mx-6 mt-4 max-w-full break-words rounded-lg border bg-white p-6 drop-shadow">
+    <div className="previewItemWrapper">
       <div className="grid grid-cols-12 gap-2">
         <div className="col-span-2">{renderUserImage()}</div>
         <div className="col-span-7">

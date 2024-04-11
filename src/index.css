@@ -83,6 +83,20 @@ body {
         @apply block rounded-full aspect-square object-cover
     }
 
+    /* PREVIEW */
+
+    .previewItemWrapper {
+        @apply mx-6 mt-4 max-w-full break-words rounded-lg border bg-white p-6 drop-shadow
+    }
+
+    .iconBackground {
+        @apply flex size-6 items-center justify-center rounded-full bg-gray-200
+    }
+
+    .previewItemIcon {
+        @apply size-6 text-blue-500
+    }
+
     /* FORM */
     .listWrapper {
         @apply max-h-[calc(100vh-35rem)] min-h-32 p-8 overflow-auto w-full;

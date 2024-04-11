@@ -5,6 +5,7 @@ import orderBy from "lodash.orderby"
 import useTableDataContext from "containers/admin-table/local-state/useTableDataContext"
 
 import type { ObjectKeys } from "./types"
+import UserMapped = AdminTableType.UserMapped
 
 interface TableColumnsProps {
   columns: AdminTableType.Column[]
@@ -29,7 +30,7 @@ function TableColumns({ columns, colIndex, style }: TableColumnsProps, ref: Reac
         (user: AdminTableType.User) => user[sortKey as keyof AdminTableType.User],
         sortDirection,
       )
-      dispatch({ data: sorted })
+      dispatch({ data: sorted as UserMapped[] })
     }
   }
 

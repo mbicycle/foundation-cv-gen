@@ -46,7 +46,7 @@ export function useDeleteUserLanguage(): UseMutationResult<DbUser, Error, string
     },
 
     {
-      onSettled: async (data, err, lang) => {
+      onSettled: async (data, _, lang) => {
         const filteredLanguages = deleteUserLanguage(languages || [], lang)
         queryClient.setQueryData(QueryKey.DbUser, { ...data, languages: filteredLanguages })
       },

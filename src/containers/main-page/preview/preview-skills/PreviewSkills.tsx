@@ -16,12 +16,12 @@ const PreviewSkills = function (): JSX.Element | null {
   }
 
   return (
-    <div className="mx-6 mt-4 max-w-full break-words rounded-lg border bg-white p-6 drop-shadow">
+    <div className="previewItemWrapper">
       <div>
         <div className="grid-rows-auto mb-4 grid grid-cols-3">
           <div className="flex flex-row items-center">
-            <div className="flex size-6 items-center justify-center rounded-full bg-gray-200">
-              <AcademicCapIcon className="size-6 text-blue-500" color="primary" />
+            <div className="iconBackground">
+              <AcademicCapIcon className="previewItemIcon" />
             </div>
             <h5 className="ml-4 font-bold">{CV_FORM_STEPS[2].text}</h5>
           </div>

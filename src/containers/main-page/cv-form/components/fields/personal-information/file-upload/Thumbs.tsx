@@ -34,7 +34,7 @@ const Thumbs: React.FC<ThumbsProps> = function (props): JSX.Element {
               <CancelRoundedIcon className="size-8 text-red-600" />
             </Button>
             <Button className="ml-8 mt-9" size="small" onClick={onUploadNewAvatarHandle}>
-              <CloudUploadIcon color="primary" />
+              <CloudUploadIcon className="text-blue-500" />
             </Button>
             <img
               className="avatarImage w-full cursor-pointer"

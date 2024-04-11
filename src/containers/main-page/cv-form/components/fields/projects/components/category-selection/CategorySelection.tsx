@@ -153,7 +153,7 @@ const SkillSelection = function ({ formValues, defaultValues }: CategorySelectio
           ))}
         </div>
         <div className="flex items-center gap-8">
-          <Button color="primary" variant="transparent" onClick={onAddModalOpenHandle} disabled={disabled}>
+          <Button variant="transparent" onClick={onAddModalOpenHandle} disabled={disabled}>
             {ButtonText.Select}
           </Button>
           {disabled && (
