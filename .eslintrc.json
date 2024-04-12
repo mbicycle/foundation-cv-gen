@@ -1,3 +1,4 @@
+//TODO: tune eslint, fix prettier/prettier  Insert `··` error
 {
   // https://andrebnassis.medium.com/setting-eslint-on-a-react-typescript-project-2021-1190a43ffba
   "env": {
@@ -8,9 +9,10 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "airbnb"
+    "airbnb",
+    "plugin:prettier/recommended"
   ],
-  "ignorePatterns": ["dist", ".eslintrc.cjs", "*.config.*"],
+  "ignorePatterns": ["dist", ".eslintrc.json", "*.config.*"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -29,6 +31,12 @@
     "no-relative-import-paths"
   ],
   "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -146,14 +154,19 @@
                 "^react",
                 "^@?\\w"
               ],
+              [
+                "^@mbicycle"
+              ],
               // Packages starting with `@`
               [
                 "^@"
               ],
-              [
-                "^@mui"
-              ],
               // src imports
+//              ["^app"],
+//              ["^entities"],
+//              ["^pages"],
+//              ["^widgets"],
+//              ["^shared"],
               [
                 "^src",
                 "^containers",
