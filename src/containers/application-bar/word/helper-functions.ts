@@ -283,16 +283,16 @@ export const addSkills = (skills: Skill[]): Table | Paragraph => {
       borders: borderOptions,
       children: text
         ? [
-          new Paragraph({
-            children: [
-              createText({
-                text,
-                font: TextStyle.Regular,
-                bold,
-              }),
-            ],
-          }),
-        ]
+            new Paragraph({
+              children: [
+                createText({
+                  text,
+                  font: TextStyle.Regular,
+                  bold,
+                }),
+              ],
+            }),
+          ]
         : [],
       margins: {
         left: 150,

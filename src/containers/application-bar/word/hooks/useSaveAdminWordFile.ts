@@ -88,7 +88,6 @@ export const useSaveAdminWordFile = (): {
           },
           children: [
             ...createNameAndTitle({ fullName: nameIfSenstiveDataHidden(), title: title ?? jobTitle }),
-            // eslint-disable-next-line max-len
             addRowWithHeading({ heading: "Work Experience: ", text: `${getYearsExperience(projects)} years` }),
 
             ...createPersonalInformation(),

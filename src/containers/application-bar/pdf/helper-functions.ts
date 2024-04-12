@@ -8,7 +8,7 @@ import { ubuntuRegular } from "common/fonts/ubuntu-regular"
 export function fromPxToMm(size: number | undefined): number {
   return ((size ?? 1) * 25.4) / 100
 }
-// eslint-disable-next-line max-len
+
 export const getRightTextX = (doc: JsPDF, date: string): number =>
   PAGE_WIDTH - INDENT_FROM_LEFT * 2 - ((doc.getStringUnitWidth(date) / 4) * 25.6) / 2 - 3
 

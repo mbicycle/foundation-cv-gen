@@ -58,7 +58,6 @@ function getErrorMessage(error?: FieldError, value?: string): string {
   return error.type === "typeError" ? "Invalid Date" : error.message || ""
 }
 
-// eslint-disable-next-line space-before-function-paren
 const ReactHookFormDatePicker = function <T extends FieldValues>({
   name,
   control,
@@ -93,12 +92,12 @@ const ReactHookFormDatePicker = function <T extends FieldValues>({
 
   const toggleProps = showToggle
     ? {
-      disabled: present,
-      components: {
-        PaperContent: PaperContent as React.ElementType<{ children: React.ReactNode }>,
-      },
-      componentsProps: { paperContent: { handleCheckbox, present } },
-    }
+        disabled: present,
+        components: {
+          PaperContent: PaperContent as React.ElementType<{ children: React.ReactNode }>,
+        },
+        componentsProps: { paperContent: { handleCheckbox, present } },
+      }
     : {}
 
   useEffect(() => {

@@ -41,9 +41,9 @@ const usePDFFile = (): { loading: boolean; handleSave: HandleSave } => {
       if (isHidden) {
         return name
           ? name
-            .split(" ")
-            .map((value, index, array) => (index === array.length - 1 ? `${value[0]}.` : value))
-            .join(" ")
+              .split(" ")
+              .map((value, index, array) => (index === array.length - 1 ? `${value[0]}.` : value))
+              .join(" ")
           : `${dbUser?.firstName} ${dbUser?.lastName[0]}.`
       }
       return name || `${dbUser?.firstName} ${dbUser?.lastName}`

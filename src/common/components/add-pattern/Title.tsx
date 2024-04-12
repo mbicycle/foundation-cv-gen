@@ -15,7 +15,7 @@ const Title = function ({ name, onReturn }: TitleProps): JSX.Element {
 
   return (
     <div className="mb-4 flex w-full items-center justify-start">
-      <button type="button" onClick={onBackHandle} className="mr-1">
+      <button type="button" aria-label="go back" onClick={onBackHandle} className="mr-1">
         <ChevronLeftIcon className="text-blue-500" />
       </button>
       <p className="text-base">{name}</p>

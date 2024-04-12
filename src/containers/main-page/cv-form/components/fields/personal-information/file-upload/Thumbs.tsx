@@ -36,13 +36,14 @@ const Thumbs: React.FC<ThumbsProps> = function (props): JSX.Element {
             <Button className="ml-8 mt-9" size="small" onClick={onUploadNewAvatarHandle}>
               <CloudUploadIcon className="text-blue-500" />
             </Button>
-            <img
-              className="avatarImage w-full cursor-pointer"
-              alt={file.name}
-              src={file.preview}
-              referrerPolicy="no-referrer"
-              onClick={onOpenModal}
-            />
+            <button type="button" aria-label="user menu" onClick={onOpenModal}>
+              <img
+                className="avatarImage w-full cursor-pointer"
+                alt={file.name}
+                src={file.preview}
+                referrerPolicy="no-referrer"
+              />
+            </button>
           </div>
         </div>
       ))}

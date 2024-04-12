@@ -7,7 +7,7 @@ import { SnackbarUtilsConfigurator } from "common/components/SnackBar/SnackBarUt
 
 function IconButtonMemoized(key: SnackbarKey, onClickDismiss: CallableFunction): React.ReactNode {
   return (
-    <button type="button" onClick={(e) => onClickDismiss(e, key)}>
+    <button type="button" aria-label="dismiss" onClick={(e) => onClickDismiss(e, key)}>
       <CloseIcon className="size-10" />
     </button>
   )

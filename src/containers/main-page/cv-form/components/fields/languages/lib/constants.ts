@@ -1,11 +1,3 @@
-export const enum Endpoint {
-  AllLanguages = "languages",
-  PostLanguage = "languages",
-
-  Employee = "employee",
-  DeleteUserLanguage = "language",
-}
-
 // Took from https://www.labnol.org/code/19899-google-translate-languages
 export const LANGUAGES = [
   "Afrikaans",

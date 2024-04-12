@@ -19,13 +19,13 @@ export function useMsGraph({ params }: { params: string[] }): UseQueryResult<{ [
     options: token
       ? {}
       : {
-        staleTime: Number.POSITIVE_INFINITY,
-        cacheTime: 5 * 60 * 1000,
-        initialData: () => queryClient.getQueryData("ms-graph-data"),
-        onError: (error: Error) => {
-          SnackBarUtils.error(`${error.message}.`)
+          staleTime: Number.POSITIVE_INFINITY,
+          cacheTime: 5 * 60 * 1000,
+          initialData: () => queryClient.getQueryData("ms-graph-data"),
+          onError: (error: Error) => {
+            SnackBarUtils.error(`${error.message}.`)
+          },
         },
-      },
   }
 
   return useQuery(props.queryKey, props.queryFn, props.options)
@@ -42,20 +42,20 @@ export function useGetUserDataFromMsGraph({
     mutationKey: "ms-admin-user",
     mutationFn: token
       ? (): Promise<MsUser> =>
-        new Promise((resolve) => {
-          resolve(mockUser)
-        })
+          new Promise((resolve) => {
+            resolve(mockUser)
+          })
       : (userId: string) => api.getUserDataFromMsGraph(userId, params),
     options: token
       ? {}
       : {
-        onSuccess: (data: { mail: string }) => {
-          queryClient.setQueryData(["ms-admin-user", data.mail], data)
+          onSuccess: (data: { mail: string }) => {
+            queryClient.setQueryData(["ms-admin-user", data.mail], data)
+          },
+          onError: (error: Error) => {
+            SnackBarUtils.error(`${error.message}.`)
+          },
         },
-        onError: (error: Error) => {
-          SnackBarUtils.error(`${error.message}.`)
-        },
-      },
   }
   return useMutation(props.mutationKey, props.mutationFn, props.options)
 }
