@@ -7,6 +7,7 @@ import LanguageSelection from "fields/languages/components/LanguageSelection"
 import EditProject from "fields/projects/components/tool/EditProject"
 import Skill from "fields/skills/components"
 
+import Login from "containers/login"
 import MainPage from "containers/main-page"
 import NotFound from "common/components/info-pages/not-found"
 
@@ -25,7 +26,7 @@ const AdminTable = lazy(() => import("containers/admin-table"))
 const routerConfig: RouteObject[] = [
   {
     path: ROUTE.LOGIN,
-    element: <div>unauthenticated</div>,
+    element: <Login />,
   },
   {
     path: ROUTE.ADMIN.DEFAULT,
