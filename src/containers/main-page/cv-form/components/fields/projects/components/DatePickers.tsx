@@ -22,10 +22,8 @@ const DatePickers = function ({ formValues, defaultValue }: DatePickersProps): J
         name={getKeyOf<ProjectFieldValues>("from")}
         label="From"
         required
-        fullWidth
         resetForm={reset}
         pickerMode="start"
-        sx={{ gridArea: "from" }}
       />
       <ReactHookFormDatePicker
         control={formValues.control}
@@ -38,8 +36,6 @@ const DatePickers = function ({ formValues, defaultValue }: DatePickersProps): J
         resetForm={reset}
         setFromValue={setValue}
         pickerMode="end"
-        fullWidth
-        sx={{ gridArea: "to" }}
       />
     </>
   )

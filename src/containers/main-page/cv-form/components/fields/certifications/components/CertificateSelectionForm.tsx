@@ -24,7 +24,6 @@ const CertificateSelectionForm = function ({
               state: defaultValue,
               label: CERTIFICATE_TITLE,
               type: "text",
-              variant: "outlined",
             }}
           />
         </div>

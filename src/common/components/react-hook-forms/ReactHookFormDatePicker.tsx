@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ChangeEvent } from "react"
-import React, { useEffect, useState } from "react"
+import React, { memo, useCallback, useEffect, useState } from "react"
 import type {
   Control,
   ControllerRenderProps,
@@ -11,19 +11,17 @@ import type {
   UseFormSetValue,
 } from "react-hook-form"
 import { Controller } from "react-hook-form"
-import type { DesktopDatePickerProps } from "@mui/lab"
-import { FormControlLabel, Switch, TextField } from "@mui/material"
 import { endOfMonth, startOfMonth } from "date-fns"
 import { projectDatePresent } from "fields/projects/components/utils/constants"
-import merge from "lodash.merge"
+
+import { Datepicker, Toggle } from "@mbicycle/foundation-ui-kit"
+import type { DatepickerProps } from "@mbicycle/foundation-ui-kit/dist/components/Datepicker"
 
 import type { Project } from "common/models/User"
 
-import { DatePickerPaperStyled, DatePickerStyled } from "./styled"
-
 type Reset = (values: Partial<Project>, keepStateOptions: KeepStateOptions) => void
 
-interface ReactHookFormDatePickerProps<T extends FieldValues> extends Partial<DesktopDatePickerProps<any>> {
+interface ReactHookFormDatePickerProps<T extends FieldValues> extends Partial<DatepickerProps> {
   name: string
   control: Control<T>
   defaultValue?: string | Date | null
@@ -31,25 +29,21 @@ interface ReactHookFormDatePickerProps<T extends FieldValues> extends Partial<De
   showToggle?: boolean
   setFromValue?: UseFormSetValue<Project>
   resetForm?: Reset
+  pickerMode?: "start" | "end"
 }
 
-function PaperContent({
-  children,
+function renderSwitch({
   handleCheckbox,
   present,
 }: {
-  children: React.ReactNode
-  handleCheckbox: (event: ChangeEvent<HTMLInputElement>, checked: boolean) => void
+  handleCheckbox: (event: ChangeEvent<HTMLInputElement>) => void
   present: boolean
-}): JSX.Element {
+}): React.ReactNode {
   return (
-    <DatePickerPaperStyled>
-      {children}
-      <FormControlLabel
-        control={<Switch name="present" checked={present} onChange={handleCheckbox} />}
-        label="Present"
-      />
-    </DatePickerPaperStyled>
+    <div className="flex h-full flex-col items-end justify-end">
+      <span>Present</span>
+      <Toggle name="present" checked={present} onChange={handleCheckbox} className="me-0" />
+    </div>
   )
 }
 
@@ -71,34 +65,25 @@ const ReactHookFormDatePicker = function <T extends FieldValues>({
 }: ReactHookFormDatePickerProps<T | any>): JSX.Element {
   const [present, setPresent] = useState(false)
 
-  const [inputValue, setInputValue] = useState("")
-
-  const handleCheckbox = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const { checked } = event.currentTarget
-    setPresent(checked)
-    if (resetForm && setFromValue) {
-      resetForm(
-        {},
-        {
-          keepDirty: true,
-          keepValues: true,
-          keepErrors: false,
-        },
-      )
-      if (checked) setFromValue("to", projectDatePresent)
-      else setFromValue("to", "")
-    }
-  }
-
-  const toggleProps = showToggle
-    ? {
-        disabled: present,
-        components: {
-          PaperContent: PaperContent as React.ElementType<{ children: React.ReactNode }>,
-        },
-        componentsProps: { paperContent: { handleCheckbox, present } },
+  const handleCheckbox = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>): void => {
+      const { checked } = event.currentTarget
+      setPresent(checked)
+      if (resetForm && setFromValue) {
+        resetForm(
+          {},
+          {
+            keepDirty: true,
+            keepValues: true,
+            keepErrors: false,
+          },
+        )
+        if (checked) setFromValue("to", projectDatePresent)
+        else setFromValue("to", "")
       }
-    : {}
+    },
+    [resetForm, setFromValue],
+  )
 
   useEffect(() => {
     if (resetForm && setFromValue && defaultValue === projectDatePresent) {
@@ -115,7 +100,10 @@ const ReactHookFormDatePicker = function <T extends FieldValues>({
     }
   }, [defaultValue, resetForm, setFromValue])
 
-  const onChangeControl = (event: unknown, field: ControllerRenderProps<FieldValues | T, string | Path<T>>): void => {
+  const onChangeControl = (
+    date: Date | null | undefined,
+    field: ControllerRenderProps<FieldValues | T, string | Path<T>>,
+  ): void => {
     if (resetForm) {
       resetForm(
         {},
@@ -125,17 +113,9 @@ const ReactHookFormDatePicker = function <T extends FieldValues>({
         },
       )
     }
-    field.onChange(event)
-  }
-
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    let formattedInput = event.target.value
-
-    if (formattedInput.length > 2 && !formattedInput.includes(".")) {
-      formattedInput = `${formattedInput.slice(0, 2)}.${formattedInput.slice(2)}`
+    if (date) {
+      field.onChange({ target: { value: date } })
     }
-
-    setInputValue(formattedInput)
   }
 
   return (
@@ -143,59 +123,39 @@ const ReactHookFormDatePicker = function <T extends FieldValues>({
       name={name}
       control={control}
       defaultValue={defaultValue || null}
-      render={({ field, fieldState: { error } }) => (
-        <DatePickerStyled
-          {...field}
-          {...rest}
-          label={rest.label}
-          onChange={(event) => {
-            onChangeControl(event, field)
-          }}
-          inputFormat="MM.YYYY"
-          views={["year", "month"]}
-          OpenPickerButtonProps={{
-            disabled: false,
-          }}
-          {...toggleProps}
-          renderInput={(renderInputProps) => {
-            const startOfMonthDate = pickerMode === "start" ? startOfMonth(new Date()) : endOfMonth(new Date())
-            let props = renderInputProps
-            let dateValue = renderInputProps.inputProps?.value
+      render={({ field, fieldState: { error } }) => {
+        const startOfMonthDate = pickerMode === "start" ? startOfMonth(new Date()) : endOfMonth(new Date())
 
-            if (dateValue.length > 2 && !dateValue.includes(".")) {
-              dateValue = `${dateValue.slice(0, 2)}.${dateValue.slice(2)}`
-              if (props.inputProps) {
-                props.inputProps.value = dateValue
-              }
-            }
+        const selected = field.value && field.value !== projectDatePresent ? new Date(field.value) : null
 
-            if (showToggle) {
-              const value = present ? projectDatePresent : renderInputProps.inputProps?.value
-              props = merge(renderInputProps, {
-                inputProps: {
-                  value,
-                  min: startOfMonthDate.toISOString().substr(0, 7),
-                  max: endOfMonth(new Date()).toISOString().substr(0, 7),
-                },
-              })
-            }
-
-            return (
-              <TextField
-                {...props}
-                required={required}
-                error={!!error?.message}
-                value={inputValue || renderInputProps.inputProps?.value}
-                onChange={handleInputChange}
-                helperText={getErrorMessage(error, props.inputProps?.value)}
-                fullWidth
-                sx={{ wordBreak: "break-word" }}
-              />
-            )
-          }}
-        />
-      )}
+        return (
+          <div className="flex w-full flex-row items-center justify-between">
+            <Datepicker
+              {...field}
+              {...rest}
+              label={rest.label}
+              selected={selected}
+              disabled={present}
+              dateFormat="MM.yyyy"
+              onChange={(date: Date | null | undefined) => {
+                onChangeControl(date, field)
+              }}
+              showMonthYearPicker
+              showFullMonthYearPicker
+              inputProps={{
+                required,
+                helperText: getErrorMessage(error, field.value),
+                min: startOfMonthDate.toISOString().substr(0, 7),
+                max: endOfMonth(new Date()).toISOString().substr(0, 7),
+                error: !!error?.message,
+                type: "text",
+              }}
+            />
+            {showToggle && renderSwitch({ handleCheckbox, present })}
+          </div>
+        )
+      }}
     />
   )
 }
-export default ReactHookFormDatePicker
+export default memo(ReactHookFormDatePicker)
