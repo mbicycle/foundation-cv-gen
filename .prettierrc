@@ -7,5 +7,7 @@
   "tabWidth": 2,
   "plugins": [
     "prettier-plugin-tailwindcss"
-  ]
+  ],
+  "tailwindConfig": "./tailwind.config.js",
+  "tailwindAttributes": ["classNameWrapper","classNameIcon", "classNameContent"]
 }
