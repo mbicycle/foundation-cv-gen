@@ -52,7 +52,7 @@ const CertificateSelection = function (): JSX.Element {
   useUnsaved(isDirty)
 
   return (
-    <form onSubmit={handleSubmit(onSaveHandle)}>
+    <form onSubmit={handleSubmit(onSaveHandle)} className="w-full">
       <div className="p-3">
         <div className="flex flex-nowrap justify-between gap-6">
           <CertificateSelectionForm control={control} />

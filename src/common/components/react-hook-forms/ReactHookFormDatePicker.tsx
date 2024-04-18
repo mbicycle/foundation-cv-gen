@@ -11,7 +11,7 @@ import type {
   UseFormSetValue,
 } from "react-hook-form"
 import { Controller } from "react-hook-form"
-import { endOfMonth, startOfMonth } from "date-fns"
+import dayjs from "dayjs"
 import { projectDatePresent } from "fields/projects/components/utils/constants"
 
 import { Datepicker, Toggle } from "@mbicycle/foundation-ui-kit"
@@ -63,6 +63,9 @@ const ReactHookFormDatePicker = function <T extends FieldValues>({
   pickerMode,
   ...rest
 }: ReactHookFormDatePickerProps<T | any>): JSX.Element {
+  const startOfMonthDate = dayjs(new Date()).startOf("month").toDate()
+  const endOfMonthDate = dayjs(new Date()).endOf("month").toDate()
+
   const [present, setPresent] = useState(false)
 
   const handleCheckbox = useCallback(
@@ -124,8 +127,6 @@ const ReactHookFormDatePicker = function <T extends FieldValues>({
       control={control}
       defaultValue={defaultValue || null}
       render={({ field, fieldState: { error } }) => {
-        const startOfMonthDate = pickerMode === "start" ? startOfMonth(new Date()) : endOfMonth(new Date())
-
         const selected = field.value && field.value !== projectDatePresent ? new Date(field.value) : null
 
         return (
@@ -145,8 +146,8 @@ const ReactHookFormDatePicker = function <T extends FieldValues>({
               inputProps={{
                 required,
                 helperText: getErrorMessage(error, field.value),
-                min: startOfMonthDate.toISOString().substr(0, 7),
-                max: endOfMonth(new Date()).toISOString().substr(0, 7),
+                min: (pickerMode === "start" ? startOfMonthDate : endOfMonthDate).toISOString().substr(0, 7),
+                max: endOfMonthDate.toISOString().substr(0, 7),
                 error: !!error?.message,
                 type: "text",
               }}
