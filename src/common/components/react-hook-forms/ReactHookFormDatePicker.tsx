@@ -40,9 +40,9 @@ function renderSwitch({
   present: boolean
 }): React.ReactNode {
   return (
-    <div className="flex h-full flex-col items-end justify-end">
-      <span>Present</span>
-      <Toggle name="present" checked={present} onChange={handleCheckbox} className="me-0" />
+    <div className="flex h-full flex-col items-center justify-start">
+      <span className="mb-4">Present</span>
+      <Toggle name="present" checked={present} onChange={handleCheckbox} classNameWrapper="me-0" />
     </div>
   )
 }

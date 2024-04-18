@@ -44,7 +44,14 @@ const PdfButtonSet = function (): JSX.Element | null {
   return (
     <>
       <RenderOnRole roles={["admin", "god"]}>
-        <Toggle text="Hide sensitive data" checked={checked} onChange={handleChange} disabled={tokenState.isGuest} />
+        <Toggle
+          label="Hide sensitive data"
+          checked={checked}
+          onChange={handleChange}
+          disabled={tokenState.isGuest}
+          classNameLabel="text-white"
+          className="peer-checked:bg-blue-800"
+        />
       </RenderOnRole>
       <RenderOnRole roles={["god"]}>
         <Button className="mx-3 px-6 py-2" variant="outline" color="secondary" onClick={toTableNavigateHandle}>

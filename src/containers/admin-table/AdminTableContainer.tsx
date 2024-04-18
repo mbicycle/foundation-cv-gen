@@ -154,7 +154,7 @@ function AdminTableContainer(): JSX.Element | null {
   function renderHideNoCvPersonnelControl(): JSX.Element {
     return (
       <div className="flex flex-row justify-end py-8">
-        <Toggle checked={checked} onChange={handleFilterChange} text="Hide without CV" />
+        <Toggle checked={checked} onChange={handleFilterChange} label="Hide without CV" />
       </div>
     )
   }
