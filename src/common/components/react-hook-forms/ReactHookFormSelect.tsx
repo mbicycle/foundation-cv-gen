@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { forwardRef } from "react"
 import type { Control, FieldValues } from "react-hook-form"
@@ -12,7 +11,6 @@ interface ReactHookFormSelectProps<T extends FieldValues> extends SelectProps {
   control: Control<T>
 }
 
-// eslint-disable-next-line prefer-arrow-callback
 const ReactHookFormSelect = forwardRef<unknown, ReactHookFormSelectProps<any>>(function <T extends FieldValues>(
   { name, control, onChange, value, options, multiple, label, ...props }: ReactHookFormSelectProps<T | any>,
   ref: any,

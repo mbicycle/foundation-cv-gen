@@ -15,7 +15,7 @@ const CertificateSelectionForm = function ({
 }): JSX.Element {
   return (
     <>
-      <div className="col-span-8">
+      <div className="col-span-8 w-full">
         <div className="w-full pt-1">
           <ReactHookFormTextFieldOutlined
             {...{
@@ -24,7 +24,6 @@ const CertificateSelectionForm = function ({
               state: defaultValue,
               label: CERTIFICATE_TITLE,
               type: "text",
-              variant: "outlined",
             }}
           />
         </div>

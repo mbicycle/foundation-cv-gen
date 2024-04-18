@@ -24,7 +24,7 @@ import { CategorySelection } from "./category-selection"
 import DatePickers from "./DatePickers"
 import Responsibilities from "./Responsibilities"
 
-function validateFrom(value: string | Date, schema: InferType<AnySchema>): InferType<AnySchema> {
+function validateFrom([value]: string[] | Date[], schema: InferType<AnySchema>): InferType<AnySchema> {
   const isValidDate = new Date(value).toString().toLowerCase() !== "invalid date"
   if (value && isValidDate) {
     return schema.max(value, "Start date must be less than end date.") as InferType<AnySchema>
@@ -32,7 +32,7 @@ function validateFrom(value: string | Date, schema: InferType<AnySchema>): Infer
   return schema
 }
 
-function validateTo(value2: string | Date, schema: InferType<AnySchema>): InferType<AnySchema> {
+function validateTo([value2]: string[] | Date[], schema: InferType<AnySchema>): InferType<AnySchema> {
   const isValidDate = new Date(value2).toString().toLowerCase() !== "invalid date"
   if (value2 && isValidDate) {
     return schema.min(value2, "End date must be more than start date.") as InferType<AnySchema>

@@ -1,6 +1,7 @@
 import { memo, useEffect, useMemo } from "react"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
+import dayjs from "dayjs"
 import { projectSchema, renderErrorMessage } from "fields/projects/components"
 import { CategorySelection } from "fields/projects/components/category-selection"
 import DatePickers from "fields/projects/components/DatePickers"
@@ -58,7 +59,14 @@ const EditProject = function (): JSX.Element | null {
     if (!project) return
 
     Object.entries(project).forEach(([key, value]) => {
-      if (key !== "responsibilities" && key !== "categories") {
+      if (key === "from" || key === "to") {
+        let parsedDate = null
+        if (value) {
+          if (dayjs(value).isValid()) parsedDate = new Date(value)
+          else parsedDate = value
+        }
+        formValues.setValue(key as keyof ProjectFieldValues, parsedDate)
+      } else if (key !== "responsibilities" && key !== "categories") {
         formValues.setValue(key as keyof ProjectFieldValues, value)
       }
     })

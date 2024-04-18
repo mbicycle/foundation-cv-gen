@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
-import { msalInstance } from "shared/utils/interceptors"
+import msGraphInstance from "shared/lib/msal/instance"
 
 import { useGuestToken } from "common/context/guest-token"
+
+const { msalInstance } = msGraphInstance
 
 export type UseRoleReturnType = "admin" | "god" | "user" | "guest"
 

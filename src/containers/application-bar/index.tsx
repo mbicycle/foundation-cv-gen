@@ -1,11 +1,12 @@
 import { Fragment, memo } from "react"
 import { Link } from "react-router-dom"
 import { Menu, Transition } from "@headlessui/react"
+import { CONFIG } from "shared/config/envConfig"
+import msGraphInstance from "shared/lib/msal/instance"
 import msalUtils from "shared/msalUtils"
-import { msalConfig } from "shared/utils/authConfig"
-import { msalInstance } from "shared/utils/interceptors"
 
 import { Button, Divider } from "@mbicycle/foundation-ui-kit"
+import { logoutFn } from "@mbicycle/msal-bundle"
 
 import { ROUTE } from "common/components/routes/utils/constants"
 import { useGuestToken } from "common/context/guest-token"
@@ -20,15 +21,8 @@ const ApplicationBar = function (): JSX.Element {
   const { photo } = useUserPhoto()
   const { state: tokenState } = useGuestToken()
 
-  const logoutHandle = async (): Promise<void> => {
-    const msalAccount = msalInstance.getAllAccounts()[0]
-    const logoutRequest = {
-      account: msalAccount,
-      postLogoutRedirectUri: msalConfig.auth.redirectUri,
-      mainWindowRedirectUri: msalConfig.auth.redirectUri,
-    }
-
-    await msalInstance.logoutPopup(logoutRequest)
+  const logoutHandle = () => {
+    logoutFn(msGraphInstance.msalInstance, `${CONFIG.redirectUri}?logout=true`)
   }
 
   const renderUserMenu = (): JSX.Element | null => {

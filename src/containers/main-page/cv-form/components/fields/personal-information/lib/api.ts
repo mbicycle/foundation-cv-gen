@@ -1,5 +1,6 @@
 import type { AxiosError, AxiosResponse } from "axios"
-import { axiosInstance, graph } from "shared/utils/interceptors"
+import msGraphInstance from "shared/lib/msal/instance"
+import { axiosInstance } from "shared/utils/interceptors"
 
 import type { DbUser } from "common/models/User"
 
@@ -15,7 +16,7 @@ export const updateDbUser = async (user: DbUser): Promise<DbUser> =>
 
 export const updateMsUserAvatar = async (file: File): Promise<ReadableStream> =>
   new Promise<ReadableStream>((resolve, reject) => {
-    graph.graphClient
+    msGraphInstance.graphClient
       .api("/me/photo/$value")
       .put(file)
       .then((response: ReadableStream) => resolve(response))

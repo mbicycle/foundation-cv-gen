@@ -1,7 +1,7 @@
 import type { AxiosInstance } from "axios"
 import axios from "axios"
+import msGraphInstance from "shared/lib/msal/instance"
 import { getGuestToken } from "shared/utils/getGuestToken"
-import graph from "shared/utils/interceptors/ms-graph-interceptor"
 
 export const createAxiosInstance = (url: string): AxiosInstance => {
   const axiosInstance = axios.create({
@@ -12,9 +12,8 @@ export const createAxiosInstance = (url: string): AxiosInstance => {
   axiosInstance.interceptors.response.use(
     async (response) => {
       if (response.headers && !token) {
-        const msalRequest = graph.getRequest()
-        const tokenSilent = await graph.msalInstance.acquireTokenSilent(msalRequest)
-        response.headers.Authorization = `Bearer ${tokenSilent.idToken}`
+        const tokenSilent = await msGraphInstance.acquireToken()
+        if (tokenSilent) response.headers.Authorization = `Bearer ${tokenSilent.idToken}`
       }
 
       return response
@@ -25,9 +24,8 @@ export const createAxiosInstance = (url: string): AxiosInstance => {
   axiosInstance.interceptors.request.use(
     async (request) => {
       if (request.headers && !token) {
-        const msalRequest = graph.getRequest()
-        const tokenSilent = await graph.msalInstance.acquireTokenSilent(msalRequest)
-        request.headers.Authorization = `Bearer ${tokenSilent.idToken}`
+        const tokenSilent = await msGraphInstance.acquireToken()
+        if (tokenSilent) request.headers.Authorization = `Bearer ${tokenSilent.idToken}`
         request.headers["Content-Type"] = "application/json"
       }
 

@@ -137,7 +137,10 @@ const AvatarModalContent: React.FC<AvatarModalContentProps> = function (props) {
   }
 
   return (
-    <div className="absolute left-1/2 top-1/2 min-w-[600px] max-w-[1200px] -translate-x-1/2 -translate-y-1/2 transform bg-white p-8">
+    <div
+      className="absolute left-1/2 top-1/2 min-w-[600px] max-w-[1200px]
+     -translate-x-1/2 -translate-y-1/2 transform bg-white p-8"
+    >
       <div {...getRootProps({ className: "dropzone" })} className="mb-4">
         <div className="flex items-center justify-center rounded-lg border border-dashed px-5 py-16">
           <h5 className="text-gray-500">{photo ? Text.UpdatePhoto : Text.FileUpload}</h5>

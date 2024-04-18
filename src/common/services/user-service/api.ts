@@ -1,11 +1,12 @@
 import type { AxiosError, AxiosResponse } from "axios"
-import { axiosInstance, graph } from "shared/utils/interceptors"
+import msGraphInstance from "shared/lib/msal/instance"
+import { axiosInstance } from "shared/utils/interceptors"
 
 const axios = axiosInstance
 
 export const getUserPhoto = async (): Promise<Blob> =>
   new Promise<Blob>((resolve, reject) => {
-    graph.graphClient
+    msGraphInstance.graphClient
       .api("/me/photo/$value")
       .get()
       .then((response: Blob) => resolve(response))
@@ -14,7 +15,7 @@ export const getUserPhoto = async (): Promise<Blob> =>
 
 export const getUserPhotoById = async (id: string): Promise<Blob> =>
   new Promise<Blob>((resolve, reject) => {
-    graph.graphClient
+    msGraphInstance.graphClient
       .api(`/users/${id}/photo/$value`)
       .get()
       .then((response: Blob) => resolve(response))

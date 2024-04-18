@@ -1,10 +1,10 @@
+/* eslint-disable max-len */
 import type { SVGProps } from "react"
 import { memo } from "react"
 
 const TelegramIcon = function (props: SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg {...props} xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 26 26">
-      {/* eslint-disable-next-line max-len */}
       <path
         fillRule="evenodd"
         clipRule="evenodd"

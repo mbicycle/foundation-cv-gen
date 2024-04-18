@@ -21,6 +21,7 @@ const EnglishLanguageItem: React.FC<EnglishLanguageItemProps> = function ({ leve
 
   return (
     <div className="mb-2 inline-flex w-full items-center rounded-lg border p-2">
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <div className="w-full cursor-pointer" onClick={openHandle}>
         <div className="pl-4">
           <p>English</p>

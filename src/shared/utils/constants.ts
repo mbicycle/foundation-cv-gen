@@ -9,12 +9,6 @@ export enum Text {
   Certifications = "CERTIFICATIONS",
 }
 
-export enum Endpoint {
-  Refresh = "/auth/refresh",
-  AuthToken = "/auth",
-  Me = "/me",
-}
-
 export const mockUser: MsUser = {
   businessPhones: [],
   displayName: "",

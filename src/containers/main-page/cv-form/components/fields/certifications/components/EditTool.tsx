@@ -38,7 +38,10 @@ const CertificateEditTool = function (): JSX.Element {
     formState: { isDirty },
   } = useForm<Certificate>({
     mode: "onChange",
-    defaultValues: { ...state },
+    defaultValues: {
+      ...state,
+      date: state.date ? new Date(state.date) : undefined,
+    },
     resolver: yupResolver(schema),
   })
   const navigate = useNavigate()
@@ -62,28 +65,26 @@ const CertificateEditTool = function (): JSX.Element {
   useUnsaved(isDirty)
 
   return (
-    <form onSubmit={handleSubmit(onSaveHandle)}>
-      <div>
-        <div className="flex flex-nowrap justify-between gap-6">
-          <CertificateSelectionForm control={control} defaultValue={state} />
-        </div>
-        <div className="w-full pt-4">
-          <ReactHookFormTextFieldOutlined
-            {...{
-              name: "link",
-              control,
-              label: CERTIFICATE_LINK,
-              type: "text",
-              variant: "outlined",
-              state,
-            }}
-          />
-        </div>
-        <div className="saveBtnWrapper">
-          <Button disabled={false} type="submit" variant="outline">
-            {ButtonStep.Save}
-          </Button>
-        </div>
+    <form onSubmit={handleSubmit(onSaveHandle)} className="w-full">
+      <div className="flex w-full flex-nowrap justify-between gap-6">
+        <CertificateSelectionForm control={control} defaultValue={state} />
+      </div>
+      <div className="w-full pt-4">
+        <ReactHookFormTextFieldOutlined
+          {...{
+            name: "link",
+            control,
+            label: CERTIFICATE_LINK,
+            type: "text",
+            variant: "outlined",
+            state,
+          }}
+        />
+      </div>
+      <div className="saveBtnWrapper">
+        <Button disabled={false} type="submit" variant="outline">
+          {ButtonStep.Save}
+        </Button>
       </div>
     </form>
   )

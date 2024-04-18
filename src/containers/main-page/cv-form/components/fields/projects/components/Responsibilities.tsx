@@ -80,7 +80,7 @@ const Responsibilities = function ({
             />
           </div>
           <div className="w-[40%]">
-            <button type="button" className="deleteBtn mb-2.5 ml-2" onClick={() => remove(index)}>
+            <button type="button" aria-label="delete" className="deleteBtn mb-2.5 ml-2" onClick={() => remove(index)}>
               <GarbageIcon className="size-5 text-blue-500" />
             </button>
           </div>

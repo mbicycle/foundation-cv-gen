@@ -20,7 +20,6 @@ function TableCell(props: TableRowProps): JSX.Element {
   const { items, columns } = data
   const { wildcard, column } = state
 
-  // eslint-disable-next-line max-len
   // https://stackoverflow.com/questions/51936127/react-virtualized-multigrid-component-skips-first-row-in-data-set
   const item = items[rowIndex - 1]
   const { dataKey } = columns[colIndex]
