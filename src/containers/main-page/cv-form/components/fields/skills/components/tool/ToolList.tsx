@@ -25,7 +25,6 @@ interface DragState {
 function ToolList(props: IToolListProps): JSX.Element {
   const { tools, move, formState, newTool, control, onDeleteToolHandle } = props
 
-  const [expandedId, setExpandedId] = useState(newTool?.id ?? "")
   const elementRef = useRef<null | HTMLDivElement>(null)
   const scrollToElement = (): void =>
     elementRef.current?.scrollIntoView({
@@ -37,19 +36,10 @@ function ToolList(props: IToolListProps): JSX.Element {
   const [dragState, setDragState] = useState<DragState>(defaultDragState)
 
   useEffect(() => {
-    setExpandedId(newTool?.id ?? "")
-  }, [newTool])
-
-  useEffect(() => {
     setTimeout(() => {
       scrollToElement()
     }, 250)
-  }, [expandedId])
-
-  const handleExpanded = (toolId: string): void => {
-    const extendedId = toolId === expandedId ? "" : toolId
-    setExpandedId(extendedId)
-  }
+  }, [newTool])
 
   const onDragStart = (id: string, index: number): void => {
     setDragState({
@@ -109,8 +99,7 @@ function ToolList(props: IToolListProps): JSX.Element {
                 key={tool.id}
                 tool={tools[index]}
                 index={index}
-                expanded={expandedId === tool.id}
-                handleExpanded={handleExpanded}
+                expanded={!!newTool}
                 onDeleteTool={() => onDeleteToolHandle(index, tools[index].id)}
                 control={control}
                 errorText={formState.errors?.tools && formState.errors?.tools[index]?.name?.message}

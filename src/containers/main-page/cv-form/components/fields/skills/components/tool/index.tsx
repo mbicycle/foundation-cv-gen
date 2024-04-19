@@ -16,7 +16,6 @@ import TimeUsedInput from "./TimeUsedInput"
 interface ToolProps {
   tool: ToolType
   expanded: boolean
-  handleExpanded: (fieldId: string) => void
   onDeleteTool: (id: string) => void
   control: Control<Skill>
   index: number
