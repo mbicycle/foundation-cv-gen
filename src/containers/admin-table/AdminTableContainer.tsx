@@ -196,7 +196,7 @@ function AdminTableContainer(): JSX.Element | null {
           <Button onClick={clickHandler} type="submit" disabled={isLoading} className="p-6" icon={LinkIcon}>
             {ShareButton.Label}
           </Button>
-          <Tooltip content={tooltipShareText} classNameContent="w-[300px] left-[-150px] top-[20px]">
+          <Tooltip content={tooltipShareText} classNameContent="left-[-150px] top-[20px] w-[300px]">
             <InfoIcon className="pt-1 text-lg" />
           </Tooltip>
         </div>
