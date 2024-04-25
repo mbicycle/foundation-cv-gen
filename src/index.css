@@ -90,7 +90,7 @@ body {
     /* PREVIEW */
 
     .previewItemWrapper {
-        @apply mx-6 mt-4 max-w-full break-words rounded-lg border bg-white p-6 drop-shadow
+        @apply mx-6 mt-4 max-w-full break-words rounded-lg border bg-white p-6 drop-shadow truncate
     }
 
     .iconBackground {
@@ -103,7 +103,7 @@ body {
 
     /* FORM */
     .listWrapper {
-        @apply max-h-[calc(100vh-25rem)] min-h-32 p-8 overflow-auto w-full;
+        @apply max-h-[calc(100vh-25rem)] min-h-32 p-4 overflow-auto w-full border rounded-lg;
     }
 
     .saveBtnWrapper {

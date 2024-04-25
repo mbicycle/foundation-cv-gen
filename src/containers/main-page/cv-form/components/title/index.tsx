@@ -7,8 +7,8 @@ const CVFormTitle = function (): JSX.Element {
   const { activeStep } = useSetStep()
 
   return (
-    <div className="mt-4">
-      <h2 className="mb-8 mt-6 text-2xl font-bold">{CVTitles[activeStep]?.title}</h2>
+    <div className="mt-6">
+      <h2 className="mb-4 text-2xl font-bold">{CVTitles[activeStep]?.title}</h2>
     </div>
   )
 }

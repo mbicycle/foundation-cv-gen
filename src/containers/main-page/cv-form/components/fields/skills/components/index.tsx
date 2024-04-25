@@ -150,7 +150,7 @@ const Skill = function (): JSX.Element {
       className="relative flex h-max w-full flex-1 grow flex-col rounded-lg"
       onSubmit={handleSubmit(onFormSubmitHandle)}
     >
-      <div className="w-full p-8">
+      <div className="w-full">
         <div className="mb-8 flex flex-nowrap items-end gap-4 pt-3">
           <div className="w-3/4">
             <ReactHookFormTextFieldOutlined

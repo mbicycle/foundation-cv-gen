@@ -57,7 +57,7 @@ const PersonalInformation = function (): JSX.Element {
       <div className="grid grid-cols-12 gap-2">
         <div className="col-span-2">{renderUserImage()}</div>
         <div className="col-span-7">
-          <h3 className="font-bold">{userName}</h3>
+          <h3 className="text-xl font-bold">{userName}</h3>
           <h4 className="font-light">{title || jobTitle}</h4>
         </div>
         <div className="col-span-3 text-center">{renderYearsExperience()}</div>

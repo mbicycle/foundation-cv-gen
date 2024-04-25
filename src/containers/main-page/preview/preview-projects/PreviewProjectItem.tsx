@@ -31,7 +31,7 @@ const PreviewProjectItem: React.FC<PreviewProjectItemProps> = function (props) {
   function renderHiddenLink(): JSX.Element {
     if (!hiddenSensitiveData) {
       return (
-        <a href={link} className="max-w-full overflow-hidden truncate whitespace-nowrap text-blue-500">
+        <a href={link} className="link block max-w-full overflow-hidden truncate whitespace-nowrap">
           {link}
         </a>
       )
@@ -43,7 +43,7 @@ const PreviewProjectItem: React.FC<PreviewProjectItemProps> = function (props) {
     if (!link) return null
     return (
       <div className="pt-3">
-        <h6>
+        <h6 className="font-semibold">
           {`${productLink}`}
           &nbsp;
         </h6>
@@ -72,24 +72,24 @@ const PreviewProjectItem: React.FC<PreviewProjectItemProps> = function (props) {
 
   return (
     <div className="my-4">
-      <h5 className="uppercase">
+      <h5 className="font-semibold uppercase">
         <CircleIcon className="mb-0.5 mr-1.5 inline size-2 text-blue-500" />
         {title}
       </h5>
       {renderProjectLink()}
       <div>
-        <h6 className="pt-3">{descrTitle}</h6>
+        <h6 className="pt-3 font-semibold">{descrTitle}</h6>
       </div>
       <p className="whitespace-pre-wrap break-words text-gray-600">{description}</p>
       <div className="pt-3">
-        <h6 className="inline">
+        <h6 className="inline font-semibold">
           {duration}
           &nbsp;
         </h6>
         <span className="text-gray-600">{fromTo}</span>
       </div>
       <div className="pt-3">
-        <h6>{respTitle}</h6>
+        <h6 className="font-semibold">{respTitle}</h6>
       </div>
       <ul className="block pl-8 pt-3">
         {responsibilities.map((responsibility) => (
@@ -99,24 +99,24 @@ const PreviewProjectItem: React.FC<PreviewProjectItemProps> = function (props) {
         ))}
       </ul>
       <div className="pt-3">
-        <h6 className="inline">
+        <h6 className="inline font-semibold">
           {`${sizeTitle}`}
           &nbsp;
         </h6>
         <span className="text-gray-600">{teamSize}</span>
       </div>
       <div className="pt-3">
-        <h6 className="inline">
+        <h6 className="inline font-semibold">
           {`${projectRole}`}
           &nbsp;
         </h6>
         <span className="text-gray-600">{role}</span>
       </div>
       <div className="pt-3">
-        <p>
+        <h6 className="font-semibold">
           {toolsAndTechs}
           &nbsp;
-        </p>
+        </h6>
         {categories?.map((category) => renderCategory(category))}
       </div>
     </div>

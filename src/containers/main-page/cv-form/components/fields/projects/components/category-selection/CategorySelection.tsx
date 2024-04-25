@@ -136,7 +136,7 @@ const SkillSelection = function ({ formValues, defaultValues }: CategorySelectio
       <div className="inline-flex">
         <h5 className="mb-2 pb-2 pr-1">{CategoryAddText.Title}</h5>
         <Tooltip content={tooltipText} classNameContent="w-[300px]">
-          <InfoIcon className="pt-1 font-medium" />
+          <InfoIcon className="ml-1 size-6 text-lg text-gray-700" />
         </Tooltip>
       </div>
       <div>
