@@ -3,6 +3,7 @@ import { useCookies } from "react-cookie"
 import { AuthenticatedTemplate, MsalProvider, UnauthenticatedTemplate } from "@azure/msal-react"
 import msGraphInstance from "shared/lib/msal/instance"
 import { getGuestTokenValidity } from "shared/msalUtils/features/api"
+import { AUTH_COOKIE_NAME, GUEST_TOKEN_NAME } from "shared/utils/constants"
 import { setCookie } from "shared/utils/cookie"
 
 import ApplicationBar from "containers/application-bar"
@@ -15,19 +16,23 @@ import { useGuestToken } from "common/context/guest-token/useGuestToken"
 import ReactQueryProvider from "common/providers/ReactQueryProvider"
 import useBeforeUnload from "common/utils/hooks/useBeforeUnload"
 
-export const AUTH_COOKIE_NAME = "msalUserEmail"
-export const TOKEN_COOKIE_NAME = "token"
-
 const AppRender = function (): JSX.Element {
   const [{ msalUserEmail }] = useCookies([AUTH_COOKIE_NAME])
 
+  const params = new URL(document.location.toString()).searchParams
+  const token = params.get(GUEST_TOKEN_NAME)
+
+  setCookie(GUEST_TOKEN_NAME, token || "")
+
   useEffect(() => {
     if (msalUserEmail) {
-      msGraphInstance.ssoSilent(msalUserEmail)
+      if (!token) {
+        msGraphInstance.ssoSilent(msalUserEmail)
+      }
     } else {
       msGraphInstance.msalInstance.clearCache()
     }
-  }, [msalUserEmail])
+  }, [msalUserEmail, token])
 
   const {
     dispatch,
@@ -35,14 +40,9 @@ const AppRender = function (): JSX.Element {
   } = useGuestToken()
   useBeforeUnload(isGuest)
 
-  const params = new URL(document.location.toString()).searchParams
-  const token = params.get("token")
-
-  setCookie(TOKEN_COOKIE_NAME, token || "")
-
   useEffect(() => {
     const clearCookie = (): void => {
-      setCookie(TOKEN_COOKIE_NAME, "")
+      setCookie(GUEST_TOKEN_NAME, "")
     }
 
     window.addEventListener("beforeunload", clearCookie)

@@ -22,3 +22,6 @@ export const mockUser: MsUser = {
   userPrincipalName: "",
   id: "",
 }
+
+export const AUTH_COOKIE_NAME = "msalUserEmail"
+export const GUEST_TOKEN_NAME = "guestToken"
