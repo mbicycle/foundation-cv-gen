@@ -156,23 +156,12 @@
                 "^@"
               ],
               // src imports
-//              ["^app"],
-//              ["^entities"],
-//              ["^pages"],
-//              ["^widgets"],
-//              ["^shared"],
-              [
-                "^src",
-                "^containers",
-                "^common"
-              ],
-              [
-                "^stores",
-                "^hooks"
-              ],
-              [
-                "^utils"
-              ],
+              ["^app"],
+              ["^pages"],
+              ["^widgets"],
+              ["^features"],
+              ["^entities"],
+              ["^shared"],
               // Imports starting with `../`
               [
                 "^\\.\\.(?!/?$)",
