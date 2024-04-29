@@ -1,4 +1,4 @@
-import { ApplicationBarEmpty } from "containers/application-bar/AppBarEmpty"
+import { ApplicationBarEmpty } from "widgets/app-bar/ui/AppBarEmpty"
 
 function ErrorScreen({ title, message }: { title: string; message: string }): JSX.Element {
   return (

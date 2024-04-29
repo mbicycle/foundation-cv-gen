@@ -6,9 +6,9 @@ import EditLanguageCategory from "fields/languages/components/EditLanguageCatego
 import LanguageSelection from "fields/languages/components/LanguageSelection"
 import EditProject from "fields/projects/components/tool/EditProject"
 import Skill from "fields/skills/components"
+import Login from "pages/login"
 import NotFound from "pages/not-found"
 
-import Login from "containers/login"
 import MainPage from "containers/main-page"
 
 import { ROUTE } from "./constants"
@@ -21,7 +21,7 @@ const Skills = lazy(() => import("fields/skills"))
 const Projects = lazy(() => import("fields/projects"))
 const Certifications = lazy(() => import("fields/certifications"))
 const Project = lazy(() => import("fields/projects/components"))
-const AdminTable = lazy(() => import("containers/admin-table"))
+const AdminTable = lazy(() => import("../../../pages/admin"))
 
 const routerConfig: RouteObject[] = [
   {
