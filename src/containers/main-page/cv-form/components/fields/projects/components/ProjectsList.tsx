@@ -1,9 +1,9 @@
 import { memo } from "react"
+import type { Project } from "entities/user/model"
 import { useDeleteProject } from "fields/projects/lib/query-hooks"
 
 import { useGuestToken } from "common/context/guest-token"
 import { useGuestUser } from "common/context/guest-user"
-import type { Project } from "common/models/User"
 
 import ProjectItem from "./ProjectItem"
 

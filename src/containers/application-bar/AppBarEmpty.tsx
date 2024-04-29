@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
-
-import { ROUTE } from "common/components/routes/utils/constants"
-import LogoIcon from "common/icons/LogoIcon"
+import { ROUTE } from "app/routes/utils/constants"
+import LogoIcon from "shared/ui/icons/LogoIcon"
 
 export const ApplicationBarEmpty = function (): JSX.Element {
   return (

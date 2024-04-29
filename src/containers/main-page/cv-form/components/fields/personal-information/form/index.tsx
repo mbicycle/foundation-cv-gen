@@ -1,11 +1,11 @@
 import { memo } from "react"
+import CircularSpinner from "shared/ui/circular-spinner/circular-spinner"
+import ReactHookFormTextFieldOutlined from "shared/ui/react-hook-forms/ReactHookFormTextFieldOutlined"
+import useBeforeUnload from "shared/utils/hooks/useBeforeUnload"
 
 import { Button } from "@mbicycle/foundation-ui-kit"
 
-import CircularSpinner from "common/components/circular-spinner/circular-spinner"
-import ReactHookFormTextFieldOutlined from "common/components/react-hook-forms/ReactHookFormTextFieldOutlined"
 import { useGuestToken } from "common/context/guest-token"
-import useBeforeUnload from "common/utils/hooks/useBeforeUnload"
 
 import { InputLabel, InputName } from "./constants"
 import { useUpdatePersonalData } from "./hooks"

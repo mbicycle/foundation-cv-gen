@@ -1,11 +1,11 @@
 import { useMemo } from "react"
+import { useUserPhoto } from "shared/api/user-service/hooks/useUserPhoto"
+import PersonIcon from "shared/ui/icons/PersonIcon"
+import { useUserExperience } from "shared/utils/hooks/useUserExperience"
 
 import { useUserFromDb } from "containers/main-page/cv-form/api/query-hooks"
 import { CV_FORM_STEPS } from "containers/main-page/cv-form/utils/constants"
-import { useToggleSensitiveData } from "common/context"
-import PersonIcon from "common/icons/PersonIcon"
-import { useUserPhoto } from "common/services/user-service/hooks/useUserPhoto"
-import { useUserExperience } from "common/utils/hooks/useUserExperience"
+import { useToggleSensitiveData } from "common/context/toggle-sensetive-data"
 
 import { useMsGraph } from "./lib/query-hooks"
 

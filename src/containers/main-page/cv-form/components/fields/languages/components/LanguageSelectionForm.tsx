@@ -1,11 +1,11 @@
 import { memo, useEffect, useState } from "react"
+import type { UserLanguage } from "entities/user/model"
 import { LANGUAGE, LanguageInputName, LEVEL } from "fields/languages/utils/constants"
 
 import { Autocomplete, Select } from "@mbicycle/foundation-ui-kit"
 
 import { LANGUAGES as languages } from "containers/main-page/cv-form/components/fields/languages/lib/constants"
 import type { CategoryNameStateLanguage } from "containers/main-page/cv-form/local-state/CategoryIdContext"
-import type { UserLanguage } from "common/models/User"
 
 import { LEVELS as levels } from "./utils/constants"
 import type { Labels } from "./utils/level.enum"

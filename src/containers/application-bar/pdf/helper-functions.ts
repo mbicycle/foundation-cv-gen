@@ -1,9 +1,9 @@
+import { ubuntuBold } from "app/assets/fonts/ubuntu-bold"
+import { ubuntuMedium } from "app/assets/fonts/ubuntu-medium"
+import { ubuntuRegular } from "app/assets/fonts/ubuntu-regular"
 import type JsPDF from "jspdf"
 
 import { INDENT_FROM_LEFT, PAGE_WIDTH } from "containers/application-bar/pdf/const"
-import { ubuntuBold } from "common/fonts/ubuntu-bold"
-import { ubuntuMedium } from "common/fonts/ubuntu-medium"
-import { ubuntuRegular } from "common/fonts/ubuntu-regular"
 
 export function fromPxToMm(size: number | undefined): number {
   return ((size ?? 1) * 25.4) / 100

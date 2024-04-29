@@ -1,4 +1,4 @@
-import type { Project, Skill } from "common/models/User"
+import type { Project, Skill } from "entities/user/model"
 
 export const getFileName = (name: string, isHidden: boolean): string => {
   const nameArr = name.split(" ")

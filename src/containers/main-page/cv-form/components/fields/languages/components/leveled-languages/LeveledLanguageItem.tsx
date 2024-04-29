@@ -1,8 +1,8 @@
 import { memo, useCallback, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import ProfiencyItem from "shared/widgets/profiency/ProfiencyItem"
 
 import { useCategoryLanguageContext } from "containers/main-page/cv-form/local-state/hooks"
-import ProfiencyItem from "common/components/profiency/ProfiencyItem"
 
 interface LeveledLanguageItemProps {
   language: string

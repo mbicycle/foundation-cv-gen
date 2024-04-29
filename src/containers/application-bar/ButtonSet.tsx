@@ -1,15 +1,15 @@
 import { memo, useEffect } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { ArrowUpTrayIcon as FileUploadOutlinedIcon } from "@heroicons/react/24/outline"
+import { ROUTE } from "app/routes/utils/constants"
+import { useValidateCV } from "shared/utils/hooks/useValidateCV"
+import RenderOnRole from "shared/widgets/render-on-role/RenderOnRole"
 
 import { Button, Toggle } from "@mbicycle/foundation-ui-kit"
 
 import { useUserFromDb } from "containers/main-page/cv-form/api/query-hooks"
-import RenderOnRole from "common/components/render-on-role/RenderOnRole"
-import { ROUTE } from "common/components/routes/utils/constants"
-import { useToggleSensitiveData } from "common/context"
 import { useGuestToken } from "common/context/guest-token"
-import { useValidateCV } from "common/utils/hooks/useValidateCV"
+import { useToggleSensitiveData } from "common/context/toggle-sensetive-data"
 
 import { useSavePDFFile } from "./pdf/useSavePdfFile"
 import { useSaveWordFile } from "./word/hooks/useSaveWordFile"

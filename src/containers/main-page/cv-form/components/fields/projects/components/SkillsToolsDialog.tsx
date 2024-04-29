@@ -1,11 +1,10 @@
 import { memo, useEffect, useMemo, useState } from "react"
 import type { Control, FieldArrayWithId } from "react-hook-form"
+import type { DbUser, Skill } from "entities/user/model"
+import ReactHookFormSelect from "shared/ui/react-hook-forms/ReactHookFormSelect"
+import { ButtonText } from "shared/widgets/add-pattern/constants"
 
 import { Button, Modal } from "@mbicycle/foundation-ui-kit"
-
-import { ButtonText } from "common/components/add-pattern/constants"
-import ReactHookFormSelect from "common/components/react-hook-forms/ReactHookFormSelect"
-import type { DbUser, Skill } from "common/models/User"
 
 import type { CategoryItemProps } from "./category-selection/CategorySelection"
 import { CategoryAddText } from "./utils/constants"
@@ -89,7 +88,7 @@ const SkillsToolsDialog = function (props: SkillsToolsDialogProps): JSX.Element 
   const toolOptions = useMemo(() => skill?.tools || [], [skill?.tools])
 
   return (
-    <Modal open={open} onClose={onClose} title={CategoryAddText.DialogTitle} classNameContent="py-12 px-14">
+    <Modal open={open} onClose={onClose} title={CategoryAddText.DialogTitle} classNameContent="px-14 py-12">
       <form onSubmit={doSubmit} id="skill-form" className="mt-10">
         <div className="mb-14 flex min-w-[400px] max-w-52 gap-4">
           <div className="w-full">

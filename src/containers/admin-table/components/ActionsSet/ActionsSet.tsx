@@ -1,11 +1,11 @@
 import { memo } from "react"
+import CircularSpinner from "shared/ui/circular-spinner/circular-spinner"
+import DocxIcon from "shared/ui/icons/DocxIcon"
+import PdfIcon from "shared/ui/icons/PdfIcon"
 
 import { useSaveAdminPdfFile } from "containers/application-bar/pdf/useSavePdfFile"
 import { useSaveAdminWordFile } from "containers/application-bar/word/hooks/useSaveAdminWordFile"
 import { useGetDbUser } from "containers/main-page/cv-form/api/query-hooks"
-import CircularSpinner from "common/components/circular-spinner/circular-spinner"
-import DocxIcon from "common/icons/DocxIcon"
-import PdfIcon from "common/icons/PdfIcon"
 
 interface ActionsSetProps {
   id: string

@@ -1,7 +1,6 @@
 import { memo } from "react"
-
-import CircleIcon from "common/icons/CircleIcon"
-import type { Tool } from "common/models/User"
+import type { Tool } from "entities/user/model"
+import CircleIcon from "shared/ui/icons/CircleIcon"
 
 interface ToolItemProps {
   tool: Tool

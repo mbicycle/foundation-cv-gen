@@ -1,10 +1,10 @@
 import { memo, useMemo } from "react"
 import Highlighter from "react-highlight-words"
 import dayjs from "dayjs"
+import { Color } from "shared/config/theme"
 
 import ActionsSet from "containers/admin-table/components/ActionsSet"
 import { useWildcardContext } from "containers/admin-table/local-state"
-import { Color } from "common/theme/maps/config"
 
 interface TableRowProps {
   rowIndex: number

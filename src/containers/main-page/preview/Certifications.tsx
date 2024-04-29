@@ -1,10 +1,10 @@
 import { useEffect } from "react"
 import { useIsFetching } from "react-query"
 import { DocumentTextIcon } from "@heroicons/react/24/solid"
+import CircleIcon from "shared/ui/icons/CircleIcon"
 
 import { useUserFromDb } from "containers/main-page/cv-form/api/query-hooks"
 import { CV_FORM_STEPS, QueryKey } from "containers/main-page/cv-form/utils/constants"
-import CircleIcon from "common/icons/CircleIcon"
 
 import { formatDateAsianStandart } from "./lib/helpers"
 

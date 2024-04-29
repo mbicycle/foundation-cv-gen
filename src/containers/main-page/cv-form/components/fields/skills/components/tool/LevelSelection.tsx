@@ -1,12 +1,11 @@
 import { memo } from "react"
 import type { Control } from "react-hook-form"
 import { Controller } from "react-hook-form"
+import type { Skill } from "entities/user/model"
 import { TOOL_LEVELS as levels } from "fields/languages/components/utils/constants"
 import { HelperText, LevelInputText, TOOLS_NAME } from "fields/skills/utils/constants"
 
 import { Select } from "@mbicycle/foundation-ui-kit"
-
-import type { Skill } from "common/models/User"
 
 interface LevelSelectionProps {
   control: Control<Skill>

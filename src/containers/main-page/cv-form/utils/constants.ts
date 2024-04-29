@@ -1,5 +1,6 @@
+import { ROUTE } from "app/routes/utils/constants"
+
 import type { CategoryNameStateCertificates } from "containers/main-page/cv-form/local-state/CategoryIdContext"
-import { ROUTE } from "common/components/routes/utils/constants"
 
 export const enum Step {
   PersonalInformation,

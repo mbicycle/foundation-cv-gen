@@ -1,6 +1,5 @@
 import { memo } from "react"
-
-import ProfiencyItem from "common/components/profiency/ProfiencyItem"
+import ProfiencyItem from "shared/widgets/profiency/ProfiencyItem"
 
 type CategoryItemProps = {
   skill: string

@@ -1,10 +1,9 @@
 import type { UseMutationResult, UseQueryResult } from "react-query"
 import { useMutation, useQuery, useQueryClient } from "react-query"
-import { mockUser } from "shared/utils/constants"
-import { getGuestToken } from "shared/utils/getGuestToken"
-
-import SnackBarUtils from "common/components/SnackBar/SnackBarUtils"
-import type { MsUser } from "common/models/User"
+import type { MsUser } from "entities/user/model"
+import { mockUser } from "shared/lib/constants"
+import { getGuestToken } from "shared/lib/guest/getGuestToken"
+import SnackBarUtils from "shared/ui/SnackBar/SnackBarUtils"
 
 import * as api from "./api"
 

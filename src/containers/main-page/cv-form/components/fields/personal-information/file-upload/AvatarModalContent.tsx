@@ -1,11 +1,10 @@
 import React, { memo, useCallback, useEffect } from "react"
 import type { PercentCrop, PixelCrop } from "react-image-crop"
 import ReactCrop, { centerCrop, makeAspectCrop } from "react-image-crop"
+import { useUserPhoto } from "shared/api/user-service/hooks/useUserPhoto"
+import { debounce } from "shared/utils/helpers"
 
 import { Button } from "@mbicycle/foundation-ui-kit"
-
-import { useUserPhoto } from "common/services/user-service/hooks/useUserPhoto"
-import { debounce } from "common/utils/helpers"
 
 import { blobToCanvas, compressImageToLimit, toBlob } from "./utils/helpers"
 import { useFileUpload } from "./utils/hooks"

@@ -3,8 +3,11 @@ import { InformationCircleIcon as InfoIcon, LinkIcon } from "@heroicons/react/24
 import { Text } from "fields/personal-information/file-upload/utils/types"
 import { ShareButton, tooltipShareText } from "fields/projects/components/utils/constants"
 import sortBy from "lodash.sortby"
+import { useDeleteUserFromDb } from "shared/api/user-service/query-hooks"
 import { CONFIG } from "shared/config/envConfig"
-import { getGuestToken } from "shared/msalUtils/features/api"
+import { getGuestToken } from "shared/lib/msal/features/api"
+import CircularSpinner from "shared/ui/circular-spinner/circular-spinner"
+import SnackBarUtils from "shared/ui/SnackBar/SnackBarUtils"
 
 import { Button, Input, Modal, Toggle, Tooltip } from "@mbicycle/foundation-ui-kit"
 
@@ -12,9 +15,6 @@ import Search from "containers/admin-table/components/Search"
 import { AdminTable } from "containers/admin-table/components/VirtualizedTable"
 import { hooks } from "containers/admin-table/lib"
 import useTableDataContext from "containers/admin-table/local-state/useTableDataContext"
-import CircularSpinner from "common/components/circular-spinner/circular-spinner"
-import SnackBarUtils from "common/components/SnackBar/SnackBarUtils"
-import { useDeleteUserFromDb } from "common/services/user-service/query-hooks"
 
 import { useDbUsersList } from "./lib/query-hooks"
 import { MINIMUM_TABLE_HEIGHT } from "./utils/constants"

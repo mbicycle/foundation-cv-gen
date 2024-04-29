@@ -1,6 +1,10 @@
 import { useRef, useState } from "react"
 import { Document, Packer, Paragraph } from "docx"
+import type { DbUser } from "entities/user/model"
 import { saveAs } from "file-saver"
+import headerPic from "shared/assets/cv-gen-docx-header.png"
+import SnackBarUtils from "shared/ui/SnackBar/SnackBarUtils"
+import { getYearsExperience } from "shared/utils/hooks/useUserExperience"
 
 import { getFileName, refactorProjectSkills } from "containers/application-bar/helper-functions"
 import {
@@ -16,11 +20,7 @@ import {
   createSummary,
 } from "containers/application-bar/word/helper-functions"
 import { useGetUserDataFromMsGraph } from "containers/main-page/preview/lib/query-hooks"
-import headerPic from "common/assets/cv-gen-docx-header.png"
-import SnackBarUtils from "common/components/SnackBar/SnackBarUtils"
-import { useToggleSensitiveData } from "common/context"
-import type { DbUser } from "common/models/User"
-import { getYearsExperience } from "common/utils/hooks/useUserExperience"
+import { useToggleSensitiveData } from "common/context/toggle-sensetive-data"
 
 import { createWordProjects } from "./createWordProjects"
 import wordAdminCertifications from "./wordAdminCertifications"

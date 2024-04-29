@@ -1,12 +1,12 @@
 import { useEffect } from "react"
 import { useIsFetching } from "react-query"
+import EmailIcon from "shared/ui/icons/EmailIcon"
+import LogoIcon from "shared/ui/icons/LogoIcon"
+import SkypeIcon from "shared/ui/icons/SkypeIcon"
+import TelegramIcon from "shared/ui/icons/TelegramIcon"
 
 import { useUserFromDb } from "containers/main-page/cv-form/api/query-hooks"
-import { useToggleSensitiveData } from "common/context"
-import EmailIcon from "common/icons/EmailIcon"
-import LogoIcon from "common/icons/LogoIcon"
-import SkypeIcon from "common/icons/SkypeIcon"
-import TelegramIcon from "common/icons/TelegramIcon"
+import { useToggleSensitiveData } from "common/context/toggle-sensetive-data"
 
 const TopBox = function (): JSX.Element | null {
   const { data, refetch } = useUserFromDb()

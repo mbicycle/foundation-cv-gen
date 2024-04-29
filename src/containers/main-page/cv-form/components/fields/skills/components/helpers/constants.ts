@@ -1,7 +1,7 @@
+import type { Skill } from "entities/user/model"
 import * as yup from "yup"
 
 import { HelperText, SkillYearsRange } from "containers/main-page/cv-form/components/fields/skills/utils/constants"
-import type { Skill } from "common/models/User"
 
 export enum ErrorMessage {
   MinimumTwo = "Minimum 2 characters",

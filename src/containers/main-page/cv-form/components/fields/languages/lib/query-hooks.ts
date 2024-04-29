@@ -1,11 +1,11 @@
 import type { UseMutationResult } from "react-query"
 import { useMutation, useQueryClient } from "react-query"
+import type { DbUser, UserLanguage } from "entities/user/model"
 import { addUserLanguage, deleteUserLanguage } from "fields/languages/utils/functions"
+import SnackBarUtils from "shared/ui/SnackBar/SnackBarUtils"
 
 import { useUserFromDb } from "containers/main-page/cv-form/api/query-hooks"
 import { QueryKey } from "containers/main-page/cv-form/utils/constants"
-import SnackBarUtils from "common/components/SnackBar/SnackBarUtils"
-import type { DbUser, UserLanguage } from "common/models/User"
 
 import * as api from "./api"
 

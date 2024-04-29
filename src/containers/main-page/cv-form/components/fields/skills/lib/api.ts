@@ -1,7 +1,6 @@
 import type { AxiosError, AxiosResponse } from "axios"
-import { axiosInstance } from "shared/utils/interceptors"
-
-import type { DbUser } from "common/models/User"
+import type { DbUser } from "entities/user/model"
+import { axiosInstance } from "shared/api/axios"
 
 const axios = axiosInstance
 

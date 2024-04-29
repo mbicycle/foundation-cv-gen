@@ -1,13 +1,13 @@
 import React, { useMemo } from "react"
 import dayjs from "dayjs"
+import type { Project } from "entities/user/model"
 import { projectDatePresent } from "fields/projects/components/utils/constants"
+import CircleIcon from "shared/ui/icons/CircleIcon"
+import { projects } from "shared/utils/constants"
 import { v4 as uuidv4 } from "uuid"
 
 import { useUserFromDb } from "containers/main-page/cv-form/api/query-hooks"
-import { useToggleSensitiveData } from "common/context"
-import CircleIcon from "common/icons/CircleIcon"
-import type { Project } from "common/models/User"
-import { projects } from "common/utils/constants"
+import { useToggleSensitiveData } from "common/context/toggle-sensetive-data"
 
 interface PreviewProjectItemProps {
   project: Omit<Project, "id">

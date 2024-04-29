@@ -3,12 +3,11 @@ import type { UseFormReturn } from "react-hook-form"
 import { useFieldArray, useForm } from "react-hook-form"
 import { PlusCircleIcon as AddCircleOutlineIcon } from "@heroicons/react/24/outline"
 import type { ProjectFieldValues } from "fields/projects/utils/types"
+import GarbageIcon from "shared/ui/icons/GarbageIcon"
+import useBeforeUnload from "shared/utils/hooks/useBeforeUnload"
+import useUnsaved from "shared/utils/hooks/useUnSaved"
 
 import { Button, Input } from "@mbicycle/foundation-ui-kit"
-
-import GarbageIcon from "common/icons/GarbageIcon"
-import useBeforeUnload from "common/utils/hooks/useBeforeUnload"
-import useUnsaved from "common/utils/hooks/useUnSaved"
 
 import { ButtonText, Text } from "./utils/constants"
 

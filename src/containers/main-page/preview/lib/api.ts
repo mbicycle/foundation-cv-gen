@@ -1,6 +1,5 @@
+import type { MsUser } from "entities/user/model"
 import msGraphInstance from "shared/lib/msal/instance"
-
-import type { MsUser } from "common/models/User"
 
 export const getMyDataFromMsGraph = async (fields: string[]): Promise<unknown> => {
   const token = await msGraphInstance.acquireToken()

@@ -1,11 +1,11 @@
 import { memo, useMemo } from "react"
+import type { UserLanguage } from "entities/user/model"
 import EnglishLanguageItem from "fields/languages/components/EnglishLanguageItem"
 import { useDeleteUserLanguage } from "fields/languages/lib/query-hooks"
 import { deleteUserLanguage } from "fields/languages/utils/functions"
 
 import { useGuestToken } from "common/context/guest-token"
 import { useGuestUser } from "common/context/guest-user"
-import type { UserLanguage } from "common/models/User"
 
 import LeveledLanguageItem from "./LeveledLanguageItem"
 

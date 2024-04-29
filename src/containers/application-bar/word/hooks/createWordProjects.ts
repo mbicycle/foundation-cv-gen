@@ -1,12 +1,12 @@
 import dayjs from "dayjs"
 import type { ParagraphChild } from "docx"
 import { Paragraph, TextRun } from "docx"
+import type { Project } from "entities/user/model"
 import { projectDatePresent } from "fields/projects/components/utils/constants"
+import { Color } from "shared/config/theme"
 
 import { createHeadingWithHyperlink, INDENT, TextStyle } from "containers/application-bar/word/helper-functions"
-import { useToggleSensitiveData } from "common/context"
-import type { Project } from "common/models/User"
-import { Color } from "common/theme/maps/config"
+import { useToggleSensitiveData } from "common/context/toggle-sensetive-data"
 
 const createProjectTitle = (text: string): Paragraph =>
   new Paragraph({

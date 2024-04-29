@@ -1,7 +1,8 @@
+import CircleIcon from "shared/ui/icons/CircleIcon"
+import WarningIcon from "shared/ui/icons/Warning"
+import { useValidateCV } from "shared/utils/hooks/useValidateCV"
+
 import { PreviewWarningText } from "containers/main-page/preview/utils/constants"
-import CircleIcon from "common/icons/CircleIcon"
-import WarningIcon from "common/icons/Warning"
-import { useValidateCV } from "common/utils/hooks/useValidateCV"
 
 import PersonalDetails from "./PersonalDetails"
 import TopBox from "./TopBox"

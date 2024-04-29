@@ -1,15 +1,15 @@
 import type { UseMutationResult, UseQueryResult } from "react-query"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import { useMsal } from "@azure/msal-react"
+import type { DbUser, GuestUser } from "entities/user/model"
 import type { CreateUserModel } from "fields/personal-information/lib/types"
-import { useAuth } from "shared/msalUtils/features/auth"
-import { getGuestToken as getGuestTokenFromStorage } from "shared/utils/getGuestToken"
+import { getGuestToken as getGuestTokenFromStorage } from "shared/lib/guest/getGuestToken"
+import { useAuth } from "shared/lib/msal/features/auth"
+import SnackBarUtils from "shared/ui/SnackBar/SnackBarUtils"
 
 import { QueryKey } from "containers/main-page/cv-form/utils/constants"
 import { useGetUserDataFromMsGraph } from "containers/main-page/preview/lib/query-hooks"
-import SnackBarUtils from "common/components/SnackBar/SnackBarUtils"
 import { useGuestUser } from "common/context/guest-user"
-import type { DbUser, GuestUser } from "common/models/User"
 
 import * as api from "./api"
 

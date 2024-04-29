@@ -1,5 +1,8 @@
 import { useRef, useState } from "react"
+import type { DbUser } from "entities/user/model"
 import JsPDF from "jspdf"
+import { useUserPhoto, useUserPhotoById } from "shared/api/user-service/hooks/useUserPhoto"
+import SnackBarUtils from "shared/ui/SnackBar/SnackBarUtils"
 
 import { getFileName } from "containers/application-bar/helper-functions"
 import {
@@ -15,10 +18,7 @@ import {
 } from "containers/application-bar/pdf/draw-functions"
 import { useUserFromDb } from "containers/main-page/cv-form/api/query-hooks"
 import { useGetUserDataFromMsGraph, useMsGraph } from "containers/main-page/preview/lib/query-hooks"
-import SnackBarUtils from "common/components/SnackBar/SnackBarUtils"
-import { useToggleSensitiveData } from "common/context"
-import type { DbUser } from "common/models/User"
-import { useUserPhoto, useUserPhotoById } from "common/services/user-service/hooks/useUserPhoto"
+import { useToggleSensitiveData } from "common/context/toggle-sensetive-data"
 
 type HandleSave = (dbUser?: DbUser, userPhoto?: string, name?: string) => Promise<void>
 

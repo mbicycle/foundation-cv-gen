@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import type { Control, FieldArrayWithId, FormState } from "react-hook-form"
+import type { Skill, Tool as ToolType } from "entities/user/model"
 import { defaultDragState } from "fields/skills/components/skills/Constants"
-
-import type { Skill, Tool as ToolType } from "common/models/User"
 
 import Tool from "."
 

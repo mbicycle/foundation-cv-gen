@@ -1,13 +1,13 @@
 import { memo, useCallback, useState } from "react"
+import type { DbUser, Skill } from "entities/user/model"
 import { defaultDragState } from "fields/skills/components/skills/Constants"
 import { useAddOrEditSkill } from "fields/skills/lib/query-hooks"
+import SnackBarUtils from "shared/ui/SnackBar/SnackBarUtils"
 
 import { useDeleteSkill } from "containers/main-page/cv-form/components/fields/skills/components/helpers/hooks"
 import { SKILL_GROUP_ERROR_MESSAGE } from "containers/main-page/cv-form/components/fields/skills/utils/constants"
-import SnackBarUtils from "common/components/SnackBar/SnackBarUtils"
 import { useGuestToken } from "common/context/guest-token"
 import { useGuestUser } from "common/context/guest-user"
-import type { DbUser, Skill } from "common/models/User"
 
 import SkillListItem from "./CategoryItem"
 

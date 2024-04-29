@@ -1,14 +1,13 @@
 import type { CSSProperties } from "react"
 import React, { memo, useMemo } from "react"
 import type { Control } from "react-hook-form"
+import type { Skill, Tool as ToolType } from "entities/user/model"
 import { HelperText, Text, ToolInputText, TOOLS_NAME } from "fields/skills/utils/constants"
+import DragIndicatorIcon from "shared/ui/icons/DragIndicatorIcon"
+import GarbageIcon from "shared/ui/icons/GarbageIcon"
+import ReactHookFormTextFieldOutlined from "shared/ui/react-hook-forms/ReactHookFormTextFieldOutlined"
 
 import { Accordion } from "@mbicycle/foundation-ui-kit"
-
-import ReactHookFormTextFieldOutlined from "common/components/react-hook-forms/ReactHookFormTextFieldOutlined"
-import DragIndicatorIcon from "common/icons/DragIndicatorIcon"
-import GarbageIcon from "common/icons/GarbageIcon"
-import type { Skill, Tool as ToolType } from "common/models/User"
 
 import LevelSelection from "./LevelSelection"
 import TimeUsedInput from "./TimeUsedInput"

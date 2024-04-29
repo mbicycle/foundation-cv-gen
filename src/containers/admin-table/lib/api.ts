@@ -1,5 +1,5 @@
+import { axiosInstance } from "shared/api/axios"
 import msGraphInstance from "shared/lib/msal/instance"
-import { axiosInstance } from "shared/utils/interceptors"
 
 type GraphData = AdminTableType.GraphData
 

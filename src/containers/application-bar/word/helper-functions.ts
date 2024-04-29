@@ -16,9 +16,8 @@ import {
   VerticalPositionRelativeFrom,
   WidthType,
 } from "docx"
-
-import type { Skill, UserLanguage } from "common/models/User"
-import { Color } from "common/theme/maps/config"
+import type { Skill, UserLanguage } from "entities/user/model"
+import { Color } from "shared/config/theme"
 
 export const INDENT = {
   start: "12mm",

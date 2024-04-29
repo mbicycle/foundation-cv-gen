@@ -1,9 +1,9 @@
 import dayjs from "dayjs"
 import { ExternalHyperlink, Paragraph, TextRun } from "docx"
+import type { Certificate } from "entities/user/model"
+import { Color } from "shared/config/theme"
 
 import { INDENT, TextStyle } from "containers/application-bar/word/helper-functions"
-import type { Certificate } from "common/models/User"
-import { Color } from "common/theme/maps/config"
 
 const wordAdminCertifications = ({
   certificates,

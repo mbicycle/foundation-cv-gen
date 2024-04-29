@@ -1,4 +1,4 @@
-import type { Tool } from "common/models/User"
+import type { Tool } from "entities/user/model"
 
 import ToolItem from "./ToolItem"
 

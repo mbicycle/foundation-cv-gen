@@ -1,11 +1,11 @@
 import { memo } from "react"
 import { useLocation } from "react-router-dom"
+import { ROUTE } from "app/routes/utils/constants"
+import CircularSpinner from "shared/ui/circular-spinner/circular-spinner"
+import AddProficiency from "shared/widgets/add-pattern"
+import { ButtonText } from "shared/widgets/add-pattern/constants"
 
 import { useUserFromDb } from "containers/main-page/cv-form/api/query-hooks"
-import AddProficiency from "common/components/add-pattern"
-import { ButtonText } from "common/components/add-pattern/constants"
-import CircularSpinner from "common/components/circular-spinner/circular-spinner"
-import { ROUTE } from "common/components/routes/utils/constants"
 
 import SkillList from "./components/skills/CategoryList"
 

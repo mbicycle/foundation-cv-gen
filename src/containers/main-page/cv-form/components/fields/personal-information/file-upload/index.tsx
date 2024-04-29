@@ -1,13 +1,13 @@
 import { memo, useState } from "react"
+import { useUserPhoto } from "shared/api/user-service/hooks/useUserPhoto"
+import ChangeCircleIcon from "shared/ui/icons/ChangeCircleIcon"
+import ChangeCircleOutlinedIcon from "shared/ui/icons/ChangeCircleOutlineIcon"
+import PersonIcon from "shared/ui/icons/PersonIcon"
 
 import { Button, Modal } from "@mbicycle/foundation-ui-kit"
 
-import { useToggleSensitiveData } from "common/context"
 import { useGuestToken } from "common/context/guest-token"
-import ChangeCircleIcon from "common/icons/ChangeCircleIcon"
-import ChangeCircleOutlinedIcon from "common/icons/ChangeCircleOutlineIcon"
-import PersonIcon from "common/icons/PersonIcon"
-import { useUserPhoto } from "common/services/user-service/hooks/useUserPhoto"
+import { useToggleSensitiveData } from "common/context/toggle-sensetive-data"
 
 import { useFileUpload } from "./utils/hooks"
 import { Text } from "./utils/types"

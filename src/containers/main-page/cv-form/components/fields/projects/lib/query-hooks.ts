@@ -1,11 +1,11 @@
 import type { UseMutationResult } from "react-query"
 import { useMutation, useQueryClient } from "react-query"
+import type { DbUser, Project } from "entities/user/model"
 import { updateProjects } from "fields/projects/components/utils/functions"
+import SnackBarUtils from "shared/ui/SnackBar/SnackBarUtils"
 
 import { useUserFromDb } from "containers/main-page/cv-form/api/query-hooks"
 import { QueryKey } from "containers/main-page/cv-form/utils/constants"
-import SnackBarUtils from "common/components/SnackBar/SnackBarUtils"
-import type { DbUser, Project } from "common/models/User"
 
 import * as api from "./api"
 

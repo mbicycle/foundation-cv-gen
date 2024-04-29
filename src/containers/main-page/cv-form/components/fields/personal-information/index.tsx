@@ -1,10 +1,10 @@
 import { memo, useEffect } from "react"
 import { useMsal } from "@azure/msal-react"
+import SnackBarUtils from "shared/ui/SnackBar/SnackBarUtils"
 
 import { useCreateDbUser, useUserFromDb } from "containers/main-page/cv-form/api/query-hooks"
 import { TITLE_REQUIRED } from "containers/main-page/cv-form/utils/constants"
 import { useGetUserDataFromMsGraph } from "containers/main-page/preview/lib/query-hooks"
-import SnackBarUtils from "common/components/SnackBar/SnackBarUtils"
 
 import FileUpload from "./file-upload/index"
 import PersonalDataForm from "./form/index"

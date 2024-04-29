@@ -1,4 +1,4 @@
-import type { DbUser, GuestUser, Project, Skill } from "common/models/User"
+import type { DbUser, GuestUser, Project, Skill } from "entities/user/model"
 
 export const updateProjects = (user: DbUser | GuestUser | undefined, project: Project): Project[] => {
   const projects = user?.projects || []

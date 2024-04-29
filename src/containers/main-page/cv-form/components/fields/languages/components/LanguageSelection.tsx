@@ -1,16 +1,16 @@
 import { memo, useCallback, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import type { UserLanguage } from "entities/user/model"
 import { useAddUserLanguage } from "fields/languages/lib/query-hooks"
 import { addUserLanguage } from "fields/languages/utils/functions"
+import useBeforeUnload from "shared/utils/hooks/useBeforeUnload"
+import useUnsaved from "shared/utils/hooks/useUnSaved"
 
 import { Button } from "@mbicycle/foundation-ui-kit"
 
 import { ButtonStep } from "containers/main-page/cv-form/utils/constants"
 import { useGuestToken } from "common/context/guest-token"
 import { useGuestUser } from "common/context/guest-user"
-import type { UserLanguage } from "common/models/User"
-import useBeforeUnload from "common/utils/hooks/useBeforeUnload"
-import useUnsaved from "common/utils/hooks/useUnSaved"
 
 import LanguageSelectionForm from "./LanguageSelectionForm"
 

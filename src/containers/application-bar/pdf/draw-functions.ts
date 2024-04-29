@@ -1,7 +1,19 @@
 import dayjs from "dayjs"
+import type { Certificate, Project, Skill, UserLanguage } from "entities/user/model"
 import { Labels } from "fields/languages/components/utils/level.enum"
 import { projectDatePresent } from "fields/projects/components/utils/constants"
 import type JsPDF from "jspdf"
+import Frame from "shared/assets/icons/avatar-frame.png"
+import CertificationsIcon from "shared/assets/icons/certifications.png"
+import LanguageIcon from "shared/assets/icons/language.png"
+import LogoIcon from "shared/assets/icons/logo.png"
+import MailIcon from "shared/assets/icons/mail.png"
+import ProjectsIcon from "shared/assets/icons/projects.png"
+import SkillsIcon from "shared/assets/icons/skills.png"
+import SkypeIcon from "shared/assets/icons/skype.png"
+import TelegramIcon from "shared/assets/icons/telegram.png"
+import { projects as projectsTitle } from "shared/utils/constants"
+import { getYearsExperience } from "shared/utils/hooks/useUserExperience"
 
 import { refactorProjectSkills } from "containers/application-bar/helper-functions"
 import {
@@ -14,18 +26,6 @@ import {
   TOP_PADDING,
 } from "containers/application-bar/pdf/const"
 import { CV_FORM_STEPS } from "containers/main-page/cv-form/utils/constants"
-import Frame from "common/assets/icons/avatar-frame.png"
-import CertificationsIcon from "common/assets/icons/certifications.png"
-import LanguageIcon from "common/assets/icons/language.png"
-import LogoIcon from "common/assets/icons/logo.png"
-import MailIcon from "common/assets/icons/mail.png"
-import ProjectsIcon from "common/assets/icons/projects.png"
-import SkillsIcon from "common/assets/icons/skills.png"
-import SkypeIcon from "common/assets/icons/skype.png"
-import TelegramIcon from "common/assets/icons/telegram.png"
-import type { Certificate, Project, Skill, UserLanguage } from "common/models/User"
-import { projects as projectsTitle } from "common/utils/constants"
-import { getYearsExperience } from "common/utils/hooks/useUserExperience"
 
 import {
   addUbuntuFontBold,

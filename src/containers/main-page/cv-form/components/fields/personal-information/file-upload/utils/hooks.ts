@@ -5,11 +5,11 @@ import type { Crop, PixelCrop } from "react-image-crop"
 import { canvasPreview } from "fields/personal-information/image-crop/canvasPreview"
 import { useDebounceEffect } from "fields/personal-information/image-crop/useDebounceEffect"
 import { useUpdateMsAvatar } from "fields/personal-information/lib/query-hooks"
+import { useGetUserPhotoDB } from "shared/api/user-service/query-hooks"
+import SnackBarUtils from "shared/ui/SnackBar/SnackBarUtils"
 
-import SnackBarUtils from "common/components/SnackBar/SnackBarUtils"
 import { useGuestToken } from "common/context/guest-token"
 import { useGuestUser } from "common/context/guest-user"
-import { useGetUserPhotoDB } from "common/services/user-service/query-hooks"
 
 import { compressImageToLimit, MS4MbLimitation } from "./helpers"
 import type { ExtendedFileType } from "./types"

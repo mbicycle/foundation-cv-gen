@@ -1,9 +1,9 @@
 import { memo, useCallback, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import dayjs from "dayjs"
+import ProfiencyItem from "shared/widgets/profiency/ProfiencyItem"
 
 import { useCategoryCertificatesContext } from "containers/main-page/cv-form/local-state/hooks"
-import ProfiencyItem from "common/components/profiency/ProfiencyItem"
 
 interface AddedCertificatesItemProps {
   certificate: string

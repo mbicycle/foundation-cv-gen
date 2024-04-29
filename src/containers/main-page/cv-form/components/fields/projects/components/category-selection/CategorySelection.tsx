@@ -2,18 +2,18 @@ import { memo, useEffect, useState } from "react"
 import type { FieldArrayWithId, UseFormReturn } from "react-hook-form"
 import { useFieldArray, useForm } from "react-hook-form"
 import { InformationCircleIcon as InfoIcon } from "@heroicons/react/24/solid"
+import type { Skill } from "entities/user/model"
 import SkillsToolsDialog from "fields/projects/components/SkillsToolsDialog"
 import { ButtonText, CategoryAddText, tooltipText } from "fields/projects/components/utils/constants"
 import type { ProjectFieldValues } from "fields/projects/utils/types"
+import CircularSpinner from "shared/ui/circular-spinner/circular-spinner"
+import WarningIcon from "shared/ui/icons/Warning"
+import useBeforeUnload from "shared/utils/hooks/useBeforeUnload"
+import useUnsaved from "shared/utils/hooks/useUnSaved"
 
 import { Button, Tooltip } from "@mbicycle/foundation-ui-kit"
 
 import { useUserFromDb } from "containers/main-page/cv-form/api/query-hooks"
-import CircularSpinner from "common/components/circular-spinner/circular-spinner"
-import WarningIcon from "common/icons/Warning"
-import type { Skill } from "common/models/User"
-import useBeforeUnload from "common/utils/hooks/useBeforeUnload"
-import useUnsaved from "common/utils/hooks/useUnSaved"
 
 import CategorySelectionItem from "./CategorySelectionItem"
 

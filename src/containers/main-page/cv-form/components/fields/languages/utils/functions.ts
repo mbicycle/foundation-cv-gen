@@ -1,4 +1,4 @@
-import type { DbUser, GuestUser, UserLanguage } from "common/models/User"
+import type { DbUser, GuestUser, UserLanguage } from "entities/user/model"
 
 export const addUserLanguage = (user: DbUser | GuestUser, language: UserLanguage): UserLanguage[] => {
   let isLanguageExist = false

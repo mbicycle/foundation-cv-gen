@@ -1,9 +1,8 @@
 import { memo, useCallback, useMemo, useState } from "react"
 import dayjs from "dayjs"
+import type { Project } from "entities/user/model"
 import { projectDatePresent } from "fields/projects/components/utils/constants"
-
-import ProfiencyItem from "common/components/profiency/ProfiencyItem"
-import type { Project } from "common/models/User"
+import ProfiencyItem from "shared/widgets/profiency/ProfiencyItem"
 
 import { useProjectItem } from "./tool/hooks"
 

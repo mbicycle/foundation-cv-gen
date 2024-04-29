@@ -1,10 +1,10 @@
 import type { CSSProperties } from "react"
 import { memo, useCallback, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import type { Tool } from "entities/user/model"
+import ProfiencyItem from "shared/widgets/profiency/ProfiencyItem"
 
 import { useSkillIdContext } from "containers/main-page/cv-form/local-state/hooks"
-import ProfiencyItem from "common/components/profiency/ProfiencyItem"
-import type { Tool } from "common/models/User"
 
 interface SkillItemProps {
   id: string

@@ -1,9 +1,8 @@
 import { memo, useMemo } from "react"
 import type { Control } from "react-hook-form"
+import type { Skill } from "entities/user/model"
 import { SkillYearsRange, TimeUsedInputText, TOOLS_NAME } from "fields/skills/utils/constants"
-
-import ReactHookFormTextFieldOutlined from "common/components/react-hook-forms/ReactHookFormTextFieldOutlined"
-import type { Skill } from "common/models/User"
+import ReactHookFormTextFieldOutlined from "shared/ui/react-hook-forms/ReactHookFormTextFieldOutlined"
 
 interface TimeUsedInputProps {
   value: number

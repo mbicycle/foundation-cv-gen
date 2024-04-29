@@ -1,6 +1,8 @@
 import { useMemo } from "react"
 import { Document, Packer, Paragraph } from "docx"
 import { saveAs } from "file-saver"
+import headerPic from "shared/assets/cv-gen-docx-header.png"
+import { useUserExperience } from "shared/utils/hooks/useUserExperience"
 
 import { getFileName, refactorProjectSkills } from "containers/application-bar/helper-functions"
 import {
@@ -18,9 +20,7 @@ import {
 import useWordProjects from "containers/application-bar/word/hooks/createWordProjects"
 import { useUserFromDb } from "containers/main-page/cv-form/api/query-hooks"
 import { useMsGraph } from "containers/main-page/preview/lib/query-hooks"
-import headerPic from "common/assets/cv-gen-docx-header.png"
-import { useToggleSensitiveData } from "common/context"
-import { useUserExperience } from "common/utils/hooks/useUserExperience"
+import { useToggleSensitiveData } from "common/context/toggle-sensetive-data"
 
 import useWordCertifications from "./useWordCertifications"
 

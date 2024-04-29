@@ -8,14 +8,14 @@ import DatePickers from "fields/projects/components/DatePickers"
 import Responsibilities from "fields/projects/components/Responsibilities"
 import { ProjectInputsText } from "fields/projects/components/utils/constants"
 import type { ProjectFieldValues } from "fields/projects/utils/types"
+import ReactHookFormTextFieldOutlined from "shared/ui/react-hook-forms/ReactHookFormTextFieldOutlined"
+import useBeforeUnload from "shared/utils/hooks/useBeforeUnload"
+import useUnsaved from "shared/utils/hooks/useUnSaved"
 
 import { Button, Divider } from "@mbicycle/foundation-ui-kit"
 
 import { ButtonStep } from "containers/main-page/cv-form/utils/constants"
-import ReactHookFormTextFieldOutlined from "common/components/react-hook-forms/ReactHookFormTextFieldOutlined"
 import { useGuestToken } from "common/context/guest-token"
-import useBeforeUnload from "common/utils/hooks/useBeforeUnload"
-import useUnsaved from "common/utils/hooks/useUnSaved"
 
 import { useEditProject } from "./hooks"
 

@@ -1,8 +1,7 @@
 import type { AxiosError, AxiosResponse } from "axios"
+import type { DbUser } from "entities/user/model"
+import { axiosInstance } from "shared/api/axios"
 import msGraphInstance from "shared/lib/msal/instance"
-import { axiosInstance } from "shared/utils/interceptors"
-
-import type { DbUser } from "common/models/User"
 
 const axios = axiosInstance
 

@@ -1,9 +1,9 @@
 import { memo } from "react"
+import type { Certificate } from "entities/user/model"
 import { useDeleteUserCertificate } from "fields/certifications/lib/query-hooks"
 
 import { useGuestToken } from "common/context/guest-token"
 import { useGuestUser } from "common/context/guest-user"
-import type { Certificate } from "common/models/User"
 
 import AddedCertificatesItem from "./AddedCertificatesItem"
 

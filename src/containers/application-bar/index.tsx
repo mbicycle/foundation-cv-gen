@@ -1,18 +1,18 @@
 import { Fragment, memo } from "react"
 import { Link } from "react-router-dom"
 import { Menu, Transition } from "@headlessui/react"
+import { ROUTE } from "app/routes/utils/constants"
+import { useUserPhoto } from "shared/api/user-service/hooks/useUserPhoto"
 import { CONFIG } from "shared/config/envConfig"
+import msalUtils from "shared/lib/msal"
 import msGraphInstance from "shared/lib/msal/instance"
-import msalUtils from "shared/msalUtils"
+import LogoIcon from "shared/ui/icons/LogoIcon"
+import PersonIcon from "shared/ui/icons/PersonIcon"
 
 import { Button, Divider } from "@mbicycle/foundation-ui-kit"
 import { logoutFn } from "@mbicycle/msal-bundle"
 
-import { ROUTE } from "common/components/routes/utils/constants"
 import { useGuestToken } from "common/context/guest-token"
-import LogoIcon from "common/icons/LogoIcon"
-import PersonIcon from "common/icons/PersonIcon"
-import { useUserPhoto } from "common/services/user-service/hooks/useUserPhoto"
 
 import PdfButtonSet from "./ButtonSet"
 

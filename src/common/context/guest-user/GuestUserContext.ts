@@ -1,6 +1,5 @@
 import { createContext } from "react"
-
-import type { GuestUser } from "common/models/User"
+import type { GuestUser } from "entities/user/model"
 
 export type GuestUserAction = Partial<GuestUser>
 export type GuestUserState = GuestUser
