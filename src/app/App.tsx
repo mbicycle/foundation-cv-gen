@@ -1,5 +1,6 @@
 import { MESSAGE_TEXT } from "pages/constants"
 import ErrorScreen from "pages/error"
+
 import { CONFIG } from "shared/config/envConfig"
 
 import AppProvider from "./providers/AppProvider"

@@ -1,4 +1,5 @@
 import type { AxiosError, AxiosResponse } from "axios"
+
 import { axiosInstance } from "shared/api/axios"
 import msGraphInstance from "shared/lib/msal/instance"
 

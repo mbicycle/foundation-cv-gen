@@ -12,11 +12,13 @@ import type {
 } from "react-hook-form"
 import { Controller } from "react-hook-form"
 import dayjs from "dayjs"
-import type { Project } from "entities/user/model"
-import { projectDatePresent } from "fields/projects/components/utils/constants"
 
 import { Datepicker, Toggle } from "@mbicycle/foundation-ui-kit"
 import type { DatepickerProps } from "@mbicycle/foundation-ui-kit/dist/components/Datepicker"
+
+import { projectDatePresent } from "features/cv-form-components/projects/ui/model/constants"
+
+import type { Project } from "entities/user/model"
 
 type Reset = (values: Partial<Project>, keepStateOptions: KeepStateOptions) => void
 

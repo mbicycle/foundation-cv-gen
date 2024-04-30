@@ -1,7 +1,10 @@
 import dayjs from "dayjs"
 import { ExternalHyperlink, Paragraph, TextRun } from "docx"
-import type { Certificate } from "entities/user/model"
+
 import { INDENT, TextStyle } from "features/word/helper-functions"
+
+import type { Certificate } from "entities/user/model"
+
 import { Color } from "shared/config/theme"
 
 const useWordCertifications = ({

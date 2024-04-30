@@ -1,26 +1,27 @@
 import { lazy } from "react"
 import type { RouteObject } from "react-router-dom"
-import CertificateSelection from "fields/certifications/components/CertificateSelection"
-import CertificateEditTool from "fields/certifications/components/EditTool"
-import EditLanguageCategory from "fields/languages/components/EditLanguageCategory"
-import LanguageSelection from "fields/languages/components/LanguageSelection"
-import EditProject from "fields/projects/components/tool/EditProject"
-import Skill from "fields/skills/components"
+
 import Login from "pages/login"
+import MainPage from "pages/main"
 import NotFound from "pages/not-found"
 
-import MainPage from "containers/main-page"
+import CertificateSelection from "features/cv-form-components/certifications/ui/CertificateSelection"
+import CertificateEditTool from "features/cv-form-components/certifications/ui/EditTool"
+import EditLanguageCategory from "features/cv-form-components/languages/ui/EditLanguageCategory"
+import LanguageSelection from "features/cv-form-components/languages/ui/LanguageSelection"
+import EditProject from "features/cv-form-components/projects/ui/tool/EditProject"
+import Skill from "features/cv-form-components/skills/ui"
 
 import { ROUTE } from "./constants"
 import withPrivate from "./with-private-route-HOC"
 import withSuspense from "./with-suspense-HOC"
 
-const PersonalInformation = lazy(() => import("fields/personal-information"))
-const Languages = lazy(() => import("fields/languages"))
-const Skills = lazy(() => import("fields/skills"))
-const Projects = lazy(() => import("fields/projects"))
-const Certifications = lazy(() => import("fields/certifications"))
-const Project = lazy(() => import("fields/projects/components"))
+const PersonalInformation = lazy(() => import("../../../features/cv-form-components/personal-information"))
+const Languages = lazy(() => import("../../../features/cv-form-components/languages"))
+const Skills = lazy(() => import("../../../features/cv-form-components/skills"))
+const Projects = lazy(() => import("../../../features/cv-form-components/projects"))
+const Certifications = lazy(() => import("../../../features/cv-form-components/certifications"))
+const Project = lazy(() => import("../../../features/cv-form-components/projects/ui"))
 const AdminTable = lazy(() => import("../../../pages/admin"))
 
 const routerConfig: RouteObject[] = [

@@ -1,7 +1,8 @@
 import { memo } from "react"
-import { CONFIG } from "shared/config/envConfig"
 
 import { Button } from "@mbicycle/foundation-ui-kit"
+
+import { CONFIG } from "shared/config/envConfig"
 
 const Login = function (): JSX.Element {
   const handleClick = () => {

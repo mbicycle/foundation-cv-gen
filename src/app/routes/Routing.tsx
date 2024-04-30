@@ -1,6 +1,7 @@
 import { memo } from "react"
 import { Navigate, useLocation, useRoutes } from "react-router-dom"
 import { useMsal } from "@azure/msal-react"
+
 import useRole from "shared/lib/msal/hooks/useRole"
 import CircularSpinner from "shared/ui/circular-spinner/circular-spinner"
 

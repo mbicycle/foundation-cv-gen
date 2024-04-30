@@ -1,9 +1,9 @@
 import type { UseMutationResult, UseQueryResult } from "react-query"
 import { useMutation, useQuery, useQueryClient } from "react-query"
-import { getGuestToken as getGuestTokenFromStorage } from "shared/lib/guest/getGuestToken"
-import SnackBarUtils from "shared/ui/SnackBar/SnackBarUtils"
 
-import { useGuestUser } from "common/context/guest-user"
+import { useGuestUser } from "shared/context/guest-user"
+import { getGuestToken as getGuestTokenFromStorage } from "shared/lib/helpers/getGuestToken"
+import SnackBarUtils from "shared/ui/SnackBar/SnackBarUtils"
 
 import * as api from "./api"
 import { QueryKey } from "./query-key"

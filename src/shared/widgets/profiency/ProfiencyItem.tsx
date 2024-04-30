@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react"
 import { memo } from "react"
+
 import CircularSpinner from "shared/ui/circular-spinner/circular-spinner"
 import DragIndicatorIcon from "shared/ui/icons/DragIndicatorIcon"
 import GarbageIcon from "shared/ui/icons/GarbageIcon"

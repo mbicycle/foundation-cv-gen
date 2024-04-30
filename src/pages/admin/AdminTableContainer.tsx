@@ -1,21 +1,23 @@
 import React, { useDeferredValue, useEffect, useMemo, useState } from "react"
 import { InformationCircleIcon as InfoIcon, LinkIcon } from "@heroicons/react/24/solid"
-import { Text } from "fields/personal-information/file-upload/utils/types"
-import { ShareButton, tooltipShareText } from "fields/projects/components/utils/constants"
 import sortBy from "lodash.sortby"
+
+import { Button, Input, Modal, Toggle, Tooltip } from "@mbicycle/foundation-ui-kit"
+
+import { Text } from "features/cv-form-components/personal-information/ui/file-upload/model/types"
+import { ShareButton, tooltipShareText } from "features/cv-form-components/projects/ui/model/constants"
+
 import { useDeleteUserFromDb } from "shared/api/user-service/query-hooks"
 import { CONFIG } from "shared/config/envConfig"
 import { getGuestToken } from "shared/lib/msal/features/api"
 import CircularSpinner from "shared/ui/circular-spinner/circular-spinner"
 import SnackBarUtils from "shared/ui/SnackBar/SnackBarUtils"
 
-import { Button, Input, Modal, Toggle, Tooltip } from "@mbicycle/foundation-ui-kit"
-
 import { useDbUsersList } from "./api/query-hooks"
 import useTableDataContext from "./local-state/useTableDataContext"
+import { MINIMUM_TABLE_HEIGHT } from "./model/constants"
 import Search from "./ui/Search"
 import { AdminTable } from "./ui/VirtualizedTable"
-import { MINIMUM_TABLE_HEIGHT } from "./utils/constants"
 import { hooks } from "./api"
 
 const { useGraphUsers } = hooks

@@ -16,7 +16,9 @@ import {
   VerticalPositionRelativeFrom,
   WidthType,
 } from "docx"
+
 import type { Skill, UserLanguage } from "entities/user/model"
+
 import { Color } from "shared/config/theme"
 
 export const INDENT = {

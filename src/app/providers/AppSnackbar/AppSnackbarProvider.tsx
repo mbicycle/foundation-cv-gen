@@ -2,6 +2,7 @@ import { createRef, memo, useCallback } from "react"
 import { XMarkIcon as CloseIcon } from "@heroicons/react/24/solid"
 import type { SnackbarKey } from "notistack"
 import { SnackbarProvider } from "notistack"
+
 import { SnackbarUtilsConfigurator } from "shared/ui/SnackBar/SnackBarUtils"
 
 function IconButtonMemoized(key: SnackbarKey, onClickDismiss: CallableFunction): React.ReactNode {

@@ -1,11 +1,13 @@
 import { memo } from "react"
+
+import { useGetDbUser } from "widgets/cv-form/api/query-hooks"
+
 import { useSaveAdminPdfFile } from "features/pdf/useSavePdfFile"
 import { useSaveAdminWordFile } from "features/word/hooks/useSaveAdminWordFile"
+
 import CircularSpinner from "shared/ui/circular-spinner/circular-spinner"
 import DocxIcon from "shared/ui/icons/DocxIcon"
 import PdfIcon from "shared/ui/icons/PdfIcon"
-
-import { useGetDbUser } from "containers/main-page/cv-form/api/query-hooks"
 
 interface ActionsSetProps {
   id: string

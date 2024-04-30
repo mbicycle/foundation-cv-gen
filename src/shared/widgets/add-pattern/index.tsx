@@ -1,12 +1,14 @@
 import { memo, useCallback, useEffect, useState } from "react"
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
 import { PlusCircleIcon as AddCircleIcon } from "@heroicons/react/24/solid"
-import { ROUTE } from "app/routes/utils/constants"
-import type { Certificate, Project, Skill, UserLanguage } from "entities/user/model"
 
 import { Button } from "@mbicycle/foundation-ui-kit"
 
-import { useSkillIdContext } from "containers/main-page/cv-form/local-state/hooks"
+import { ROUTE } from "app/routes/utils/constants"
+
+import { useSkillIdContext } from "widgets/cv-form/local-state/hooks"
+
+import type { Certificate, Project, Skill, UserLanguage } from "entities/user/model"
 
 import type { Step } from "./constants"
 import { ButtonText, SkillsDoesntExist } from "./constants"

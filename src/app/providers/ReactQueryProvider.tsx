@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
+
 import { AuthProvider } from "shared/lib/msal/features/auth"
 
 export const queryClient = new QueryClient({

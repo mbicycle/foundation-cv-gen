@@ -1,15 +1,16 @@
 import * as React from "react"
 import type { AutoSizerProps, ColumnSizerProps, MultiGridProps } from "react-virtualized"
 import { AutoSizer as _AutoSizer, ColumnSizer as _ColumnSizer, MultiGrid as _MultiGrid } from "react-virtualized"
-import CellRenderer from "pages/admin/ui/CellRenderer"
+
 import {
   ADMIN_TABLE_HEADER_HEIGHT,
   COLUMNS,
   MINIMUM_TABLE_HEIGHT,
   MINIMUM_TABLE_WINDOW_HEIGHT,
-} from "pages/admin/utils/constants"
+} from "pages/admin/model/constants"
+import CellRenderer from "pages/admin/ui/CellRenderer"
 
-import { COLUMN_MAX_WIDTH, COLUMN_MIN_WIDTH, ROW_HEIGHT } from "./utils/constants"
+import { COLUMN_MAX_WIDTH, COLUMN_MIN_WIDTH, ROW_HEIGHT } from "./model/constants"
 
 import "react-virtualized/styles.css"
 

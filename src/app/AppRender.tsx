@@ -1,18 +1,20 @@
 import { useEffect } from "react"
 import { useCookies } from "react-cookie"
 import { AuthenticatedTemplate, MsalProvider, UnauthenticatedTemplate } from "@azure/msal-react"
+
 import { MESSAGE_TEXT } from "pages/constants"
 import ErrorScreen from "pages/error"
 import Login from "pages/login"
-import { AUTH_COOKIE_NAME, GUEST_TOKEN_NAME } from "shared/lib/constants"
-import { setCookie } from "shared/lib/cookie"
-import { getGuestTokenValidity } from "shared/lib/msal/features/api"
-import msGraphInstance from "shared/lib/msal/instance"
-import useBeforeUnload from "shared/utils/hooks/useBeforeUnload"
-import MainWrapper from "shared/widgets/main-wrapper"
+
 import ApplicationBar from "widgets/app-bar"
 
-import { useGuestToken } from "common/context/guest-token/useGuestToken"
+import { useGuestToken } from "shared/context/guest-token/useGuestToken"
+import { AUTH_COOKIE_NAME, GUEST_TOKEN_NAME } from "shared/lib/constants"
+import { setCookie } from "shared/lib/helpers/cookie"
+import useBeforeUnload from "shared/lib/hooks/useBeforeUnload"
+import { getGuestTokenValidity } from "shared/lib/msal/features/api"
+import msGraphInstance from "shared/lib/msal/instance"
+import MainWrapper from "shared/widgets/main-wrapper"
 
 import ReactQueryProvider from "./providers/ReactQueryProvider"
 import Routing from "./routes/Routing"

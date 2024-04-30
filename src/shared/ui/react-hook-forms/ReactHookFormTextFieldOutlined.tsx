@@ -2,12 +2,13 @@
 import { memo, useMemo } from "react"
 import type { Control } from "react-hook-form"
 import { Controller } from "react-hook-form"
-import type { FieldValues } from "shared/ui/react-hook-forms/utils/types"
 
 import { Input } from "@mbicycle/foundation-ui-kit"
 import type { InputProps } from "@mbicycle/foundation-ui-kit/dist/components/Input"
 
-import type { CategoryNameStateCertificates } from "containers/main-page/cv-form/local-state/CategoryIdContext"
+import type { CategoryNameStateCertificates } from "widgets/cv-form/local-state/CategoryIdContext"
+
+import type { FieldValues } from "shared/ui/react-hook-forms/utils/types"
 
 interface TextFieldOutlinedControlledProps<T extends FieldValues> extends InputProps {
   control: Control<T>

@@ -1,18 +1,21 @@
 import { memo, useEffect } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { ArrowUpTrayIcon as FileUploadOutlinedIcon } from "@heroicons/react/24/outline"
-import { ROUTE } from "app/routes/utils/constants"
-import { useSavePDFFile } from "features/pdf/useSavePdfFile"
-import { useSaveWordFile } from "features/word/hooks/useSaveWordFile"
-import { useValidateCV } from "shared/utils/hooks/useValidateCV"
-import RenderOnRole from "shared/widgets/render-on-role/RenderOnRole"
-import { ButtonText } from "widgets/app-bar/utils/constants"
 
 import { Button, Toggle } from "@mbicycle/foundation-ui-kit"
 
-import { useUserFromDb } from "containers/main-page/cv-form/api/query-hooks"
-import { useGuestToken } from "common/context/guest-token"
-import { useToggleSensitiveData } from "common/context/toggle-sensetive-data"
+import { ROUTE } from "app/routes/utils/constants"
+
+import { ButtonText } from "widgets/app-bar/model/constants"
+import { useUserFromDb } from "widgets/cv-form/api/query-hooks"
+
+import { useSavePDFFile } from "features/pdf/useSavePdfFile"
+import { useSaveWordFile } from "features/word/hooks/useSaveWordFile"
+
+import { useGuestToken } from "shared/context/guest-token"
+import { useToggleSensitiveData } from "shared/context/toggle-sensetive-data"
+import { useValidateCV } from "shared/lib/hooks/useValidateCV"
+import RenderOnRole from "shared/widgets/render-on-role/RenderOnRole"
 
 const PdfButtonSet = function (): JSX.Element | null {
   const { isValid } = useValidateCV()

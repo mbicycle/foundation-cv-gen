@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import msGraphInstance from "shared/lib/msal/instance"
 
-import { useGuestToken } from "common/context/guest-token"
+import { useGuestToken } from "shared/context/guest-token"
+import msGraphInstance from "shared/lib/msal/instance"
 
 const { msalInstance } = msGraphInstance
 

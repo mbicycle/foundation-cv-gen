@@ -1,12 +1,14 @@
 import dayjs from "dayjs"
 import type { ParagraphChild } from "docx"
 import { Paragraph, TextRun } from "docx"
-import type { Project } from "entities/user/model"
-import { createHeadingWithHyperlink, INDENT, TextStyle } from "features/word/helper-functions"
-import { projectDatePresent } from "fields/projects/components/utils/constants"
-import { Color } from "shared/config/theme"
 
-import { useToggleSensitiveData } from "common/context/toggle-sensetive-data"
+import { projectDatePresent } from "features/cv-form-components/projects/ui/model/constants"
+import { createHeadingWithHyperlink, INDENT, TextStyle } from "features/word/helper-functions"
+
+import type { Project } from "entities/user/model"
+
+import { Color } from "shared/config/theme"
+import { useToggleSensitiveData } from "shared/context/toggle-sensetive-data"
 
 const createProjectTitle = (text: string): Paragraph =>
   new Paragraph({

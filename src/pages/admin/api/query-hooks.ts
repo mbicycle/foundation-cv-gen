@@ -1,5 +1,6 @@
 import type { UseQueryResult } from "react-query"
 import { useQuery, useQueryClient } from "react-query"
+
 import SnackBarUtils from "shared/ui/SnackBar/SnackBarUtils"
 
 import * as api from "./api"

@@ -1,6 +1,10 @@
 import { useRef, useState } from "react"
 import { Document, Packer, Paragraph } from "docx"
-import type { DbUser } from "entities/user/model"
+import { saveAs } from "file-saver"
+
+import { getFileName, refactorProjectSkills } from "widgets/app-bar/lib/helper-functions"
+import { useGetUserDataFromMsGraph } from "widgets/preview/api/query-hooks"
+
 import {
   addContactInformation,
   addLanguages,
@@ -13,14 +17,13 @@ import {
   createSemiTitle,
   createSummary,
 } from "features/word/helper-functions"
-import { saveAs } from "file-saver"
-import headerPic from "shared/assets/cv-gen-docx-header.png"
-import SnackBarUtils from "shared/ui/SnackBar/SnackBarUtils"
-import { getYearsExperience } from "shared/utils/hooks/useUserExperience"
-import { getFileName, refactorProjectSkills } from "widgets/app-bar/utils/helper-functions"
 
-import { useGetUserDataFromMsGraph } from "containers/main-page/preview/lib/query-hooks"
-import { useToggleSensitiveData } from "common/context/toggle-sensetive-data"
+import type { DbUser } from "entities/user/model"
+
+import headerPic from "shared/assets/cv-gen-docx-header.png"
+import { useToggleSensitiveData } from "shared/context/toggle-sensetive-data"
+import { getYearsExperience } from "shared/lib/hooks/useUserExperience"
+import SnackBarUtils from "shared/ui/SnackBar/SnackBarUtils"
 
 import { createWordProjects } from "./createWordProjects"
 import wordAdminCertifications from "./wordAdminCertifications"

@@ -1,6 +1,7 @@
 import type { AxiosInstance } from "axios"
 import axios from "axios"
-import { getGuestToken } from "shared/lib/guest/getGuestToken"
+
+import { getGuestToken } from "shared/lib/helpers/getGuestToken"
 import msGraphInstance from "shared/lib/msal/instance"
 
 export const createAxiosInstance = (url: string): AxiosInstance => {

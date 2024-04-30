@@ -1,4 +1,4 @@
-import type { Labels, LevelTool } from "fields/languages/components/utils/level.enum"
+import type { Labels, LevelTool } from "features/cv-form-components/languages/ui/model/level.enum"
 
 export interface UserLanguage {
   level: keyof typeof Labels

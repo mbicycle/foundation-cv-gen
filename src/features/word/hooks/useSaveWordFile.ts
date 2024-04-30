@@ -1,5 +1,11 @@
 import { useMemo } from "react"
 import { Document, Packer, Paragraph } from "docx"
+import { saveAs } from "file-saver"
+
+import { getFileName, refactorProjectSkills } from "widgets/app-bar/lib/helper-functions"
+import { useUserFromDb } from "widgets/cv-form/api/query-hooks"
+import { useMsGraph } from "widgets/preview/api/query-hooks"
+
 import {
   addContactInformation,
   addLanguages,
@@ -12,14 +18,10 @@ import {
   createSemiTitle,
   createSummary,
 } from "features/word/helper-functions"
-import { saveAs } from "file-saver"
-import headerPic from "shared/assets/cv-gen-docx-header.png"
-import { useUserExperience } from "shared/utils/hooks/useUserExperience"
-import { getFileName, refactorProjectSkills } from "widgets/app-bar/utils/helper-functions"
 
-import { useUserFromDb } from "containers/main-page/cv-form/api/query-hooks"
-import { useMsGraph } from "containers/main-page/preview/lib/query-hooks"
-import { useToggleSensitiveData } from "common/context/toggle-sensetive-data"
+import headerPic from "shared/assets/cv-gen-docx-header.png"
+import { useToggleSensitiveData } from "shared/context/toggle-sensetive-data"
+import { useUserExperience } from "shared/lib/hooks/useUserExperience"
 
 import useWordProjects from "./createWordProjects"
 import useWordCertifications from "./useWordCertifications"

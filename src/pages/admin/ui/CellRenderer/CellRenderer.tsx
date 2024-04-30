@@ -1,7 +1,8 @@
 import type { GridCellProps } from "react-virtualized"
+
+import { COLUMNS } from "pages/admin/model/constants"
 import TableCell from "pages/admin/ui/TableCell"
 import TableColumn from "pages/admin/ui/TableColumn"
-import { COLUMNS } from "pages/admin/utils/constants"
 
 type ExtendedGridCellProps = GridCellProps & {
   data: AdminTableType.User[]

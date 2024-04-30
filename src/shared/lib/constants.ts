@@ -1,5 +1,16 @@
 import type { MsUser } from "entities/user/model"
 
+export const projects = {
+  descrTitle: "Project description:",
+  duration: "Involvement duration:",
+  respTitle: "Responsibilities:",
+  sizeTitle: "Project team size:",
+  projectRole: "Project role:",
+  productLink: "Project link:",
+  NDA: "NDA",
+  toolsAndTechs: "Tools & Technologies:",
+} as const
+
 export enum Text {
   ButtonLogin = "Continue with Microsoft",
   ButtonLogout = "Logout",

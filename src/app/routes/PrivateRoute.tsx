@@ -2,9 +2,9 @@ import { memo } from "react"
 import type { RouteProps } from "react-router-dom"
 import { Navigate, useLocation } from "react-router-dom"
 import { useIsAuthenticated } from "@azure/msal-react"
-import useRole from "shared/lib/msal/hooks/useRole"
 
-import { useGuestToken } from "common/context/guest-token"
+import { useGuestToken } from "shared/context/guest-token"
+import useRole from "shared/lib/msal/hooks/useRole"
 
 import { ROUTE } from "./utils/constants"
 

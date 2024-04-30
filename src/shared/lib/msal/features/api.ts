@@ -1,10 +1,12 @@
 import type { AxiosError, AxiosResponse } from "axios"
 import axios from "axios"
+
 import type { MsUser } from "entities/user/model"
+
 import { axiosInstanceToken } from "shared/api/axios"
 import { CONFIG } from "shared/config/envConfig"
 import { mockUser } from "shared/lib/constants"
-import { getGuestToken as getGuestTokenFromStorage } from "shared/lib/guest/getGuestToken"
+import { getGuestToken as getGuestTokenFromStorage } from "shared/lib/helpers/getGuestToken"
 import msGraphInstance from "shared/lib/msal/instance"
 
 export const getUser = async (): Promise<MsUser> =>
