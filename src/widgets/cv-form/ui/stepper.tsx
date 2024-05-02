@@ -18,7 +18,14 @@ const CVFormStepper = function (): JSX.Element {
     event.currentTarget.scrollIntoView({ block: "center", inline: "center" })
   }
 
-  return <Breadcrumb activeStep={activeStep} routes={CV_FORM_STEPS} onClickStep={navigateStepHandle} />
+  return (
+    <Breadcrumb
+      activeStep={activeStep}
+      routes={CV_FORM_STEPS}
+      onClickStep={navigateStepHandle}
+      classNameItem="text-base md:ms-1 whitespace-nowrap"
+    />
+  )
 }
 
 export default memo(CVFormStepper)
