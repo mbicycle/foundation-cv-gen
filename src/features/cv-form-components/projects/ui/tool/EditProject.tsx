@@ -8,9 +8,9 @@ import { Button, Divider } from "@mbicycle/foundation-ui-kit"
 import { ButtonStep } from "widgets/cv-form/model/constants"
 
 import type { ProjectFieldValues } from "features/cv-form-components/projects/model/types"
+import { projectSchema, renderErrorMessage } from "features/cv-form-components/projects/ui"
 import { CategorySelection } from "features/cv-form-components/projects/ui/category-selection"
 import DatePickers from "features/cv-form-components/projects/ui/DatePickers"
-import { projectSchema, renderErrorMessage } from "features/cv-form-components/projects/ui/index"
 import { ProjectInputsText } from "features/cv-form-components/projects/ui/model/constants"
 import Responsibilities from "features/cv-form-components/projects/ui/Responsibilities"
 
