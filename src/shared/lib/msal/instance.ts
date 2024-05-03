@@ -1,6 +1,6 @@
-import { CONFIG } from "shared/config/envConfig"
-
 import { msGraph } from "@mbicycle/msal-bundle"
+
+import { CONFIG } from "shared/config/envConfig"
 
 const msGraphInstance = msGraph({
   configOverride: {
