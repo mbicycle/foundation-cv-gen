@@ -1,0 +1,53 @@
+name: Upload Website
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  DISABLE_ESLINT_PLUGIN: true
+  NODE_ENV: production
+  NODE_VERSION: 18.17.0
+  YARN_VERSION: 1.22.17
+
+jobs:
+  build_deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.17.0
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - uses: iamtheyammer/branch-env-vars@v1.2.1
+        with:
+          STAGE: |
+            main:prod
+            develop:dev
+          STACK_NAME: |
+            main:cv-gen-frontend
+            develop:cv-gen-frontend-dev
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+      - uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: ${{ env.STACK_NAME }}
+          template: template.yaml
+          parameter-overrides: "Environment=${{ env.STAGE }}"
+          no-fail-on-empty-changeset: "1"
+      - run: |
+          echo "VITE_API_URL=$(aws cloudformation list-exports --query "Exports[?Name==\`api-endpoint-$STAGE\`].Value" --output text)" >> $GITHUB_ENV
+          echo "VITE_REDIRECT_URL=$(aws cloudformation list-exports --query "Exports[?Name==\`website-url-$STAGE\`].Value" --output text)" >> $GITHUB_ENV
+          echo "BUCKET_NAME=$(aws cloudformation list-exports --query "Exports[?Name==\`bucket-name-$STAGE\`].Value" --output text)" >> $GITHUB_ENV
+          echo "VITE_TOKEN_URL=$(aws cloudformation list-exports --query "Exports[?Name==\`access-token-api-endpoint\`].Value" --output text)" >> $GITHUB_ENV
+      - run: yarn install --production
+      - run: yarn build
+      - run: aws s3 sync ./build/ s3://BUCKET_NAME --delete

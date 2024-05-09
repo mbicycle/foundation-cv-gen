@@ -1,0 +1,95 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: CV Generator Frontend - The internal Mbicycle project
+
+Parameters:
+  Environment:
+    Type: String
+    AllowedValues:
+      - prod
+      - dev
+
+Conditions:
+  IsProd: !Equals [ !Ref Environment, 'prod' ]
+  IsNonProd: !Not [ Condition: IsProd ]
+
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+    Properties:
+      AccessControl: Private
+      BucketName: !Sub cv-gen-front-bucket-${Environment}
+      WebsiteConfiguration:
+        IndexDocument: "index.html"
+        ErrorDocument: "index.html"
+
+  S3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        Statement:
+          - Action: s3:GetObject
+            Effect: Allow
+            Resource: !Sub ${S3Bucket.Arn}/*
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}
+
+  CloudFrontOriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub OAC for CV-GEN S3 ${Environment}
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - cv-gen-dev.mbicycle.com
+        Origins:
+          - Id: S3Origin
+            DomainName: !GetAtt S3Bucket.DomainName
+            OriginAccessControlId: !GetAtt CloudFrontOriginAccessControl.Id
+            S3OriginConfig:
+              OriginAccessIdentity: ''
+        Enabled: true
+        DefaultRootObject: index.html
+        Comment: !Sub ${AWS::StackName} distribution
+        DefaultCacheBehavior:
+          CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
+          TargetOriginId: S3Origin
+          ViewerProtocolPolicy: redirect-to-https
+        HttpVersion: http2
+        IPV6Enabled: false
+        PriceClass: PriceClass_100
+        CustomErrorResponses:
+          - ErrorCachingMinTTL: 60
+            ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: "/index.html"
+          - ErrorCachingMinTTL: 60
+            ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: "/index.html"
+        ViewerCertificate:
+          AcmCertificateArn: arn:aws:acm:us-east-1:082646940582:certificate/a37d1b2a-bd00-4aef-8588-8eefd892e7fd
+          MinimumProtocolVersion: TLSv1.2_2021
+          SslSupportMethod: sni-only
+Outputs:
+  S3BucketName:
+    Description: "Bucket Name"
+    Value: !Sub cv-gen-front-bucket-${Environment}
+    Export:
+      Name: !Sub bucket-name-${Environment}
+  WebsiteUrl:
+    Description: "Website url: CF for Prod and s3-website for others"
+    Value: !If [ IsProd,  https://cv-gen.mbicycle.com/, https://cv-gen-dev.mbicycle.com/ ]
+    Export:
+      Name: !Sub website-url-${Environment}
