@@ -52,7 +52,7 @@ Resources:
     Properties:
       DistributionConfig:
         Aliases:
-          - cv-gen-dev.mbicycle.com
+          - cv-gen.mbicycle.com
         Origins:
           - Id: S3Origin
             DomainName: !GetAtt S3Bucket.DomainName
