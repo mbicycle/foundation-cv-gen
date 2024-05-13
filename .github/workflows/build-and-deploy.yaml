@@ -48,5 +48,6 @@ jobs:
           echo "VITE_REDIRECT_URL=$(aws cloudformation list-exports --query "Exports[?Name==\`website-url-$STAGE\`].Value" --output text)" >> $GITHUB_ENV
           echo "BUCKET_NAME=$(aws cloudformation list-exports --query "Exports[?Name==\`bucket-name-$STAGE\`].Value" --output text)" >> $GITHUB_ENV
           echo "VITE_TOKEN_URL=$(aws cloudformation list-exports --query "Exports[?Name==\`access-token-api-endpoint\`].Value" --output text)" >> $GITHUB_ENV
+      - run: yarn install
       - run: yarn build
       - run: aws s3 sync ./dist/ s3://BUCKET_NAME --delete
