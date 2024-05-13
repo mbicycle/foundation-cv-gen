@@ -9,7 +9,6 @@ env:
   DISABLE_ESLINT_PLUGIN: true
   NODE_ENV: production
   NODE_VERSION: 20.0.0
-  YARN_VERSION: 1.22.17
 
 jobs:
   build_deploy:
@@ -48,6 +47,6 @@ jobs:
           echo "VITE_REDIRECT_URL=$(aws cloudformation list-exports --query "Exports[?Name==\`website-url-$STAGE\`].Value" --output text)" >> $GITHUB_ENV
           echo "BUCKET_NAME=$(aws cloudformation list-exports --query "Exports[?Name==\`bucket-name-$STAGE\`].Value" --output text)" >> $GITHUB_ENV
           echo "VITE_TOKEN_URL=$(aws cloudformation list-exports --query "Exports[?Name==\`access-token-api-endpoint\`].Value" --output text)" >> $GITHUB_ENV
-      - run: yarn install
-      - run: yarn build
-      - run: aws s3 sync ./build/ s3://BUCKET_NAME --delete
+      - run: npm install
+      - run: npm run build
+      - run: aws s3 sync ./dist/ s3://BUCKET_NAME --delete
